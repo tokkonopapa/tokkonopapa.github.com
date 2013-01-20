@@ -7,6 +7,7 @@
   <meta charset="utf-8">
   <title>Octopressのインストールから運用管理まで - T.I.D.</title>
   <meta name="author" content="tokkonopapa">
+  <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
   <meta name="description" content="あらためて GitHub へのインストールから、GitHub Pages への記事投稿、Bitbucket での原稿管理までをまとめておく。
@@ -23,28 +24,9 @@ GitHub Pages には、ユーザーページとプロジェクトページがあ�
   <link rel="canonical" href="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
+  <script src="/javascripts/modernizr-2.0.6.custom.js"></script>
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-20543951-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
 </head>
 
 <body   >
@@ -488,6 +470,15 @@ Automatic merge failed; fix conflicts and then commit the result.
     </p>
     
       <div class="sharing">
+  <div class="hatena-button">
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+      data-hatena-bookmark-layout="standard"
+      data-hatena-bookmark-url="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/">
+    <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+        alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+        style="border: none">
+    </a>
+  </div>
   
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/" >Tweet</a>
   
@@ -495,7 +486,7 @@ Automatic merge failed; fix conflicts and then commit the result.
   <div class="g-plusone" data-size="medium"></div>
   
   
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -522,6 +513,10 @@ Automatic merge failed; fix conflicts and then commit the result.
 <aside class="sidebar">
   
     <section>
+  <h1>About Me</h1>
+  <p>Web テクノロジの進化とデザインに興味のある、非 Web 業界エンジニア。<a href="http://tokkono.cute.coocan.jp/blog/slow/">ゆっくりと…</a> の別館としてここを運営しています。</p>
+</section>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
@@ -567,6 +562,10 @@ Automatic merge failed; fix conflicts and then commit the result.
     
   </ul>
 </section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 107.5%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 107.5%'>github(1)</a> <a href='/blog/categories/github/' style='font-size: 122.5%'>GitHub(3)</a> <a href='/blog/categories/heroku/' style='font-size: 115.0%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 122.5%'>jekyll(3)</a> <a href='/blog/categories/mac/' style='font-size: 115.0%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(8)</a> <a href='/blog/categories/plugins/' style='font-size: 107.5%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 107.5%'>Ruby(1)</a> <a href='/blog/categories/ruby/' style='font-size: 107.5%'>ruby(1)</a> <a href='/blog/categories/sass/' style='font-size: 107.5%'>Sass(1)</a> </span>
+</section>
 
 <section>
   <h1>GitHub Repos</h1>
@@ -576,25 +575,7 @@ Automatic merge failed; fix conflicts and then commit the result.
   
   <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
   
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
 
-        github.showRepos({
-            user: 'tokkonopapa',
-            count: 5,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -603,19 +584,11 @@ Automatic merge failed; fix conflicts and then commit the result.
   <ul id="tweets">
     <li class="loading">Status updating...</li>
   </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("tokkonopapa", 5, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+
   
     <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
   
 </section>
-
-
-
 
 
   
@@ -650,40 +623,42 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script src="/javascripts/octopress-all.min.js"></script>
+<script>
+$.domReady(function() {
+
+    github.showRepos({
+        user: 'tokkonopapa',
+        count: 5,
+        skip_forks: true,
+        target: '#gh_repos'
+    });
+
+    getTwitterFeed("tokkonopapa", 5, false);
+});
+</script>
+<script>
+(function(w,d){
+    var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
+    a=function(a,b){if(!d.getElementById(b)){c=d.createElement("script");
+    c.src=a;c.id=b||null;c.async=true;e.appendChild(c);}};
+
+    w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
+    a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
+
+    a("//platform.twitter.com/widgets.js");
+
+    a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
+
+    w.___gcfg={lang:"ja"};
+    a("https://apis.google.com/js/plusone.js");
 
 
+    a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
+    f.parentNode.insertBefore(e,f);
+})(window,document);
+</script>
 
 </body>
 </html>
