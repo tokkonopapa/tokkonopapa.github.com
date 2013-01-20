@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Heroku | T.I.D.]]></title>
+  <link href="http://tokkonopapa.github.com/blog/categories/heroku/atom.xml" rel="self"/>
+  <link href="http://tokkonopapa.github.com/"/>
+  <updated>2013-01-20T15:30:33+09:00</updated>
+  <id>http://tokkonopapa.github.com/</id>
+  <author>
+    <name><![CDATA[tokkonopapa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Heroku アプリのネーミング]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name/"/>
+    <updated>2011-12-21T23:51:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name</id>
+    <content type="html"><![CDATA[<p>無料枠だと、命名できないと思っていたけど勘違いで、使われていない名前ならいつでも変えられる。</p>
+
+<p>ということで、名前のつけ方、変え方。</p>
+
+<!--more-->
+
+
+<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></h3>
+
+<p><code>
+$ heroku create
+</code></p>
+
+<p>勝手に名前が付けられる。どんな名前を付けてくれるのか、結構楽しみだったりする。</p>
+
+<h3>2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
+
+<p><code>
+$ heroku create myappname
+</code></p>
+
+<p>当然、既に取得されているアプリ名はダメ。</p>
+
+<h3>3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
+
+<p>次の3通りの方法。</p>
+
+<ul>
+<li>リポジトリのディレクトリ内で変更する場合</li>
+</ul>
+
+
+<p><code>
+$ heroku rename 新しい名前
+</code></p>
+
+<ul>
+<li>リポジトリのディレクトリ外で変更する場合</li>
+</ul>
+
+
+<p><code>
+$ heroku rename 新しい名前 --app 古い名前
+</code></p>
+
+<ul>
+<li>「MyApps」から変更する場合</li>
+</ul>
+
+
+<p><img src="https://lh5.googleusercontent.com/-Um6U7b3dY4o/TvHx1OcDTdI/AAAAAAAAABQ/u5llrMWP-PE/s500/HerokuRename.png" alt="「MyApps」から変更する" /></p>
+
+<ul>
+<li>変更したアプリ名をリポジトリに反映するには、heroku アプリへの SSH プロトコル／パスを指定し直す。</li>
+</ul>
+
+
+<p><code>
+$ git remote rm heroku
+$ git remote add heroku git@heroku.com:新しい名前.git
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[github-preview を heroku にインストールする]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2011/12/19/installing-github-preview-on-heroku/"/>
+    <updated>2011-12-19T23:19:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2011/12/19/installing-github-preview-on-heroku</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/kei-s">kei-sさん</a> に
+<a href="https://twitter.com/#!/kei_s/status/133351755009359872" title="@kei_s: [github]よければご利用ください...!">教えてもらった</a>
+<a href="https://github.com/kei-s/github-preview" title="kei-s/github-preview - GitHub">github-preview</a> を
+fork したので、<a href="http://www.heroku.com/">heroku</a> へのインストール方法をメモ。</p>
+
+<p>ここに記したのは Mac (Mac OS X 10.6.8 Snow Leopard) での話です。Windows はそのうち確かめたいと思います。</p>
+
+<!--more-->
+
+
+<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
+
+<p>heroku を利用する前提条件は次の3つ。</p>
+
+<ul>
+<li><a href="http://beginrescueend.com/">rvm</a> と ruby 1.9.2</li>
+<li><a href="http://git-scm.com/">git</a></li>
+<li><a href="http://www.heroku.com/">heroku</a> のアカウントと heroku gem のインストール</li>
+</ul>
+
+
+<p>最新の <code>ruby-1.9.3-p0</code> とか使っているけど、大丈夫そう。
+ただし、プロジェクトに <code>.rvmrc</code> があって <code>rvm use 1.9.2</code> とか書いてあると
+次のように怒られる。</p>
+
+<pre><code>WARN: ruby ruby-1.9.2-p290 is not installed.
+To install do: 'rvm install ruby-1.9.2-p290'
+</code></pre>
+
+<p>この場合は、<code>~/.rvmrc</code> に</p>
+
+<pre><code>rvm_project_rvmrc=0
+</code></pre>
+
+<p>とか書いておくと、プロジェクトの <code>.rvmrc</code> を無視し、<code>~/.rvmrc</code> の設定を使う。（参考：<a href="http://beginrescueend.com/workflow/rvmrc/" title="RVM: Ruby Version Manager - rvmrc">rvmrc files</a>）。</p>
+
+<h3>2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
+
+<p>各OS用パッケージが載っているが、以下で大丈夫。</p>
+
+<pre><code>$ gem install heroku
+Fetching: term-ansicolor-1.0.7.gem (100%)
+...
+Successfully installed heroku-2.15.1
+7 gems installed
+</code></pre>
+
+<p>heroku コマンドは、たびたびバージョンアップがなされるようなので、アップデートをチェック。</p>
+
+<pre><code>$ gem update heroku
+Updating installed gems
+Nothing to update
+</code></pre>
+
+<p>続いて <a href="http://devcenter.heroku.com/articles/keys#adding_keys_to_heroku" title="Adding Keys to Heroku">SSH キーの証明書を発行</a> する。
+SSH キーは <a href="http://help.github.com/mac-set-up-git/" title="Help.GitHub - Set Up Git">GitHub での設定</a> と共用で大丈夫。</p>
+
+<pre><code>$ heroku keys:add
+Enter your Heroku credentials.
+Email: tokkonopapa@yahoo.com
+Password: 
+Found the following SSH public keys:
+1) github_rsa.pub
+2) id_rsa.pub
+Which would you like to use with your Heroku account? 2
+Uploading ssh public key /Users/kiyo/.ssh/id_rsa.pub
+</code></pre>
+
+<p><code>1)</code> は <a href="http://mac.github.com/">GitHub for Mac</a> の SSH キー（たぶん）。</p>
+
+<h3>3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
+
+<p>heroku に上げたい Git リポジトリのディレクトリで <code>heroku create</code> とするだけ。</p>
+
+<pre><code>$ git clone git://github.com/kei-s/github-preview.git github-preview
+Cloning into 'github-preview'...
+remote: Counting objects: 116, done.
+remote: Compressing objects: 100% (67/67), done.
+remote: Total 116 (delta 40), reused 101 (delta 25)
+Receiving objects: 100% (116/116), 73.46 KiB | 16 KiB/s, done.
+Resolving deltas: 100% (40/40), done.
+
+$ cd github-preview
+
+$ heroku create
+Creating growing-winter-3139...... done, stack is bamboo-mri-1.9.2
+http://growing-winter-3139.heroku.com/ | git@heroku.com:growing-winter-3139.git
+Git remote heroku added
+
+$ git push heroku
+</code></pre>
+
+<p>アプリ用 URL やリモートリポジトリの情報は、「My Apps → General Info」から参照できる。</p>
+]]></content>
+  </entry>
+  
+</feed>

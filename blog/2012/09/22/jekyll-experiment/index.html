@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>jekyllの実験的テンプレート - T.I.D.</title>
+  <meta name="author" content="tokkonopapa">
+
+  
+  <meta name="description" content="experiment of using jekyll">
+  <meta name="keywords" content="ruby, jekyll, github">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20543951-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">T.I.D.</a></h1>
+  
+    <h2>Git や GitHub と戯れる、オレオレ的おとなの遊び場</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/Tid" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tokkonopapa.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Jekyllの実験的テンプレート</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-22T15:30:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>jekyll で本格的ブログを作るためのテンプレート <a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a> を作ってみたが、色々と作り込むうちに複雑になってきたので、ここに記録しておく。</p>
+
+<!--more-->
+
+
+<h2>制作方針</h2>
+
+<ul>
+<li>モジュール化により、カスタマイズし易くすること。</li>
+<li>ブログに必要な最小限の機能が、プラグインの使えない <a href="http://pages.github.com/">GitHub Pages</a> 上の jekyll でも動作すること。</li>
+</ul>
+
+
+<h2>構成</h2>
+
+<pre><code>.
+├── _deploy/                # デプロイ時の静的ファイル群を保存しておく
+├── _includes/              # 他からインクルードされるテンプレート部品
+│     ├── asides/           # サイドバー用各種テンプレート部品
+│     ├── post/             # 個別記事ページ用各種テンプレート部品
+│     ├── libs/             # 小さなテンプレート部品
+│     ├── js/               # 小さな js 部品
+│     ├── css/              # 小さな css 部品
+│     │     └── pygments/   # pygments 用 css
+│     └── bootstrap-2.1.1/  # bootstrap の部品
+├── _layouts/               # ページ用テンプレート
+├── _plugins/               # 拡張用プラグイン（参考用）
+├── _posts/                 # 記事
+├── _site/                  # ここに一時的な静的ファイル群が作られる
+├── assets/                 # サイト用リソース
+│     ├── bootstrap-2.1.1/  # 必要な bootstrap 部品をインクルードする
+│     ├── css/              # 必要な css 部品をインクルードする
+│     ├── js/               # 必要な js 部品をインクルードする
+│     ├── ico/              # ファビコンなど
+│     └── img/              # サイト用画像
+├── blog/                   # ブログ用テンプレート
+└── project/                # プロジェクト用テンプレート
+</code></pre>
+
+<h3>1. <code>_config.yml</code> の設定</h3>
+
+<h4><code>url</code>、<code>baseurl</code></h4>
+
+<p>GitHub プロジェクトページの場合は、次のように指定する。</p>
+
+<pre><code>url: http://USERNAME.github.com/REPOSITORY
+baseurl: /REPOSITORY
+</code></pre>
+
+<h4><code>paginate</code>、<code>columns</code></h4>
+
+<p>トップページでの表示記事数と、先頭記事以外のカラム数。</p>
+
+<h4><code>date_format</code></h4>
+
+<p>使える書式は、<a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters#date-instance_method">Module: Liquid::StandardFilters — Documentation for liquid (2.2.2)</a> （GitHub の Liquid バージョンと同じ） を参考に。</p>
+
+<h4><code>truncate_len</code></h4>
+
+<p>トップページで紹介する記事の表示文字数。</p>
+
+<h4><code>navbar_list</code></h4>
+
+<p>次のように <code>{name, link}</code> のペアでナビゲーションバーのメニューを定義。</p>
+
+<pre><code>navbar_list:
+- name: Blog
+  link: /
+- name: Project
+  link: /project/
+- name: About
+  link: /about.html
+</code></pre>
+
+<p>サブメニューは、<code>dropdown: &amp;dropdown</code> を使い、次のように定義。</p>
+
+<pre><code>navbar_list:
+- name: Blog
+  link: /
+  dropdown: &amp;dropdown
+  - name: Categories
+    link: /blog/categories.html
+  - name: Tags
+    link: /blog/tags.html
+</code></pre>
+
+<p>これ以上の多階層化は、<code>_includes/navbar.html</code> に直接マークアップするのが吉。</p>
+
+<p>またリンク部をハイライトするためには、テンプレート側の YAML ディレクティブ <code>group</code> に、親メニューの <code>name</code> を指定する。以下は、<code>/blog/categories.html</code> の例。</p>
+
+<pre><code>---
+layout: default
+title: Archives
+group: Blog
+---
+</code></pre>
+
+<h4><code>pygments_style</code></h4>
+
+<p><a href="http://pygments.org/">Pygments - Python syntax highlighter</a> の <a href="http://pygments.org/demo/">Online demo</a> で、カラーリングを確認するのが吉。</p>
+
+<p>カラーリングに関しては、次のサイトもご参考。</p>
+
+<ul>
+<li><a href="https://github.com/mojombo/tpw/blob/master/css/syntax.css">tpw/css/syntax.css at master - mojombo/tpw</a><br/>
+  jekyll 本家による、GitHub のカラー。</li>
+<li><a href="https://github.com/uraimo/pygments-vimstyles">uraimo/pygments-vimstyles - GitHub</a><br/>
+  VIM で有名なテーマを Pygments 用に変換したスタイルシート。</li>
+<li><a href="http://www.uraimo.com/2011/09/21/from-vim-theme-to-pygments-css/">From VIM Theme to Pygments CSS</a><br/>
+  VIM 用のスタイルを Pygments 用スタイルに変換する python プログラム。</li>
+<li>Gist に投稿されたスタイル
+  <a href="https://gist.github.com/1125708">Solarized Pygments CSS - Gist</a>、
+  <a href="https://gist.github.com/2005058">Solarized Light Pygments CSS / Jekyll - Gist</a>、
+  <a href="https://gist.github.com/1573884">Solarized Pygments Dark CSS - Gist</a></li>
+</ul>
+
+
+<h3>2. 記事の YAML ディレクティブ</h3>
+
+<h4><code>excerpt</code></h4>
+
+<p>トップページ (index.html) で表示する、記事の要旨。</p>
+
+<h4><code>thumbnail</code></h4>
+
+<p>トップページ (index.html) で表示する、サムネイル画像。</p>
+
+<h4><code>comments</code></h4>
+
+<p>3rd パーティー製コメントシステムを有効にする。</p>
+
+<h4><code>published</code></h4>
+
+<p><code>true</code> で記事公開、<code>false</code> で保留。</p>
+
+<h4><code>category</code></h4>
+
+<p>カテゴリは、配列 <code>[...]</code> を使って複数指定可。この場合、左から順に親子関係となる。</p>
+
+<h4><code>tags</code></h4>
+
+<p>タグも配列を使用可能。カテゴリとは異なり、親子関係はない。</p>
+
+<h3>3.「続きを読む」機能</h3>
+
+<p>トップページ (index.html) の表示時、<code>_includes/libs/truncate_xxxx</code> で以下の処理を実行する。</p>
+
+<h4>3.1 <code>excerpt</code> の処理</h4>
+
+<p>記事の YAML ディレクティブにコレがあれば、要旨として表示する。</p>
+
+<h4>3.2 <code>&lt;!--more--&gt;</code> の処理</h4>
+
+<p><code>safe: false</code> な jekyll 環境では、<code>_plugins/postmore.rb</code> を使って <code>&lt;!--more--&gt;</code> で分割した文字列の前半をレンダリングする。一方プラグインが使えない GitHub ページ上の jekyll では、次のように Liquid で、<code>&lt;!--more--&gt;</code> から記事の終わりまでコメント化し、擬似的な more 機能を実現する。</p>
+
+<pre><code>{% if post.content contains '&lt;!--more--&gt;' %}
+    {{ post.content | remove:'--&gt;' }}--&gt;
+{% endif %}
+</code></pre>
+
+<p>テキストとしては送られるが、高々数十キロバイトだろうから、目をつぶってもらうというわけである。</p>
+
+<p>余談だが、次のような Liquid コードも試してみた。が、適当な1バイトの区切り文字 <code>SEP</code> をセットできないのでダメ。何か良い案はないだろうか？</p>
+
+<pre><code>{{ post.content | replace_first:'&lt;!--more--&gt;', SEP | split:SEP | first }}
+</code></pre>
+
+<h5>参考情報</h5>
+
+<ul>
+<li><a href="http://www.jacquesf.com/2011/03/creating-excerpts-in-jekyll-with-wordpress-style-more-html-comments/">Creating Excerpts in Jekyll with Wordpress-style &lt;!&#8211;more&#8211;&gt; HTML Comments - Jacques Fortier</a><br/>
+  <code>&lt;--more--&gt;</code> より手前を <code>excerpt</code> とする <code>postmorefilter</code> プラグイン 。</li>
+<li><a href="http://kaspa.rs/2011/04/jekyll-hacks-html-excerpts/">Jekyll hacks - HTML excerpts</a><br/>
+  <code>&lt;!-- more start --&gt;</code> ～ <code>&lt;-- more end --&gt;</code> 間をコメント化して <code>excerpt</code> とする方法。</li>
+</ul>
+
+
+<h4>3.3 先頭から既定文字数だけを表示する処理</h4>
+
+<p><code>excerpt</code> および <code>&lt;!--more--&gt;</code> が共にない場合、先頭の <code>truncate_len</code> だけ文字を表示する。GitHub 上の jekyll （バージョン 2.2.2） の場合、<code>truncate</code> フィルタがユニコードに対応しておらず、単なるバイト数でカウントされてしまうため、日本語が文字化けする可能性がある。そこでかなりトリッキーな方法ではあるが、末尾の文字コードを調べ、適切な所で丸める処理を Liquid で実装した。</p>
+
+<h3>4. カテゴリ、タグ</h3>
+
+<p><a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data - mojombo/jekyll Wiki</a> にある通り、テンプレートからは <code>site.categories</code> （ハッシュ） や <code>page.categories</code> （配列） などでアクセスすることが出来る。<code>_includes/libs/list_categories</code> と <code>_includes/libs/list_tags</code> にそれらの扱いを集約すると共に、両者をフラグで使い分ける仕様とした。</p>
+
+<p>またカテゴリは、親子関係を表す配列で提供されるのが jekyll の仕様である。例えば、<code>_post/1970-1-1-hello-world.md</code> の YAML ディレクティブに次のようなカテゴリが指定されていたとする。</p>
+
+<pre><code>title: "hello world!"
+category: [parent, child]
+</code></pre>
+
+<p>もし、<code>_config.yml</code> のパーマリンク設定が <code>permalink: /blog/:categories/:title.html</code> であった場合、上記の記事は、次のように展開される。</p>
+
+<pre><code>/blog/parent/child/hello-world.html
+</code></pre>
+
+<h3>5. bootstrap 関連</h3>
+
+<p>コレのコンフィグレーションを色々できるようにしたことが複雑化の原因。不要なら一切を削除するのがお勧め。</p>
+
+<h4>5.1 基本構成</h4>
+
+<p><code>assets/bootstrap-X.Y.Z/</code> 下のファイルが、<code>_includes/bootstrap-X.Y.Z/</code> 下の部品をインクルードする構成とした。</p>
+
+<p>例えば、<code>assets/bootstrap-2.1.1/js/bootstrap.custom.js</code> は、次のように bootstrap の js 部品をインクルードする。</p>
+
+<pre><code>---
+---
+{% include bootstrap-2.1.1/js/bootstrap-carousel.js %}
+{% include bootstrap-2.1.1/js/bootstrap-collapse.js %}
+{% include bootstrap-2.1.1/js/bootstrap-dropdown.js %}
+{% include bootstrap-2.1.1/js/bootstrap-tab.js %}
+{% include bootstrap-2.1.1/js/bootstrap-transition.js %}
+</code></pre>
+
+<p>コレのポイントは、YAML ディレクティブが空でも jekyll がちゃんと処理してくれて、自分自身のファイル形式に変換してくれること。</p>
+
+<p>css ファイルは、<a href="http://twitter.github.com/bootstrap/customize.html">web-based Customizer</a> から適当なモジュールを選択し、ダウンロードしたファイルで代用している。そのうち LESS をインストールし、モジュール化したい。</p>
+
+<h4>5.2 <code>_config.yml</code> の設定。</h4>
+
+<h5><code>bootstrap</code></h5>
+
+<p><code>custom</code> を指定すると <code>/assets/bootstrap-X.Y.Z/</code> のカスタムファイルを用いる。この場合、<code>_includes/bootstrap-X.Y.Z/</code> から必要な部品をインクルードする。<code>original</code> あるいはそれ以外では、<a href="http://www.bootstrapcdn.com/">BootstrapCDN</a> にアップされているファイルを使う。</p>
+
+<h5><code>bootstrap_ver</code></h5>
+
+<p>バージョン X.Y.Z を指定。</p>
+
+<h5><code>bootswatch_ver</code></h5>
+
+<p>テーマファイルのバージョンを指定。</p>
+
+<h5><code>responsive_bp</code></h5>
+
+<p>ナビゲーションバーを折り畳みタイプにする、メディアクエリ上のブレーク・ポイント。<code>assets/bootstrap-X.Y.Z/bootstrap-responsive.custom.css</code> に、この値をレンダリングする。</p>
+
+<h5><code>jquery_ver</code></h5>
+
+<p>本当は 1.8.x を使いたいんだけれど、私のスマホ （Optimus L-01D/Android 2.3） のネイティブなブラウザが落ちる。Firefox なら大丈夫。たぶんブラウザのバグ （だと思う）。</p>
+
+<h5>参考情報</h5>
+
+<ul>
+<li><a href="http://developmentseed.org/blog/2011/09/09/jekyll-github-pages/">Using Jekyll and GitHub Pages for Our Site | Development Seed</a><br/>
+  YAML ディレクティブを空に設定し、CSS や json ファイルを作る方法。GitHub Pages でもちゃんと動く。</li>
+</ul>
+
+
+<h3>6. <code>Rakefile</code> のエントリー</h3>
+
+<h4><code>preview</code></h4>
+
+<p><code>rake preview</code> もしくは <code>rake</code> で <a href="http://localhost:4000/">http://localhost:4000/</a> でのテストが可能。</p>
+
+<h4><code>post</code></h4>
+
+<p>新規投稿。次の書式が可能。</p>
+
+<pre><code>rake post title="title of my article"
+rake post["title of my article"]
+</code></pre>
+
+<h4><code>page</code></h4>
+
+<p>新規ページの作成。</p>
+
+<pre><code>rake page name="about.html"
+</code></pre>
+
+<h4><code>setup_remote</code></h4>
+
+<p>記事の公開に <code>git push</code> を使う場合の、リモートの設定。<code>push</code> するリモート側のブランチは、Rakefile 中のグローバルなハッシュ <code>CONFIG['deploy_branch']</code> で指定する。</p>
+
+<h4><code>deploy</code></h4>
+
+<p><code>setup_remote</code> で設定したリモートサーバに記事を <code>git push</code> する。<code>_site</code> に出来た静的ファイルは、プレビュー中にも変わってしまうため、<code>_deploy</code> ディレクトリにコピーし、デプロイ用ファイルを確定させる。</p>
+
+<h3>7. <code>Gemfile</code> 関連</h3>
+
+<h4><code>gem 'jekyll'</code></h4>
+
+<p><a href="http://rubygems.org/">RubyGems</a> に現在公開されている <a href="http://rubygems.org/gems/jekyll">jekyll</a> は pygmentize ごとにプロセスを起動するため、処理時間がかかるとのこと （情報源：<a href="http://d.hatena.ne.jp/hokaccha/20120808/1344436656">pygmentsが原因でjekyllが重くなってた - hokaccha.hamalog v2</a>）。GitHub 上の最新バージョンを使う方が吉かも。</p>
+
+<h4><code>gem 'gsl'</code></h4>
+
+<p>jekyll のソースを読む限り、<code>lsi: false</code> を指定すると、単に最新の記事数件を 「関連する記事」 とするだけである。<code>lsi: true</code> だと、少しはマシになるらしいが、処理時間がかかる模様。<a href="http://rubygems.org/gems/gsl">gsl</a> を使えば、10倍高速化できるとのこと （未確認）。</p>
+
+<h4><code>gem 'rake'</code></h4>
+
+<p>いつの間にか、システムにインストールしたバージョンを 0.9.2.2 に上げてしまったようで、Octopress が指定しているバージョン 0.9.2 と競合するようになった。Octopress 側を <code>bundle exec rake ...</code> で対応しているが、そもそも各アプリごとに gem を分けた方が良いかもしれない。</p>
+
+<h5>bundler の参考サイト</h5>
+
+<ul>
+<li><a href="http://kozo002.blogspot.jp/2012/01/rubybundler.html">[ruby]最初に知っておけば良かったbundlerの使い方 rails編 | Into my web</a></li>
+<li><a href="http://blog.mirakui.com/entry/20100703/1278165723">gem管理の新標準ツール&#8221;Bundler&#8221;のTips - 昼メシ物語</a><br/>
+  システムの gem と分離させる方法。</li>
+<li><a href="http://d.hatena.ne.jp/itmammoth/20110420/1303309226">複数のRailsアプリのgemを管理するためbundlerを使用する - Oh! My! Enter! ～バッチを起動しようと勢いよくキーを叩いたら、それはシフトキーだった～</a><br/>
+  gem をすべてアンインストールして、bunder で管理しましょう、の記事。</li>
+</ul>
+
+
+<h3>8. その他、テンプレート作成で参考になったサイト</h3>
+
+<h4>jekyll、Liquid の解説</h4>
+
+<ul>
+<li><p><a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters">Module: Liquid::StandardFilters - Documentation for liquid (2.2.2)</a><br/>
+  <a href="https://help.github.com/articles/using-jekyll-with-pages">GitHub 上の jekyll バージョン</a> で使える、Liquid 2.2.2 の標準フィルタに関するマニュアル。</p></li>
+<li><p><a href="http://melborne.github.com/2012/05/13/first-step-of-jekyll/">30分のチュートリアルでJekyllを理解する</a><br/>
+  1ステップづつ、実例を交えながら解説されていて、Jekyll に関しては、ココが一番詳しい。プラグインの作り方がお役立ち。<a href="http://melborne.github.com/2012/05/09/translation-of-jekyll-plugins/">Jekyll Wiki Pluginsの説明ページを勝手に翻訳しました</a> が分かり易い。</p></li>
+<li><p><a href="http://web.sfc.keio.ac.jp/~t10078si/wpx/?p=862">jekyll+github pagesでブログを作る &laquo; fragments</a><br/>
+  git、jekyll のインストール、<a href="">jekyll bootstrap</a> のインストールと構成、記事作成、GitHub への公開。pygments による Syntax highlight の説明アリ。</p></li>
+<li><p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">ruby と jekyll と jekyll-bootstrap で静的サイトを作る - KRAKENBEAL RECORDS</a><br/>
+  インストールから公開までの概要。末尾の参考文献がお役立ち。</p></li>
+<li><p><a href="http://css.studiomohawk.com/jekyll/2011/06/11/jekyll/">Jekyll | CSS Radar | Mini Books For Front End Developers</a><br/>
+  jekyll の基本的解説。Rakefile の作り方がお役立ち。</p></li>
+<li><p><a href="http://css.studiomohawk.com/less/2011/04/03/use_less_to_clean_up_your_css/">LESS - CSSプリプロフェッサ | CSS Radar | Mini Books For Front End Developers</a><br/>
+  LESS の使い方を含む解説。less.js を使った開発時の使い方と、リリース用のコンパイル方法が解説されている。</p></li>
+<li><p><a href="http://brizzled.clapper.org/blog/2012/03/05/using-twitter-bootstrap-with-jekyll/">Using Twitter Bootstrap with Jekyll - Brizzled</a><br/>
+  CSS の生成を自動化する LESS 用 Rakefile の書き方など。</p></li>
+</ul>
+
+
+<h4>Bootstrap</h4>
+
+<ul>
+<li><a href="http://www.bootstrapcdn.com/">BootstrapCDN</a><br/>
+  Bootstrap と Boostwatch の CDN。</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-22T15:30:00+09:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/07/25/site-verification/" title="Previous Post: Octopressサイトのウェブマスター登録">&laquo; Octopressサイトのウェブマスター登録</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/22/jekyll-experiment/">jekyllの実験的テンプレート</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/site-verification/">Octopressサイトのウェブマスター登録</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-emoji/">GitHubber達が使うEmojiの出し方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/">Octopress用Tag Cloudプラグインをリリースします</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/29/octopress-classic-theme-structure/">Octopressのテーマ - classicの構成</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'tokkonopapa',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("tokkonopapa", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - tokkonopapa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tokkonopapa';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

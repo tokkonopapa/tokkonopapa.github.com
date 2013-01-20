@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mac | T.I.D.]]></title>
+  <link href="http://tokkonopapa.github.com/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://tokkonopapa.github.com/"/>
+  <updated>2013-01-20T15:30:33+09:00</updated>
+  <id>http://tokkonopapa.github.com/</id>
+  <author>
+    <name><![CDATA[tokkonopapa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[github-preview を heroku にインストールする]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2011/12/19/installing-github-preview-on-heroku/"/>
+    <updated>2011-12-19T23:19:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2011/12/19/installing-github-preview-on-heroku</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/kei-s">kei-sさん</a> に
+<a href="https://twitter.com/#!/kei_s/status/133351755009359872" title="@kei_s: [github]よければご利用ください...!">教えてもらった</a>
+<a href="https://github.com/kei-s/github-preview" title="kei-s/github-preview - GitHub">github-preview</a> を
+fork したので、<a href="http://www.heroku.com/">heroku</a> へのインストール方法をメモ。</p>
+
+<p>ここに記したのは Mac (Mac OS X 10.6.8 Snow Leopard) での話です。Windows はそのうち確かめたいと思います。</p>
+
+<!--more-->
+
+
+<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
+
+<p>heroku を利用する前提条件は次の3つ。</p>
+
+<ul>
+<li><a href="http://beginrescueend.com/">rvm</a> と ruby 1.9.2</li>
+<li><a href="http://git-scm.com/">git</a></li>
+<li><a href="http://www.heroku.com/">heroku</a> のアカウントと heroku gem のインストール</li>
+</ul>
+
+
+<p>最新の <code>ruby-1.9.3-p0</code> とか使っているけど、大丈夫そう。
+ただし、プロジェクトに <code>.rvmrc</code> があって <code>rvm use 1.9.2</code> とか書いてあると
+次のように怒られる。</p>
+
+<pre><code>WARN: ruby ruby-1.9.2-p290 is not installed.
+To install do: 'rvm install ruby-1.9.2-p290'
+</code></pre>
+
+<p>この場合は、<code>~/.rvmrc</code> に</p>
+
+<pre><code>rvm_project_rvmrc=0
+</code></pre>
+
+<p>とか書いておくと、プロジェクトの <code>.rvmrc</code> を無視し、<code>~/.rvmrc</code> の設定を使う。（参考：<a href="http://beginrescueend.com/workflow/rvmrc/" title="RVM: Ruby Version Manager - rvmrc">rvmrc files</a>）。</p>
+
+<h3>2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
+
+<p>各OS用パッケージが載っているが、以下で大丈夫。</p>
+
+<pre><code>$ gem install heroku
+Fetching: term-ansicolor-1.0.7.gem (100%)
+...
+Successfully installed heroku-2.15.1
+7 gems installed
+</code></pre>
+
+<p>heroku コマンドは、たびたびバージョンアップがなされるようなので、アップデートをチェック。</p>
+
+<pre><code>$ gem update heroku
+Updating installed gems
+Nothing to update
+</code></pre>
+
+<p>続いて <a href="http://devcenter.heroku.com/articles/keys#adding_keys_to_heroku" title="Adding Keys to Heroku">SSH キーの証明書を発行</a> する。
+SSH キーは <a href="http://help.github.com/mac-set-up-git/" title="Help.GitHub - Set Up Git">GitHub での設定</a> と共用で大丈夫。</p>
+
+<pre><code>$ heroku keys:add
+Enter your Heroku credentials.
+Email: tokkonopapa@yahoo.com
+Password: 
+Found the following SSH public keys:
+1) github_rsa.pub
+2) id_rsa.pub
+Which would you like to use with your Heroku account? 2
+Uploading ssh public key /Users/kiyo/.ssh/id_rsa.pub
+</code></pre>
+
+<p><code>1)</code> は <a href="http://mac.github.com/">GitHub for Mac</a> の SSH キー（たぶん）。</p>
+
+<h3>3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
+
+<p>heroku に上げたい Git リポジトリのディレクトリで <code>heroku create</code> とするだけ。</p>
+
+<pre><code>$ git clone git://github.com/kei-s/github-preview.git github-preview
+Cloning into 'github-preview'...
+remote: Counting objects: 116, done.
+remote: Compressing objects: 100% (67/67), done.
+remote: Total 116 (delta 40), reused 101 (delta 25)
+Receiving objects: 100% (116/116), 73.46 KiB | 16 KiB/s, done.
+Resolving deltas: 100% (40/40), done.
+
+$ cd github-preview
+
+$ heroku create
+Creating growing-winter-3139...... done, stack is bamboo-mri-1.9.2
+http://growing-winter-3139.heroku.com/ | git@heroku.com:growing-winter-3139.git
+Git remote heroku added
+
+$ git push heroku
+</code></pre>
+
+<p>アプリ用 URL やリモートリポジトリの情報は、「My Apps → General Info」から参照できる。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress on GitHub Pages のインストールでハマったこと]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github/"/>
+    <updated>2011-12-03T13:30:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github</id>
+    <content type="html"><![CDATA[<p>まだ Lion にアップグレードしていない Mac Book Air (Mac OS X 10.6.8 Snow Leopard) に、Xcode3 と RVM (Ruby Version Manager) をインストールし、Octopass の立ち上げを試みたのですが、ハマりました。誰かの何かの役に立つかもしれないので、その時のメモを記しておきます。</p>
+
+<p>ただし私は、「Ruby ってどんな？ gem って何？」というヒトなので、ここに書かれたことには間違いが含まれている可能性アリです。ご参照はソコソコに。</p>
+
+<!--more-->
+
+
+<h2>Xcode 3 のインストール</h2>
+
+<p><a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
+<code>xcode_3.2.6_and_ios_sdk_4.3.dmg</code> を実行。iOS SDK 4.3 は要らないので、インストールせず。</p>
+
+<h2>RVM のインストール</h2>
+
+<p><a href="http://beginrescueend.com/rvm/install/">RVM: Ruby Version Manager - Installing RVM</a> には、Single-User が推奨されているので、以下を実行。</p>
+
+<pre><code>$ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+</code></pre>
+
+<p><code>.bash_profile</code> に RVM function を読み込ませるスクリプトを追加。</p>
+
+<pre><code>$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile
+</code></pre>
+
+<p>第1のハマりは、これを <code>.bashrc</code> に設定していたこと。<code>.bach_profile</code> でないとダメ （bash の起動で <code>.bashrc</code> を読み込まないのは Mac 特有？）。あるいは <code>.bach_profile</code> に次を設定しておく（<a href="http://www.glamenv-septzen.net/view/383">".bash_profile"と".bashrc"の使い分け</a>）。</p>
+
+<pre><code>if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+</code></pre>
+
+<p>これがちゃんと設定されていないと、後半の <code>rake install</code> で次のようなエラーが出る。</p>
+
+<pre><code>Could not find RedCloth-4.2.8 in any of the sources
+Run `bundle install` to install missing gems.
+</code></pre>
+
+<h2>Ruby 1.9.3 のインストール</h2>
+
+<p>Octopress は 1.9.2 以上が条件。<code>rvm list known</code> とすると、1.9.3 があるので、最新版をインストールすることに。rvm コマンドには sudo は付けない。付けるのは Multi-User 用。</p>
+
+<pre><code>$ rvm install 1.9.3
+</code></pre>
+
+<p>デフォルトで 1.9.3 を使うように設定。</p>
+
+<pre><code>$ rvm use 1.9.3
+</code></pre>
+
+<p>また <a href="http://octopress.org/docs/setup/rvm/">Installing RVM - Octopress</a> によると、rubygems の更新も必要。</p>
+
+<pre><code>$ rvm rubygems latest
+</code></pre>
+
+<h2>Octopress のインストール</h2>
+
+<p><a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従いインストール。まず、Octopress のクローンを作る。</p>
+
+<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
+$ cd octopress
+</code></pre>
+
+<p>ここで次のようなメッセージが出現。</p>
+
+<pre><code>==============================================================================
+= NOTICE                                                                     =
+==============================================================================
+= RVM has encountered a new or modified .rvmrc file in the current directory =
+= This is a shell script and therefore may contain any shell commands.       =
+=                                                                            =
+= Examine the contents of this file carefully to be sure the contents are    =
+= safe before trusting it! ( Choose v[iew] below to view the contents )      =
+==============================================================================
+Do you wish to trust this .rvmrc file? (/Users/xxxxxx/github/octopress/.rvmrc)
+y[es], n[o], v[iew], c[ancel]&gt; 
+</code></pre>
+
+<p>RVM が <code>.rvmrc</code> の上書きを監視しているようだ。よくわからないまま <code>y</code> を入力。これが間違えの元か？ 作成された <code>.rvmrc</code> には <code>rvm 1.9.2</code> と書かれているが、とりあえずそのまま。</p>
+
+<pre><code>$ gem install bundler
+$ bundle install
+$ 
+$ rake install
+</code></pre>
+
+<p>やばい、ここでエラー。</p>
+
+<pre><code>rake aborted!
+no such file to load -- bundler/setup
+</code></pre>
+
+<p><a href="http://www.oiax.jp/books/hajimeru_rails_3.html">『はじめる！ Rails3』読者サポートページ</a> の 「Ruby が複数インストールされた環境で発生する場合がある」 を元に、次を実行。</p>
+
+<pre><code>sudo gem update rake
+</code></pre>
+
+<p>再び <code>rake install</code>。</p>
+
+<pre><code>Could not find rake-0.9.2.2 in any of the sources
+Run `bundle install` to install missing gems.
+</code></pre>
+
+<p>え～、今 bundle で install したばっかりでしょう！？ 再度 <code>rake install</code> しても</p>
+
+<pre><code>$ bundle show rake
+</code></pre>
+
+<p>を実行すると、やはり <code>bundle install</code> しろと言われる。両コマンド間で参照している環境変数が違う感じ？</p>
+
+<p>で、前述の <code>.rvmrc</code> を思い出す。試しに <code>.rvmrc-</code> に退避してみたらあっさり OK。</p>
+
+<p>結局、rvm をインストールした時の、次のメッセージに従い、<code>~/.rvmrc</code> に <code>rvm_project_rvmrc=0</code> を記述して、一件落着。</p>
+
+<pre><code>If you wish to disable the project .rvmrc file functionality, set
+rvm_project_rvmrc=0 in either /etc/rvmrc or ~/.rvmrc.
+</code></pre>
+
+<p>現在は上記 <code>~/.rvmrc</code> への追加ではなく、<code>rvm use 1.9.3 --default</code> を実行して <code>.rvmrc</code> に
+設定されている <code>rvm 1.9.2</code> を無視する設定としている。</p>
+
+<p>ところで、<a href="http://gembundler.com/">bundler</a> って何？ Ruby の世界は奥深そうなのでした ;-) 。</p>
+]]></content>
+  </entry>
+  
+</feed>

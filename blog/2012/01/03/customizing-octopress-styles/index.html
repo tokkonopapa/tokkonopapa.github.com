@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopressのスタイル設定とカスタマイズ - T.I.D.</title>
+  <meta name="author" content="tokkonopapa">
+
+  
+  <meta name="description" content="Octopress には、スタイル設定に Sass と Compass が導入されているため、カスタマイズには、SCSS（Sassy CSS）に関する知識が必要である。 この際だから覚えてしまうことにする。 Sass 関連の参考資料 たぶん何度も読み直すと思うので、ここにメモ。 Sass &hellip;">
+  <meta name="keywords" content="octopress, sass, css, media queries">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20543951-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">T.I.D.</a></h1>
+  
+    <h2>Git や GitHub と戯れる、オレオレ的おとなの遊び場</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/Tid" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tokkonopapa.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Octopressのスタイル設定とカスタマイズ</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-03T15:46:00+09:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Octopress には、スタイル設定に <a href="http://sass-lang.com/" title="Syntactically Awesome StyleSheets">Sass</a> と <a href="http://compass-style.org/">Compass</a> が導入されているため、カスタマイズには、SCSS（Sassy CSS）に関する知識が必要である。</p>
+
+<p>この際だから覚えてしまうことにする。</p>
+
+<!--more-->
+
+
+<h3>Sass 関連の参考資料</h3>
+
+<p>たぶん何度も読み直すと思うので、ここにメモ。</p>
+
+<h4>Sass</h4>
+
+<ul>
+<li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
+<li><a href="http://hail2u.net/documents/sass-tutorial.html">Sass - チュートリアル</a></li>
+<li><a href="http://hail2u.net/documents/sass-and-sassy-css.html">Sass、そしてSassy CSS (SCSS)</a></li>
+<li><a href="http://nodot.jp/articles/singletoninsass">Sass で Singleton を実現し、安心してクラスを再利用する - nodot</a></li>
+<li><a href="http://tech.naver.jp/blog/?p=845">sassの抑えておきたいfunctionの使い方 « NAVER Engineers&#8217; Blog</a></li>
+</ul>
+
+
+<h4>Compass</h4>
+
+<ul>
+<li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
+<li><a href="http://compass-style.org/index/mixins/">Compass Documentation | All Mixins | Compass Documentation</a></li>
+</ul>
+
+
+<h3>Octopress の Sass 構成</h3>
+
+<pre><code>sass/
+├─ screen.scss              # 全ての定義の始まりであり、終わり
+├─ _base.scss               # 各 base/* の読み込み
+├─ base/
+│  ├─ _utilities.scss       # sass の関数など
+│  ├─ _solarized.scss       # コードスニペットの色定義
+│  ├─ _theme.scss           # テーマカラーに関する定義など
+│  ├─ _typography.scss      # 各 HTML 要素のフォントに関する定義
+│  └─ _layout.scss          # メディアクエリ、サイドバーの折り畳みなど
+├─ custom/
+│  ├─ _colors.scss          # テーマカラーのカスタマイズ用
+│  ├─ _fonts.scss           # フォント種類のカスタマイズ用
+│  ├─ _layout.scss          # パディング、マージンのカスタマイズ用
+│  └─ _styles.scss          # その他のスタイルに関するカスタマイズ用
+├─ _partials.scss           # 各 partials/* を読み込み
+└─ partials/
+   ├─ _header.scss          # ヘッダー部に関するスタイル定義
+   ├─ _navigation.scss      # ナビゲーションバーに関するスタイル定義
+   ├─ _blog.scss            # 記事に関するスタイル定義
+   ├─ _sharing.scss         # ソーシャルボタンに関するスタイル定義
+   ├─ _syntax.scss          # コードスニペット関連のスタイル定義
+   ├─ _archive.scss         # アーカイブ、カテゴリページのスタイル定義
+   ├─ _sidebar.scss         # sidebar/* の読み込み
+   ├─ sidebar/
+   │   ├─ _base.scss        # サイドバーの汎用スタイル定義
+   │   ├─ _twitter.scss     # セレクタ "#tweets" の定義
+   │   ├─ _googleplus.scss  # セレクタ ".googleplus" の定義
+   │   ├─ _pinboard.scss    # セレクタ "#pinboard_linkroll" の定義
+   │   └─ _delicious.scss   # セレクタ ".delicious-posts" の定義
+   └─ _footer.scss          # フッター部に関するスタイル定義
+</code></pre>
+
+<h4>screen.scss</h4>
+
+<figure class='code'><figcaption><span>screen.scss  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@import</span> <span class="s2">&quot;compass&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">@include</span> <span class="nt">global-reset</span><span class="p">;</span>
+</span><span class='line'><span class="k">@include</span> <span class="nt">reset-html5</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/colors&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/fonts&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/layout&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;base&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;partials&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/styles&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
+
+<h3>カスタマイズ例</h3>
+
+<p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
+
+<h4>_color.scss</h4>
+
+<p>まずはテーマカラーの調整。</p>
+
+<figure class='code'><figcaption><span>_color.scss  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">colors</span> <span class="nt">defined</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
+</span><span class='line'><span class="err">$</span><span class="nt">header-bg</span><span class="o">:</span> <span class="nf">#04263e</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class='line'><span class="err">$</span><span class="nt">nav-bg</span><span class="o">:</span> <span class="nt">desaturate</span><span class="o">(</span><span class="nt">lighten</span><span class="o">(</span><span class="nf">#a0bfd6</span><span class="o">,</span> <span class="nt">18</span><span class="o">),</span> <span class="nt">5</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class='line'><span class="err">$</span><span class="nt">footer-bg</span><span class="o">:</span> <span class="nf">#d1e4f2</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class='line'><span class="err">$</span><span class="nt">footer-color</span><span class="o">:</span> <span class="nf">#666</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class='line'><span class="err">$</span><span class="nt">footer-link-color-hover</span><span class="o">:</span> <span class="nt">darken</span><span class="o">(</span><span class="err">$</span><span class="nt">footer-bg</span><span class="o">,</span> <span class="nt">50</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>_styles.scss</h4>
+
+<p>その他の細かなスタイルのカスタマイズ。</p>
+
+<figure class='code'><figcaption><span>_styles.scss  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_typography</span><span class="nc">.scss</span>
+</span><span class='line'><span class="k">@mixin</span> <span class="nt">header-text</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">@include</span> <span class="nt">text-shadow</span><span class="o">(</span><span class="nt">-5px</span> <span class="nt">-5px</span> <span class="nt">10px</span> <span class="nf">#000</span><span class="o">)</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
+</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span>
+</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">992px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nt">h1</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
+</span><span class='line'><span class="nt">html</span> <span class="p">{</span>
+</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="k">background</span><span class="p">(</span><span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="k">top</span><span class="o">,</span> <span class="err">$</span><span class="k">page</span><span class="o">-</span><span class="n">bg</span><span class="o">,</span> <span class="err">$</span><span class="n">header</span><span class="o">-</span><span class="n">bg</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nt">body</span> <span class="p">{</span>
+</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="p">(</span><span class="m">0</span> <span class="m">0</span> <span class="m">15px</span> <span class="m">#000</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>謎の右マージンを直す</h4>
+
+<p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
+
+<p><img class="center" src="https://lh3.googleusercontent.com/-C2lRp_c2yAw/TwLWli56Q1I/AAAAAAAAAIY/cKbDczthVc8/s380/UnknownRightMargin.png" width="380" height="240" title="'謎のマージン'" ></p>
+
+<p><img class="center" src="https://lh4.googleusercontent.com/-FvFRXgvmCqg/TwLWllgHJFI/AAAAAAAAAIU/jT5zjwsmSsc/s380/TwitterFollowButton.png" width="380" height="240" title="'Followボタンが原因'" ></p>
+
+<p>原因は、サイドバー内側の幅が 260px に設定されているのに対し、フォローボタンに幅が指定されておらず、デフォルトの 300px となっていること。</p>
+
+<p><code>source/_include/asides/twitter.html</code> で、フォローボタンの幅を <code>data-width="260px"</code> と指定して解決（<code>auto</code> に設定してもダメ）。</p>
+
+<div><script src='https://gist.github.com/1554383.js?file=twitter.html'></script>
+<noscript><pre><code>  {% if site.twitter_follow_button %}
+    &lt;a href=&quot;http://twitter.com/{{ site.twitter_user }}&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;{{ site.twitter_show_follower_count }}&quot; data-width=&quot;260px&quot;&gt;Follow @{{ site.twitter_user }}&lt;/a&gt;
+  {% else %}
+    &lt;p&gt;Follow &lt;a href=&quot;http://twitter.com/{{site.twitter_user}}&quot;&gt;@{{ site.twitter_user }}&lt;/a&gt;&lt;/p&gt;
+  {% endif %}</code></pre></noscript></div>
+
+
+<h5>参考情報</h5>
+
+<ul>
+<li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
+<li><a href="https://dev.twitter.com/docs/follow-button">Follow Button | Twitter Developers</a></li>
+</ul>
+
+
+<h5>2012年1月11日 追記</h5>
+
+<p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-03T15:46:00+09:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/sass/'>Sass</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/01/02/octopress-hidden-features-for-seo/" title="Previous Post: SEOに効くOctopressの隠し機能">&laquo; SEOに効くOctopressの隠し機能</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/" title="Next Post: Octopress用Tag Cloudプラグインをリリースします">Octopress用Tag Cloudプラグインをリリースします &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/22/jekyll-experiment/">jekyllの実験的テンプレート</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/site-verification/">Octopressサイトのウェブマスター登録</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-emoji/">GitHubber達が使うEmojiの出し方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/">Octopress用Tag Cloudプラグインをリリースします</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/29/octopress-classic-theme-structure/">Octopressのテーマ - classicの構成</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'tokkonopapa',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("tokkonopapa", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - tokkonopapa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tokkonopapa';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

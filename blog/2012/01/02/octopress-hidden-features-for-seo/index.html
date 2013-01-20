@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>SEOに効くOctopressの隠し機能 - T.I.D.</title>
+  <meta name="author" content="tokkonopapa">
+
+  
+  <meta name="description" content="Octopress のコードリーディングをしていて見つけた隠し機能について。">
+  <meta name="keywords" content="Octopress, SEO">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20543951-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">T.I.D.</a></h1>
+  
+    <h2>Git や GitHub と戯れる、オレオレ的おとなの遊び場</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/Tid" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tokkonopapa.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">SEOに効くOctopressの隠し機能</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-02T09:31:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Octopress のコードリーディングをしていて見つけた隠し機能について。同じネタが既に
+<a href="http://www.meatleasing.com/octopress-hidden-features/index.html">Octopress Hidden Features</a>
+に挙がっていた。</p>
+
+<!--more-->
+
+
+<h3>&lt;meta&gt; タグの追加機能</h3>
+
+<p><code>source/_includes/head.html</code> の10行目付近から。</p>
+
+<div><script src='https://gist.github.com/1548796.js?file=head.html'></script>
+<noscript><pre><code>  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+  &lt;meta name=&quot;description&quot; content=&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;&gt;
+  {% if page.keywords %}&lt;meta name=&quot;keywords&quot; content=&quot;{{ page.keywords }}&quot;&gt;{% endif %}</code></pre></noscript></div>
+
+
+<p>記事の <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML ブロック</a> に <code>description</code> か、記事から HTML を除いた先頭150字が <code>&lt;meta name="description" content="..."&gt;</code> に挿入される。
+同様に <code>keywords</code> で <code>&lt;meta name="keywords" content="..."&gt;</code> が挿入される。</p>
+
+<figure class='code'><figcaption><span>記事の YAML ブロック・サンプル</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;SEOに効くOctopressの隠し機能&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2012-01-02 09:31</span>
+</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">octopress</span><span class="p-Indicator">]</span>
+</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress のコードリーディングをしていて見つけた隠し機能について。</span>
+</span><span class='line'><span class="l-Scalar-Plain">keywords</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress, SEO</span>
+</span><span class='line'><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ちなみにトップページの場合も、先頭記事が <code>{ content }</code> として参照されるのが、何だかアレな感じ。</p>
+
+<h4>plugins/octopress_filters.rb の改修</h4>
+
+<p>記事の先頭150字以内に改行が含まれていると、<code>content="..."</code> が改行されちゃうのもアレ（HTML 的には OK だから、気にすることないけどネ）。</p>
+
+<p>そこで、<code>plugins/octopress_filters.rb</code>（<a href="https://github.com/imathis/octopress/blob/master/plugins/octopress_filters.rb">ソースコードの全体</a>）の104行目付近 <code>condense_spaces</code> に改行を削除するコードを追加。</p>
+
+<figure class='code'><figcaption><span>plugins/octopress_filters.rb の改修</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># Condenses multiple spaces and tabs into a single space</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">condense_spaces</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\s{2,}/</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\n/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Rakefile の改修</h4>
+
+<p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
+
+<div><script src='https://gist.github.com/1548796.js?file=Rakefile'></script>
+<noscript><pre><code>  puts &quot;Creating new post: #{filename}&quot;
+  open(filename, 'w') do |post|
+    post.puts &quot;---&quot;
+    post.puts &quot;layout: post&quot;
+    post.puts &quot;title: \&quot;#{title.gsub(/&amp;/,'&amp;amp;')}\&quot;&quot;
+    post.puts &quot;date: #{Time.now.strftime('%Y-%m-%d %H:%M')}&quot;
+    post.puts &quot;comments: true&quot;
+    post.puts &quot;categories: &quot;
+    post.puts &quot;description: &quot;
+    post.puts &quot;keywords: &quot;
+    post.puts &quot;---&quot;
+  end</code></pre></noscript></div>
+
+
+<h3>サイドバーへの <code>About Me</code> 追加</h3>
+
+<p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
+
+<figure class='code'><figcaption><span>_config.yml のサイドバーに about.html を指定する</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">custom/asides/about.html</span><span class="p-Indicator">,</span> <span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/github.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-02T09:31:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/31/hatena-bookmark-on-octopress/" title="Previous Post: Octopressにはてブボタンを設置する">&laquo; Octopressにはてブボタンを設置する</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/01/03/customizing-octopress-styles/" title="Next Post: Octopressのスタイル設定とカスタマイズ">Octopressのスタイル設定とカスタマイズ &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/22/jekyll-experiment/">jekyllの実験的テンプレート</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/site-verification/">Octopressサイトのウェブマスター登録</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-emoji/">GitHubber達が使うEmojiの出し方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/">Octopress用Tag Cloudプラグインをリリースします</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/29/octopress-classic-theme-structure/">Octopressのテーマ - classicの構成</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'tokkonopapa',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("tokkonopapa", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - tokkonopapa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tokkonopapa';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

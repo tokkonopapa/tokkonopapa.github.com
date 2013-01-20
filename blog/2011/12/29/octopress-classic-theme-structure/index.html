@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopressのテーマ - classicの構成 - T.I.D.</title>
+  <meta name="author" content="tokkonopapa">
+
+  
+  <meta name="description" content="いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。 1. テーマの概要 テンプレートファイル rake install の時点で、.themes/classic から source にコピーされる。 設定ファイル _config.yml &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20543951-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">T.I.D.</a></h1>
+  
+    <h2>Git や GitHub と戯れる、オレオレ的おとなの遊び場</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/Tid" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tokkonopapa.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Octopressのテーマ - Classicの構成</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-29T17:34:00+09:00" pubdate data-updated="true">Dec 29<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。</p>
+
+<!--more-->
+
+
+<h3>1. テーマの概要</h3>
+
+<h4>テンプレートファイル</h4>
+
+<p><code>rake install</code> の時点で、<code>.themes/classic</code> から <code>source</code> にコピーされる。</p>
+
+<h4>設定ファイル</h4>
+
+<ul>
+<li><strong>_config.yml</strong><br/>
+  ここで定義された変数がテンプレート中 <code>site.変数名</code> でアクセスされる。</li>
+</ul>
+
+
+<h4>構成の概要</h4>
+
+<pre><code>source/
+├── _layouts/    # トップページ、個別記事ページ、カテゴリアーカイブページのレイアウト
+└── _includes/   # ページレイアウト用の部品
+    ├── post/    # サイトのメタデータ、ソーシャルメディア、コメントシステム用部品
+    ├── asides/  # テーマのサイドバー用部品
+    └── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
+</code></pre>
+
+<h3>2. テンプレートファイルの構成</h3>
+
+<h4>ページ</h4>
+
+<pre><code>└── _layouts/
+    ├── default.html
+    ├── page.html (layout: default)
+    ├── post.html (layout: default, single: true)
+    └── category_index.html (layout: page, footer: false)
+</code></pre>
+
+<h4>&lt;head&gt;</h4>
+
+<pre><code>└── _includes/
+    ├── head.html
+    ├── custom/head.html
+    └── google_analytics.html
+</code></pre>
+
+<h4>RSS</h4>
+
+<pre><code>└── _includes/
+    └── custom/category_feed.xml
+</code></pre>
+
+<h4>ヘッダー</h4>
+
+<pre><code>└── _includes/
+    ├── header.html
+    └── custom/header.html
+</code></pre>
+
+<h4>ナビゲーション・メニュー</h4>
+
+<pre><code>└── _includes/
+    ├── navigation.html
+    └── custom/navigation.html
+</code></pre>
+
+<h4>記事</h4>
+
+<pre><code>└── _includes/
+    ├── article.html            # post.html、index.html から
+    ├── post/author.html        # post.html、page.html から
+    ├── post/categories.html    # post.html、page.html から
+    ├── post/date.html          # post.html、page.html、index.html から
+    ├── post/disqus_thread.html # post.html、page.html から
+    └── post/sharing.html       # post.html、page.html から
+</code></pre>
+
+<h4>サイドバー・パーツ</h4>
+
+<pre><code>└── _includes/
+    ├── custom/asides/about.html
+    ├── asides/recent_posts.html
+    ├── asides/github.html
+    ├── asides/delicious.html
+    ├── asides/googleplus.html
+    ├── asides/pinboard.html
+    └── asides/twitter.html
+</code></pre>
+
+<h4>フッター</h4>
+
+<pre><code>└── _includes/
+    ├── footer.html
+    └── custom/footer.html
+</code></pre>
+
+<h4>ソーシャル・パーツ</h4>
+
+<pre><code>└── _includes/
+    ├── after_footer.html
+    ├── custom/after_footer.html    # コメントのみ
+    ├── disqus.html                 # after_footer.html から
+    ├── facebook_like.html          # after_footer.html から
+    ├── google_plus_one.html        # after_footer.html から
+    └── twitter_sharing.html        # after_footer.html から
+</code></pre>
+
+<h4>アーカイブ</h4>
+
+<pre><code>└── _includes/
+    └── archive_post.html   # category_index.html、blog/archives/index.html から
+</code></pre>
+
+<h3>3. 生成されるファイルの構成</h3>
+
+<pre><code>├── index.html (layout: default)
+├── atom.xml
+├── blog/
+│   └── archives/
+│       └── index.html
+├── sitemap.xml
+├── favicon.png
+├── images/
+│   ├── bird_32_gray.png
+│   ├── bird_32_gray_fail.png
+│   ├── code_bg.png
+│   ├── dotted-border.png
+│   ├── email.png
+│   ├── line-tile.png
+│   ├── noise.png
+│   ├── rss.png
+│   └── search.png
+├── javascripts/
+│   ├── ender.js
+│   ├── github.js
+│   ├── libs/
+│   │   ├── ender.js
+│   │   ├── jXHR.js
+│   │   └── swfobject-dynamic.js
+│   ├── modernizr-2.0.js
+│   ├── octopress.js
+│   ├── pinboard.js
+│   └── twitter.js
+└── stylesheets/
+    └── screen.css
+</code></pre>
+
+<h3>4. Octopressの動作</h3>
+
+<h4>&#8211;新規投稿&#8211;</h4>
+
+<h5>コマンド</h5>
+
+<pre><code>rake new_post['post title']
+</code></pre>
+
+<h5>ファイル</h5>
+
+<pre><code>└── _post/YYYY-MM-DD-post-title.markdown
+</code></pre>
+
+<h5>YAMLブロック</h5>
+
+<pre><code>---
+layout: post
+title: "post title"
+date: YYYY-MM-DD hh:mm
+comments: true
+categories: [category1, ...]
+---
+</code></pre>
+
+<h4>&#8211;新規ページ&#8211;</h4>
+
+<h5>コマンド</h5>
+
+<pre><code>rake new_page[my-new-page]
+rake new_page[my-new-page.html]
+</code></pre>
+
+<h5>ファイル</h5>
+
+<pre><code>├── my-new-page/index.markdown    # rake new_page[my-new-page]
+└── my-new-page/index.html        # rake new_page[my-new-page.html]
+</code></pre>
+
+<h5>YAMLブロック</h5>
+
+<pre><code>---
+layout: page
+title: 
+date: YYYY-MM-DD hh:mm
+comments: true
+sharing: true
+footer: true
+---
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-29T17:34:00+09:00" pubdate data-updated="true">Dec 29<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/28/easy-usage-of-jekyll-on-github/" title="Previous Post: jekyllで作る簡単GitHub Pages">&laquo; jekyllで作る簡単GitHub Pages</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/30/octopress-on-github-and-bitbucket/" title="Next Post: Octopressのインストールから運用管理まで">Octopressのインストールから運用管理まで &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/22/jekyll-experiment/">jekyllの実験的テンプレート</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/site-verification/">Octopressサイトのウェブマスター登録</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-emoji/">GitHubber達が使うEmojiの出し方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/">Octopress用Tag Cloudプラグインをリリースします</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/29/octopress-classic-theme-structure/">Octopressのテーマ - classicの構成</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'tokkonopapa',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("tokkonopapa", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - tokkonopapa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tokkonopapa';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

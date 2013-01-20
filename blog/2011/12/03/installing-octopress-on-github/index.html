@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopress on GitHub Pages のインストールでハマったこと - T.I.D.</title>
+  <meta name="author" content="tokkonopapa">
+
+  
+  <meta name="description" content="まだ Lion にアップグレードしていない Mac Book Air (Mac OS X 10.6.8 Snow Leopard) に、Xcode3 と RVM (Ruby Version Manager) をインストールし、Octopass の立ち上げを試みたのですが、ハマりました。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20543951-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">T.I.D.</a></h1>
+  
+    <h2>Git や GitHub と戯れる、オレオレ的おとなの遊び場</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/Tid" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tokkonopapa.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Octopress on GitHub Pages のインストールでハマったこと</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-03T13:30:00+09:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>まだ Lion にアップグレードしていない Mac Book Air (Mac OS X 10.6.8 Snow Leopard) に、Xcode3 と RVM (Ruby Version Manager) をインストールし、Octopass の立ち上げを試みたのですが、ハマりました。誰かの何かの役に立つかもしれないので、その時のメモを記しておきます。</p>
+
+<p>ただし私は、「Ruby ってどんな？ gem って何？」というヒトなので、ここに書かれたことには間違いが含まれている可能性アリです。ご参照はソコソコに。</p>
+
+<!--more-->
+
+
+<h2>Xcode 3 のインストール</h2>
+
+<p><a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
+<code>xcode_3.2.6_and_ios_sdk_4.3.dmg</code> を実行。iOS SDK 4.3 は要らないので、インストールせず。</p>
+
+<h2>RVM のインストール</h2>
+
+<p><a href="http://beginrescueend.com/rvm/install/">RVM: Ruby Version Manager - Installing RVM</a> には、Single-User が推奨されているので、以下を実行。</p>
+
+<pre><code>$ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+</code></pre>
+
+<p><code>.bash_profile</code> に RVM function を読み込ませるスクリプトを追加。</p>
+
+<pre><code>$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile
+</code></pre>
+
+<p>第1のハマりは、これを <code>.bashrc</code> に設定していたこと。<code>.bach_profile</code> でないとダメ （bash の起動で <code>.bashrc</code> を読み込まないのは Mac 特有？）。あるいは <code>.bach_profile</code> に次を設定しておく（<a href="http://www.glamenv-septzen.net/view/383">&#8220;.bash_profile&#8221;と&#8221;.bashrc&#8221;の使い分け</a>）。</p>
+
+<pre><code>if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+</code></pre>
+
+<p>これがちゃんと設定されていないと、後半の <code>rake install</code> で次のようなエラーが出る。</p>
+
+<pre><code>Could not find RedCloth-4.2.8 in any of the sources
+Run `bundle install` to install missing gems.
+</code></pre>
+
+<h2>Ruby 1.9.3 のインストール</h2>
+
+<p>Octopress は 1.9.2 以上が条件。<code>rvm list known</code> とすると、1.9.3 があるので、最新版をインストールすることに。rvm コマンドには sudo は付けない。付けるのは Multi-User 用。</p>
+
+<pre><code>$ rvm install 1.9.3
+</code></pre>
+
+<p>デフォルトで 1.9.3 を使うように設定。</p>
+
+<pre><code>$ rvm use 1.9.3
+</code></pre>
+
+<p>また <a href="http://octopress.org/docs/setup/rvm/">Installing RVM - Octopress</a> によると、rubygems の更新も必要。</p>
+
+<pre><code>$ rvm rubygems latest
+</code></pre>
+
+<h2>Octopress のインストール</h2>
+
+<p><a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従いインストール。まず、Octopress のクローンを作る。</p>
+
+<pre><code>$ git clone git://github.com/imathis/octopress.git octopress
+$ cd octopress
+</code></pre>
+
+<p>ここで次のようなメッセージが出現。</p>
+
+<pre><code>==============================================================================
+= NOTICE                                                                     =
+==============================================================================
+= RVM has encountered a new or modified .rvmrc file in the current directory =
+= This is a shell script and therefore may contain any shell commands.       =
+=                                                                            =
+= Examine the contents of this file carefully to be sure the contents are    =
+= safe before trusting it! ( Choose v[iew] below to view the contents )      =
+==============================================================================
+Do you wish to trust this .rvmrc file? (/Users/xxxxxx/github/octopress/.rvmrc)
+y[es], n[o], v[iew], c[ancel]&gt; 
+</code></pre>
+
+<p>RVM が <code>.rvmrc</code> の上書きを監視しているようだ。よくわからないまま <code>y</code> を入力。これが間違えの元か？ 作成された <code>.rvmrc</code> には <code>rvm 1.9.2</code> と書かれているが、とりあえずそのまま。</p>
+
+<pre><code>$ gem install bundler
+$ bundle install
+$ 
+$ rake install
+</code></pre>
+
+<p>やばい、ここでエラー。</p>
+
+<pre><code>rake aborted!
+no such file to load -- bundler/setup
+</code></pre>
+
+<p><a href="http://www.oiax.jp/books/hajimeru_rails_3.html">『はじめる！ Rails3』読者サポートページ</a> の 「Ruby が複数インストールされた環境で発生する場合がある」 を元に、次を実行。</p>
+
+<pre><code>sudo gem update rake
+</code></pre>
+
+<p>再び <code>rake install</code>。</p>
+
+<pre><code>Could not find rake-0.9.2.2 in any of the sources
+Run `bundle install` to install missing gems.
+</code></pre>
+
+<p>え～、今 bundle で install したばっかりでしょう！？ 再度 <code>rake install</code> しても</p>
+
+<pre><code>$ bundle show rake
+</code></pre>
+
+<p>を実行すると、やはり <code>bundle install</code> しろと言われる。両コマンド間で参照している環境変数が違う感じ？</p>
+
+<p>で、前述の <code>.rvmrc</code> を思い出す。試しに <code>.rvmrc-</code> に退避してみたらあっさり OK。</p>
+
+<p>結局、rvm をインストールした時の、次のメッセージに従い、<code>~/.rvmrc</code> に <code>rvm_project_rvmrc=0</code> を記述して、一件落着。</p>
+
+<pre><code>If you wish to disable the project .rvmrc file functionality, set
+rvm_project_rvmrc=0 in either /etc/rvmrc or ~/.rvmrc.
+</code></pre>
+
+<p>現在は上記 <code>~/.rvmrc</code> への追加ではなく、<code>rvm use 1.9.3 --default</code> を実行して <code>.rvmrc</code> に
+設定されている <code>rvm 1.9.2</code> を無視する設定としている。</p>
+
+<p>ところで、<a href="http://gembundler.com/">bundler</a> って何？ Ruby の世界は奥深そうなのでした ;-) 。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-03T13:30:00+09:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac/'>Mac</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/19/installing-github-preview-on-heroku/" title="Next Post: github-preview を heroku にインストールする">github-preview を heroku にインストールする &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/22/jekyll-experiment/">jekyllの実験的テンプレート</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/site-verification/">Octopressサイトのウェブマスター登録</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-emoji/">GitHubber達が使うEmojiの出し方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/">Octopress用Tag Cloudプラグインをリリースします</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/29/octopress-classic-theme-structure/">Octopressのテーマ - classicの構成</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'tokkonopapa',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("tokkonopapa", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - tokkonopapa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tokkonopapa';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

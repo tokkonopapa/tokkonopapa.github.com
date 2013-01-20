@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopress用Tag Cloudプラグインをリリースします - T.I.D.</title>
+  <meta name="author" content="tokkonopapa">
+
+  
+  <meta name="description" content="サイドバーにタグクラウドを作るOctopress用プラグイン">
+  <meta name="keywords" content="octopress, tag cloud, plugin, ruby">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20543951-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">T.I.D.</a></h1>
+  
+    <h2>Git や GitHub と戯れる、オレオレ的おとなの遊び場</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/Tid" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tokkonopapa.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Octopress用Tag Cloudプラグインをリリースします</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-04T21:00:00+09:00" pubdate data-updated="true">Jan 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>WordPress などの動的 CMS から Octopress に乗り換える記事が目につくが、まだまだプラグインが少ない。
+ふと <a href="http://octopress.org/">Octopress</a> も <a href="http://jekyllrb.com/">jekyll</a> のラッパーだということを思い出し、<a href="https://github.com/mojombo/jekyll/wiki/Plugins">Wiki に載ってるプラグイン</a> から易しそうなタグクラウドを3つばかり試してみた。</p>
+
+<ul>
+<li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
+<li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
+<li><a href="https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb">Yeban&#8217;s Weblog - Jekyll - Tag Cloud</a></li>
+</ul>
+
+
+<p>結果は、どれも動作しない&#8230;</p>
+
+<!--more-->
+
+
+<p>jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
+
+<p>ということで、<a href="https://gist.github.com/1577100" title="Gist で公開中">3番目のコードを動くようにしてみた</a> 。文字の大きさをログスケールで変えたりしていて、イイ感じ。</p>
+
+<p>他にも検索してみると、台湾サイトの記事「<a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/">あなたのOctopressの記事のカテゴリを高めるために</a>」（by Google 翻訳）で、サイドバーにタグクラウドを作るコード（ライセンスは非表記）が紹介されているのを発見。中国系 Octopress サイトでは結構使われている様子。</p>
+
+<p>で、試してみたが、<code>rake preview</code> を実行時、3秒に1度 <code>regenerate</code> してしまい調子が悪い。<code>generate</code> 時にテンプレートの HTML ファイルをダイレクトに生成しているため、<code>preview</code> 時の監視プロセスにより更新判断され、再 <code>generate</code> されてしまうのだ。</p>
+
+<p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
+
+<h3>使い方</h3>
+
+<pre><code>{% tag_cloud [counter:true] %}
+{% category_list [counter:true] %}
+</code></pre>
+
+<h4>オプション</h4>
+
+<ul>
+<li>counter:<br/>
+タグの後ろにカッコ付きで記事数を付ける場合には <code>true</code> を指定する</li>
+</ul>
+
+
+<h4>使用例</h4>
+
+<h5>source/_include/custom/asides/tag_cloud.html</h5>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;tag-cloud&quot;</span><span class="nt">&gt;</span>{% tag_cloud counter:true %}<span class="nt">&lt;/span&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>source/_include/custom/asides/category_list.html</h5>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;category-list&quot;</span><span class="nt">&gt;</span>{% category_list counter:true %}<span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>sass/custom/_styles.scss</h5>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#tag-cloud</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>_config.yml</h5>
+
+<pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
+# To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
+default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
+</code></pre>
+
+<h5>適用例</h5>
+
+<p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
+
+<h3>ダウンロードとインストール</h3>
+
+<ul>
+<li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
+サイドバーに表示するために必要な最低限追加すべきファイルをアップしてある。
+自分の Octopress リポジトリとは別にクローンし、ファイルをコピーして使う。</li>
+</ul>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>・
+</span><span class='line'>├─ plugins/
+</span><span class='line'>│  └── tag_cloud.rb
+</span><span class='line'>└─ source/
+</span><span class='line'>   └─ _includes/
+</span><span class='line'>      └─ custom/
+</span><span class='line'>         └─ asides/
+</span><span class='line'>            ├─ category_list.html
+</span><span class='line'>            └─ tag_cloud.html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><del>tokkonopapa/octopress - GitHub</del><br/>
+<del>Octopress 本家のリポジトリをクローンし、別ブランチ（<code>tagcloud</code>）に上記ファイルを追加したもの。自分の Octopress リポジトリ内でリモートリポジトリとして追加し、<code>tagcloud</code> ブランチから追加すべきファイルをチェックアウトする（と出来るハズ）。</del>（このリポジトリは削除しました）</li>
+</ul>
+
+
+<h3>後記</h3>
+
+<p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
+
+<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T--4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" ></a></p>
+
+<p>ただ Ruby という言語を触るのは今回が初めてなため、無駄の省き方も分かっていない。さらに、今回のようなプラグインを、Git という仕組みを使ってどうやったら本体にスムーズに導入できるのかも課題。</p>
+
+<p>老練な Git 職人さん、白馬に乗った Rubiest さんに突っ込んでもらえると嬉しい :D</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-04T21:00:00+09:00" pubdate data-updated="true">Jan 4<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/plugins/'>Plugins</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/01/03/customizing-octopress-styles/" title="Previous Post: Octopressのスタイル設定とカスタマイズ">&laquo; Octopressのスタイル設定とカスタマイズ</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/01/17/prior-knowledge-for-git-manual/" title="Next Post: Git英文マニュアルを読むための予備知識">Git英文マニュアルを読むための予備知識 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/22/jekyll-experiment/">jekyllの実験的テンプレート</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/site-verification/">Octopressサイトのウェブマスター登録</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-emoji/">GitHubber達が使うEmojiの出し方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/">Octopress用Tag Cloudプラグインをリリースします</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/12/29/octopress-classic-theme-structure/">Octopressのテーマ - classicの構成</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'tokkonopapa',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("tokkonopapa", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - tokkonopapa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tokkonopapa';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

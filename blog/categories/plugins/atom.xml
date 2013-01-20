@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Plugins | T.I.D.]]></title>
+  <link href="http://tokkonopapa.github.com/blog/categories/plugins/atom.xml" rel="self"/>
+  <link href="http://tokkonopapa.github.com/"/>
+  <updated>2013-01-20T15:30:33+09:00</updated>
+  <id>http://tokkonopapa.github.com/</id>
+  <author>
+    <name><![CDATA[tokkonopapa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress用Tag Cloudプラグインをリリースします]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/"/>
+    <updated>2012-01-04T21:00:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud</id>
+    <content type="html"><![CDATA[<p>WordPress などの動的 CMS から Octopress に乗り換える記事が目につくが、まだまだプラグインが少ない。
+ふと <a href="http://octopress.org/">Octopress</a> も <a href="http://jekyllrb.com/">jekyll</a> のラッパーだということを思い出し、<a href="https://github.com/mojombo/jekyll/wiki/Plugins">Wiki に載ってるプラグイン</a> から易しそうなタグクラウドを3つばかり試してみた。</p>
+
+<ul>
+<li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
+<li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
+<li><a href="https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb">Yeban's Weblog - Jekyll - Tag Cloud</a></li>
+</ul>
+
+
+<p>結果は、どれも動作しない...</p>
+
+<!--more-->
+
+
+<p>jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
+
+<p>ということで、<a href="https://gist.github.com/1577100" title="Gist で公開中">3番目のコードを動くようにしてみた</a> 。文字の大きさをログスケールで変えたりしていて、イイ感じ。</p>
+
+<p>他にも検索してみると、台湾サイトの記事「<a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/">あなたのOctopressの記事のカテゴリを高めるために</a>」（by Google 翻訳）で、サイドバーにタグクラウドを作るコード（ライセンスは非表記）が紹介されているのを発見。中国系 Octopress サイトでは結構使われている様子。</p>
+
+<p>で、試してみたが、<code>rake preview</code> を実行時、3秒に1度 <code>regenerate</code> してしまい調子が悪い。<code>generate</code> 時にテンプレートの HTML ファイルをダイレクトに生成しているため、<code>preview</code> 時の監視プロセスにより更新判断され、再 <code>generate</code> されてしまうのだ。</p>
+
+<p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
+
+<h3>使い方</h3>
+
+<p></p>
+
+<pre><code>{% tag_cloud [counter:true] %}
+{% category_list [counter:true] %}
+</code></pre>
+
+<p></p>
+
+<h4>オプション</h4>
+
+<ul>
+<li>counter:<br/>
+タグの後ろにカッコ付きで記事数を付ける場合には <code>true</code> を指定する</li>
+</ul>
+
+
+<h4>使用例</h4>
+
+<h5>source/_include/custom/asides/tag_cloud.html</h5>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>span id=&quot;tag-cloud&quot;<span class="ni">&amp;gt;</span>{% tag_cloud counter:true %}<span class="ni">&amp;lt;</span>/span<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h5>source/_include/custom/asides/category_list.html</h5>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>ul id=&quot;category-list&quot;<span class="ni">&amp;gt;</span>{% category_list counter:true %}<span class="ni">&amp;lt;</span>/ul<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h5>sass/custom/_styles.scss</h5>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span><span class="o">&gt;</span><span class="nt">tag-cloud</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h5>_config.yml</h5>
+
+<pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
+# To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
+default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
+</code></pre>
+
+<h5>適用例</h5>
+
+<p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
+
+<h3>ダウンロードとインストール</h3>
+
+<ul>
+<li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
+サイドバーに表示するために必要な最低限追加すべきファイルをアップしてある。
+自分の Octopress リポジトリとは別にクローンし、ファイルをコピーして使う。</li>
+</ul>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>・
+</span><span class='line'>├─ plugins/
+</span><span class='line'>│  └── tag_cloud.rb
+</span><span class='line'>└─ source/
+</span><span class='line'>   └─ _includes/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;  └─ custom/
+</span><span class='line'>     └─ asides/
+</span><span class='line'>        ├─ category_list.html
+</span><span class='line'>        └─ tag_cloud.html
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+<li><del>tokkonopapa/octopress - GitHub</del><br/>
+<del>Octopress 本家のリポジトリをクローンし、別ブランチ（<code>tagcloud</code>）に上記ファイルを追加したもの。自分の Octopress リポジトリ内でリモートリポジトリとして追加し、<code>tagcloud</code> ブランチから追加すべきファイルをチェックアウトする（と出来るハズ）。</del>（このリポジトリは削除しました）</li>
+</ul>
+
+
+<h3>後記</h3>
+
+<p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
+
+<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T--4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" ></a></p>
+
+<p>ただ Ruby という言語を触るのは今回が初めてなため、無駄の省き方も分かっていない。さらに、今回のようなプラグインを、Git という仕組みを使ってどうやったら本体にスムーズに導入できるのかも課題。</p>
+
+<p>老練な Git 職人さん、白馬に乗った Rubiest さんに突っ込んでもらえると嬉しい :D</p>
+]]></content>
+  </entry>
+  
+</feed>
