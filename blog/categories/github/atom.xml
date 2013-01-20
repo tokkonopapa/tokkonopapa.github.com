@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: github | T.I.D.]]></title>
+  <title><![CDATA[Category: GitHub | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-01-20T23:53:10+09:00</updated>
+  <updated>2013-01-21T07:15:54+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -360,6 +360,326 @@ rake post["title of my article"]
 <ul>
 <li><a href="http://www.bootstrapcdn.com/">BootstrapCDN</a><br/>
   Bootstrap と Boostwatch の CDN。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopressサイトのウェブマスター登録]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2012/07/25/site-verification/"/>
+    <updated>2012-07-25T00:03:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2012/07/25/site-verification</id>
+    <content type="html"><![CDATA[<p>このサイトを Google ウェッブマスターツールに登録していたのだが、
+久々にウェッブマスターツールを開いてみたら、ず〜と、サイト所有権
+の確認が済んでいなかったことが判明。その時のメモ。</p>
+
+<p>別に SEO とか気にしてないんだけど、どういうキーワードで皆さんが
+見てくれているかをあらためて知り、ちょっと幸せな気分 ♪</p>
+
+<!--more-->
+
+
+<h3>おすすめの方法</h3>
+
+<p>ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code>
+ディレクトリにコピーし、リモートにプッシュすると、一時的にはうまくいく。</p>
+
+<pre><code>cd _deploy
+git add google225275b4fc00ad7d.html
+git commit -m "add google site verification file"
+git push
+</code></pre>
+
+<p>GitHub だと、このファイルにアクセスできるようになるには、ちょっとタイムラグが
+ある感じなので、ちゃんとアクセスできるようになってから、「確認」すべし。</p>
+
+<p>ただしこの方法では、次回記事をデプロイした時に確認用ファイルが消されてしまう。
+Rakefile を書き換えれば良いのだけれど、お手軽には次の「別な方法」が簡単。</p>
+
+<p><img src="https://lh3.googleusercontent.com/-piNUXPKHD70/UA63js9yEeI/AAAAAAAAANI/fDEQeMMiO8o/s480/site-verification.png" alt="推奨：HTMLファイルをアップロード" /></p>
+
+<h3>別な方法</h3>
+
+<p><a href="http://support.google.com/webmasters/bin/answer.py?hl=ja&amp;answer=79812">メタ タグ - ウェブマスター ツール ヘルプ</a> に
+従って、<code>source/_includes/head.html</code> にメタタグを記述し、ページを再生成後、デプロイするだけ。</p>
+
+<pre><code>vi source/_includes/head.html
+... メタタグ &lt;meta name="google-site-verification" content="..." /&gt; を挿入
+rake generate
+rake deploy
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GitHubber達が使うEmojiの出し方]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2012/06/27/github-emoji/"/>
+    <updated>2012-06-27T00:39:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2012/06/27/github-emoji</id>
+    <content type="html"><![CDATA[<h2>GitHubber達が使うEmojiの出し方</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Emoji" title="Emoji - Wikipedia, the free encyclopedia">Emoji</a> って、英語になってるんだ！ <a href="http://en.wikipedia.org/wiki/Manga" title="Manga - Wikipedia, the free encyclopedia">Manga</a> と同じだネェ。日本のガラケー文化もなかなかじゃん。</p>
+
+<p>ってことで、GitHub の Issues とかで使える絵文字出し方。例えば、「:smile:」とやれば <img src="https://lh3.googleusercontent.com/-SjzsgPWV6rw/T-nWXjJHlUI/AAAAAAAAAMc/aKqow-jBQ-c/s20/smile.png" title="Smile" alt="Smile" />、プロジェクトが完成してお祝いしたいときには、「:beer:」で <img src="https://lh4.googleusercontent.com/-uJD5Y_R8Ff4/T-nWXxwnPWI/AAAAAAAAAMg/vLoHE0UzevI/s20/beer.png" title="カンパ〜イ" alt="カンパ〜イ" /> となるわけ。</p>
+
+<!--more-->
+
+
+<p>最初のアナウンスは、2011年3月11日の GitHub Blog の記事。</p>
+
+<p><a href="https://github.com/blog/816-emoji" title="Emoji!"><img src="https://lh3.googleusercontent.com/-vyGJUXvoXP4/T-nKeC_Vb0I/AAAAAAAAAKI/zVO1LtwkLz4/s560/GitHubBlog.png" title="Emoji!" alt="Emoji!" /></a></p>
+
+<p>どこで使えるでしょうか？的なコメントになっているが、要はコミュニケーション手段である Issues のコメント欄とか、Gist の Markdown とかで使える。</p>
+
+<p>で、これの元になっているのが、<a href="https://github.com/arvida/emoji-cheat-sheet.com" title="arvida/emoji-cheat-sheet.com on GitHub">arvida/emoji-cheat-sheet.com</a> と、絵文字コードを簡単にコピペできるチートシート。</p>
+
+<p><a href="http://www.emoji-cheat-sheet.com/" title="Emoji cheat sheet for Campfire and GitHub"><img src="https://lh6.googleusercontent.com/-1AGOcU3DpeE/T-nOy_Ip5sI/AAAAAAAAAK4/koElaC5Tl7k/s600/CheatSheet.png" title="チートシート" alt="チートシート" /></a></p>
+
+<p>で、Gist に投稿すると、こうなる。</p>
+
+<p><a href="https://gist.github.com/2989052"><img src="https://lh5.googleusercontent.com/-hG7jRIKJXdI/T-nRF6JgaOI/AAAAAAAAALM/LrgQy79oDnA/s600/GitHubMarkdown.png" title="Gist" alt="Gist" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[jekyllで作る簡単GitHub Pages]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/"/>
+    <updated>2011-12-28T01:03:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github</id>
+    <content type="html"><![CDATA[<p><a href="http://jekyllrb.com/">jekyll</a>（ジキル）は、テンプレートを使って静的な Web サイトを構築するための Ruby プログラム。</p>
+
+<p>通常はローカルに jekyll をインストールするが、GitHub Pages では必ずしも必要ないという話。</p>
+
+<!--more-->
+
+
+<h3>通常の手順</h3>
+
+<p><a href="https://github.com/mojombo/jekyll/wiki/Usage">こちら</a> に基本的な手順の説明。</p>
+
+<ol>
+<li><p>ローカルな Ruby 環境に <a href="https://github.com/mojombo/jekyll/wiki/Install">jekyll をインストール</a> する</p></li>
+<li><p>jekyll に必要な <a href="https://github.com/mojombo/jekyll/wiki/Usage">テンプレートファイル群</a> を構成し、<a href="https://github.com/mojombo/jekyll/wiki/Configuration"><code>_config.yml</code></a> や <a href="https://github.com/mojombo/jekyll/wiki/Pagination">テンプレートファイル</a> を設定する</p></li>
+<li><p><a href="http://yaml.org/">YAML</a> で記述した先頭ブロックの <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">レイアウトとタイトル</a> に続けて、 HTML、Markdown、textile のいずれかの記法を使って記事を書く</p></li>
+<li><p>jekyll で HTML ページを生成し（<code>jekyll --server --auto</code>）、ローカルで確認（<a href="http://0.0.0.0:4000/">http://0.0.0.0:4000/</a>）、デプロイ（<code>_site</code> に生成されたページ群を git 経由でリモートにコピー）する</p></li>
+</ol>
+
+
+<h3>GitHub Pages の場合</h3>
+
+<p>一方 GitHub では、<a href="http://pages.github.com/">GitHub Pages</a> 上に jekyll に必要なファイル群があれば、自動的に HTML を生成してくれるので、必ずしもローカルに jekyll をインストールしなくても何とかなる。
+もっともローカルで最終的なレンダリング結果を確認するためにも、jekyll をインストールするに越したことはないが...</p>
+
+<p>1ページだけの GitHub Pages なら、最小構成ファイル群は以下の通り。</p>
+
+<p><div><script src='https://gist.github.com/1532174.js?file=Basic-Structure'></script>
+<noscript><pre><code>.
+├─ _layouts
+│ └─ default.html
+├─ css
+│ └─ styles.css
+└─ index.md</code></pre></noscript></div>
+</p>
+
+<p>次は、テンプレートファイル <code>default.html</code> の例。</p>
+
+<p><div><script src='https://gist.github.com/1532174.js?file=default.html'></script>
+<noscript><pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/styles.css&quot;&gt;
+&lt;title&gt;{% if page.title %}{{ page.title }}{% endif %}&lt;/title&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/styles.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+{{ content }}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></noscript></div>
+</p>
+
+<p><code>index.md</code> には <code>default.html</code> の <code>content</code> の中身を記述する。</p>
+
+<p><div><script src='https://gist.github.com/1532174.js?file=index.md'></script>
+<noscript><pre><code>---
+layout: default
+title: プロジェクト・タイトル
+---
+
+プロジェクト・タイトル
+======================
+ここにプロジェクトの概要を書きます。
+...</code></pre></noscript></div>
+</p>
+
+<p><code>index.md</code> 以外にも、<code>index.html</code> や <code>index.textile</code> でも OK だが、先頭の <code>layout</code>、<code>title</code> が重要。これがないとレンダリングしてくれない。</p>
+
+<p><code>css/styles.css</code> で装飾し、必要なら <code>images</code> や <code>script</code>、<code>favicon.ico</code> などもお好みで。
+そしてこれらファイル群を プロジェクト・リポジトリの <code>gh-pages</code> ブランチに <a href="http://pages.github.com/#project_pages" title="pushの仕方">push</a> する。</p>
+
+<h3>さらに複雑なテンプレートの作り方</h3>
+
+<p><img class="right" src="https://lh6.googleusercontent.com/-XPYN1_uoW2g/TvwH9lgXi-I/AAAAAAAAAB4/ps1ZlNCzbMo/s336/ComplexStructure.png" width="250" height="336" title="&#34;ページの構成&#34;" alt="&#34;ページの構成&#34;"></p>
+
+<p>サイドバー付きページのテンプレートを、<a href="http://www.initializr.com/">Initializr 2</a> をベースに構成する。</p>
+
+<p><a href="https://github.com/tokkonopapa/Initializr2-on-jekyll/tree/gh-pages"><img src="https://lh4.googleusercontent.com/-001qniGUDbI/TvxeLnMhu-I/AAAAAAAAACg/vCusw7WbURI/s256/Initializr2-on-jekyll.png" width="256" height="236" title="&#34;実際の GitHub Pages 適用例&#34;" alt="&#34;実際の GitHub Pages 適用例&#34;"></a></p>
+
+<div style="clear:both"></div>
+
+
+<p><div><script src='https://gist.github.com/1532144.js?file=README.txt'></script>
+<noscript><pre><code>.
+├─ _includes
+│    ├─ head.html
+│    ├─ header.html
+│    ├─ aside.html
+│    ├─ footer.html
+│    └─ script.html
+├─ _layouts
+│    ├─ default.html
+│    └─ page.html
+├─ css
+│    └─ style.css
+├─ js
+│    ├─ libs
+│    │   └─ modernizr-2.0.6.min.js
+│    └─ script.js
+├─ index.md
+├─ demo.html
+└─ documents.md</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=_config.yml'></script>
+<noscript><pre><code># ----------------------- #
+#      Main Configs       #
+# ----------------------- #
+
+url: http://username.github.com/
+title: サイトのタイトル
+author: username
+
+# ----------------------- #
+#   3rd Party Settings    #
+# ----------------------- #
+
+# Google Analytics
+google_analytics_tracking_id: UA-XXXXXXXX-X</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=default.html'></script>
+<noscript><pre><code>&lt;!doctype html&gt;
+&lt;!--[if lt IE 7]&gt; &lt;html class=&quot;no-js ie6 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7]&gt;    &lt;html class=&quot;no-js ie7 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8]&gt;    &lt;html class=&quot;no-js ie8 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if gt IE 8]&gt;&lt;!--&gt; &lt;html class=&quot;no-js&quot; lang=&quot;ja&quot;&gt; &lt;!--&lt;![endif]--&gt;
+{% include head.html %}
+&lt;body&gt;
+{% include header.html %}
+&lt;div id=&quot;main-container&quot;&gt;
+	&lt;div id=&quot;main&quot; class=&quot;wrapper clearfix&quot;&gt;
+		&lt;article&gt;
+{{ content }}
+		&lt;/article&gt;
+{% include aside.html %}
+	&lt;/div&gt; &lt;!-- #main --&gt;
+&lt;/div&gt; &lt;!-- #main-container --&gt;
+{% include footer.html %}
+{% include script.html %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=head.html'></script>
+<noscript><pre><code>&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+
+	&lt;title&gt;{{ page.title }}&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;{{ page.description }}&quot;&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;{{ site.author }}&quot;&gt;
+
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
+
+	&lt;script src=&quot;js/libs/modernizr-2.0.6.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=header.html'></script>
+<noscript><pre><code>&lt;div id=&quot;header-container&quot;&gt;
+	&lt;header class=&quot;wrapper clearfix&quot;&gt;
+		&lt;h1 id=&quot;title&quot;&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;{{ site.title }}&lt;/a&gt;&lt;/h1&gt;
+		&lt;nav&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;{{ site.url }}demo.html&quot;&gt;Demo&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;{{ site.url }}documents.html&quot;&gt;Documents&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/nav&gt;
+	&lt;/header&gt;
+&lt;/div&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=aside.html'></script>
+<noscript><pre><code>&lt;aside&gt;
+	&lt;h3&gt;aside&lt;/h3&gt;
+	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.&lt;/p&gt;
+&lt;/aside&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=footer.html'></script>
+<noscript><pre><code>&lt;div id=&quot;footer-container&quot;&gt;
+	&lt;footer class=&quot;wrapper&quot;&gt;
+		&lt;h3&gt;footer&lt;/h3&gt;
+	&lt;/footer&gt;
+&lt;/div&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=script.html'></script>
+<noscript><pre><code>&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;window.jQuery || document.write('&lt;script src=&quot;js/libs/jquery-1.7.1.min.js&quot;&gt;&lt;\/script&gt;')&lt;/script&gt;
+
+&lt;script src=&quot;js/script.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+	var _gaq=[['_setAccount','{{ site.google_analytics_tracking_id }}'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+&lt;/script&gt;
+
+&lt;!--[if lt IE 7 ]&gt;
+	&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script&gt;window.attachEvent(&quot;onload&quot;,function(){CFInstall.check({mode:&quot;overlay&quot;})})&lt;/script&gt;
+&lt;![endif]--&gt;</code></pre></noscript></div>
+
+<div><script src='https://gist.github.com/1532144.js?file=index.md'></script>
+<noscript><pre><code>---
+layout: default
+title: &quot;サンプル・ページ&quot;
+---
+
+article header h1
+=================
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.
+
+article section h2
+------------------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.
+
+article section h2
+------------------
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.
+
+
+### article footer h3 ###
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</code></pre></noscript></div>
+</p>
+
+<h4>参考情報</h4>
+
+<ul>
+<li><p><a href="http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm">Big Sky :: Jekyllで始める簡単ブログ</a><br/>
+  jekyll でブログを作るためのファイル構成が解説されている。</p></li>
+<li><p><a href="http://www.ksr-it.net/pdf/kushiro-jekyll-text.pdf">Jekyllによる静的 Webサイト構築入門</a><br/>
+  <a href="https://github.com/mojombo/jekyll/wiki/_pages">mojombo/jekyll の Wiki</a> をかなりの範囲でカバーする、わかりやすい入門書。Windows へのインストール方法も解説されている。</p></li>
+<li><p><a href="http://radiumsoftware.tumblr.com/post/10518849682">GitHub Pagesで楽々ホスティング - Radium Software</a><br/>
+  Jekyll 用に構築された <a href="https://github.com/unity-yb/unity-yb.github.com">GitHub ユーザーページ用リポジトリ</a> が参考になる。</p></li>
 </ul>
 
 ]]></content>
