@@ -4,7 +4,7 @@
   <title><![CDATA[T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-01-22T00:46:04+09:00</updated>
+  <updated>2013-02-03T16:30:49+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[common.rb:304:in escape: undefined method gsub for ... (NoMethodError)]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/"/>
+    <updated>2013-02-03T15:46:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb</id>
+    <content type="html"><![CDATA[<p>ruby を 1.9.3-p374 に上げたり、jekyll を 0.12.0 に上げたりしていたら、
+<a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a>
+がタイトルのようなエラーを吐くようになってしまった。</p>
+
+<p>とりあえずのモンキーパッチを当てる方法。</p>
+
+<!--more-->
+
+
+<h3>エラーの内容</h3>
+
+<p><code>escape</code> メソッドで <code>gsub</code> が未定義だということ。</p>
+
+<pre><code>/Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:304:in `escape': undefined method `gsub' for ["Ruby", "jekyll/hyde"]:Array (NoMethodError)
+    from /Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:638:in `escape'
+    from /Users/****/.rvm/gems/ruby-1.9.3-p374/gems/jekyll-0.12.0/lib/jekyll/post.rb:140:in `block in url'
+    ...
+</code></pre>
+
+<p><code>common.rb</code> の該当箇所は、</p>
+
+<pre><code>str.gsub(unsafe) do
+</code></pre>
+
+<p><code>post.rb</code> の該当箇所は、</p>
+
+<pre><code>"categories" =&gt; categories.map { |c| URI.escape(c) }.join('/'),
+</code></pre>
+
+<p>どうやら、<code>categories</code> に配列 <code>["Ruby", "jekyll/hyde"]</code> を指定しているの原因。</p>
+
+<h3>モンキーパッチ</h3>
+
+<p><code>URI.escape(c)</code> の <code>c</code> を明示的に <code>String</code> に変換する。</p>
+
+<pre><code>"categories" =&gt; categories.map { |c| URI.escape(c.to_s) }.join('/'),
+</code></pre>
+
+<p>う〜ん、これでいいのかなぁ。カテゴリのアーカイブを作る時に <code>Ruby/jekyll/hyde</code> になるように、ちゃんと考えなきゃ&#8230;。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[jekyllの実験的テンプレート]]></title>

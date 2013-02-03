@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: jekyll - T.I.D.</title>
+  <title>common.rb:304:in escape: undefined method gsub for ... (NoMethodError) - T.I.D.</title>
   <meta name="author" content="tokkonopapa">
   <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
-  <meta name="description" content="Category: jekyll">
-  
+  <meta name="description" content="common.rb:304:in escape: undefined method gsub for ... (NoMethodError)">
+  <meta name="keywords" content="ruby, jekyll, common.rb, escape, gsub, NoMethodError">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tokkonopapa.github.comblog/categories/jekyll/">
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
@@ -57,84 +57,142 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Jekyll</h1>
+    
+      <h1 class="entry-title">common.rb:304: In Escape: Undefined Method Gsub for ... (NoMethodError)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-03T15:46:00+09:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>ruby を 1.9.3-p374 に上げたり、jekyll を 0.12.0 に上げたりしていたら、
+<a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a>
+がタイトルのようなエラーを吐くようになってしまった。</p>
 
-  
-  <h2>2013</h2>
+<p>とりあえずのモンキーパッチを当てる方法。</p>
 
-<article>
-  
-<h1><a href="/blog/2013/02/03/jekyll-error-of-common-rb/">common.rb:304:in escape: undefined method gsub for ... (NoMethodError)</a></h1>
-<time datetime="2013-02-03T15:46:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>03</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
+<!--more-->
 
 
-</article>
+<h3>エラーの内容</h3>
 
+<p><code>escape</code> メソッドで <code>gsub</code> が未定義だということ。</p>
 
+<pre><code>/Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:304:in `escape': undefined method `gsub' for ["Ruby", "jekyll/hyde"]:Array (NoMethodError)
+    from /Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:638:in `escape'
+    from /Users/****/.rvm/gems/ruby-1.9.3-p374/gems/jekyll-0.12.0/lib/jekyll/post.rb:140:in `block in url'
+    ...
+</code></pre>
 
-  
-  <h2>2012</h2>
+<p><code>common.rb</code> の該当箇所は、</p>
 
-<article>
-  
-<h1><a href="/blog/2012/09/22/jekyll-experiment/">jekyllの実験的テンプレート</a></h1>
-<time datetime="2012-09-22T15:30:00+09:00" pubdate><span class='month'>Sep</span> <span class='day'>22</span> <span class='year'>2012</span></time>
+<pre><code>str.gsub(unsafe) do
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/github/'>GitHub</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a></span>
-</footer>
+<p><code>post.rb</code> の該当箇所は、</p>
 
+<pre><code>"categories" =&gt; categories.map { |c| URI.escape(c) }.join('/'),
+</code></pre>
 
-</article>
+<p>どうやら、<code>categories</code> に配列 <code>["Ruby", "jekyll/hyde"]</code> を指定しているの原因。</p>
 
+<h3>モンキーパッチ</h3>
 
+<p><code>URI.escape(c)</code> の <code>c</code> を明示的に <code>String</code> に変換する。</p>
 
-  
-  <h2>2011</h2>
+<pre><code>"categories" =&gt; categories.map { |c| URI.escape(c.to_s) }.join('/'),
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2011/12/29/octopress-classic-theme-structure/">Octopressのテーマ - classicの構成</a></h1>
-<time datetime="2011-12-29T17:34:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>29</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2011/12/28/easy-usage-of-jekyll-on-github/">jekyllで作る簡単GitHub Pages</a></h1>
-<time datetime="2011-12-28T01:03:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>28</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/github/'>GitHub</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a></span>
-</footer>
-
-
-</article>
-
+<p>う〜ん、これでいいのかなぁ。カテゴリのアーカイブを作る時に <code>Ruby/jekyll/hyde</code> になるように、ちゃんと考えなきゃ&#8230;。</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-03T15:46:00+09:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  <div class="hatena-button">
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+      data-hatena-bookmark-layout="standard"
+      data-hatena-bookmark-url="http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/">
+    <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+        alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+        style="border: none">
+    </a>
+  </div>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/22/jekyll-experiment/" title="Previous Post: jekyllの実験的テンプレート">&laquo; jekyllの実験的テンプレート</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -237,7 +295,10 @@
       var disqus_shortname = 'tokkonopapa';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
