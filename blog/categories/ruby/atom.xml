@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T16:30:49+09:00</updated>
+  <updated>2013-02-03T16:52:54+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -56,7 +56,8 @@
 <pre><code>"categories" =&gt; categories.map { |c| URI.escape(c.to_s) }.join('/'),
 </code></pre>
 
-<p>う〜ん、これでいいのかなぁ。カテゴリのアーカイブを作る時に <code>Ruby/jekyll/hyde</code> になるように、ちゃんと考えなきゃ...。</p>
+<p>う〜ん、これでいいのかなぁ（いいわけない！）。カテゴリのアーカイブを作る時に <code>Ruby/jekyll/hyde</code>
+になるように、ちゃんと考えなきゃ...。</p>
 ]]></content>
   </entry>
   
