@@ -89,13 +89,13 @@
 <!--more-->
 
 
-<h3>1. テーマの概要</h3>
+<h3 id="1.+テーマの概要">1. テーマの概要</h3>
 
-<h4>テンプレートファイル</h4>
+<h4 id="テンプレートファイル">テンプレートファイル</h4>
 
 <p><code>rake install</code> の時点で、<code>.themes/classic</code> から <code>source</code> にコピーされる。</p>
 
-<h4>設定ファイル</h4>
+<h4 id="設定ファイル">設定ファイル</h4>
 
 <ul>
 <li><strong>_config.yml</strong><br/>
@@ -103,7 +103,7 @@
 </ul>
 
 
-<h4>構成の概要</h4>
+<h4 id="構成の概要">構成の概要</h4>
 
 <pre><code>source/
 ├── _layouts/    # トップページ、個別記事ページ、カテゴリアーカイブページのレイアウト
@@ -113,9 +113,9 @@
     └── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
 </code></pre>
 
-<h3>2. テンプレートファイルの構成</h3>
+<h3 id="2.+テンプレートファイルの構成">2. テンプレートファイルの構成</h3>
 
-<h4>ページ</h4>
+<h4 id="ページ">ページ</h4>
 
 <pre><code>└── _layouts/
     ├── default.html
@@ -124,7 +124,7 @@
     └── category_index.html (layout: page, footer: false)
 </code></pre>
 
-<h4>&lt;head&gt;</h4>
+<h4 id="+lt;head+gt;">&lt;head&gt;</h4>
 
 <pre><code>└── _includes/
     ├── head.html
@@ -132,27 +132,27 @@
     └── google_analytics.html
 </code></pre>
 
-<h4>RSS</h4>
+<h4 id="RSS">RSS</h4>
 
 <pre><code>└── _includes/
     └── custom/category_feed.xml
 </code></pre>
 
-<h4>ヘッダー</h4>
+<h4 id="ヘッダー">ヘッダー</h4>
 
 <pre><code>└── _includes/
     ├── header.html
     └── custom/header.html
 </code></pre>
 
-<h4>ナビゲーション・メニュー</h4>
+<h4 id="ナビゲーション・メニュー">ナビゲーション・メニュー</h4>
 
 <pre><code>└── _includes/
     ├── navigation.html
     └── custom/navigation.html
 </code></pre>
 
-<h4>記事</h4>
+<h4 id="記事">記事</h4>
 
 <pre><code>└── _includes/
     ├── article.html            # post.html、index.html から
@@ -163,7 +163,7 @@
     └── post/sharing.html       # post.html、page.html から
 </code></pre>
 
-<h4>サイドバー・パーツ</h4>
+<h4 id="サイドバー・パーツ">サイドバー・パーツ</h4>
 
 <pre><code>└── _includes/
     ├── custom/asides/about.html
@@ -175,14 +175,14 @@
     └── asides/twitter.html
 </code></pre>
 
-<h4>フッター</h4>
+<h4 id="フッター">フッター</h4>
 
 <pre><code>└── _includes/
     ├── footer.html
     └── custom/footer.html
 </code></pre>
 
-<h4>ソーシャル・パーツ</h4>
+<h4 id="ソーシャル・パーツ">ソーシャル・パーツ</h4>
 
 <pre><code>└── _includes/
     ├── after_footer.html
@@ -193,13 +193,13 @@
     └── twitter_sharing.html        # after_footer.html から
 </code></pre>
 
-<h4>アーカイブ</h4>
+<h4 id="アーカイブ">アーカイブ</h4>
 
 <pre><code>└── _includes/
     └── archive_post.html   # category_index.html、blog/archives/index.html から
 </code></pre>
 
-<h3>3. 生成されるファイルの構成</h3>
+<h3 id="3.+生成されるファイルの構成">3. 生成されるファイルの構成</h3>
 
 <pre><code>├── index.html (layout: default)
 ├── atom.xml
@@ -233,21 +233,21 @@
     └── screen.css
 </code></pre>
 
-<h3>4. Octopressの動作</h3>
+<h3 id="4.+Octopressの動作">4. Octopressの動作</h3>
 
-<h4>&#8211;新規投稿&#8211;</h4>
+<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_post['post title']
 </code></pre>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>└── _post/YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: post
@@ -258,21 +258,21 @@ categories: [category1, ...]
 ---
 </code></pre>
 
-<h4>&#8211;新規ページ&#8211;</h4>
+<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>├── my-new-page/index.markdown    # rake new_page[my-new-page]
 └── my-new-page/index.html        # rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: page
@@ -369,6 +369,10 @@ footer: true
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/03/jekyll-error-of-common-rb/">common.rb:304:in escape: undefined method gsub for ... (NoMethodError)</a>
       </li>
     
@@ -404,15 +408,11 @@ footer: true
         <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 107.5%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 130.0%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 115.0%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 130.0%'>jekyll(4)</a> <a href='/blog/categories/mac/' style='font-size: 115.0%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(8)</a> <a href='/blog/categories/plugins/' style='font-size: 107.5%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 122.5%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 107.5%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac/' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins/' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
 </section>
 
 <section>

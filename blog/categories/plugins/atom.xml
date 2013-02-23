@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Plugins | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/plugins/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T21:14:44+09:00</updated>
+  <updated>2013-02-23T11:35:32+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -46,7 +46,7 @@
 
 <p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
 
-<h3>使い方</h3>
+<h3 id="使い方">使い方</h3>
 
 <p></p>
 
@@ -56,7 +56,7 @@
 
 <p></p>
 
-<h4>オプション</h4>
+<h4 id="オプション">オプション</h4>
 
 <ul>
 <li>counter:<br/>
@@ -64,9 +64,9 @@
 </ul>
 
 
-<h4>使用例</h4>
+<h4 id="使用例">使用例</h4>
 
-<h5>source/_include/custom/asides/tag_cloud.html</h5>
+<h5 id="source/_include/custom/asides/tag_cloud.html">source/_include/custom/asides/tag_cloud.html</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -84,7 +84,7 @@
 </span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5>source/_include/custom/asides/category_list.html</h5>
+<h5 id="source/_include/custom/asides/category_list.html">source/_include/custom/asides/category_list.html</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -102,7 +102,7 @@
 </span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5>sass/custom/_styles.scss</h5>
+<h5 id="sass/custom/_styles.scss">sass/custom/_styles.scss</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -112,24 +112,24 @@
 <span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span><span class="o">&gt;</span><span class="nt">tag-cloud</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;tag-cloud+{&quot;</span><span class="o">&gt;</span><span class="nt">tag-cloud</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5>_config.yml</h5>
+<h5 id="_config.yml">_config.yml</h5>
 
 <pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
 </code></pre>
 
-<h5>適用例</h5>
+<h5 id="適用例">適用例</h5>
 
 <p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
 
-<h3>ダウンロードとインストール</h3>
+<h3 id="ダウンロードとインストール">ダウンロードとインストール</h3>
 
 <ul>
 <li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
@@ -172,7 +172,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h3>後記</h3>
+<h3 id="後記">後記</h3>
 
 <p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
 

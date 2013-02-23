@@ -93,7 +93,7 @@ GitHub Pages には、ユーザーページとプロジェクトページがあ�
 <!--more-->
 
 
-<h3>1. Octopress 利用の前提条件</h3>
+<h3 id="1.+Octopress+利用の前提条件">1. Octopress 利用の前提条件</h3>
 
 <ul>
 <li>Git + GitHub アカウント</li>
@@ -104,7 +104,7 @@ GitHub Pages には、ユーザーページとプロジェクトページがあ�
 </ul>
 
 
-<h3>2. GitHub ユーザーページ用リポジトリの作成</h3>
+<h3 id="2.+GitHub+ユーザーページ用リポジトリの作成">2. GitHub ユーザーページ用リポジトリの作成</h3>
 
 <p>GitHub で <code>username.github.com</code> の <a href="https://github.com/repositories/new">リポジトリを作成</a> しておく。</p>
 
@@ -152,7 +152,7 @@ To git@github.com:username/username.github.com.git
 Branch master set up to track remote branch master from origin.
 </code></pre>
 
-<h3>3. Octopress のインストール</h3>
+<h3 id="3.+Octopress+のインストール">3. Octopress のインストール</h3>
 
 <p>とりあえず、ユーザーページ用リポジトリ <code>username.github.com</code> と同じ階層にインストールする。</p>
 
@@ -214,7 +214,7 @@ Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem 
 <pre><code>## Copying classic theme into ./source and ./sass
 </code></pre>
 
-<h3>4. Octopress サイトの立ち上げ</h3>
+<h3 id="4.+Octopress+サイトの立ち上げ">4. Octopress サイトの立ち上げ</h3>
 
 <p>ここからは、公式サイトの <a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages With Github User/Organization pages</a> の内容。</p>
 
@@ -265,31 +265,31 @@ Initialized empty Git repository in /path/to/repo/octopress/username.github.com/
 
 <p>2つを一気に実行するには <code>rake gen_deploy</code> を、まずはローカルでプレビューするという場合には <code>rake preview</code> を実行後に http://localhost:4000/ にアクセスする。</p>
 
-<h3>5. Octopress サイトの設定</h3>
+<h3 id="5.+Octopress+サイトの設定">5. Octopress サイトの設定</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/configuring/">Configuring Octopress</a> を参考に、<code>_config.yml</code> を設定。</p>
 
-<h3>6. 新規記事、新規ページの作成</h3>
+<h3 id="6.+新規記事、新規ページの作成">6. 新規記事、新規ページの作成</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/blogging/">Blogging Basics</a> を参照。</p>
 
-<h4>&#8211;新規投稿&#8211;</h4>
+<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_post['post title']
 </code></pre>
 
 <p>記事のタイトルは、英語で。</p>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>source/
 └── _post/
     └── YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: post
@@ -302,15 +302,15 @@ categories: [category1, ...]
 
 <p>ここで、<code>title</code> を日本語にすれば良い。</p>
 
-<h4>&#8211;新規ページ&#8211;</h4>
+<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>source/
 └── my-new-page/
@@ -318,7 +318,7 @@ rake new_page[my-new-page.html]
     └── index.html        # rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: page
@@ -330,7 +330,7 @@ footer: true
 ---
 </code></pre>
 
-<h3>7. サイトの運用管理</h3>
+<h3 id="7.+サイトの運用管理">7. サイトの運用管理</h3>
 
 <p><a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages</a> には、ユーザーページ、プロジェクトページのそれぞれで、本体のリポジトリと統合する方法が推奨されている。</p>
 
@@ -416,7 +416,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 <p>この段階で、リモートとして <code>origin</code>、<code>octopress</code>、<code>bitbucket</code> の3つが登録されることとなる。これ以降、記事のデプロイは <code>rake deploy</code>、原稿のバックアップは <code>git push</code> でできるようになる。</p>
 
-<h3>8. Octopress の更新</h3>
+<h3 id="8.+Octopress+の更新">8. Octopress の更新</h3>
 
 <p>本家の更新を取り込んでマージする。</p>
 
@@ -428,7 +428,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>参考情報</h3>
+<h3 id="参考情報">参考情報</h3>
 
 <ul>
 <li><a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">Big Sky :: githubとjekyllとoctopressで作る簡単でモダンなブログ</a></li>
@@ -521,6 +521,10 @@ Automatic merge failed; fix conflicts and then commit the result.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/03/jekyll-error-of-common-rb/">common.rb:304:in escape: undefined method gsub for ... (NoMethodError)</a>
       </li>
     
@@ -556,15 +560,11 @@ Automatic merge failed; fix conflicts and then commit the result.
         <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 107.5%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 130.0%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 115.0%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 130.0%'>jekyll(4)</a> <a href='/blog/categories/mac/' style='font-size: 115.0%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(8)</a> <a href='/blog/categories/plugins/' style='font-size: 107.5%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 122.5%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 107.5%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac/' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins/' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
 </section>
 
 <section>

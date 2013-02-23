@@ -89,7 +89,7 @@
 <!--more-->
 
 
-<h2>制作方針</h2>
+<h2 id="制作方針">制作方針</h2>
 
 <ul>
 <li>モジュール化により、カスタマイズし易くすること。</li>
@@ -97,7 +97,7 @@
 </ul>
 
 
-<h2>構成</h2>
+<h2 id="構成">構成</h2>
 
 <pre><code>.
 ├── _deploy/                # デプロイ時の静的ファイル群を保存しておく
@@ -123,9 +123,9 @@
 └── project/                # プロジェクト用テンプレート
 </code></pre>
 
-<h3>1. <code>_config.yml</code> の設定</h3>
+<h3 id="1.+`_config.yml`+の設定">1. <code>_config.yml</code> の設定</h3>
 
-<h4><code>url</code>、<code>baseurl</code></h4>
+<h4 id="`url`、`baseurl`"><code>url</code>、<code>baseurl</code></h4>
 
 <p>GitHub プロジェクトページの場合は、次のように指定する。</p>
 
@@ -133,19 +133,19 @@
 baseurl: /REPOSITORY
 </code></pre>
 
-<h4><code>paginate</code>、<code>columns</code></h4>
+<h4 id="`paginate`、`columns`"><code>paginate</code>、<code>columns</code></h4>
 
 <p>トップページでの表示記事数と、先頭記事以外のカラム数。</p>
 
-<h4><code>date_format</code></h4>
+<h4 id="`date_format`"><code>date_format</code></h4>
 
 <p>使える書式は、<a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters#date-instance_method">Module: Liquid::StandardFilters — Documentation for liquid (2.2.2)</a> （GitHub の Liquid バージョンと同じ） を参考に。</p>
 
-<h4><code>truncate_len</code></h4>
+<h4 id="`truncate_len`"><code>truncate_len</code></h4>
 
 <p>トップページで紹介する記事の表示文字数。</p>
 
-<h4><code>navbar_list</code></h4>
+<h4 id="`navbar_list`"><code>navbar_list</code></h4>
 
 <p>次のように <code>{name, link}</code> のペアでナビゲーションバーのメニューを定義。</p>
 
@@ -181,7 +181,7 @@ group: Blog
 ---
 </code></pre>
 
-<h4><code>pygments_style</code></h4>
+<h4 id="`pygments_style`"><code>pygments_style</code></h4>
 
 <p><a href="http://pygments.org/">Pygments - Python syntax highlighter</a> の <a href="http://pygments.org/demo/">Online demo</a> で、カラーリングを確認するのが吉。</p>
 
@@ -201,41 +201,41 @@ group: Blog
 </ul>
 
 
-<h3>2. 記事の YAML ディレクティブ</h3>
+<h3 id="2.+記事の+YAML+ディレクティブ">2. 記事の YAML ディレクティブ</h3>
 
-<h4><code>excerpt</code></h4>
+<h4 id="`excerpt`"><code>excerpt</code></h4>
 
 <p>トップページ (index.html) で表示する、記事の要旨。</p>
 
-<h4><code>thumbnail</code></h4>
+<h4 id="`thumbnail`"><code>thumbnail</code></h4>
 
 <p>トップページ (index.html) で表示する、サムネイル画像。</p>
 
-<h4><code>comments</code></h4>
+<h4 id="`comments`"><code>comments</code></h4>
 
 <p>3rd パーティー製コメントシステムを有効にする。</p>
 
-<h4><code>published</code></h4>
+<h4 id="`published`"><code>published</code></h4>
 
 <p><code>true</code> で記事公開、<code>false</code> で保留。</p>
 
-<h4><code>category</code></h4>
+<h4 id="`category`"><code>category</code></h4>
 
 <p>カテゴリは、配列 <code>[...]</code> を使って複数指定可。この場合、左から順に親子関係となる。</p>
 
-<h4><code>tags</code></h4>
+<h4 id="`tags`"><code>tags</code></h4>
 
 <p>タグも配列を使用可能。カテゴリとは異なり、親子関係はない。</p>
 
-<h3>3.「続きを読む」機能</h3>
+<h3 id="3.「続きを読む」機能">3.「続きを読む」機能</h3>
 
 <p>トップページ (index.html) の表示時、<code>_includes/libs/truncate_xxxx</code> で以下の処理を実行する。</p>
 
-<h4>3.1 <code>excerpt</code> の処理</h4>
+<h4 id="3.1+`excerpt`+の処理">3.1 <code>excerpt</code> の処理</h4>
 
 <p>記事の YAML ディレクティブにコレがあれば、要旨として表示する。</p>
 
-<h4>3.2 <code>&lt;!--more--&gt;</code> の処理</h4>
+<h4 id="3.2+`+!--more-->`+の処理&#8221;>3.2 <code>&lt;!--more--&gt;</code> の処理</h4>
 
 <p><code>safe: false</code> な jekyll 環境では、<code>_plugins/postmore.rb</code> を使って <code>&lt;!--more--&gt;</code> で分割した文字列の前半をレンダリングする。一方プラグインが使えない GitHub ページ上の jekyll では、次のように Liquid で、<code>&lt;!--more--&gt;</code> から記事の終わりまでコメント化し、擬似的な more 機能を実現する。</p>
 
@@ -251,7 +251,7 @@ group: Blog
 <pre><code>{{ post.content | replace_first:'&lt;!--more--&gt;', SEP | split:SEP | first }}
 </code></pre>
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="http://www.jacquesf.com/2011/03/creating-excerpts-in-jekyll-with-wordpress-style-more-html-comments/">Creating Excerpts in Jekyll with Wordpress-style &lt;!&#8211;more&#8211;&gt; HTML Comments - Jacques Fortier</a><br/>
@@ -261,11 +261,11 @@ group: Blog
 </ul>
 
 
-<h4>3.3 先頭から既定文字数だけを表示する処理</h4>
+<h4 id="3.3+先頭から既定文字数だけを表示する処理">3.3 先頭から既定文字数だけを表示する処理</h4>
 
 <p><code>excerpt</code> および <code>&lt;!--more--&gt;</code> が共にない場合、先頭の <code>truncate_len</code> だけ文字を表示する。GitHub 上の jekyll （バージョン 2.2.2） の場合、<code>truncate</code> フィルタがユニコードに対応しておらず、単なるバイト数でカウントされてしまうため、日本語が文字化けする可能性がある。そこでかなりトリッキーな方法ではあるが、末尾の文字コードを調べ、適切な所で丸める処理を Liquid で実装した。</p>
 
-<h3>4. カテゴリ、タグ</h3>
+<h3 id="4.+カテゴリ、タグ">4. カテゴリ、タグ</h3>
 
 <p><a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data - mojombo/jekyll Wiki</a> にある通り、テンプレートからは <code>site.categories</code> （ハッシュ） や <code>page.categories</code> （配列） などでアクセスすることが出来る。<code>_includes/libs/list_categories</code> と <code>_includes/libs/list_tags</code> にそれらの扱いを集約すると共に、両者をフラグで使い分ける仕様とした。</p>
 
@@ -280,11 +280,11 @@ category: [parent, child]
 <pre><code>/blog/parent/child/hello-world.html
 </code></pre>
 
-<h3>5. bootstrap 関連</h3>
+<h3 id="5.+bootstrap+関連">5. bootstrap 関連</h3>
 
 <p>コレのコンフィグレーションを色々できるようにしたことが複雑化の原因。不要なら一切を削除するのがお勧め。</p>
 
-<h4>5.1 基本構成</h4>
+<h4 id="5.1+基本構成">5.1 基本構成</h4>
 
 <p><code>assets/bootstrap-X.Y.Z/</code> 下のファイルが、<code>_includes/bootstrap-X.Y.Z/</code> 下の部品をインクルードする構成とした。</p>
 
@@ -303,29 +303,29 @@ category: [parent, child]
 
 <p>css ファイルは、<a href="http://twitter.github.com/bootstrap/customize.html">web-based Customizer</a> から適当なモジュールを選択し、ダウンロードしたファイルで代用している。そのうち LESS をインストールし、モジュール化したい。</p>
 
-<h4>5.2 <code>_config.yml</code> の設定。</h4>
+<h4 id="5.2+`_config.yml`+の設定。">5.2 <code>_config.yml</code> の設定。</h4>
 
-<h5><code>bootstrap</code></h5>
+<h5 id="`bootstrap`"><code>bootstrap</code></h5>
 
 <p><code>custom</code> を指定すると <code>/assets/bootstrap-X.Y.Z/</code> のカスタムファイルを用いる。この場合、<code>_includes/bootstrap-X.Y.Z/</code> から必要な部品をインクルードする。<code>original</code> あるいはそれ以外では、<a href="http://www.bootstrapcdn.com/">BootstrapCDN</a> にアップされているファイルを使う。</p>
 
-<h5><code>bootstrap_ver</code></h5>
+<h5 id="`bootstrap_ver`"><code>bootstrap_ver</code></h5>
 
 <p>バージョン X.Y.Z を指定。</p>
 
-<h5><code>bootswatch_ver</code></h5>
+<h5 id="`bootswatch_ver`"><code>bootswatch_ver</code></h5>
 
 <p>テーマファイルのバージョンを指定。</p>
 
-<h5><code>responsive_bp</code></h5>
+<h5 id="`responsive_bp`"><code>responsive_bp</code></h5>
 
 <p>ナビゲーションバーを折り畳みタイプにする、メディアクエリ上のブレーク・ポイント。<code>assets/bootstrap-X.Y.Z/bootstrap-responsive.custom.css</code> に、この値をレンダリングする。</p>
 
-<h5><code>jquery_ver</code></h5>
+<h5 id="`jquery_ver`"><code>jquery_ver</code></h5>
 
 <p>本当は 1.8.x を使いたいんだけれど、私のスマホ （Optimus L-01D/Android 2.3） のネイティブなブラウザが落ちる。Firefox なら大丈夫。たぶんブラウザのバグ （だと思う）。</p>
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="http://developmentseed.org/blog/2011/09/09/jekyll-github-pages/">Using Jekyll and GitHub Pages for Our Site | Development Seed</a><br/>
@@ -333,13 +333,13 @@ category: [parent, child]
 </ul>
 
 
-<h3>6. <code>Rakefile</code> のエントリー</h3>
+<h3 id="6.+`Rakefile`+のエントリー">6. <code>Rakefile</code> のエントリー</h3>
 
-<h4><code>preview</code></h4>
+<h4 id="`preview`"><code>preview</code></h4>
 
 <p><code>rake preview</code> もしくは <code>rake</code> で <a href="http://localhost:4000/">http://localhost:4000/</a> でのテストが可能。</p>
 
-<h4><code>post</code></h4>
+<h4 id="`post`"><code>post</code></h4>
 
 <p>新規投稿。次の書式が可能。</p>
 
@@ -347,36 +347,36 @@ category: [parent, child]
 rake post["title of my article"]
 </code></pre>
 
-<h4><code>page</code></h4>
+<h4 id="`page`"><code>page</code></h4>
 
 <p>新規ページの作成。</p>
 
 <pre><code>rake page name="about.html"
 </code></pre>
 
-<h4><code>setup_remote</code></h4>
+<h4 id="`setup_remote`"><code>setup_remote</code></h4>
 
 <p>記事の公開に <code>git push</code> を使う場合の、リモートの設定。<code>push</code> するリモート側のブランチは、Rakefile 中のグローバルなハッシュ <code>CONFIG['deploy_branch']</code> で指定する。</p>
 
-<h4><code>deploy</code></h4>
+<h4 id="`deploy`"><code>deploy</code></h4>
 
 <p><code>setup_remote</code> で設定したリモートサーバに記事を <code>git push</code> する。<code>_site</code> に出来た静的ファイルは、プレビュー中にも変わってしまうため、<code>_deploy</code> ディレクトリにコピーし、デプロイ用ファイルを確定させる。</p>
 
-<h3>7. <code>Gemfile</code> 関連</h3>
+<h3 id="7.+`Gemfile`+関連">7. <code>Gemfile</code> 関連</h3>
 
-<h4><code>gem 'jekyll'</code></h4>
+<h4 id="`gem+'jekyll'`"><code>gem 'jekyll'</code></h4>
 
 <p><a href="http://rubygems.org/">RubyGems</a> に現在公開されている <a href="http://rubygems.org/gems/jekyll">jekyll</a> は pygmentize ごとにプロセスを起動するため、処理時間がかかるとのこと （情報源：<a href="http://d.hatena.ne.jp/hokaccha/20120808/1344436656">pygmentsが原因でjekyllが重くなってた - hokaccha.hamalog v2</a>）。GitHub 上の最新バージョンを使う方が吉かも。</p>
 
-<h4><code>gem 'gsl'</code></h4>
+<h4 id="`gem+'gsl'`"><code>gem 'gsl'</code></h4>
 
 <p>jekyll のソースを読む限り、<code>lsi: false</code> を指定すると、単に最新の記事数件を 「関連する記事」 とするだけである。<code>lsi: true</code> だと、少しはマシになるらしいが、処理時間がかかる模様。<a href="http://rubygems.org/gems/gsl">gsl</a> を使えば、10倍高速化できるとのこと （未確認）。</p>
 
-<h4><code>gem 'rake'</code></h4>
+<h4 id="`gem+'rake'`"><code>gem 'rake'</code></h4>
 
 <p>いつの間にか、システムにインストールしたバージョンを 0.9.2.2 に上げてしまったようで、Octopress が指定しているバージョン 0.9.2 と競合するようになった。Octopress 側を <code>bundle exec rake ...</code> で対応しているが、そもそも各アプリごとに gem を分けた方が良いかもしれない。</p>
 
-<h5>bundler の参考サイト</h5>
+<h5 id="bundler+の参考サイト">bundler の参考サイト</h5>
 
 <ul>
 <li><a href="http://kozo002.blogspot.jp/2012/01/rubybundler.html">[ruby]最初に知っておけば良かったbundlerの使い方 rails編 | Into my web</a></li>
@@ -387,9 +387,9 @@ rake post["title of my article"]
 </ul>
 
 
-<h3>8. その他、テンプレート作成で参考になったサイト</h3>
+<h3 id="8.+その他、テンプレート作成で参考になったサイト">8. その他、テンプレート作成で参考になったサイト</h3>
 
-<h4>jekyll、Liquid の解説</h4>
+<h4 id="jekyll、Liquid+の解説">jekyll、Liquid の解説</h4>
 
 <ul>
 <li><p><a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters">Module: Liquid::StandardFilters - Documentation for liquid (2.2.2)</a><br/>
@@ -409,7 +409,7 @@ rake post["title of my article"]
 </ul>
 
 
-<h4>Bootstrap</h4>
+<h4 id="Bootstrap">Bootstrap</h4>
 
 <ul>
 <li><a href="http://www.bootstrapcdn.com/">BootstrapCDN</a><br/>
@@ -502,6 +502,10 @@ rake post["title of my article"]
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/03/jekyll-error-of-common-rb/">common.rb:304:in escape: undefined method gsub for ... (NoMethodError)</a>
       </li>
     
@@ -537,15 +541,11 @@ rake post["title of my article"]
         <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 107.5%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 130.0%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 115.0%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 130.0%'>jekyll(4)</a> <a href='/blog/categories/mac/' style='font-size: 115.0%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(8)</a> <a href='/blog/categories/plugins/' style='font-size: 107.5%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 122.5%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 107.5%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac/' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins/' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
 </section>
 
 <section>

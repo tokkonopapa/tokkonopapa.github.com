@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T21:14:44+09:00</updated>
+  <updated>2013-02-23T11:35:32+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -30,7 +30,7 @@
 <!--more-->
 
 
-<h2>Git オブジェクトのタイプ</h2>
+<h2 id="Git+オブジェクトのタイプ">Git オブジェクトのタイプ</h2>
 
 <ul>
 <li><p>blob<br/>
@@ -49,7 +49,7 @@
 
 <p>上の図で、commit 直下の blob は、カレントディレクトリ <code>.</code> と考えると分かり易い。</p>
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://progit.org/book/ja/ch3-1.html#id58" title="ブランチとは">Pro Git - Pro Git 3.1 Git のブランチ機能 ブランチとは</a></li>
@@ -57,7 +57,7 @@
 </ul>
 
 
-<h2>オブジェクトの指定</h2>
+<h2 id="オブジェクトの指定">オブジェクトの指定</h2>
 
 <p>全てのオブジェクトには、フラットな構造のリビジョンがある。リビジョンからオブジェクトを指定可能。</p>
 
@@ -73,14 +73,14 @@ CHERRY_PICK_HEAD（<code>git cherry-pick</code> 実行時のコミット）。</
 </ul>
 
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://progit.org/book/ja/ch1-3.html#git" title="Gitは完全性を持つ">Pro Git - Pro Git 1.3 使い始める Gitの基本</a></li>
 </ul>
 
 
-<h2>リビジョン指定のバリエーション</h2>
+<h2 id="リビジョン指定のバリエーション">リビジョン指定のバリエーション</h2>
 
 <ul>
 <li><p><em>&lt;refname&gt;</em><br/>
@@ -104,7 +104,7 @@ commit メッセージに正規表現 <em>text</em> を含む最初のオブジ�
 </ul>
 
 
-<h4>とってもバカげた（stupid な）リビジョンの指定</h4>
+<h4 id="とってもバカげた（stupid+な）リビジョンの指定">とってもバカげた（stupid な）リビジョンの指定</h4>
 
 <pre><code>G   H   I   J
  \ /     \ /
@@ -129,14 +129,14 @@ I = F^   = B^3^    = A^^3^
 J = F^2  = B^3^2   = A^^3^2
 </code></pre>
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://schacon.github.com/git/git-rev-parse.html" title="git-rev-parse(1)">git-rev-parse(1) Manual Page</a></li>
 </ul>
 
 
-<h2>識別子の用語</h2>
+<h2 id="識別子の用語">識別子の用語</h2>
 
 <ul>
 <li><p>&lt;object&gt;<br/>
@@ -165,7 +165,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 </ul>
 
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://schacon.github.com/git/git.html#_identifier_terminology" title="Identifier Terminology">git(1) Manual Page - Identifier Terminology</a></li>
@@ -173,7 +173,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 </ul>
 
 
-<h2>Git コマンドのオプション指定</h2>
+<h2 id="Git+コマンドのオプション指定">Git コマンドのオプション指定</h2>
 
 <ul>
 <li><p>一文字系:<br/>
@@ -185,11 +185,11 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 </ul>
 
 
-<h2>Git の内部</h2>
+<h2 id="Git+の内部">Git の内部</h2>
 
 <p>内部の実例を見ると、イメージがわき易いかも。</p>
 
-<h3>Git のファイル構成</h3>
+<h3 id="Git+のファイル構成">Git のファイル構成</h3>
 
 <pre><code>$ tree -F .git
 .git/
@@ -233,7 +233,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
         └── v1.0.1
 </code></pre>
 
-<h3>refs 内のオブジェクト</h3>
+<h3 id="refs+内のオブジェクト">refs 内のオブジェクト</h3>
 
 <pre><code>$ git show-ref
 0acbba3b5bd52b9e169077a997bcf5d5f37faa96 refs/heads/gh-pages
@@ -245,7 +245,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </code></pre>
 
-<h3>ステージされてるオブジェクト</h3>
+<h3 id="ステージされてるオブジェクト">ステージされてるオブジェクト</h3>
 
 <pre><code>$ git cat-file -p HEAD^{tree}
 040000 tree 67036e7bea736aa461bf7e737b74925db941999f  PIE-1.0beta5
@@ -256,7 +256,7 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 040000 tree 436ea11960214eac6f68c3b0f935a078903d7062  js
 </code></pre>
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://schacon.github.com/git/gitrepository-layout.html" title="gitrepository-layout(5)">gitrepository-layout(5) Manual Page</a></li>
@@ -264,7 +264,7 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </ul>
 
 
-<h2>日本語リソース</h2>
+<h2 id="日本語リソース">日本語リソース</h2>
 
 <ul>
 <li><a href="http://bit.ly/yG6pRv">Pro Git 日本語版PDF (2011-12-10).pdf</a></li>

@@ -4,7 +4,7 @@
   <title><![CDATA[T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T21:14:44+09:00</updated>
+  <updated>2013-02-23T11:35:32+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[octopressで見出しの目次を記事に埋め込む方法]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc/"/>
+    <updated>2013-02-23T10:12:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc</id>
+    <content type="html"><![CDATA[<p><a href="http://pages.github.com/">GitHub Pages</a> で <a href="https://github.com/mojombo/jekyll">jekyll</a> が 0.12.0 にバージョンアップした事に伴い、
+<a href="https://github.com/rtomayko/rdiscount">RDcount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
+
+<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。</p>
+
+<!--more-->
+
+
+<h3 id="目次">目次</h3>
+
+<p>
+   <ul>
+
+   <ul>
+
+   <ul>
+   <li><a href="#目次">目次</a>   </li>
+   <li><a href="#作成方法">作成方法</a>
+    <ul>
+    <li><a href="#設定">設定</a>    </li>
+    <li><a href="#記事の書き方">記事の書き方</a>    </li>
+   </ul>
+   <li><a href="#日本語の見出し">日本語の見出し</a>   </li>
+   </ul>
+  </li>
+  </ul>
+ </li>
+ </ul>
+
+</p>
+
+<h3 id="作成方法">作成方法</h3>
+
+<h4 id="設定">設定</h4>
+
+<p><code>_config.yml</code> に以下を追加。</p>
+
+<figure class='code'><figcaption><span>_config.yml に RDiscount の設定を追加  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rdiscount</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;generate_toc&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="s">&quot;{:TOC}&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4 id="記事の書き方">記事の書き方</h4>
+
+<p>記事に <code>{:TOC}</code> を埋め込むと、その部分が目次に置き換わる。</p>
+
+<h3 id="日本語の見出し">日本語の見出し</h3>
+
+<p>見出しに日本語を使うと、<code>generate</code> 時にエラーが出る。</p>
+
+<pre><code>Liquid Exception: incompatible character encodings: UTF-8 and ASCII-8BIT in atom.xml
+</code></pre>
+
+<p>この問題は、<a href="https://github.com/mojombo/jekyll/pull/555">Issue #555</a> で報告されている。<a href="https://github.com/Kinvey/jekyll/commit/21325ce2b71ad138be66748b8df7290dd3438ba4">このパッチ</a> の通り、
+<code>gems/jekyll-0.12.0/lib/jekyll/converters/markdown.rb</code>
+を対策する。</p>
+
+<figure class='code'><figcaption><span>lib/jekyll/converters/markdown.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -120,7 +120,7 @@ def convert(content)</span>
+</span><span class='line'>           rd = RDiscount.new(content, *@rdiscount_extensions)
+</span><span class='line'>           html = rd.to_html
+</span><span class='line'>           if rd.generate_toc and html.include?(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;])
+</span><span class='line'><span class="gd">-            html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content)</span>
+</span><span class='line'><span class="gi">+            html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content.force_encoding(&#39;utf-8&#39;))</span>
+</span><span class='line'>           end
+</span><span class='line'>           html
+</span><span class='line'>         when &#39;maruku&#39;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ただし <code>force_encoding('utf-8')</code> が気に入られず、取り込まれていない。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[common.rb:304:in escape: undefined method gsub for ... (NoMethodError)]]></title>
@@ -27,7 +120,7 @@
 <!--more-->
 
 
-<h3>エラーの内容</h3>
+<h3 id="エラーの内容">エラーの内容</h3>
 
 <p><code>escape</code> メソッドで <code>gsub</code> が未定義だということ。</p>
 
@@ -49,7 +142,7 @@
 
 <p>どうやら、<code>categories</code> に配列 <code>["Ruby", "jekyll/hyde"]</code> を指定しているの原因。</p>
 
-<h3>モンキーパッチ</h3>
+<h3 id="モンキーパッチ">モンキーパッチ</h3>
 
 <p><code>URI.escape(c)</code> の <code>c</code> を明示的に <code>String</code> に変換する。</p>
 
@@ -71,7 +164,7 @@
 <!--more-->
 
 
-<h2>制作方針</h2>
+<h2 id="制作方針">制作方針</h2>
 
 <ul>
 <li>モジュール化により、カスタマイズし易くすること。</li>
@@ -79,7 +172,7 @@
 </ul>
 
 
-<h2>構成</h2>
+<h2 id="構成">構成</h2>
 
 <pre><code>.
 ├── _deploy/                # デプロイ時の静的ファイル群を保存しておく
@@ -105,9 +198,9 @@
 └── project/                # プロジェクト用テンプレート
 </code></pre>
 
-<h3>1. <code>_config.yml</code> の設定</h3>
+<h3 id="1.+`_config.yml`+の設定">1. <code>_config.yml</code> の設定</h3>
 
-<h4><code>url</code>、<code>baseurl</code></h4>
+<h4 id="`url`、`baseurl`"><code>url</code>、<code>baseurl</code></h4>
 
 <p>GitHub プロジェクトページの場合は、次のように指定する。</p>
 
@@ -115,19 +208,19 @@
 baseurl: /REPOSITORY
 </code></pre>
 
-<h4><code>paginate</code>、<code>columns</code></h4>
+<h4 id="`paginate`、`columns`"><code>paginate</code>、<code>columns</code></h4>
 
 <p>トップページでの表示記事数と、先頭記事以外のカラム数。</p>
 
-<h4><code>date_format</code></h4>
+<h4 id="`date_format`"><code>date_format</code></h4>
 
 <p>使える書式は、<a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters#date-instance_method">Module: Liquid::StandardFilters — Documentation for liquid (2.2.2)</a> （GitHub の Liquid バージョンと同じ） を参考に。</p>
 
-<h4><code>truncate_len</code></h4>
+<h4 id="`truncate_len`"><code>truncate_len</code></h4>
 
 <p>トップページで紹介する記事の表示文字数。</p>
 
-<h4><code>navbar_list</code></h4>
+<h4 id="`navbar_list`"><code>navbar_list</code></h4>
 
 <p>次のように <code>{name, link}</code> のペアでナビゲーションバーのメニューを定義。</p>
 
@@ -163,7 +256,7 @@ group: Blog
 ---
 </code></pre>
 
-<h4><code>pygments_style</code></h4>
+<h4 id="`pygments_style`"><code>pygments_style</code></h4>
 
 <p><a href="http://pygments.org/">Pygments - Python syntax highlighter</a> の <a href="http://pygments.org/demo/">Online demo</a> で、カラーリングを確認するのが吉。</p>
 
@@ -183,41 +276,41 @@ group: Blog
 </ul>
 
 
-<h3>2. 記事の YAML ディレクティブ</h3>
+<h3 id="2.+記事の+YAML+ディレクティブ">2. 記事の YAML ディレクティブ</h3>
 
-<h4><code>excerpt</code></h4>
+<h4 id="`excerpt`"><code>excerpt</code></h4>
 
 <p>トップページ (index.html) で表示する、記事の要旨。</p>
 
-<h4><code>thumbnail</code></h4>
+<h4 id="`thumbnail`"><code>thumbnail</code></h4>
 
 <p>トップページ (index.html) で表示する、サムネイル画像。</p>
 
-<h4><code>comments</code></h4>
+<h4 id="`comments`"><code>comments</code></h4>
 
 <p>3rd パーティー製コメントシステムを有効にする。</p>
 
-<h4><code>published</code></h4>
+<h4 id="`published`"><code>published</code></h4>
 
 <p><code>true</code> で記事公開、<code>false</code> で保留。</p>
 
-<h4><code>category</code></h4>
+<h4 id="`category`"><code>category</code></h4>
 
 <p>カテゴリは、配列 <code>[...]</code> を使って複数指定可。この場合、左から順に親子関係となる。</p>
 
-<h4><code>tags</code></h4>
+<h4 id="`tags`"><code>tags</code></h4>
 
 <p>タグも配列を使用可能。カテゴリとは異なり、親子関係はない。</p>
 
-<h3>3.「続きを読む」機能</h3>
+<h3 id="3.「続きを読む」機能">3.「続きを読む」機能</h3>
 
 <p>トップページ (index.html) の表示時、<code>_includes/libs/truncate_xxxx</code> で以下の処理を実行する。</p>
 
-<h4>3.1 <code>excerpt</code> の処理</h4>
+<h4 id="3.1+`excerpt`+の処理">3.1 <code>excerpt</code> の処理</h4>
 
 <p>記事の YAML ディレクティブにコレがあれば、要旨として表示する。</p>
 
-<h4>3.2 <code>&lt;!--more--&gt;</code> の処理</h4>
+<h4 id="3.2+`+!--more-->`+の処理&#8221;>3.2 <code>&lt;!--more--&gt;</code> の処理</h4>
 
 <p><code>safe: false</code> な jekyll 環境では、<code>_plugins/postmore.rb</code> を使って <code>&lt;!--more--&gt;</code> で分割した文字列の前半をレンダリングする。一方プラグインが使えない GitHub ページ上の jekyll では、次のように Liquid で、<code>&lt;!--more--&gt;</code> から記事の終わりまでコメント化し、擬似的な more 機能を実現する。</p>
 
@@ -233,7 +326,7 @@ group: Blog
 <pre><code>{{ post.content | replace_first:'&lt;!--more--&gt;', SEP | split:SEP | first }}
 </code></pre>
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="http://www.jacquesf.com/2011/03/creating-excerpts-in-jekyll-with-wordpress-style-more-html-comments/">Creating Excerpts in Jekyll with Wordpress-style &lt;!&#8211;more&#8211;&gt; HTML Comments - Jacques Fortier</a><br/>
@@ -243,11 +336,11 @@ group: Blog
 </ul>
 
 
-<h4>3.3 先頭から既定文字数だけを表示する処理</h4>
+<h4 id="3.3+先頭から既定文字数だけを表示する処理">3.3 先頭から既定文字数だけを表示する処理</h4>
 
 <p><code>excerpt</code> および <code>&lt;!--more--&gt;</code> が共にない場合、先頭の <code>truncate_len</code> だけ文字を表示する。GitHub 上の jekyll （バージョン 2.2.2） の場合、<code>truncate</code> フィルタがユニコードに対応しておらず、単なるバイト数でカウントされてしまうため、日本語が文字化けする可能性がある。そこでかなりトリッキーな方法ではあるが、末尾の文字コードを調べ、適切な所で丸める処理を Liquid で実装した。</p>
 
-<h3>4. カテゴリ、タグ</h3>
+<h3 id="4.+カテゴリ、タグ">4. カテゴリ、タグ</h3>
 
 <p><a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data - mojombo/jekyll Wiki</a> にある通り、テンプレートからは <code>site.categories</code> （ハッシュ） や <code>page.categories</code> （配列） などでアクセスすることが出来る。<code>_includes/libs/list_categories</code> と <code>_includes/libs/list_tags</code> にそれらの扱いを集約すると共に、両者をフラグで使い分ける仕様とした。</p>
 
@@ -262,11 +355,11 @@ category: [parent, child]
 <pre><code>/blog/parent/child/hello-world.html
 </code></pre>
 
-<h3>5. bootstrap 関連</h3>
+<h3 id="5.+bootstrap+関連">5. bootstrap 関連</h3>
 
 <p>コレのコンフィグレーションを色々できるようにしたことが複雑化の原因。不要なら一切を削除するのがお勧め。</p>
 
-<h4>5.1 基本構成</h4>
+<h4 id="5.1+基本構成">5.1 基本構成</h4>
 
 <p><code>assets/bootstrap-X.Y.Z/</code> 下のファイルが、<code>_includes/bootstrap-X.Y.Z/</code> 下の部品をインクルードする構成とした。</p>
 
@@ -285,29 +378,29 @@ category: [parent, child]
 
 <p>css ファイルは、<a href="http://twitter.github.com/bootstrap/customize.html">web-based Customizer</a> から適当なモジュールを選択し、ダウンロードしたファイルで代用している。そのうち LESS をインストールし、モジュール化したい。</p>
 
-<h4>5.2 <code>_config.yml</code> の設定。</h4>
+<h4 id="5.2+`_config.yml`+の設定。">5.2 <code>_config.yml</code> の設定。</h4>
 
-<h5><code>bootstrap</code></h5>
+<h5 id="`bootstrap`"><code>bootstrap</code></h5>
 
 <p><code>custom</code> を指定すると <code>/assets/bootstrap-X.Y.Z/</code> のカスタムファイルを用いる。この場合、<code>_includes/bootstrap-X.Y.Z/</code> から必要な部品をインクルードする。<code>original</code> あるいはそれ以外では、<a href="http://www.bootstrapcdn.com/">BootstrapCDN</a> にアップされているファイルを使う。</p>
 
-<h5><code>bootstrap_ver</code></h5>
+<h5 id="`bootstrap_ver`"><code>bootstrap_ver</code></h5>
 
 <p>バージョン X.Y.Z を指定。</p>
 
-<h5><code>bootswatch_ver</code></h5>
+<h5 id="`bootswatch_ver`"><code>bootswatch_ver</code></h5>
 
 <p>テーマファイルのバージョンを指定。</p>
 
-<h5><code>responsive_bp</code></h5>
+<h5 id="`responsive_bp`"><code>responsive_bp</code></h5>
 
 <p>ナビゲーションバーを折り畳みタイプにする、メディアクエリ上のブレーク・ポイント。<code>assets/bootstrap-X.Y.Z/bootstrap-responsive.custom.css</code> に、この値をレンダリングする。</p>
 
-<h5><code>jquery_ver</code></h5>
+<h5 id="`jquery_ver`"><code>jquery_ver</code></h5>
 
 <p>本当は 1.8.x を使いたいんだけれど、私のスマホ （Optimus L-01D/Android 2.3） のネイティブなブラウザが落ちる。Firefox なら大丈夫。たぶんブラウザのバグ （だと思う）。</p>
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="http://developmentseed.org/blog/2011/09/09/jekyll-github-pages/">Using Jekyll and GitHub Pages for Our Site | Development Seed</a><br/>
@@ -315,13 +408,13 @@ category: [parent, child]
 </ul>
 
 
-<h3>6. <code>Rakefile</code> のエントリー</h3>
+<h3 id="6.+`Rakefile`+のエントリー">6. <code>Rakefile</code> のエントリー</h3>
 
-<h4><code>preview</code></h4>
+<h4 id="`preview`"><code>preview</code></h4>
 
 <p><code>rake preview</code> もしくは <code>rake</code> で <a href="http://localhost:4000/">http://localhost:4000/</a> でのテストが可能。</p>
 
-<h4><code>post</code></h4>
+<h4 id="`post`"><code>post</code></h4>
 
 <p>新規投稿。次の書式が可能。</p>
 
@@ -329,36 +422,36 @@ category: [parent, child]
 rake post["title of my article"]
 </code></pre>
 
-<h4><code>page</code></h4>
+<h4 id="`page`"><code>page</code></h4>
 
 <p>新規ページの作成。</p>
 
 <pre><code>rake page name="about.html"
 </code></pre>
 
-<h4><code>setup_remote</code></h4>
+<h4 id="`setup_remote`"><code>setup_remote</code></h4>
 
 <p>記事の公開に <code>git push</code> を使う場合の、リモートの設定。<code>push</code> するリモート側のブランチは、Rakefile 中のグローバルなハッシュ <code>CONFIG['deploy_branch']</code> で指定する。</p>
 
-<h4><code>deploy</code></h4>
+<h4 id="`deploy`"><code>deploy</code></h4>
 
 <p><code>setup_remote</code> で設定したリモートサーバに記事を <code>git push</code> する。<code>_site</code> に出来た静的ファイルは、プレビュー中にも変わってしまうため、<code>_deploy</code> ディレクトリにコピーし、デプロイ用ファイルを確定させる。</p>
 
-<h3>7. <code>Gemfile</code> 関連</h3>
+<h3 id="7.+`Gemfile`+関連">7. <code>Gemfile</code> 関連</h3>
 
-<h4><code>gem 'jekyll'</code></h4>
+<h4 id="`gem+'jekyll'`"><code>gem 'jekyll'</code></h4>
 
 <p><a href="http://rubygems.org/">RubyGems</a> に現在公開されている <a href="http://rubygems.org/gems/jekyll">jekyll</a> は pygmentize ごとにプロセスを起動するため、処理時間がかかるとのこと （情報源：<a href="http://d.hatena.ne.jp/hokaccha/20120808/1344436656">pygmentsが原因でjekyllが重くなってた - hokaccha.hamalog v2</a>）。GitHub 上の最新バージョンを使う方が吉かも。</p>
 
-<h4><code>gem 'gsl'</code></h4>
+<h4 id="`gem+'gsl'`"><code>gem 'gsl'</code></h4>
 
 <p>jekyll のソースを読む限り、<code>lsi: false</code> を指定すると、単に最新の記事数件を 「関連する記事」 とするだけである。<code>lsi: true</code> だと、少しはマシになるらしいが、処理時間がかかる模様。<a href="http://rubygems.org/gems/gsl">gsl</a> を使えば、10倍高速化できるとのこと （未確認）。</p>
 
-<h4><code>gem 'rake'</code></h4>
+<h4 id="`gem+'rake'`"><code>gem 'rake'</code></h4>
 
 <p>いつの間にか、システムにインストールしたバージョンを 0.9.2.2 に上げてしまったようで、Octopress が指定しているバージョン 0.9.2 と競合するようになった。Octopress 側を <code>bundle exec rake ...</code> で対応しているが、そもそも各アプリごとに gem を分けた方が良いかもしれない。</p>
 
-<h5>bundler の参考サイト</h5>
+<h5 id="bundler+の参考サイト">bundler の参考サイト</h5>
 
 <ul>
 <li><a href="http://kozo002.blogspot.jp/2012/01/rubybundler.html">[ruby]最初に知っておけば良かったbundlerの使い方 rails編 | Into my web</a></li>
@@ -369,9 +462,9 @@ rake post["title of my article"]
 </ul>
 
 
-<h3>8. その他、テンプレート作成で参考になったサイト</h3>
+<h3 id="8.+その他、テンプレート作成で参考になったサイト">8. その他、テンプレート作成で参考になったサイト</h3>
 
-<h4>jekyll、Liquid の解説</h4>
+<h4 id="jekyll、Liquid+の解説">jekyll、Liquid の解説</h4>
 
 <ul>
 <li><p><a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters">Module: Liquid::StandardFilters - Documentation for liquid (2.2.2)</a><br/>
@@ -391,7 +484,7 @@ rake post["title of my article"]
 </ul>
 
 
-<h4>Bootstrap</h4>
+<h4 id="Bootstrap">Bootstrap</h4>
 
 <ul>
 <li><a href="http://www.bootstrapcdn.com/">BootstrapCDN</a><br/>
@@ -416,7 +509,7 @@ rake post["title of my article"]
 <!--more-->
 
 
-<h3>おすすめの方法</h3>
+<h3 id="おすすめの方法">おすすめの方法</h3>
 
 <p>ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code>
 ディレクトリにコピーし、リモートにプッシュすると、一時的にはうまくいく。</p>
@@ -435,7 +528,7 @@ Rakefile を書き換えれば良いのだけれど、お手軽には次の「�
 
 <p><img src="https://lh3.googleusercontent.com/-piNUXPKHD70/UA63js9yEeI/AAAAAAAAANI/fDEQeMMiO8o/s480/site-verification.png" alt="推奨：HTMLファイルをアップロード" /></p>
 
-<h3>別な方法</h3>
+<h3 id="別な方法">別な方法</h3>
 
 <p><a href="http://support.google.com/webmasters/bin/answer.py?hl=ja&amp;answer=79812">メタ タグ - ウェブマスター ツール ヘルプ</a> に
 従って、<code>source/_includes/head.html</code> にメタタグを記述し、ページを再生成後、デプロイするだけ。</p>
@@ -453,7 +546,7 @@ rake deploy
     <link href="http://tokkonopapa.github.com/blog/2012/06/27/github-emoji/"/>
     <updated>2012-06-27T00:39:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2012/06/27/github-emoji</id>
-    <content type="html"><![CDATA[<h2>GitHubber達が使うEmojiの出し方</h2>
+    <content type="html"><![CDATA[<h2 id="GitHubber達が使うEmojiの出し方">GitHubber達が使うEmojiの出し方</h2>
 
 <p><a href="http://en.wikipedia.org/wiki/Emoji" title="Emoji - Wikipedia, the free encyclopedia">Emoji</a> って、英語になってるんだ！ <a href="http://en.wikipedia.org/wiki/Manga" title="Manga - Wikipedia, the free encyclopedia">Manga</a> と同じだネェ。日本のガラケー文化もなかなかじゃん。</p>
 
@@ -495,7 +588,7 @@ rake deploy
 <!--more-->
 
 
-<h2>Git オブジェクトのタイプ</h2>
+<h2 id="Git+オブジェクトのタイプ">Git オブジェクトのタイプ</h2>
 
 <ul>
 <li><p>blob<br/>
@@ -514,7 +607,7 @@ rake deploy
 
 <p>上の図で、commit 直下の blob は、カレントディレクトリ <code>.</code> と考えると分かり易い。</p>
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://progit.org/book/ja/ch3-1.html#id58" title="ブランチとは">Pro Git - Pro Git 3.1 Git のブランチ機能 ブランチとは</a></li>
@@ -522,7 +615,7 @@ rake deploy
 </ul>
 
 
-<h2>オブジェクトの指定</h2>
+<h2 id="オブジェクトの指定">オブジェクトの指定</h2>
 
 <p>全てのオブジェクトには、フラットな構造のリビジョンがある。リビジョンからオブジェクトを指定可能。</p>
 
@@ -538,14 +631,14 @@ CHERRY_PICK_HEAD（<code>git cherry-pick</code> 実行時のコミット）。</
 </ul>
 
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://progit.org/book/ja/ch1-3.html#git" title="Gitは完全性を持つ">Pro Git - Pro Git 1.3 使い始める Gitの基本</a></li>
 </ul>
 
 
-<h2>リビジョン指定のバリエーション</h2>
+<h2 id="リビジョン指定のバリエーション">リビジョン指定のバリエーション</h2>
 
 <ul>
 <li><p><em>&lt;refname&gt;</em><br/>
@@ -569,7 +662,7 @@ commit メッセージに正規表現 <em>text</em> を含む最初のオブジ�
 </ul>
 
 
-<h4>とってもバカげた（stupid な）リビジョンの指定</h4>
+<h4 id="とってもバカげた（stupid+な）リビジョンの指定">とってもバカげた（stupid な）リビジョンの指定</h4>
 
 <pre><code>G   H   I   J
  \ /     \ /
@@ -594,14 +687,14 @@ I = F^   = B^3^    = A^^3^
 J = F^2  = B^3^2   = A^^3^2
 </code></pre>
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://schacon.github.com/git/git-rev-parse.html" title="git-rev-parse(1)">git-rev-parse(1) Manual Page</a></li>
 </ul>
 
 
-<h2>識別子の用語</h2>
+<h2 id="識別子の用語">識別子の用語</h2>
 
 <ul>
 <li><p>&lt;object&gt;<br/>
@@ -630,7 +723,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 </ul>
 
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://schacon.github.com/git/git.html#_identifier_terminology" title="Identifier Terminology">git(1) Manual Page - Identifier Terminology</a></li>
@@ -638,7 +731,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 </ul>
 
 
-<h2>Git コマンドのオプション指定</h2>
+<h2 id="Git+コマンドのオプション指定">Git コマンドのオプション指定</h2>
 
 <ul>
 <li><p>一文字系:<br/>
@@ -650,11 +743,11 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 </ul>
 
 
-<h2>Git の内部</h2>
+<h2 id="Git+の内部">Git の内部</h2>
 
 <p>内部の実例を見ると、イメージがわき易いかも。</p>
 
-<h3>Git のファイル構成</h3>
+<h3 id="Git+のファイル構成">Git のファイル構成</h3>
 
 <pre><code>$ tree -F .git
 .git/
@@ -698,7 +791,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
         └── v1.0.1
 </code></pre>
 
-<h3>refs 内のオブジェクト</h3>
+<h3 id="refs+内のオブジェクト">refs 内のオブジェクト</h3>
 
 <pre><code>$ git show-ref
 0acbba3b5bd52b9e169077a997bcf5d5f37faa96 refs/heads/gh-pages
@@ -710,7 +803,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </code></pre>
 
-<h3>ステージされてるオブジェクト</h3>
+<h3 id="ステージされてるオブジェクト">ステージされてるオブジェクト</h3>
 
 <pre><code>$ git cat-file -p HEAD^{tree}
 040000 tree 67036e7bea736aa461bf7e737b74925db941999f  PIE-1.0beta5
@@ -721,7 +814,7 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 040000 tree 436ea11960214eac6f68c3b0f935a078903d7062  js
 </code></pre>
 
-<h4>関連リンク</h4>
+<h4 id="関連リンク">関連リンク</h4>
 
 <ul>
 <li><a href="http://schacon.github.com/git/gitrepository-layout.html" title="gitrepository-layout(5)">gitrepository-layout(5) Manual Page</a></li>
@@ -729,7 +822,7 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </ul>
 
 
-<h2>日本語リソース</h2>
+<h2 id="日本語リソース">日本語リソース</h2>
 
 <ul>
 <li><a href="http://bit.ly/yG6pRv">Pro Git 日本語版PDF (2011-12-10).pdf</a></li>
@@ -773,13 +866,13 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 
 <p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
 
-<h3>使い方</h3>
+<h3 id="使い方">使い方</h3>
 
 <pre><code>{% tag_cloud [counter:true] %}
 {% category_list [counter:true] %}
 </code></pre>
 
-<h4>オプション</h4>
+<h4 id="オプション">オプション</h4>
 
 <ul>
 <li>counter:<br/>
@@ -787,9 +880,9 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </ul>
 
 
-<h4>使用例</h4>
+<h4 id="使用例">使用例</h4>
 
-<h5>source/_include/custom/asides/tag_cloud.html</h5>
+<h5 id="source/_include/custom/asides/tag_cloud.html">source/_include/custom/asides/tag_cloud.html</h5>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -802,7 +895,7 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h5>source/_include/custom/asides/category_list.html</h5>
+<h5 id="source/_include/custom/asides/category_list.html">source/_include/custom/asides/category_list.html</h5>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -815,7 +908,7 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h5>sass/custom/_styles.scss</h5>
+<h5 id="sass/custom/_styles.scss">sass/custom/_styles.scss</h5>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -826,18 +919,18 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h5>_config.yml</h5>
+<h5 id="_config.yml">_config.yml</h5>
 
 <pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
 </code></pre>
 
-<h5>適用例</h5>
+<h5 id="適用例">適用例</h5>
 
 <p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
 
-<h3>ダウンロードとインストール</h3>
+<h3 id="ダウンロードとインストール">ダウンロードとインストール</h3>
 
 <ul>
 <li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
@@ -873,7 +966,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h3>後記</h3>
+<h3 id="後記">後記</h3>
 
 <p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
 
@@ -897,11 +990,11 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <!--more-->
 
 
-<h3>Sass 関連の参考資料</h3>
+<h3 id="Sass+関連の参考資料">Sass 関連の参考資料</h3>
 
 <p>たぶん何度も読み直すと思うので、ここにメモ。</p>
 
-<h4>Sass</h4>
+<h4 id="Sass">Sass</h4>
 
 <ul>
 <li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
@@ -912,7 +1005,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h4>Compass</h4>
+<h4 id="Compass">Compass</h4>
 
 <ul>
 <li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
@@ -920,7 +1013,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h3>Octopress の Sass 構成</h3>
+<h3 id="Octopress+の+Sass+構成">Octopress の Sass 構成</h3>
 
 <pre><code>sass/
 ├─ screen.scss              # 全ての定義の始まりであり、終わり
@@ -954,7 +1047,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
    └─ _footer.scss          # フッター部に関するスタイル定義
 </code></pre>
 
-<h4>screen.scss</h4>
+<h4 id="screen.scss">screen.scss</h4>
 
 <figure class='code'><figcaption><span>screen.scss  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -982,11 +1075,11 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 
 <p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
 
-<h3>カスタマイズ例</h3>
+<h3 id="カスタマイズ例">カスタマイズ例</h3>
 
 <p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
 
-<h4>_color.scss</h4>
+<h4 id="_color.scss">_color.scss</h4>
 
 <p>まずはテーマカラーの調整。</p>
 
@@ -1006,7 +1099,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>_styles.scss</h4>
+<h4 id="_styles.scss">_styles.scss</h4>
 
 <p>その他の細かなスタイルのカスタマイズ。</p>
 
@@ -1060,7 +1153,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>謎の右マージンを直す</h4>
+<h4 id="謎の右マージンを直す">謎の右マージンを直す</h4>
 
 <p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
 
@@ -1080,7 +1173,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
   {% endif %}</code></pre></noscript></div>
 
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
@@ -1088,7 +1181,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h5>2012年1月11日 追記</h5>
+<h5 id="2012年1月11日+追記">2012年1月11日 追記</h5>
 
 <p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
 ]]></content>
@@ -1106,7 +1199,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <!--more-->
 
 
-<h3>&lt;meta&gt; タグの追加機能</h3>
+<h3 id="+lt;meta+gt;+タグの追加機能">&lt;meta&gt; タグの追加機能</h3>
 
 <p><code>source/_includes/head.html</code> の10行目付近から。</p>
 
@@ -1142,7 +1235,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 
 <p>ちなみにトップページの場合も、先頭記事が <code>{ content }</code> として参照されるのが、何だかアレな感じ。</p>
 
-<h4>plugins/octopress_filters.rb の改修</h4>
+<h4 id="plugins/octopress_filters.rb+の改修">plugins/octopress_filters.rb の改修</h4>
 
 <p>記事の先頭150字以内に改行が含まれていると、<code>content="..."</code> が改行されちゃうのもアレ（HTML 的には OK だから、気にすることないけどネ）。</p>
 
@@ -1161,7 +1254,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Rakefile の改修</h4>
+<h4 id="Rakefile+の改修">Rakefile の改修</h4>
 
 <p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
 
@@ -1180,7 +1273,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
   end</code></pre></noscript></div>
 
 
-<h3>サイドバーへの <code>About Me</code> 追加</h3>
+<h3 id="サイドバーへの+`About+Me`+追加">サイドバーへの <code>About Me</code> 追加</h3>
 
 <p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
 
@@ -1201,7 +1294,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <!--more-->
 
 
-<h3>関連ファイルの抽出</h3>
+<h3 id="関連ファイルの抽出">関連ファイルの抽出</h3>
 
 <div><script src='https://gist.github.com/1544095.js?file=Related-Files'></script>
 <noscript><pre><code>source
@@ -1216,9 +1309,9 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
         └── custom/after_footer.html # after_footer.html から（コメントのみ）</code></pre></noscript></div>
 
 
-<h3>ファイルの修正</h3>
+<h3 id="ファイルの修正">ファイルの修正</h3>
 
-<h4>_config.yml</h4>
+<h4 id="_config.yml">_config.yml</h4>
 
 <p>各ボタンの言語設定、Facebook アプリケーション ID 設定などを追加する。</p>
 
@@ -1238,7 +1331,7 @@ facebook_lang: ja_JP
 facebook_appID:</code></pre></noscript></div>
 
 
-<h4>sharing.html</h4>
+<h4 id="sharing.html">sharing.html</h4>
 
 <p>適当な位置にはてブを追加する。</p>
 
@@ -1263,7 +1356,7 @@ facebook_appID:</code></pre></noscript></div>
 &lt;/div&gt;</code></pre></noscript></div>
 
 
-<h4>after_footer.html</h4>
+<h4 id="after_footer.html">after_footer.html</h4>
 
 <p>Facebook、Google+1、Twitter をコメントアウトする。</p>
 
@@ -1277,7 +1370,7 @@ facebook_appID:</code></pre></noscript></div>
 {% include custom/after_footer.html %}</code></pre></noscript></div>
 
 
-<h4>custum/after_footer.html</h4>
+<h4 id="custum/after_footer.html">custum/after_footer.html</h4>
 
 <p>Google+1、Facebook の言語設定と JavaScript の非同期読み込みコードを共通化してまとめる。</p>
 
@@ -1306,7 +1399,7 @@ facebook_appID:</code></pre></noscript></div>
 &lt;/script&gt;</code></pre></noscript></div>
 
 
-<h3>Facebook の AppID について</h3>
+<h3 id="Facebook+の+AppID+について">Facebook の AppID について</h3>
 
 <p><code>facebook_like.html</code> には、作者のものと思われるアプリケーション ID が埋め込まれている。</p>
 
@@ -1318,7 +1411,7 @@ facebook_appID:</code></pre></noscript></div>
 
 <p>本来これは <code>_config.yml</code> で設定すべき事項。言語設定も含めて pull request するべきなんでしょうかネ。</p>
 
-<h3>参考情報</h3>
+<h3 id="参考情報">参考情報</h3>
 
 <ul>
 <li><a href="http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/asynchronous-loading-of-major-social-buttons/">最近海外で流行りのTwitter,Facebook,Google+1,Analyticsをまとめる非同期スクリプトにはてなを加えてみた | ゆっくりと…</a></li>
@@ -1340,7 +1433,7 @@ GitHub Pages には、ユーザーページとプロジェクトページがあ�
 <!--more-->
 
 
-<h3>1. Octopress 利用の前提条件</h3>
+<h3 id="1.+Octopress+利用の前提条件">1. Octopress 利用の前提条件</h3>
 
 <ul>
 <li>Git + GitHub アカウント</li>
@@ -1351,7 +1444,7 @@ GitHub Pages には、ユーザーページとプロジェクトページがあ�
 </ul>
 
 
-<h3>2. GitHub ユーザーページ用リポジトリの作成</h3>
+<h3 id="2.+GitHub+ユーザーページ用リポジトリの作成">2. GitHub ユーザーページ用リポジトリの作成</h3>
 
 <p>GitHub で <code>username.github.com</code> の <a href="https://github.com/repositories/new">リポジトリを作成</a> しておく。</p>
 
@@ -1399,7 +1492,7 @@ To git@github.com:username/username.github.com.git
 Branch master set up to track remote branch master from origin.
 </code></pre>
 
-<h3>3. Octopress のインストール</h3>
+<h3 id="3.+Octopress+のインストール">3. Octopress のインストール</h3>
 
 <p>とりあえず、ユーザーページ用リポジトリ <code>username.github.com</code> と同じ階層にインストールする。</p>
 
@@ -1461,7 +1554,7 @@ Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem 
 <pre><code>## Copying classic theme into ./source and ./sass
 </code></pre>
 
-<h3>4. Octopress サイトの立ち上げ</h3>
+<h3 id="4.+Octopress+サイトの立ち上げ">4. Octopress サイトの立ち上げ</h3>
 
 <p>ここからは、公式サイトの <a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages With Github User/Organization pages</a> の内容。</p>
 
@@ -1512,31 +1605,31 @@ Initialized empty Git repository in /path/to/repo/octopress/username.github.com/
 
 <p>2つを一気に実行するには <code>rake gen_deploy</code> を、まずはローカルでプレビューするという場合には <code>rake preview</code> を実行後に http://localhost:4000/ にアクセスする。</p>
 
-<h3>5. Octopress サイトの設定</h3>
+<h3 id="5.+Octopress+サイトの設定">5. Octopress サイトの設定</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/configuring/">Configuring Octopress</a> を参考に、<code>_config.yml</code> を設定。</p>
 
-<h3>6. 新規記事、新規ページの作成</h3>
+<h3 id="6.+新規記事、新規ページの作成">6. 新規記事、新規ページの作成</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/blogging/">Blogging Basics</a> を参照。</p>
 
-<h4>&#8211;新規投稿&#8211;</h4>
+<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_post['post title']
 </code></pre>
 
 <p>記事のタイトルは、英語で。</p>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>source/
 └── _post/
     └── YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: post
@@ -1549,15 +1642,15 @@ categories: [category1, ...]
 
 <p>ここで、<code>title</code> を日本語にすれば良い。</p>
 
-<h4>&#8211;新規ページ&#8211;</h4>
+<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>source/
 └── my-new-page/
@@ -1565,7 +1658,7 @@ rake new_page[my-new-page.html]
     └── index.html        # rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: page
@@ -1577,7 +1670,7 @@ footer: true
 ---
 </code></pre>
 
-<h3>7. サイトの運用管理</h3>
+<h3 id="7.+サイトの運用管理">7. サイトの運用管理</h3>
 
 <p><a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages</a> には、ユーザーページ、プロジェクトページのそれぞれで、本体のリポジトリと統合する方法が推奨されている。</p>
 
@@ -1663,7 +1756,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 <p>この段階で、リモートとして <code>origin</code>、<code>octopress</code>、<code>bitbucket</code> の3つが登録されることとなる。これ以降、記事のデプロイは <code>rake deploy</code>、原稿のバックアップは <code>git push</code> でできるようになる。</p>
 
-<h3>8. Octopress の更新</h3>
+<h3 id="8.+Octopress+の更新">8. Octopress の更新</h3>
 
 <p>本家の更新を取り込んでマージする。</p>
 
@@ -1675,7 +1768,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>参考情報</h3>
+<h3 id="参考情報">参考情報</h3>
 
 <ul>
 <li><a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">Big Sky :: githubとjekyllとoctopressで作る簡単でモダンなブログ</a></li>
@@ -1695,13 +1788,13 @@ Automatic merge failed; fix conflicts and then commit the result.
 <!--more-->
 
 
-<h3>1. テーマの概要</h3>
+<h3 id="1.+テーマの概要">1. テーマの概要</h3>
 
-<h4>テンプレートファイル</h4>
+<h4 id="テンプレートファイル">テンプレートファイル</h4>
 
 <p><code>rake install</code> の時点で、<code>.themes/classic</code> から <code>source</code> にコピーされる。</p>
 
-<h4>設定ファイル</h4>
+<h4 id="設定ファイル">設定ファイル</h4>
 
 <ul>
 <li><strong>_config.yml</strong><br/>
@@ -1709,7 +1802,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 </ul>
 
 
-<h4>構成の概要</h4>
+<h4 id="構成の概要">構成の概要</h4>
 
 <pre><code>source/
 ├── _layouts/    # トップページ、個別記事ページ、カテゴリアーカイブページのレイアウト
@@ -1719,9 +1812,9 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
 </code></pre>
 
-<h3>2. テンプレートファイルの構成</h3>
+<h3 id="2.+テンプレートファイルの構成">2. テンプレートファイルの構成</h3>
 
-<h4>ページ</h4>
+<h4 id="ページ">ページ</h4>
 
 <pre><code>└── _layouts/
     ├── default.html
@@ -1730,7 +1823,7 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── category_index.html (layout: page, footer: false)
 </code></pre>
 
-<h4>&lt;head&gt;</h4>
+<h4 id="+lt;head+gt;">&lt;head&gt;</h4>
 
 <pre><code>└── _includes/
     ├── head.html
@@ -1738,27 +1831,27 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── google_analytics.html
 </code></pre>
 
-<h4>RSS</h4>
+<h4 id="RSS">RSS</h4>
 
 <pre><code>└── _includes/
     └── custom/category_feed.xml
 </code></pre>
 
-<h4>ヘッダー</h4>
+<h4 id="ヘッダー">ヘッダー</h4>
 
 <pre><code>└── _includes/
     ├── header.html
     └── custom/header.html
 </code></pre>
 
-<h4>ナビゲーション・メニュー</h4>
+<h4 id="ナビゲーション・メニュー">ナビゲーション・メニュー</h4>
 
 <pre><code>└── _includes/
     ├── navigation.html
     └── custom/navigation.html
 </code></pre>
 
-<h4>記事</h4>
+<h4 id="記事">記事</h4>
 
 <pre><code>└── _includes/
     ├── article.html            # post.html、index.html から
@@ -1769,7 +1862,7 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── post/sharing.html       # post.html、page.html から
 </code></pre>
 
-<h4>サイドバー・パーツ</h4>
+<h4 id="サイドバー・パーツ">サイドバー・パーツ</h4>
 
 <pre><code>└── _includes/
     ├── custom/asides/about.html
@@ -1781,14 +1874,14 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── asides/twitter.html
 </code></pre>
 
-<h4>フッター</h4>
+<h4 id="フッター">フッター</h4>
 
 <pre><code>└── _includes/
     ├── footer.html
     └── custom/footer.html
 </code></pre>
 
-<h4>ソーシャル・パーツ</h4>
+<h4 id="ソーシャル・パーツ">ソーシャル・パーツ</h4>
 
 <pre><code>└── _includes/
     ├── after_footer.html
@@ -1799,13 +1892,13 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── twitter_sharing.html        # after_footer.html から
 </code></pre>
 
-<h4>アーカイブ</h4>
+<h4 id="アーカイブ">アーカイブ</h4>
 
 <pre><code>└── _includes/
     └── archive_post.html   # category_index.html、blog/archives/index.html から
 </code></pre>
 
-<h3>3. 生成されるファイルの構成</h3>
+<h3 id="3.+生成されるファイルの構成">3. 生成されるファイルの構成</h3>
 
 <pre><code>├── index.html (layout: default)
 ├── atom.xml
@@ -1839,21 +1932,21 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── screen.css
 </code></pre>
 
-<h3>4. Octopressの動作</h3>
+<h3 id="4.+Octopressの動作">4. Octopressの動作</h3>
 
-<h4>&#8211;新規投稿&#8211;</h4>
+<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_post['post title']
 </code></pre>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>└── _post/YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: post
@@ -1864,21 +1957,21 @@ categories: [category1, ...]
 ---
 </code></pre>
 
-<h4>&#8211;新規ページ&#8211;</h4>
+<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
 
-<h5>コマンド</h5>
+<h5 id="コマンド">コマンド</h5>
 
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>ファイル</h5>
+<h5 id="ファイル">ファイル</h5>
 
 <pre><code>├── my-new-page/index.markdown    # rake new_page[my-new-page]
 └── my-new-page/index.html        # rake new_page[my-new-page.html]
 </code></pre>
 
-<h5>YAMLブロック</h5>
+<h5 id="YAMLブロック">YAMLブロック</h5>
 
 <pre><code>---
 layout: page
@@ -1904,7 +1997,7 @@ footer: true
 <!--more-->
 
 
-<h3>通常の手順</h3>
+<h3 id="通常の手順">通常の手順</h3>
 
 <p><a href="https://github.com/mojombo/jekyll/wiki/Usage">こちら</a> に基本的な手順の説明。</p>
 
@@ -1916,7 +2009,7 @@ footer: true
 </ol>
 
 
-<h3>GitHub Pages の場合</h3>
+<h3 id="GitHub+Pages+の場合">GitHub Pages の場合</h3>
 
 <p>一方 GitHub では、<a href="http://pages.github.com/">GitHub Pages</a> 上に jekyll に必要なファイル群があれば、自動的に HTML を生成してくれるので、必ずしもローカルに jekyll をインストールしなくても何とかなる。
 もっともローカルで最終的なレンダリング結果を確認するためにも、jekyll をインストールするに越したことはないが&#8230;</p>
@@ -1968,7 +2061,7 @@ title: プロジェクト・タイトル
 <p><code>css/styles.css</code> で装飾し、必要なら <code>images</code> や <code>script</code>、<code>favicon.ico</code> などもお好みで。
 そしてこれらファイル群を プロジェクト・リポジトリの <code>gh-pages</code> ブランチに <a href="http://pages.github.com/#project_pages" title="pushの仕方">push</a> する。</p>
 
-<h3>さらに複雑なテンプレートの作り方</h3>
+<h3 id="さらに複雑なテンプレートの作り方">さらに複雑なテンプレートの作り方</h3>
 
 <p><img class="right" src="https://lh6.googleusercontent.com/-XPYN1_uoW2g/TvwH9lgXi-I/AAAAAAAAAB4/ps1ZlNCzbMo/s336/ComplexStructure.png" width="250" height="336" title="&#34;ページの構成&#34;" alt="&#34;ページの構成&#34;"></p>
 
@@ -2147,7 +2240,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</code></pre></noscript></div>
 
 
-<h4>参考情報</h4>
+<h4 id="参考情報">参考情報</h4>
 
 <ul>
 <li><p><a href="http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm">Big Sky :: Jekyllで始める簡単ブログ</a><br/>
@@ -2173,7 +2266,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
 <!--more-->
 
 
-<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></h3>
+<h3 id="1.+[アプリ名の命名を+Heroku+に任せる](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++Create+your+Heroku+application+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku create</span></code></pre></td></tr></table></div></figure>
@@ -2181,7 +2274,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
 
 <p>勝手に名前が付けられる。どんな名前を付けてくれるのか、結構楽しみだったりする。</p>
 
-<h3>2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
+<h3 id="2.+[アプリ名を指定して作成する](http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app++Creating+a+Named+App+)">2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku create myappname</span></code></pre></td></tr></table></div></figure>
@@ -2189,7 +2282,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
 
 <p>当然、既に取得されているアプリ名はダメ。</p>
 
-<h3>3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
+<h3 id="3.+[アプリ名を変更する](http://devcenter.heroku.com/articles/renaming-apps++Renaming+Apps+from+the+CLI+)">3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
 
 <p>次の3通りの方法。</p>
 
@@ -2246,7 +2339,7 @@ fork したので、<a href="http://www.heroku.com/">heroku</a> へのインス�
 <!--more-->
 
 
-<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
+<h3 id="1.+[Heroku+で+ruby+を使うための設定](http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites++Getting+Started+with+Ruby+on+Heroku/Bamboo+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
 
 <p>heroku を利用する前提条件は次の3つ。</p>
 
@@ -2272,7 +2365,7 @@ To install do: 'rvm install ruby-1.9.2-p290'
 
 <p>とか書いておくと、プロジェクトの <code>.rvmrc</code> を無視し、<code>~/.rvmrc</code> の設定を使う。（参考：<a href="http://beginrescueend.com/workflow/rvmrc/" title="RVM: Ruby Version Manager - rvmrc">rvmrc files</a>）。</p>
 
-<h3>2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
+<h3 id="2.+[heroku+gem+のインストール](http://devcenter.heroku.com/articles/heroku-command++Installing+the+Heroku+CLI+)">2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
 
 <p>各OS用パッケージが載っているが、以下で大丈夫。</p>
 
@@ -2306,7 +2399,7 @@ Uploading ssh public key /Users/kiyo/.ssh/id_rsa.pub
 
 <p><code>1)</code> は <a href="http://mac.github.com/">GitHub for Mac</a> の SSH キー（たぶん）。</p>
 
-<h3>3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
+<h3 id="3.+[Heroku+アプリの生成](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++3.+Create+your+Heroku+application+)">3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
 
 <p>heroku に上げたい Git リポジトリのディレクトリで <code>heroku create</code> とするだけ。</p>
 
@@ -2344,12 +2437,12 @@ $ git push heroku
 <!--more-->
 
 
-<h2>Xcode 3 のインストール</h2>
+<h2 id="Xcode+3+のインストール">Xcode 3 のインストール</h2>
 
 <p><a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
 <code>xcode_3.2.6_and_ios_sdk_4.3.dmg</code> を実行。iOS SDK 4.3 は要らないので、インストールせず。</p>
 
-<h2>RVM のインストール</h2>
+<h2 id="RVM+のインストール">RVM のインストール</h2>
 
 <p><a href="http://beginrescueend.com/rvm/install/">RVM: Ruby Version Manager - Installing RVM</a> には、Single-User が推奨されているので、以下を実行。</p>
 
@@ -2374,7 +2467,7 @@ fi
 Run `bundle install` to install missing gems.
 </code></pre>
 
-<h2>Ruby 1.9.3 のインストール</h2>
+<h2 id="Ruby+1.9.3+のインストール">Ruby 1.9.3 のインストール</h2>
 
 <p>Octopress は 1.9.2 以上が条件。<code>rvm list known</code> とすると、1.9.3 があるので、最新版をインストールすることに。rvm コマンドには sudo は付けない。付けるのは Multi-User 用。</p>
 
@@ -2391,7 +2484,7 @@ Run `bundle install` to install missing gems.
 <pre><code>$ rvm rubygems latest
 </code></pre>
 
-<h2>Octopress のインストール</h2>
+<h2 id="Octopress+のインストール">Octopress のインストール</h2>
 
 <p><a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従いインストール。まず、Octopress のクローンを作る。</p>
 

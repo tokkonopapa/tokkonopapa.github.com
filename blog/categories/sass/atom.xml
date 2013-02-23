@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sass | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/sass/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T21:14:44+09:00</updated>
+  <updated>2013-02-23T11:35:32+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -25,11 +25,11 @@
 <!--more-->
 
 
-<h3>Sass 関連の参考資料</h3>
+<h3 id="Sass+関連の参考資料">Sass 関連の参考資料</h3>
 
 <p>たぶん何度も読み直すと思うので、ここにメモ。</p>
 
-<h4>Sass</h4>
+<h4 id="Sass">Sass</h4>
 
 <ul>
 <li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
@@ -40,7 +40,7 @@
 </ul>
 
 
-<h4>Compass</h4>
+<h4 id="Compass">Compass</h4>
 
 <ul>
 <li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
@@ -48,7 +48,7 @@
 </ul>
 
 
-<h3>Octopress の Sass 構成</h3>
+<h3 id="Octopress+の+Sass+構成">Octopress の Sass 構成</h3>
 
 <pre><code>sass/
 ├─ screen.scss              # 全ての定義の始まりであり、終わり
@@ -82,7 +82,7 @@
    └─ _footer.scss          # フッター部に関するスタイル定義
 </code></pre>
 
-<h4>screen.scss</h4>
+<h4 id="screen.scss">screen.scss</h4>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>screen.scss  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -109,11 +109,11 @@
 
 <p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
 
-<h3>カスタマイズ例</h3>
+<h3 id="カスタマイズ例">カスタマイズ例</h3>
 
 <p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
 
-<h4>_color.scss</h4>
+<h4 id="_color.scss">_color.scss</h4>
 
 <p>まずはテーマカラーの調整。</p>
 
@@ -132,7 +132,7 @@
 </span><span class='line'><span class="err">$</span><span class="nt">footer-link-color-hover</span><span class="o">:</span> <span class="nt">darken</span><span class="o">(</span><span class="err">$</span><span class="nt">footer-bg</span><span class="o">,</span> <span class="nt">50</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>_styles.scss</h4>
+<h4 id="_styles.scss">_styles.scss</h4>
 
 <p>その他の細かなスタイルのカスタマイズ。</p>
 
@@ -185,7 +185,7 @@
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>謎の右マージンを直す</h4>
+<h4 id="謎の右マージンを直す">謎の右マージンを直す</h4>
 
 <p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
 
@@ -205,7 +205,7 @@
   {% endif %}</code></pre></noscript></div>
 </p>
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
@@ -213,7 +213,7 @@
 </ul>
 
 
-<h5>2012年1月11日 追記</h5>
+<h5 id="2012年1月11日+追記">2012年1月11日 追記</h5>
 
 <p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
 ]]></content>

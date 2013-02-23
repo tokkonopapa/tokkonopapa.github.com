@@ -91,11 +91,11 @@
 <!--more-->
 
 
-<h3>Sass 関連の参考資料</h3>
+<h3 id="Sass+関連の参考資料">Sass 関連の参考資料</h3>
 
 <p>たぶん何度も読み直すと思うので、ここにメモ。</p>
 
-<h4>Sass</h4>
+<h4 id="Sass">Sass</h4>
 
 <ul>
 <li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
@@ -106,7 +106,7 @@
 </ul>
 
 
-<h4>Compass</h4>
+<h4 id="Compass">Compass</h4>
 
 <ul>
 <li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
@@ -114,7 +114,7 @@
 </ul>
 
 
-<h3>Octopress の Sass 構成</h3>
+<h3 id="Octopress+の+Sass+構成">Octopress の Sass 構成</h3>
 
 <pre><code>sass/
 ├─ screen.scss              # 全ての定義の始まりであり、終わり
@@ -148,7 +148,7 @@
    └─ _footer.scss          # フッター部に関するスタイル定義
 </code></pre>
 
-<h4>screen.scss</h4>
+<h4 id="screen.scss">screen.scss</h4>
 
 <figure class='code'><figcaption><span>screen.scss  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -176,11 +176,11 @@
 
 <p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
 
-<h3>カスタマイズ例</h3>
+<h3 id="カスタマイズ例">カスタマイズ例</h3>
 
 <p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
 
-<h4>_color.scss</h4>
+<h4 id="_color.scss">_color.scss</h4>
 
 <p>まずはテーマカラーの調整。</p>
 
@@ -200,7 +200,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>_styles.scss</h4>
+<h4 id="_styles.scss">_styles.scss</h4>
 
 <p>その他の細かなスタイルのカスタマイズ。</p>
 
@@ -254,7 +254,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>謎の右マージンを直す</h4>
+<h4 id="謎の右マージンを直す">謎の右マージンを直す</h4>
 
 <p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
 
@@ -274,7 +274,7 @@
   {% endif %}</code></pre></noscript></div>
 
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
@@ -282,7 +282,7 @@
 </ul>
 
 
-<h5>2012年1月11日 追記</h5>
+<h5 id="2012年1月11日+追記">2012年1月11日 追記</h5>
 
 <p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
 </div>
@@ -371,6 +371,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/03/jekyll-error-of-common-rb/">common.rb:304:in escape: undefined method gsub for ... (NoMethodError)</a>
       </li>
     
@@ -406,15 +410,11 @@
         <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 107.5%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 130.0%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 115.0%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 130.0%'>jekyll(4)</a> <a href='/blog/categories/mac/' style='font-size: 115.0%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(8)</a> <a href='/blog/categories/plugins/' style='font-size: 107.5%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 122.5%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 107.5%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac/' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins/' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
 </section>
 
 <section>

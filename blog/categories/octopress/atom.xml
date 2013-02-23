@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T21:14:44+09:00</updated>
+  <updated>2013-02-23T11:35:32+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -12,6 +12,115 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[octopressで見出しの目次を記事に埋め込む方法]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc/"/>
+    <updated>2013-02-23T10:12:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc</id>
+    <content type="html"><![CDATA[<p><a href="http://pages.github.com/">GitHub Pages</a> で <a href="https://github.com/mojombo/jekyll">jekyll</a> が 0.12.0 にバージョンアップした事に伴い、
+<a href="https://github.com/rtomayko/rdiscount">RDcount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
+
+<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。</p>
+
+<!--more-->
+
+
+<h3 id="目次">目次</h3>
+
+<p>
+   <ul>
+
+   <ul>
+
+   <ul>
+   <li><a href="#目次">目次</a>   </li>
+   <li><a href="#作成方法">作成方法</a>
+    <ul>
+    <li><a href="#設定">設定</a>    </li>
+    <li><a href="#記事の書き方">記事の書き方</a>    </li>
+   </ul>
+   <li><a href="#日本語の見出し">日本語の見出し</a>   </li>
+   </ul>
+  </li>
+  </ul>
+ </li>
+ </ul>
+
+</p>
+
+<h3 id="作成方法">作成方法</h3>
+
+<h4 id="設定">設定</h4>
+
+<p><code>_config.yml</code> に以下を追加。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml に RDiscount の設定を追加  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rdiscount</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;generate_toc&#39;</span><span class="p-Indicator">]</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="s">&quot;{:TOC}&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="記事の書き方">記事の書き方</h4>
+
+<p>記事に <code>{:TOC}</code> を埋め込むと、その部分が目次に置き換わる。</p>
+
+<h3 id="日本語の見出し">日本語の見出し</h3>
+
+<p>見出しに日本語を使うと、<code>generate</code> 時にエラーが出る。</p>
+
+<pre><code>Liquid Exception: incompatible character encodings: UTF-8 and ASCII-8BIT in atom.xml
+</code></pre>
+
+<p>この問題は、<a href="https://github.com/mojombo/jekyll/pull/555">Issue #555</a> で報告されている。<a href="https://github.com/Kinvey/jekyll/commit/21325ce2b71ad138be66748b8df7290dd3438ba4">このパッチ</a> の通り、
+<code>gems/jekyll-0.12.0/lib/jekyll/converters/markdown.rb</code>
+を対策する。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>lib/jekyll/converters/markdown.rb  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -120,7 +120,7 @@ def convert(content)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;       rd = RDiscount.new(content, *@rdiscount_extensions)
+</span><span class='line'>       html = rd.to_html
+</span><span class='line'>       if rd.generate_toc and html.include?(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;])
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;ul&gt;
+</span><span class='line'>&lt;li&gt;&lt;pre&gt;&lt;code&gt;     html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content)
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+</span><span class='line'>&lt;li&gt;&lt;pre&gt;&lt;code&gt;     html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content.force_encoding(&#39;utf-8&#39;))
+</span><span class='line'>   end
+</span><span class='line'>   html
+</span><span class='line'> when &#39;maruku&#39;
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
+</ul>
+
+
+<p>ただし <code>force_encoding('utf-8')</code> が気に入られず、取り込まれていない。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopressサイトのウェブマスター登録]]></title>
@@ -28,7 +137,7 @@
 <!--more-->
 
 
-<h3>おすすめの方法</h3>
+<h3 id="おすすめの方法">おすすめの方法</h3>
 
 <p>ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code>
 ディレクトリにコピーし、リモートにプッシュすると、一時的にはうまくいく。</p>
@@ -47,7 +156,7 @@ Rakefile を書き換えれば良いのだけれど、お手軽には次の「�
 
 <p><img src="https://lh3.googleusercontent.com/-piNUXPKHD70/UA63js9yEeI/AAAAAAAAANI/fDEQeMMiO8o/s480/site-verification.png" alt="推奨：HTMLファイルをアップロード" /></p>
 
-<h3>別な方法</h3>
+<h3 id="別な方法">別な方法</h3>
 
 <p><a href="http://support.google.com/webmasters/bin/answer.py?hl=ja&amp;answer=79812">メタ タグ - ウェブマスター ツール ヘルプ</a> に
 従って、<code>source/_includes/head.html</code> にメタタグを記述し、ページを再生成後、デプロイするだけ。</p>
@@ -93,7 +202,7 @@ rake deploy
 
 <p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
 
-<h3>使い方</h3>
+<h3 id="使い方">使い方</h3>
 
 <p></p>
 
@@ -103,7 +212,7 @@ rake deploy
 
 <p></p>
 
-<h4>オプション</h4>
+<h4 id="オプション">オプション</h4>
 
 <ul>
 <li>counter:<br/>
@@ -111,9 +220,9 @@ rake deploy
 </ul>
 
 
-<h4>使用例</h4>
+<h4 id="使用例">使用例</h4>
 
-<h5>source/_include/custom/asides/tag_cloud.html</h5>
+<h5 id="source/_include/custom/asides/tag_cloud.html">source/_include/custom/asides/tag_cloud.html</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -131,7 +240,7 @@ rake deploy
 </span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5>source/_include/custom/asides/category_list.html</h5>
+<h5 id="source/_include/custom/asides/category_list.html">source/_include/custom/asides/category_list.html</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -149,7 +258,7 @@ rake deploy
 </span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5>sass/custom/_styles.scss</h5>
+<h5 id="sass/custom/_styles.scss">sass/custom/_styles.scss</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -159,24 +268,24 @@ rake deploy
 <span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span><span class="o">&gt;</span><span class="nt">tag-cloud</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;tag-cloud+{&quot;</span><span class="o">&gt;</span><span class="nt">tag-cloud</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5>_config.yml</h5>
+<h5 id="_config.yml">_config.yml</h5>
 
 <pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
 </code></pre>
 
-<h5>適用例</h5>
+<h5 id="適用例">適用例</h5>
 
 <p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
 
-<h3>ダウンロードとインストール</h3>
+<h3 id="ダウンロードとインストール">ダウンロードとインストール</h3>
 
 <ul>
 <li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
@@ -219,7 +328,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h3>後記</h3>
+<h3 id="後記">後記</h3>
 
 <p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
 
@@ -243,11 +352,11 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <!--more-->
 
 
-<h3>Sass 関連の参考資料</h3>
+<h3 id="Sass+関連の参考資料">Sass 関連の参考資料</h3>
 
 <p>たぶん何度も読み直すと思うので、ここにメモ。</p>
 
-<h4>Sass</h4>
+<h4 id="Sass">Sass</h4>
 
 <ul>
 <li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
@@ -258,7 +367,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h4>Compass</h4>
+<h4 id="Compass">Compass</h4>
 
 <ul>
 <li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
@@ -266,7 +375,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h3>Octopress の Sass 構成</h3>
+<h3 id="Octopress+の+Sass+構成">Octopress の Sass 構成</h3>
 
 <pre><code>sass/
 ├─ screen.scss              # 全ての定義の始まりであり、終わり
@@ -300,7 +409,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
    └─ _footer.scss          # フッター部に関するスタイル定義
 </code></pre>
 
-<h4>screen.scss</h4>
+<h4 id="screen.scss">screen.scss</h4>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>screen.scss  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -327,11 +436,11 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 
 <p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
 
-<h3>カスタマイズ例</h3>
+<h3 id="カスタマイズ例">カスタマイズ例</h3>
 
 <p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
 
-<h4>_color.scss</h4>
+<h4 id="_color.scss">_color.scss</h4>
 
 <p>まずはテーマカラーの調整。</p>
 
@@ -350,7 +459,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </span><span class='line'><span class="err">$</span><span class="nt">footer-link-color-hover</span><span class="o">:</span> <span class="nt">darken</span><span class="o">(</span><span class="err">$</span><span class="nt">footer-bg</span><span class="o">,</span> <span class="nt">50</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>_styles.scss</h4>
+<h4 id="_styles.scss">_styles.scss</h4>
 
 <p>その他の細かなスタイルのカスタマイズ。</p>
 
@@ -403,7 +512,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>謎の右マージンを直す</h4>
+<h4 id="謎の右マージンを直す">謎の右マージンを直す</h4>
 
 <p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
 
@@ -423,7 +532,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
   {% endif %}</code></pre></noscript></div>
 </p>
 
-<h5>参考情報</h5>
+<h5 id="参考情報">参考情報</h5>
 
 <ul>
 <li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
@@ -431,7 +540,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 </ul>
 
 
-<h5>2012年1月11日 追記</h5>
+<h5 id="2012年1月11日+追記">2012年1月11日 追記</h5>
 
 <p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
 ]]></content>
@@ -449,7 +558,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <!--more-->
 
 
-<h3>&lt;meta&gt; タグの追加機能</h3>
+<h3 id="+lt;meta+gt;+タグの追加機能">&lt;meta&gt; タグの追加機能</h3>
 
 <p><code>source/_includes/head.html</code> の10行目付近から。</p>
 
@@ -462,7 +571,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <p>記事の <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML ブロック</a> に <code>description</code> か、記事から HTML を除いた先頭150字が <code>&lt;meta name="description" content="..."&gt;</code> に挿入される。
 同様に <code>keywords</code> で <code>&lt;meta name="keywords" content="..."&gt;</code> が挿入される。</p>
 
-<h2>``` yaml 記事の YAML ブロック・サンプル</h2>
+<h2 id="```+yaml+記事の+YAML+ブロック・サンプル">``` yaml 記事の YAML ブロック・サンプル</h2>
 
 <p>layout: post
 title: "SEOに効くOctopressの隠し機能"
@@ -471,13 +580,13 @@ comments: true
 categories: [octopress]
 description: Octopress のコードリーディングをしていて見つけた隠し機能について。</p>
 
-<h2>keywords: Octopress, SEO</h2>
+<h2 id="keywords:+Octopress,+SEO">keywords: Octopress, SEO</h2>
 
 <p>```</p>
 
 <p>ちなみにトップページの場合も、先頭記事が <code>{ content }</code> として参照されるのが、何だかアレな感じ。</p>
 
-<h4>plugins/octopress_filters.rb の改修</h4>
+<h4 id="plugins/octopress_filters.rb+の改修">plugins/octopress_filters.rb の改修</h4>
 
 <p>記事の先頭150字以内に改行が含まれていると、<code>content="..."</code> が改行されちゃうのもアレ（HTML 的には OK だから、気にすることないけどネ）。</p>
 
@@ -494,7 +603,7 @@ input.gsub(/\n/, '')
 <p>  end
 ```</p>
 
-<h4>Rakefile の改修</h4>
+<h4 id="Rakefile+の改修">Rakefile の改修</h4>
 
 <p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
 
@@ -513,149 +622,13 @@ input.gsub(/\n/, '')
   end</code></pre></noscript></div>
 </p>
 
-<h3>サイドバーへの <code>About Me</code> 追加</h3>
+<h3 id="サイドバーへの+`About+Me`+追加">サイドバーへの <code>About Me</code> 追加</h3>
 
 <p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
 
 <p><code>yaml _config.yml のサイドバーに about.html を指定する
 default_asides: [custom/asides/about.html, asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
 </code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopressにはてブボタンを設置する]]></title>
-    <link href="http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress/"/>
-    <updated>2011-12-31T22:21:00+09:00</updated>
-    <id>http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress</id>
-    <content type="html"><![CDATA[<p>ついでに Twitter、Google+1、Facebook の日本語化と JavaScript の非同期読み込みコードの共通化も。</p>
-
-<!--more-->
-
-
-<h3>関連ファイルの抽出</h3>
-
-<p><div><script src='https://gist.github.com/1544095.js?file=Related-Files'></script>
-<noscript><pre><code>source
-└── _includes/
-    ├── post/
-    │   └── sharing.html             # post.html、page.html から
-    └── after_footer.html            # default.html から
-        ├── disqus.html              # after_footer.html から
-        ├── facebook_like.html       # after_footer.html から
-        ├── google_plus_one.html     # after_footer.html から
-        ├── twitter_sharing.html     # after_footer.html から
-        └── custom/after_footer.html # after_footer.html から（コメントのみ）</code></pre></noscript></div>
-</p>
-
-<h3>ファイルの修正</h3>
-
-<h4>_config.yml</h4>
-
-<p>各ボタンの言語設定、Facebook アプリケーション ID 設定などを追加する。</p>
-
-<p><div><script src='https://gist.github.com/1544095.js?file=_config.yml'></script>
-<noscript><pre><code># Twitter
-twitter_tweet_button: true
-twitter_tweet_button_lang: ja
-
-# Google +1
-google_plus_one: true
-google_plus_one_size: medium
-google_plus_one_lang: ja
-
-# Facebook Like
-facebook_like: true
-facebook_lang: ja_JP
-facebook_appID:</code></pre></noscript></div>
-</p>
-
-<h4>sharing.html</h4>
-
-<p>適当な位置にはてブを追加する。</p>
-
-<p><div><script src='https://gist.github.com/1544095.js?file=sharing.html'></script>
-<noscript><pre><code>&lt;div class=&quot;sharing&quot;&gt;
-  {% if site.twitter_tweet_button %}
-  &lt;a href=&quot;http://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-url=&quot;{{ site.url }}{{ page.url }}&quot; data-via=&quot;{{ site.twitter_user }}&quot; data-counturl=&quot;{{ site.url }}{{ page.url }}&quot; {% if site.twitter_tweet_button_lang %}data-lang=&quot;{{ site.twitter_tweet_button_lang }}&quot;{% endif %}&gt;Tweet&lt;/a&gt;
-  {% endif %}
-  {% if site.google_plus_one %}
-  &lt;div class=&quot;g-plusone&quot; data-size=&quot;{{ site.google_plus_one_size }}&quot;&gt;&lt;/div&gt;
-  {% endif %}
-  &lt;a href=&quot;http://b.hatena.ne.jp/entry/&quot; class=&quot;hatena-bookmark-button&quot;
-      data-hatena-bookmark-layout=&quot;standard&quot;
-      data-hatena-bookmark-url=&quot;{{ site.url }}{{ page.url }}&quot;&gt;
-    &lt;img src=&quot;http://b.st-hatena.com/images/entry-button/button-only.gif&quot;
-        alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot;
-        style=&quot;border: none&quot;&gt;
-  &lt;/a&gt;
-  {% if site.facebook_like %}
-    &lt;div class=&quot;fb-like&quot; data-send=&quot;true&quot; data-width=&quot;450&quot; data-show-faces=&quot;false&quot;&gt;&lt;/div&gt;
-  {% endif %}
-&lt;/div&gt;</code></pre></noscript></div>
-</p>
-
-<h4>after_footer.html</h4>
-
-<p>Facebook、Google+1、Twitter をコメントアウトする。</p>
-
-<p><div><script src='https://gist.github.com/1544095.js?file=after_footer.html'></script>
-<noscript><pre><code>{% include disqus.html %}
-{% comment %}
-{% include facebook_like.html %}
-{% include google_plus_one.html %}
-{% include twitter_sharing.html %}
-{% endcomment %}
-{% include custom/after_footer.html %}</code></pre></noscript></div>
-</p>
-
-<h4>custum/after_footer.html</h4>
-
-<p>Google+1、Facebook の言語設定と JavaScript の非同期読み込みコードを共通化してまとめる。</p>
-
-<p><div><script src='https://gist.github.com/1544095.js?file=custum-after_footer.html'></script>
-<noscript><pre><code>{% comment %}
-  Add content to be output at the bottom of each page. (You might use this for analytics scripts, for example)
-{% endcomment %}
-&lt;script&gt;
-(function(w,d){
-    var c,e=d.createDocumentFragment(),f=d.getElementsByTagName(&quot;script&quot;)[0],
-    a=function(a,b){if(!d.getElementById(b)){c=d.createElement(&quot;script&quot;);
-    c.src=a;c.id=b||null;c.async=true;e.appendChild(c);}};
-{% if site.google_plus_one %}{% if site.google_plus_one_lang %}
-    w.___gcfg={lang:&quot;ja&quot;};{% endif %}
-    a(&quot;https://apis.google.com/js/plusone.js&quot;);
-{% endif %}
-{% if site.twitter_follow_button or site.twitter_tweet_button %}
-    a(&quot;//platform.twitter.com/widgets.js&quot;);
-{% endif %}
-{% if site.facebook_like %}
-    a(&quot;//connect.facebook.net/{% if site.facebook_lang %}{{ site.facebook_lang }}{% else %}en_US{% endif %}/all.js#{% if site.facebook_appID %}appId={{ site.facebook_appID }}&amp;{% endif %}xfbml=1&quot;,&quot;facebook-jssdk&quot;);
-{% endif %}
-    a(&quot;//b.st-hatena.com/js/bookmark_button_wo_al.js&quot;);
-    f.parentNode.insertBefore(e,f);
-})(this,document);
-&lt;/script&gt;</code></pre></noscript></div>
-</p>
-
-<h3>Facebook の AppID について</h3>
-
-<p><code>facebook_like.html</code> には、作者のものと思われるアプリケーション ID が埋め込まれている。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>facebook_like.html  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/en_US/all.js#appId=212934732101925&amp;amp;xfbml=1&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>本来これは <code>_config.yml</code> で設定すべき事項。言語設定も含めて pull request するべきなんでしょうかネ。</p>
-
-<h3>参考情報</h3>
-
-<ul>
-<li><a href="http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/asynchronous-loading-of-major-social-buttons/">最近海外で流行りのTwitter,Facebook,Google+1,Analyticsをまとめる非同期スクリプトにはてなを加えてみた | ゆっくりと…</a></li>
-<li><a href="http://developers.facebook.com/setup/">Create an App - Facebook開発者</a></li>
-</ul>
-
 ]]></content>
   </entry>
   

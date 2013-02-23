@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Heroku | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T21:14:44+09:00</updated>
+  <updated>2013-02-23T11:35:32+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -25,7 +25,7 @@
 <!--more-->
 
 
-<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></h3>
+<h3 id="1.+[アプリ名の命名を+Heroku+に任せる](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++Create+your+Heroku+application+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></h3>
 
 <p><code>
 $ heroku create
@@ -33,7 +33,7 @@ $ heroku create
 
 <p>勝手に名前が付けられる。どんな名前を付けてくれるのか、結構楽しみだったりする。</p>
 
-<h3>2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
+<h3 id="2.+[アプリ名を指定して作成する](http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app++Creating+a+Named+App+)">2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
 
 <p><code>
 $ heroku create myappname
@@ -41,7 +41,7 @@ $ heroku create myappname
 
 <p>当然、既に取得されているアプリ名はダメ。</p>
 
-<h3>3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
+<h3 id="3.+[アプリ名を変更する](http://devcenter.heroku.com/articles/renaming-apps++Renaming+Apps+from+the+CLI+)">3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
 
 <p>次の3通りの方法。</p>
 
@@ -97,7 +97,7 @@ fork したので、<a href="http://www.heroku.com/">heroku</a> へのインス�
 <!--more-->
 
 
-<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
+<h3 id="1.+[Heroku+で+ruby+を使うための設定](http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites++Getting+Started+with+Ruby+on+Heroku/Bamboo+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
 
 <p>heroku を利用する前提条件は次の3つ。</p>
 
@@ -123,7 +123,7 @@ To install do: 'rvm install ruby-1.9.2-p290'
 
 <p>とか書いておくと、プロジェクトの <code>.rvmrc</code> を無視し、<code>~/.rvmrc</code> の設定を使う。（参考：<a href="http://beginrescueend.com/workflow/rvmrc/" title="RVM: Ruby Version Manager - rvmrc">rvmrc files</a>）。</p>
 
-<h3>2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
+<h3 id="2.+[heroku+gem+のインストール](http://devcenter.heroku.com/articles/heroku-command++Installing+the+Heroku+CLI+)">2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
 
 <p>各OS用パッケージが載っているが、以下で大丈夫。</p>
 
@@ -157,7 +157,7 @@ Uploading ssh public key /Users/kiyo/.ssh/id_rsa.pub
 
 <p><code>1)</code> は <a href="http://mac.github.com/">GitHub for Mac</a> の SSH キー（たぶん）。</p>
 
-<h3>3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
+<h3 id="3.+[Heroku+アプリの生成](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++3.+Create+your+Heroku+application+)">3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
 
 <p>heroku に上げたい Git リポジトリのディレクトリで <code>heroku create</code> とするだけ。</p>
 

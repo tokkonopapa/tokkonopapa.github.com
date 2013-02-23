@@ -91,7 +91,7 @@
 <!--more-->
 
 
-<h3>&lt;meta&gt; タグの追加機能</h3>
+<h3 id="+lt;meta+gt;+タグの追加機能">&lt;meta&gt; タグの追加機能</h3>
 
 <p><code>source/_includes/head.html</code> の10行目付近から。</p>
 
@@ -127,7 +127,7 @@
 
 <p>ちなみにトップページの場合も、先頭記事が <code>{ content }</code> として参照されるのが、何だかアレな感じ。</p>
 
-<h4>plugins/octopress_filters.rb の改修</h4>
+<h4 id="plugins/octopress_filters.rb+の改修">plugins/octopress_filters.rb の改修</h4>
 
 <p>記事の先頭150字以内に改行が含まれていると、<code>content="..."</code> が改行されちゃうのもアレ（HTML 的には OK だから、気にすることないけどネ）。</p>
 
@@ -146,7 +146,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Rakefile の改修</h4>
+<h4 id="Rakefile+の改修">Rakefile の改修</h4>
 
 <p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
 
@@ -165,7 +165,7 @@
   end</code></pre></noscript></div>
 
 
-<h3>サイドバーへの <code>About Me</code> 追加</h3>
+<h3 id="サイドバーへの+`About+Me`+追加">サイドバーへの <code>About Me</code> 追加</h3>
 
 <p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
 
@@ -259,6 +259,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/03/jekyll-error-of-common-rb/">common.rb:304:in escape: undefined method gsub for ... (NoMethodError)</a>
       </li>
     
@@ -294,15 +298,11 @@
         <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2011/12/30/octopress-on-github-and-bitbucket/">Octopressのインストールから運用管理まで</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 107.5%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 130.0%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 115.0%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 130.0%'>jekyll(4)</a> <a href='/blog/categories/mac/' style='font-size: 115.0%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(8)</a> <a href='/blog/categories/plugins/' style='font-size: 107.5%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 122.5%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 107.5%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git/' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github/' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku/' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll/' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac/' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress/' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins/' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby/' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass/' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
 </section>
 
 <section>

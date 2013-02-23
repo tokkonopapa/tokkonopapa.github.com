@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mac | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-03T21:14:44+09:00</updated>
+  <updated>2013-02-23T11:35:32+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -28,7 +28,7 @@ fork したので、<a href="http://www.heroku.com/">heroku</a> へのインス�
 <!--more-->
 
 
-<h3>1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
+<h3 id="1.+[Heroku+で+ruby+を使うための設定](http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites++Getting+Started+with+Ruby+on+Heroku/Bamboo+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
 
 <p>heroku を利用する前提条件は次の3つ。</p>
 
@@ -54,7 +54,7 @@ To install do: 'rvm install ruby-1.9.2-p290'
 
 <p>とか書いておくと、プロジェクトの <code>.rvmrc</code> を無視し、<code>~/.rvmrc</code> の設定を使う。（参考：<a href="http://beginrescueend.com/workflow/rvmrc/" title="RVM: Ruby Version Manager - rvmrc">rvmrc files</a>）。</p>
 
-<h3>2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
+<h3 id="2.+[heroku+gem+のインストール](http://devcenter.heroku.com/articles/heroku-command++Installing+the+Heroku+CLI+)">2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
 
 <p>各OS用パッケージが載っているが、以下で大丈夫。</p>
 
@@ -88,7 +88,7 @@ Uploading ssh public key /Users/kiyo/.ssh/id_rsa.pub
 
 <p><code>1)</code> は <a href="http://mac.github.com/">GitHub for Mac</a> の SSH キー（たぶん）。</p>
 
-<h3>3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
+<h3 id="3.+[Heroku+アプリの生成](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++3.+Create+your+Heroku+application+)">3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
 
 <p>heroku に上げたい Git リポジトリのディレクトリで <code>heroku create</code> とするだけ。</p>
 
@@ -126,12 +126,12 @@ $ git push heroku
 <!--more-->
 
 
-<h2>Xcode 3 のインストール</h2>
+<h2 id="Xcode+3+のインストール">Xcode 3 のインストール</h2>
 
 <p><a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
 <code>xcode_3.2.6_and_ios_sdk_4.3.dmg</code> を実行。iOS SDK 4.3 は要らないので、インストールせず。</p>
 
-<h2>RVM のインストール</h2>
+<h2 id="RVM+のインストール">RVM のインストール</h2>
 
 <p><a href="http://beginrescueend.com/rvm/install/">RVM: Ruby Version Manager - Installing RVM</a> には、Single-User が推奨されているので、以下を実行。</p>
 
@@ -156,7 +156,7 @@ fi
 Run `bundle install` to install missing gems.
 </code></pre>
 
-<h2>Ruby 1.9.3 のインストール</h2>
+<h2 id="Ruby+1.9.3+のインストール">Ruby 1.9.3 のインストール</h2>
 
 <p>Octopress は 1.9.2 以上が条件。<code>rvm list known</code> とすると、1.9.3 があるので、最新版をインストールすることに。rvm コマンドには sudo は付けない。付けるのは Multi-User 用。</p>
 
@@ -173,7 +173,7 @@ Run `bundle install` to install missing gems.
 <pre><code>$ rvm rubygems latest
 </code></pre>
 
-<h2>Octopress のインストール</h2>
+<h2 id="Octopress+のインストール">Octopress のインストール</h2>
 
 <p><a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従いインストール。まず、Octopress のクローンを作る。</p>
 
