@@ -4,7 +4,7 @@
   <title><![CDATA[T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-02-23T11:35:32+09:00</updated>
+  <updated>2013-02-23T11:43:26+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -1763,8 +1763,10 @@ Automatic merge failed; fix conflicts and then commit the result.
 <figure class='code'><figcaption><span>Octopress の更新  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">fetch</span> <span class="n">octopress</span>
 </span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">octopress</span> <span class="n">master</span>
+</span><span class='line'><span class="n">$</span> <span class="n">bundle</span> <span class="n">update</span> <span class="n">rake</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
