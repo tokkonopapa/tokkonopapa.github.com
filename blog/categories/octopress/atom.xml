@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-07-15T00:19:38+09:00</updated>
+  <updated>2013-07-15T00:32:54+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -40,6 +40,7 @@
     <li><a href="#設定">設定</a>    </li>
     <li><a href="#記事の書き方">記事の書き方</a>    </li>
    </ul>
+   <li><a href="#目次">目次</a>   </li>
    <li><a href="#日本語の見出し">日本語の見出し</a>   </li>
    </ul>
   </li>
@@ -66,7 +67,20 @@
 
 <h4 id="記事の書き方">記事の書き方</h4>
 
-<p>記事に <code>{:TOC}</code> を埋め込むと、その部分が目次に置き換わる。</p>
+<p>記事に <code>{:TOC}</code> を書き込むと、その部分が目次に置き換わる（<code>TOC</code> は <code>Table Of Contents</code> の略）。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>記事に目次を埋め込む  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h3 id=&quot;目次&quot;&gt;目次&lt;/h3&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;{:TOC}
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3 id="日本語の見出し">日本語の見出し</h3>
 
