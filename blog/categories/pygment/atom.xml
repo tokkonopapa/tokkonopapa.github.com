@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Pygment | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/pygment/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-04T23:44:28+09:00</updated>
+  <updated>2013-08-04T23:53:31+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -150,9 +150,9 @@
   <li>コードブロックを <code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲むと Pygment でレンダリングされる（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</li>
 </ol>
 
-<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲うそうナ。</p>
+<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲むそうナ。</p>
 
-<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37</code> としてある。</p>
+<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37;</code> としてある。</p>
 
 <p><code>
 {&amp;#037; raw %}
