@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Git - T.I.D.</title>
+  <title>Liquid Exception: invalid byte sequence in UTF-8 in atom.xml - T.I.D.</title>
   <meta name="author" content="tokkonopapa">
   <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
-  <meta name="description" content="Category: Git">
-  
+  <meta name="description" content="Liquid Exception invalid byte sequence in UTF-8 in atom.xml">
+  <meta name="keywords" content="Octopress, Liquid, UTF-8">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tokkonopapa.github.comblog/categories/git/">
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
@@ -57,36 +57,150 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Git</h1>
+    
+      <h1 class="entry-title">Liquid Exception: Invalid Byte Sequence in UTF-8 in atom.xml</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-04T18:08:00+09:00" pubdate data-updated="true">Aug 4<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="https://github.com/imathis/octopress">Octopress 本家</a> に追従する度にエラーで悩まされる。今度は <code>rake generate</code> 時に <code>Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</code> というエラー。</p>
 
-  
-  <h2>2012</h2>
+<p>どこかで日本語の扱いをヘクってると思われるが…</p>
 
-<article>
-  
-<h1><a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a></h1>
-<time datetime="2012-01-17T00:18:00+09:00" pubdate><span class='month'>Jan</span> <span class='day'>17</span> <span class='year'>2012</span></time>
+<!--more-->
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/git/'>Git</a></span>
-</footer>
+<h3 id="section">対策</h3>
 
+<p>原因は色々あるんだろうけど、ウチの場合は <code>markdown</code> を <code>rdiscount</code> から <code>kramdown</code> に変えることでエラーが出なくなった。</p>
 
-</article>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kramdown</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="diff"><span class="line">   gem &#39;rake&#39;, &#39;~&gt; 0.9&#39;
+</span><span class="line">   gem &#39;jekyll&#39;, &#39;~&gt; 0.12&#39;
+</span><span class="line">   gem &#39;rdiscount&#39;, &#39;~&gt; 2.0.7&#39;
+</span><span class="line"><span class="gi">+  gem &#39;kramdown&#39;</span>
+</span><span class="line">   gem &#39;pygments.rb&#39;, &#39;~&gt; 0.3.4&#39;
+</span><span class="line">   gem &#39;RedCloth&#39;, &#39;~&gt; 4.2.9&#39;
+</span><span class="line">   gem &#39;haml&#39;, &#39;~&gt; 3.1.7&#39;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>でもって <code>bundle install</code>。あるいはいっそ</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">gem install kramdown</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-04T18:08:00+09:00" pubdate data-updated="true">Aug 4<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/liquid/'>Liquid</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
+  <div class="hatena-button">
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+      data-hatena-bookmark-layout="standard"
+      data-hatena-bookmark-url="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/">
+    <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+        alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+        style="border: none">
+    </a>
+  </div>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/23/octopress-toc/" title="Previous Post: octopressで見出しの目次を記事に埋め込む方法">&laquo; octopressで見出しの目次を記事に埋め込む方法</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/04/pygment-lexer/" title="Next Post: Pygmentで使える言語パーサー">Pygmentで使える言語パーサー &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -187,7 +301,10 @@
       var disqus_shortname = 'tokkonopapa';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

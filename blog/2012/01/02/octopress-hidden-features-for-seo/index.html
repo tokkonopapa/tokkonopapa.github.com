@@ -86,71 +86,62 @@
 
 <div class="entry-content"><p>Octopress のコードリーディングをしていて見つけた隠し機能について。同じネタが既に
 <a href="http://www.meatleasing.com/octopress-hidden-features/index.html">Octopress Hidden Features</a>
-に挙がっていた。</p>
-
+に挙がっていた。
 <!--more-->
+### &lt;meta&gt; タグの追加機能 ###
+<code>source/_includes/head.html</code> の10行目付近から。</p>
 
-
-<h3 id="+lt;meta+gt;+タグの追加機能">&lt;meta&gt; タグの追加機能</h3>
-
-<p><code>source/_includes/head.html</code> の10行目付近から。</p>
-
-<div><script src='https://gist.github.com/1548796.js?file=head.html'></script>
+<div><script src="https://gist.github.com/1548796.js?file=head.html"></script>
 <noscript><pre><code>  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
   &lt;meta name=&quot;description&quot; content=&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;&gt;
   {% if page.keywords %}&lt;meta name=&quot;keywords&quot; content=&quot;{{ page.keywords }}&quot;&gt;{% endif %}</code></pre></noscript></div>
 
-
 <p>記事の <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML ブロック</a> に <code>description</code> か、記事から HTML を除いた先頭150字が <code>&lt;meta name="description" content="..."&gt;</code> に挿入される。
 同様に <code>keywords</code> で <code>&lt;meta name="keywords" content="..."&gt;</code> が挿入される。</p>
 
-<figure class='code'><figcaption><span>記事の YAML ブロック・サンプル</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;SEOに効くOctopressの隠し機能&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2012-01-02 09:31</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">octopress</span><span class="p-Indicator">]</span>
-</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress のコードリーディングをしていて見つけた隠し機能について。</span>
-</span><span class='line'><span class="l-Scalar-Plain">keywords</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress, SEO</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>記事の YAML ブロック・サンプル</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="nn">---</span>
+</span><span class="line"><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class="line"><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;SEOに効くOctopressの隠し機能&quot;</span>
+</span><span class="line"><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2012-01-02 09:31</span>
+</span><span class="line"><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class="line"><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">octopress</span><span class="p-Indicator">]</span>
+</span><span class="line"><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress のコードリーディングをしていて見つけた隠し機能について。</span>
+</span><span class="line"><span class="l-Scalar-Plain">keywords</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress, SEO</span>
+</span><span class="line"><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>ちなみにトップページの場合も、先頭記事が <code>{ content }</code> として参照されるのが、何だかアレな感じ。</p>
 
-<h4 id="plugins/octopress_filters.rb+の改修">plugins/octopress_filters.rb の改修</h4>
-
+<h4 id="pluginsoctopressfiltersrb-">plugins/octopress_filters.rb の改修</h4>
 <p>記事の先頭150字以内に改行が含まれていると、<code>content="..."</code> が改行されちゃうのもアレ（HTML 的には OK だから、気にすることないけどネ）。</p>
 
 <p>そこで、<code>plugins/octopress_filters.rb</code>（<a href="https://github.com/imathis/octopress/blob/master/plugins/octopress_filters.rb">ソースコードの全体</a>）の104行目付近 <code>condense_spaces</code> に改行を削除するコードを追加。</p>
 
-<figure class='code'><figcaption><span>plugins/octopress_filters.rb の改修</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># Condenses multiple spaces and tabs into a single space</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">condense_spaces</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\s{2,}/</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\n/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>plugins/octopress_filters.rb の改修</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line">  <span class="c1"># Condenses multiple spaces and tabs into a single space</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">condense_spaces</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+</span><span class="line">    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\s{2,}/</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span><span class="line">    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\n/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h4 id="Rakefile+の改修">Rakefile の改修</h4>
-
+<h4 id="rakefile-">Rakefile の改修</h4>
 <p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
 
-<div><script src='https://gist.github.com/1548796.js?file=Rakefile'></script>
+<div><script src="https://gist.github.com/1548796.js?file=Rakefile"></script>
 <noscript><pre><code>  puts &quot;Creating new post: #{filename}&quot;
   open(filename, 'w') do |post|
     post.puts &quot;---&quot;
@@ -164,15 +155,12 @@
     post.puts &quot;---&quot;
   end</code></pre></noscript></div>
 
-
-<h3 id="サイドバーへの+`About+Me`+追加">サイドバーへの <code>About Me</code> 追加</h3>
-
+<h3 id="about-me-">サイドバーへの <code>About Me</code> 追加</h3>
 <p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
 
-<figure class='code'><figcaption><span>_config.yml のサイドバーに about.html を指定する</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">custom/asides/about.html</span><span class="p-Indicator">,</span> <span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/github.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml のサイドバーに about.html を指定する</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">custom/asides/about.html</span><span class="p-Indicator">,</span> <span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/github.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -208,6 +196,14 @@
     </p>
     
       <div class="sharing">
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
   <div class="hatena-button">
     <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
       data-hatena-bookmark-layout="standard"
@@ -218,13 +214,14 @@
     </a>
   </div>
   
+  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
-  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -259,6 +256,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/04/pygment-lexer/">Pygmentで使える言語パーサー</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/liquid-exception-error/">Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
       </li>
     
@@ -290,19 +295,11 @@
         <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 105.45454545454545%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 121.81818181818181%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 110.9090909090909%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 127.27272727272728%'>jekyll(5)</a> <a href='/blog/categories/liquid' style='font-size: 105.45454545454545%'>Liquid(1)</a> <a href='/blog/categories/mac' style='font-size: 110.9090909090909%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(11)</a> <a href='/blog/categories/plugins' style='font-size: 105.45454545454545%'>Plugins(1)</a> <a href='/blog/categories/pygment' style='font-size: 105.45454545454545%'>Pygment(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.36363636363636%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 105.45454545454545%'>Sass(1)</a> </span>
 </section>
 
 <section>
@@ -320,12 +317,10 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
   </ul>
 
-  
-    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
-  
+
 </section>
 
 
@@ -384,7 +379,7 @@ $.domReady(function() {
     w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
     a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
 
-    a("//platform.twitter.com/widgets.js");
+    a("//platform.twitter.com/widgets.js", "twitter-wjs");
 
     a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
 
@@ -394,6 +389,7 @@ $.domReady(function() {
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 
+    a('https://widgets.getpocket.com/v1/j/btn.js?v=1');
     f.parentNode.insertBefore(e,f);
 })(window,document);
 </script>

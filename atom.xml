@@ -4,7 +4,7 @@
   <title><![CDATA[T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-07-15T00:32:54+09:00</updated>
+  <updated>2013-08-04T22:03:45+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -14,71 +14,248 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Pygmentで使える言語パーサー]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/"/>
+    <updated>2013-08-04T19:51:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer</id>
+    <content type="html"><![CDATA[<p><a href="http://pygments.org/docs/lexers/">Pygment</a> が色々な言語をハイライト出来ることを最近知ったので、レンダリングを確かめるためのメモ。</p>
+
+<!--more-->
+
+<h3 id="section">言語解析キーワード</h3>
+
+<h4 id="rbcon-ruby-">rbcon （Ruby のコンソール出力）</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>rbcon </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="rbcon"><span class="line"><span class="gp">irb(main):001:0&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class="line"><span class="go">=&gt; 1</span>
+</span><span class="line"><span class="gp">irb(main):002:0&gt; </span><span class="nb">puts</span> <span class="n">a</span>
+</span><span class="line"><span class="go">1</span>
+</span><span class="line"><span class="go">=&gt; nil</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="c-cpp-c">c, cpp, c++</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>c++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="c++"><span class="line"><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="objective-c-objectivec-obj-c-objc">objective-c, objectivec, obj-c, objc</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>objc </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="cp">#import &lt;stdio.h&gt;</span>
+</span><span class="line"><span class="cp">#import &lt;objc/Object.h&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@interface</span> <span class="nc">Test</span> : <span class="nc">Object</span>
+</span><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">method</span><span class="p">;</span>
+</span><span class="line"><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="bash-sh-ksh-tcsh-csh-console">bash, sh, ksh, tcsh, csh, console</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>csh </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="csh"><span class="line"><span class="nv">$ </span>git checkout master
+</span><span class="line">Switched to branch <span class="s1">&#39;master&#39;</span>
+</span><span class="line"><span class="nv">$ </span>git <span class="nb">log</span> -1
+</span><span class="line">commit 5350862c0d0e11ab765f994e057f4c3c7646c226
+</span><span class="line">Author: tokkonopapa &lt;tokkonopapa@yahoo.com&gt;
+</span><span class="line">Date:   Fri Feb 8 18:33:17 2013 +0900
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="mysql">mysql</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>mysql </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="mysql"><span class="line"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nf">example</span> <span class="p">(</span>
+</span><span class="line">    <span class="n">id</span> <span class="kt">INT</span><span class="p">,</span>
+</span><span class="line">    <span class="n">data</span> <span class="kt">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class="line"><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="cssphp-htmlphp-jsphp-javascriptphp">css+php, html+php, js+php, javascript+php</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>html+php </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="html+php"><span class="line"><span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;ja&quot;</span><span class="o">&gt;</span>
+</span><span class="line">    <span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+</span><span class="line">        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="o">&gt;</span>
+</span><span class="line">    <span class="o">&lt;/</span><span class="nx">head</span><span class="o">&gt;</span>
+</span><span class="line">    <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+</span><span class="line">        <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">require_once</span> <span class="s2">&quot;HTTP/Request.php&quot;</span><span class="p">;</span> <span class="cp">?&gt;</span>
+</span><span class="line">    <span class="nt">&lt;/body&gt;</span>
+</span><span class="line"><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="diff">diff</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>diff </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="diff"><span class="line"><span class="gu">@@ -120,7 +120,7 @@ def convert(content)</span>
+</span><span class="line">   rd = RDiscount.new(content, *@rdiscount_extensions)
+</span><span class="line">   html = rd.to_html
+</span><span class="line">   if rd.generate_toc and html.include?(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;])
+</span><span class="line"><span class="gd">-    html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content)</span>
+</span><span class="line"><span class="gi">+    html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content.force_encoding(&#39;utf-8&#39;))</span>
+</span><span class="line">   end
+</span><span class="line">   html
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-1">コードの書き方</h3>
+<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> でコードスニペットを記述する方法は次の4通り。</p>
+
+<ol>
+  <li>インラインでバッククォート <code>`</code> で囲む</li>
+  <li>コードブロックを3連のバッククォート <code>```</code> で囲む（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</li>
+  <li>コードブロックの行頭をタブ、もしくはスペース4文字でインデント</li>
+  <li>コードブロックを <code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲むと Pygment でレンダリングされる（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</li>
+</ol>
+
+<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲うそうナ。</p>
+
+<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37</code> としてある。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">{&#037; raw %}
+</span><span class="line">{&#037; ... %}
+</span><span class="line">{&#037; endraw %}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="section-2">参考情報</h4>
+<ul>
+  <li><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Liquid Exception: invalid byte sequence in UTF-8 in atom.xml]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/"/>
+    <updated>2013-08-04T18:08:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/imathis/octopress">Octopress 本家</a> に追従する度にエラーで悩まされる。今度は <code>rake generate</code> 時に <code>Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</code> というエラー。</p>
+
+<p>どこかで日本語の扱いをヘクってると思われるが…</p>
+
+<!--more-->
+
+<h3 id="section">対策</h3>
+
+<p>原因は色々あるんだろうけど、ウチの場合は <code>markdown</code> を <code>rdiscount</code> から <code>kramdown</code> に変えることでエラーが出なくなった。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kramdown</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="diff"><span class="line">   gem &#39;rake&#39;, &#39;~&gt; 0.9&#39;
+</span><span class="line">   gem &#39;jekyll&#39;, &#39;~&gt; 0.12&#39;
+</span><span class="line">   gem &#39;rdiscount&#39;, &#39;~&gt; 2.0.7&#39;
+</span><span class="line"><span class="gi">+  gem &#39;kramdown&#39;</span>
+</span><span class="line">   gem &#39;pygments.rb&#39;, &#39;~&gt; 0.3.4&#39;
+</span><span class="line">   gem &#39;RedCloth&#39;, &#39;~&gt; 4.2.9&#39;
+</span><span class="line">   gem &#39;haml&#39;, &#39;~&gt; 3.1.7&#39;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>でもって <code>bundle install</code>。あるいはいっそ</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">gem install kramdown</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[octopressで見出しの目次を記事に埋め込む方法]]></title>
     <link href="http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc/"/>
     <updated>2013-02-23T10:12:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc</id>
     <content type="html"><![CDATA[<p><a href="http://pages.github.com/">GitHub Pages</a> で <a href="https://github.com/mojombo/jekyll">jekyll</a> が 0.12.0 にバージョンアップした事に伴い、
-<a href="https://github.com/rtomayko/rdiscount">RDcount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
+<a href="https://github.com/rtomayko/rdiscount">rdiscount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
 
-<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。</p>
-
+<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。
 <!--more-->
+### 目次</p>
 
+<h3 id="section">作成方法</h3>
+<p>#### 設定
+<code>_config.yml</code> に以下を追加。</p>
 
-<h3 id="目次">目次</h3>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml に RDiscount の設定を追加 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">rdiscount</span><span class="p-Indicator">:</span>
+</span><span class="line">  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;generate_toc&#39;</span><span class="p-Indicator">]</span>
+</span><span class="line">  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="s">&quot;{:TOC}&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>
-   <ul>
-
-   <ul>
-
-   <ul>
-   <li><a href="#目次">目次</a>   </li>
-   <li><a href="#作成方法">作成方法</a>
-    <ul>
-    <li><a href="#設定">設定</a>    </li>
-    <li><a href="#記事の書き方">記事の書き方</a>    </li>
-   </ul>
-   <li><a href="#日本語の見出し">日本語の見出し</a>   </li>
-   </ul>
-  </li>
-  </ul>
- </li>
- </ul>
-
-</p>
-
-<h3 id="作成方法">作成方法</h3>
-
-<h4 id="設定">設定</h4>
-
-<p><code>_config.yml</code> に以下を追加。</p>
-
-<figure class='code'><figcaption><span>_config.yml に RDiscount の設定を追加  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rdiscount</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;generate_toc&#39;</span><span class="p-Indicator">]</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="s">&quot;{:TOC}&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4 id="記事の書き方">記事の書き方</h4>
-
+<h4 id="section-1">記事の書き方</h4>
 <p>記事に <code>{:TOC}</code> を書き込むと、その部分が目次に置き換わる（<code>TOC</code> は <code>Table Of Contents</code> の略）。</p>
 
-<figure class='code'><figcaption><span>記事に目次を埋め込む  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>### 目次
-</span><span class='line'>{:TOC}
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>記事に目次を埋め込む </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">### 目次
+</span><span class="line">{:TOC}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h3 id="日本語の見出し">日本語の見出し</h3>
-
+<h3 id="section-2">日本語の見出し</h3>
 <p>見出しに日本語を使うと、<code>generate</code> 時にエラーが出る。</p>
 
 <pre><code>Liquid Exception: incompatible character encodings: UTF-8 and ASCII-8BIT in atom.xml
@@ -88,29 +265,29 @@
 <code>gems/jekyll-0.12.0/lib/jekyll/converters/markdown.rb</code>
 を対策する。</p>
 
-<figure class='code'><figcaption><span>lib/jekyll/converters/markdown.rb  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -120,7 +120,7 @@ def convert(content)</span>
-</span><span class='line'>           rd = RDiscount.new(content, *@rdiscount_extensions)
-</span><span class='line'>           html = rd.to_html
-</span><span class='line'>           if rd.generate_toc and html.include?(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;])
-</span><span class='line'><span class="gd">-            html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content)</span>
-</span><span class='line'><span class="gi">+            html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content.force_encoding(&#39;utf-8&#39;))</span>
-</span><span class='line'>           end
-</span><span class='line'>           html
-</span><span class='line'>         when &#39;maruku&#39;
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>lib/jekyll/converters/markdown.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="diff"><span class="line"><span class="gu">@@ -120,7 +120,7 @@ def convert(content)</span>
+</span><span class="line">           rd = RDiscount.new(content, *@rdiscount_extensions)
+</span><span class="line">           html = rd.to_html
+</span><span class="line">           if rd.generate_toc and html.include?(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;])
+</span><span class="line"><span class="gd">-            html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content)</span>
+</span><span class="line"><span class="gi">+            html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content.force_encoding(&#39;utf-8&#39;))</span>
+</span><span class="line">           end
+</span><span class="line">           html
+</span><span class="line">         when &#39;maruku&#39;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>ただし <code>force_encoding('utf-8')</code> が気に入られず、取り込まれていない。</p>
+
 ]]></content>
   </entry>
   
@@ -121,16 +298,12 @@
     <id>http://tokkonopapa.github.com/blog/2013/02/03/jekyll-error-of-common-rb</id>
     <content type="html"><![CDATA[<p>ruby を 1.9.3-p374 に上げたり、jekyll を 0.12.0 に上げたりしていたら、
 <a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a>
-がタイトルのようなエラーを吐くようになってしまった。</p>
+がタイトルのようなエラーを吐くようになってしまった。  </p>
 
-<p>とりあえずのモンキーパッチを当てる方法。</p>
-
+<p>とりあえずのモンキーパッチを当てる方法。
 <!--more-->
-
-
-<h3 id="エラーの内容">エラーの内容</h3>
-
-<p><code>escape</code> メソッドで <code>gsub</code> が未定義だということ。</p>
+### エラーの内容 ###
+<code>escape</code> メソッドで <code>gsub</code> が未定義だということ。</p>
 
 <pre><code>/Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:304:in `escape': undefined method `gsub' for ["Ruby", "jekyll/hyde"]:Array (NoMethodError)
     from /Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:638:in `escape'
@@ -150,15 +323,14 @@
 
 <p>どうやら、<code>categories</code> に配列 <code>["Ruby", "jekyll/hyde"]</code> を指定しているの原因。</p>
 
-<h3 id="モンキーパッチ">モンキーパッチ</h3>
-
+<h3 id="section">モンキーパッチ</h3>
 <p><code>URI.escape(c)</code> の <code>c</code> を明示的に <code>String</code> に変換する。</p>
 
 <pre><code>"categories" =&gt; categories.map { |c| URI.escape(c.to_s) }.join('/'),
 </code></pre>
 
 <p>う〜ん、これでいいのかなぁ（いいわけない！）。カテゴリのアーカイブを作る時に <code>Ruby/jekyll/hyde</code>
-になるように、ちゃんと考えなきゃ&#8230;。</p>
+になるように、ちゃんと考えなきゃ…。</p>
 ]]></content>
   </entry>
   
@@ -167,21 +339,14 @@
     <link href="http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment/"/>
     <updated>2012-09-22T15:30:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment</id>
-    <content type="html"><![CDATA[<p>jekyll で本格的ブログを作るためのテンプレート <a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a> を作ってみたが、色々と作り込むうちに複雑になってきたので、ここに記録しておく。</p>
-
+    <content type="html"><![CDATA[<p>jekyll で本格的ブログを作るためのテンプレート <a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a> を作ってみたが、色々と作り込むうちに複雑になってきたので、ここに記録しておく。
 <!--more-->
+制作方針
+——–
+* モジュール化により、カスタマイズし易くすること。
+* ブログに必要な最小限の機能が、プラグインの使えない <a href="http://pages.github.com/">GitHub Pages</a> 上の jekyll でも動作すること。</p>
 
-
-<h2 id="制作方針">制作方針</h2>
-
-<ul>
-<li>モジュール化により、カスタマイズし易くすること。</li>
-<li>ブログに必要な最小限の機能が、プラグインの使えない <a href="http://pages.github.com/">GitHub Pages</a> 上の jekyll でも動作すること。</li>
-</ul>
-
-
-<h2 id="構成">構成</h2>
-
+<h2 id="section">構成</h2>
 <pre><code>.
 ├── _deploy/                # デプロイ時の静的ファイル群を保存しておく
 ├── _includes/              # 他からインクルードされるテンプレート部品
@@ -206,30 +371,24 @@
 └── project/                # プロジェクト用テンプレート
 </code></pre>
 
-<h3 id="1.+`_config.yml`+の設定">1. <code>_config.yml</code> の設定</h3>
-
-<h4 id="`url`、`baseurl`"><code>url</code>、<code>baseurl</code></h4>
-
-<p>GitHub プロジェクトページの場合は、次のように指定する。</p>
+<h3 id="configyml-">1. <code>_config.yml</code> の設定</h3>
+<p>#### <code>url</code>、<code>baseurl</code>
+GitHub プロジェクトページの場合は、次のように指定する。</p>
 
 <pre><code>url: http://USERNAME.github.com/REPOSITORY
 baseurl: /REPOSITORY
 </code></pre>
 
-<h4 id="`paginate`、`columns`"><code>paginate</code>、<code>columns</code></h4>
-
+<h4 id="paginatecolumns"><code>paginate</code>、<code>columns</code></h4>
 <p>トップページでの表示記事数と、先頭記事以外のカラム数。</p>
 
-<h4 id="`date_format`"><code>date_format</code></h4>
-
+<h4 id="dateformat"><code>date_format</code></h4>
 <p>使える書式は、<a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters#date-instance_method">Module: Liquid::StandardFilters — Documentation for liquid (2.2.2)</a> （GitHub の Liquid バージョンと同じ） を参考に。</p>
 
-<h4 id="`truncate_len`"><code>truncate_len</code></h4>
-
+<h4 id="truncatelen"><code>truncate_len</code></h4>
 <p>トップページで紹介する記事の表示文字数。</p>
 
-<h4 id="`navbar_list`"><code>navbar_list</code></h4>
-
+<h4 id="navbarlist"><code>navbar_list</code></h4>
 <p>次のように <code>{name, link}</code> のペアでナビゲーションバーのメニューを定義。</p>
 
 <pre><code>navbar_list:
@@ -248,9 +407,9 @@ baseurl: /REPOSITORY
   link: /
   dropdown: &amp;dropdown
   - name: Categories
-    link: /blog/categories.html
+	link: /blog/categories.html
   - name: Tags
-    link: /blog/tags.html
+	link: /blog/tags.html
 </code></pre>
 
 <p>これ以上の多階層化は、<code>_includes/navbar.html</code> に直接マークアップするのが吉。</p>
@@ -264,66 +423,54 @@ group: Blog
 ---
 </code></pre>
 
-<h4 id="`pygments_style`"><code>pygments_style</code></h4>
-
+<h4 id="pygmentsstyle"><code>pygments_style</code></h4>
 <p><a href="http://pygments.org/">Pygments - Python syntax highlighter</a> の <a href="http://pygments.org/demo/">Online demo</a> で、カラーリングを確認するのが吉。</p>
 
 <p>カラーリングに関しては、次のサイトもご参考。</p>
 
 <ul>
-<li><a href="https://github.com/mojombo/tpw/blob/master/css/syntax.css">tpw/css/syntax.css at master - mojombo/tpw</a><br/>
+  <li><a href="https://github.com/mojombo/tpw/blob/master/css/syntax.css">tpw/css/syntax.css at master - mojombo/tpw</a><br />
   jekyll 本家による、GitHub のカラー。</li>
-<li><a href="https://github.com/uraimo/pygments-vimstyles">uraimo/pygments-vimstyles - GitHub</a><br/>
+  <li><a href="https://github.com/uraimo/pygments-vimstyles">uraimo/pygments-vimstyles - GitHub</a><br />
   VIM で有名なテーマを Pygments 用に変換したスタイルシート。</li>
-<li><a href="http://www.uraimo.com/2011/09/21/from-vim-theme-to-pygments-css/">From VIM Theme to Pygments CSS</a><br/>
+  <li><a href="http://www.uraimo.com/2011/09/21/from-vim-theme-to-pygments-css/">From VIM Theme to Pygments CSS</a><br />
   VIM 用のスタイルを Pygments 用スタイルに変換する python プログラム。</li>
-<li>Gist に投稿されたスタイル
+  <li>Gist に投稿されたスタイル
   <a href="https://gist.github.com/1125708">Solarized Pygments CSS - Gist</a>、
   <a href="https://gist.github.com/2005058">Solarized Light Pygments CSS / Jekyll - Gist</a>、
   <a href="https://gist.github.com/1573884">Solarized Pygments Dark CSS - Gist</a></li>
 </ul>
 
+<h3 id="yaml-">2. 記事の YAML ディレクティブ</h3>
+<p>#### <code>excerpt</code>
+トップページ (index.html) で表示する、記事の要旨。</p>
 
-<h3 id="2.+記事の+YAML+ディレクティブ">2. 記事の YAML ディレクティブ</h3>
-
-<h4 id="`excerpt`"><code>excerpt</code></h4>
-
-<p>トップページ (index.html) で表示する、記事の要旨。</p>
-
-<h4 id="`thumbnail`"><code>thumbnail</code></h4>
-
+<h4 id="thumbnail"><code>thumbnail</code></h4>
 <p>トップページ (index.html) で表示する、サムネイル画像。</p>
 
-<h4 id="`comments`"><code>comments</code></h4>
-
+<h4 id="comments"><code>comments</code></h4>
 <p>3rd パーティー製コメントシステムを有効にする。</p>
 
-<h4 id="`published`"><code>published</code></h4>
-
+<h4 id="published"><code>published</code></h4>
 <p><code>true</code> で記事公開、<code>false</code> で保留。</p>
 
-<h4 id="`category`"><code>category</code></h4>
-
+<h4 id="category"><code>category</code></h4>
 <p>カテゴリは、配列 <code>[...]</code> を使って複数指定可。この場合、左から順に親子関係となる。</p>
 
-<h4 id="`tags`"><code>tags</code></h4>
-
+<h4 id="tags"><code>tags</code></h4>
 <p>タグも配列を使用可能。カテゴリとは異なり、親子関係はない。</p>
 
-<h3 id="3.「続きを読む」機能">3.「続きを読む」機能</h3>
-
+<h3 id="section-1">3.「続きを読む」機能</h3>
 <p>トップページ (index.html) の表示時、<code>_includes/libs/truncate_xxxx</code> で以下の処理を実行する。</p>
 
-<h4 id="3.1+`excerpt`+の処理">3.1 <code>excerpt</code> の処理</h4>
-
+<h4 id="excerpt-">3.1 <code>excerpt</code> の処理</h4>
 <p>記事の YAML ディレクティブにコレがあれば、要旨として表示する。</p>
 
-<h4 id="3.2+`+!--more-->`+の処理&#8221;>3.2 <code>&lt;!--more--&gt;</code> の処理</h4>
-
+<h4 id="more---">3.2 <code>&lt;!--more--&gt;</code> の処理</h4>
 <p><code>safe: false</code> な jekyll 環境では、<code>_plugins/postmore.rb</code> を使って <code>&lt;!--more--&gt;</code> で分割した文字列の前半をレンダリングする。一方プラグインが使えない GitHub ページ上の jekyll では、次のように Liquid で、<code>&lt;!--more--&gt;</code> から記事の終わりまでコメント化し、擬似的な more 機能を実現する。</p>
 
 <pre><code>{% if post.content contains '&lt;!--more--&gt;' %}
-    {{ post.content | remove:'--&gt;' }}--&gt;
+	{{ post.content | remove:'--&gt;' }}--&gt;
 {% endif %}
 </code></pre>
 
@@ -334,22 +481,18 @@ group: Blog
 <pre><code>{{ post.content | replace_first:'&lt;!--more--&gt;', SEP | split:SEP | first }}
 </code></pre>
 
-<h5 id="参考情報">参考情報</h5>
-
+<h5 id="section-2">参考情報</h5>
 <ul>
-<li><a href="http://www.jacquesf.com/2011/03/creating-excerpts-in-jekyll-with-wordpress-style-more-html-comments/">Creating Excerpts in Jekyll with Wordpress-style &lt;!&#8211;more&#8211;&gt; HTML Comments - Jacques Fortier</a><br/>
+  <li><a href="http://www.jacquesf.com/2011/03/creating-excerpts-in-jekyll-with-wordpress-style-more-html-comments/">Creating Excerpts in Jekyll with Wordpress-style &lt;!–more–&gt; HTML Comments - Jacques Fortier</a><br />
   <code>&lt;--more--&gt;</code> より手前を <code>excerpt</code> とする <code>postmorefilter</code> プラグイン 。</li>
-<li><a href="http://kaspa.rs/2011/04/jekyll-hacks-html-excerpts/">Jekyll hacks - HTML excerpts</a><br/>
+  <li><a href="http://kaspa.rs/2011/04/jekyll-hacks-html-excerpts/">Jekyll hacks - HTML excerpts</a><br />
   <code>&lt;!-- more start --&gt;</code> ～ <code>&lt;-- more end --&gt;</code> 間をコメント化して <code>excerpt</code> とする方法。</li>
 </ul>
 
-
-<h4 id="3.3+先頭から既定文字数だけを表示する処理">3.3 先頭から既定文字数だけを表示する処理</h4>
-
+<h4 id="section-3">3.3 先頭から既定文字数だけを表示する処理</h4>
 <p><code>excerpt</code> および <code>&lt;!--more--&gt;</code> が共にない場合、先頭の <code>truncate_len</code> だけ文字を表示する。GitHub 上の jekyll （バージョン 2.2.2） の場合、<code>truncate</code> フィルタがユニコードに対応しておらず、単なるバイト数でカウントされてしまうため、日本語が文字化けする可能性がある。そこでかなりトリッキーな方法ではあるが、末尾の文字コードを調べ、適切な所で丸める処理を Liquid で実装した。</p>
 
-<h3 id="4.+カテゴリ、タグ">4. カテゴリ、タグ</h3>
-
+<h3 id="section-4">4. カテゴリ、タグ</h3>
 <p><a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data - mojombo/jekyll Wiki</a> にある通り、テンプレートからは <code>site.categories</code> （ハッシュ） や <code>page.categories</code> （配列） などでアクセスすることが出来る。<code>_includes/libs/list_categories</code> と <code>_includes/libs/list_tags</code> にそれらの扱いを集約すると共に、両者をフラグで使い分ける仕様とした。</p>
 
 <p>またカテゴリは、親子関係を表す配列で提供されるのが jekyll の仕様である。例えば、<code>_post/1970-1-1-hello-world.md</code> の YAML ディレクティブに次のようなカテゴリが指定されていたとする。</p>
@@ -363,12 +506,10 @@ category: [parent, child]
 <pre><code>/blog/parent/child/hello-world.html
 </code></pre>
 
-<h3 id="5.+bootstrap+関連">5. bootstrap 関連</h3>
-
+<h3 id="bootstrap-">5. bootstrap 関連</h3>
 <p>コレのコンフィグレーションを色々できるようにしたことが複雑化の原因。不要なら一切を削除するのがお勧め。</p>
 
-<h4 id="5.1+基本構成">5.1 基本構成</h4>
-
+<h4 id="section-5">5.1 基本構成</h4>
 <p><code>assets/bootstrap-X.Y.Z/</code> 下のファイルが、<code>_includes/bootstrap-X.Y.Z/</code> 下の部品をインクルードする構成とした。</p>
 
 <p>例えば、<code>assets/bootstrap-2.1.1/js/bootstrap.custom.js</code> は、次のように bootstrap の js 部品をインクルードする。</p>
@@ -386,119 +527,117 @@ category: [parent, child]
 
 <p>css ファイルは、<a href="http://twitter.github.com/bootstrap/customize.html">web-based Customizer</a> から適当なモジュールを選択し、ダウンロードしたファイルで代用している。そのうち LESS をインストールし、モジュール化したい。</p>
 
-<h4 id="5.2+`_config.yml`+の設定。">5.2 <code>_config.yml</code> の設定。</h4>
+<h4 id="configyml--1">5.2 <code>_config.yml</code> の設定。</h4>
 
-<h5 id="`bootstrap`"><code>bootstrap</code></h5>
-
+<h5 id="bootstrap"><code>bootstrap</code></h5>
 <p><code>custom</code> を指定すると <code>/assets/bootstrap-X.Y.Z/</code> のカスタムファイルを用いる。この場合、<code>_includes/bootstrap-X.Y.Z/</code> から必要な部品をインクルードする。<code>original</code> あるいはそれ以外では、<a href="http://www.bootstrapcdn.com/">BootstrapCDN</a> にアップされているファイルを使う。</p>
 
-<h5 id="`bootstrap_ver`"><code>bootstrap_ver</code></h5>
-
+<h5 id="bootstrapver"><code>bootstrap_ver</code></h5>
 <p>バージョン X.Y.Z を指定。</p>
 
-<h5 id="`bootswatch_ver`"><code>bootswatch_ver</code></h5>
-
+<h5 id="bootswatchver"><code>bootswatch_ver</code></h5>
 <p>テーマファイルのバージョンを指定。</p>
 
-<h5 id="`responsive_bp`"><code>responsive_bp</code></h5>
-
+<h5 id="responsivebp"><code>responsive_bp</code></h5>
 <p>ナビゲーションバーを折り畳みタイプにする、メディアクエリ上のブレーク・ポイント。<code>assets/bootstrap-X.Y.Z/bootstrap-responsive.custom.css</code> に、この値をレンダリングする。</p>
 
-<h5 id="`jquery_ver`"><code>jquery_ver</code></h5>
-
+<h5 id="jqueryver"><code>jquery_ver</code></h5>
 <p>本当は 1.8.x を使いたいんだけれど、私のスマホ （Optimus L-01D/Android 2.3） のネイティブなブラウザが落ちる。Firefox なら大丈夫。たぶんブラウザのバグ （だと思う）。</p>
 
-<h5 id="参考情報">参考情報</h5>
-
+<h5 id="section-6">参考情報</h5>
 <ul>
-<li><a href="http://developmentseed.org/blog/2011/09/09/jekyll-github-pages/">Using Jekyll and GitHub Pages for Our Site | Development Seed</a><br/>
+  <li><a href="http://developmentseed.org/blog/2011/09/09/jekyll-github-pages/">Using Jekyll and GitHub Pages for Our Site | Development Seed</a><br />
   YAML ディレクティブを空に設定し、CSS や json ファイルを作る方法。GitHub Pages でもちゃんと動く。</li>
 </ul>
 
+<h3 id="rakefile-">6. <code>Rakefile</code> のエントリー</h3>
+<p>#### <code>preview</code>
+<code>rake preview</code> もしくは <code>rake</code> で <a href="http://localhost:4000/">http://localhost:4000/</a> でのテストが可能。</p>
 
-<h3 id="6.+`Rakefile`+のエントリー">6. <code>Rakefile</code> のエントリー</h3>
-
-<h4 id="`preview`"><code>preview</code></h4>
-
-<p><code>rake preview</code> もしくは <code>rake</code> で <a href="http://localhost:4000/">http://localhost:4000/</a> でのテストが可能。</p>
-
-<h4 id="`post`"><code>post</code></h4>
-
+<h4 id="post"><code>post</code></h4>
 <p>新規投稿。次の書式が可能。</p>
 
 <pre><code>rake post title="title of my article"
 rake post["title of my article"]
 </code></pre>
 
-<h4 id="`page`"><code>page</code></h4>
-
+<h4 id="page"><code>page</code></h4>
 <p>新規ページの作成。</p>
 
 <pre><code>rake page name="about.html"
 </code></pre>
 
-<h4 id="`setup_remote`"><code>setup_remote</code></h4>
-
+<h4 id="setupremote"><code>setup_remote</code></h4>
 <p>記事の公開に <code>git push</code> を使う場合の、リモートの設定。<code>push</code> するリモート側のブランチは、Rakefile 中のグローバルなハッシュ <code>CONFIG['deploy_branch']</code> で指定する。</p>
 
-<h4 id="`deploy`"><code>deploy</code></h4>
-
+<h4 id="deploy"><code>deploy</code></h4>
 <p><code>setup_remote</code> で設定したリモートサーバに記事を <code>git push</code> する。<code>_site</code> に出来た静的ファイルは、プレビュー中にも変わってしまうため、<code>_deploy</code> ディレクトリにコピーし、デプロイ用ファイルを確定させる。</p>
 
-<h3 id="7.+`Gemfile`+関連">7. <code>Gemfile</code> 関連</h3>
+<h3 id="gemfile-">7. <code>Gemfile</code> 関連</h3>
+<p>#### <code>gem 'jekyll'</code>
+<a href="http://rubygems.org/">RubyGems</a> に現在公開されている <a href="http://rubygems.org/gems/jekyll">jekyll</a> は pygmentize ごとにプロセスを起動するため、処理時間がかかるとのこと （情報源：<a href="http://d.hatena.ne.jp/hokaccha/20120808/1344436656">pygmentsが原因でjekyllが重くなってた - hokaccha.hamalog v2</a>）。GitHub 上の最新バージョンを使う方が吉かも。</p>
 
-<h4 id="`gem+'jekyll'`"><code>gem 'jekyll'</code></h4>
-
-<p><a href="http://rubygems.org/">RubyGems</a> に現在公開されている <a href="http://rubygems.org/gems/jekyll">jekyll</a> は pygmentize ごとにプロセスを起動するため、処理時間がかかるとのこと （情報源：<a href="http://d.hatena.ne.jp/hokaccha/20120808/1344436656">pygmentsが原因でjekyllが重くなってた - hokaccha.hamalog v2</a>）。GitHub 上の最新バージョンを使う方が吉かも。</p>
-
-<h4 id="`gem+'gsl'`"><code>gem 'gsl'</code></h4>
-
+<h4 id="gem-gsl"><code>gem 'gsl'</code></h4>
 <p>jekyll のソースを読む限り、<code>lsi: false</code> を指定すると、単に最新の記事数件を 「関連する記事」 とするだけである。<code>lsi: true</code> だと、少しはマシになるらしいが、処理時間がかかる模様。<a href="http://rubygems.org/gems/gsl">gsl</a> を使えば、10倍高速化できるとのこと （未確認）。</p>
 
-<h4 id="`gem+'rake'`"><code>gem 'rake'</code></h4>
-
+<h4 id="gem-rake"><code>gem 'rake'</code></h4>
 <p>いつの間にか、システムにインストールしたバージョンを 0.9.2.2 に上げてしまったようで、Octopress が指定しているバージョン 0.9.2 と競合するようになった。Octopress 側を <code>bundle exec rake ...</code> で対応しているが、そもそも各アプリごとに gem を分けた方が良いかもしれない。</p>
 
-<h5 id="bundler+の参考サイト">bundler の参考サイト</h5>
-
+<h5 id="bundler-">bundler の参考サイト</h5>
 <ul>
-<li><a href="http://kozo002.blogspot.jp/2012/01/rubybundler.html">[ruby]最初に知っておけば良かったbundlerの使い方 rails編 | Into my web</a></li>
-<li><a href="http://blog.mirakui.com/entry/20100703/1278165723">gem管理の新標準ツール&#8221;Bundler&#8221;のTips - 昼メシ物語</a><br/>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[[ruby]最初に知っておけば良かったbundlerの使い方 rails編</td>
+          <td>Into my web](http://kozo002.blogspot.jp/2012/01/rubybundler.html)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><a href="http://blog.mirakui.com/entry/20100703/1278165723">gem管理の新標準ツール”Bundler”のTips - 昼メシ物語</a><br />
   システムの gem と分離させる方法。</li>
-<li><a href="http://d.hatena.ne.jp/itmammoth/20110420/1303309226">複数のRailsアプリのgemを管理するためbundlerを使用する - Oh! My! Enter! ～バッチを起動しようと勢いよくキーを叩いたら、それはシフトキーだった～</a><br/>
+  <li><a href="http://d.hatena.ne.jp/itmammoth/20110420/1303309226">複数のRailsアプリのgemを管理するためbundlerを使用する - Oh! My! Enter! ～バッチを起動しようと勢いよくキーを叩いたら、それはシフトキーだった～</a><br />
   gem をすべてアンインストールして、bunder で管理しましょう、の記事。</li>
 </ul>
 
-
-<h3 id="8.+その他、テンプレート作成で参考になったサイト">8. その他、テンプレート作成で参考になったサイト</h3>
-
-<h4 id="jekyll、Liquid+の解説">jekyll、Liquid の解説</h4>
+<h3 id="section-7">8. その他、テンプレート作成で参考になったサイト</h3>
+<p>#### jekyll、Liquid の解説
+* <a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters">Module: Liquid::StandardFilters - Documentation for liquid (2.2.2)</a><br />
+	<a href="https://help.github.com/articles/using-jekyll-with-pages">GitHub 上の jekyll バージョン</a> で使える、Liquid 2.2.2 の標準フィルタに関するマニュアル。</p>
 
 <ul>
-<li><p><a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters">Module: Liquid::StandardFilters - Documentation for liquid (2.2.2)</a><br/>
-  <a href="https://help.github.com/articles/using-jekyll-with-pages">GitHub 上の jekyll バージョン</a> で使える、Liquid 2.2.2 の標準フィルタに関するマニュアル。</p></li>
-<li><p><a href="http://melborne.github.com/2012/05/13/first-step-of-jekyll/">30分のチュートリアルでJekyllを理解する</a><br/>
-  1ステップづつ、実例を交えながら解説されていて、Jekyll に関しては、ココが一番詳しい。プラグインの作り方がお役立ち。<a href="http://melborne.github.com/2012/05/09/translation-of-jekyll-plugins/">Jekyll Wiki Pluginsの説明ページを勝手に翻訳しました</a> が分かり易い。</p></li>
-<li><p><a href="http://web.sfc.keio.ac.jp/~t10078si/wpx/?p=862">jekyll+github pagesでブログを作る &laquo; fragments</a><br/>
-  git、jekyll のインストール、<a href="">jekyll bootstrap</a> のインストールと構成、記事作成、GitHub への公開。pygments による Syntax highlight の説明アリ。</p></li>
-<li><p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">ruby と jekyll と jekyll-bootstrap で静的サイトを作る - KRAKENBEAL RECORDS</a><br/>
-  インストールから公開までの概要。末尾の参考文献がお役立ち。</p></li>
-<li><p><a href="http://css.studiomohawk.com/jekyll/2011/06/11/jekyll/">Jekyll | CSS Radar | Mini Books For Front End Developers</a><br/>
-  jekyll の基本的解説。Rakefile の作り方がお役立ち。</p></li>
-<li><p><a href="http://css.studiomohawk.com/less/2011/04/03/use_less_to_clean_up_your_css/">LESS - CSSプリプロフェッサ | CSS Radar | Mini Books For Front End Developers</a><br/>
-  LESS の使い方を含む解説。less.js を使った開発時の使い方と、リリース用のコンパイル方法が解説されている。</p></li>
-<li><p><a href="http://brizzled.clapper.org/blog/2012/03/05/using-twitter-bootstrap-with-jekyll/">Using Twitter Bootstrap with Jekyll - Brizzled</a><br/>
-  CSS の生成を自動化する LESS 用 Rakefile の書き方など。</p></li>
+  <li>
+    <p><a href="http://melborne.github.com/2012/05/13/first-step-of-jekyll/">30分のチュートリアルでJekyllを理解する</a><br />
+  1ステップづつ、実例を交えながら解説されていて、Jekyll に関しては、ココが一番詳しい。プラグインの作り方がお役立ち。<a href="http://melborne.github.com/2012/05/09/translation-of-jekyll-plugins/">Jekyll Wiki Pluginsの説明ページを勝手に翻訳しました</a> が分かり易い。</p>
+  </li>
+  <li>
+    <p><a href="http://web.sfc.keio.ac.jp/~t10078si/wpx/?p=862">jekyll+github pagesでブログを作る « fragments</a><br />
+  git、jekyll のインストール、<a href="">jekyll bootstrap</a> のインストールと構成、記事作成、GitHub への公開。pygments による Syntax highlight の説明アリ。</p>
+  </li>
+  <li>
+    <p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">ruby と jekyll と jekyll-bootstrap で静的サイトを作る - KRAKENBEAL RECORDS</a><br />
+  インストールから公開までの概要。末尾の参考文献がお役立ち。</p>
+  </li>
+  <li>
+    <p><a href="http://css.studiomohawk.com/jekyll/2011/06/11/jekyll/">Jekyll | CSS Radar | Mini Books For Front End Developers</a><br />
+  jekyll の基本的解説。Rakefile の作り方がお役立ち。</p>
+  </li>
+  <li>
+    <p><a href="http://css.studiomohawk.com/less/2011/04/03/use_less_to_clean_up_your_css/">LESS - CSSプリプロフェッサ | CSS Radar | Mini Books For Front End Developers</a><br />
+  LESS の使い方を含む解説。less.js を使った開発時の使い方と、リリース用のコンパイル方法が解説されている。</p>
+  </li>
+  <li>
+    <p><a href="http://brizzled.clapper.org/blog/2012/03/05/using-twitter-bootstrap-with-jekyll/">Using Twitter Bootstrap with Jekyll - Brizzled</a><br />
+  CSS の生成を自動化する LESS 用 Rakefile の書き方など。</p>
+  </li>
 </ul>
 
-
-<h4 id="Bootstrap">Bootstrap</h4>
-
+<h4 id="bootstrap-1">Bootstrap</h4>
 <ul>
-<li><a href="http://www.bootstrapcdn.com/">BootstrapCDN</a><br/>
+  <li><a href="http://www.bootstrapcdn.com/">BootstrapCDN</a><br />
   Bootstrap と Boostwatch の CDN。</li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -512,14 +651,10 @@ rake post["title of my article"]
 の確認が済んでいなかったことが判明。その時のメモ。</p>
 
 <p>別に SEO とか気にしてないんだけど、どういうキーワードで皆さんが
-見てくれているかをあらためて知り、ちょっと幸せな気分 ♪</p>
-
+見てくれているかをあらためて知り、ちょっと幸せな気分 ♪
 <!--more-->
-
-
-<h3 id="おすすめの方法">おすすめの方法</h3>
-
-<p>ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code>
+### おすすめの方法 ###
+ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code> 
 ディレクトリにコピーし、リモートにプッシュすると、一時的にはうまくいく。</p>
 
 <pre><code>cd _deploy
@@ -536,8 +671,7 @@ Rakefile を書き換えれば良いのだけれど、お手軽には次の「�
 
 <p><img src="https://lh3.googleusercontent.com/-piNUXPKHD70/UA63js9yEeI/AAAAAAAAANI/fDEQeMMiO8o/s480/site-verification.png" alt="推奨：HTMLファイルをアップロード" /></p>
 
-<h3 id="別な方法">別な方法</h3>
-
+<h3 id="section">別な方法</h3>
 <p><a href="http://support.google.com/webmasters/bin/answer.py?hl=ja&amp;answer=79812">メタ タグ - ウェブマスター ツール ヘルプ</a> に
 従って、<code>source/_includes/head.html</code> にメタタグを記述し、ページを再生成後、デプロイするだけ。</p>
 
@@ -554,28 +688,25 @@ rake deploy
     <link href="http://tokkonopapa.github.com/blog/2012/06/27/github-emoji/"/>
     <updated>2012-06-27T00:39:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2012/06/27/github-emoji</id>
-    <content type="html"><![CDATA[<h2 id="GitHubber達が使うEmojiの出し方">GitHubber達が使うEmojiの出し方</h2>
+    <content type="html"><![CDATA[<h2 id="githubberemoji">GitHubber達が使うEmojiの出し方</h2>
 
 <p><a href="http://en.wikipedia.org/wiki/Emoji" title="Emoji - Wikipedia, the free encyclopedia">Emoji</a> って、英語になってるんだ！ <a href="http://en.wikipedia.org/wiki/Manga" title="Manga - Wikipedia, the free encyclopedia">Manga</a> と同じだネェ。日本のガラケー文化もなかなかじゃん。</p>
 
-<p>ってことで、GitHub の Issues とかで使える絵文字出し方。例えば、「:smile:」とやれば <img src="https://lh3.googleusercontent.com/-SjzsgPWV6rw/T-nWXjJHlUI/AAAAAAAAAMc/aKqow-jBQ-c/s20/smile.png" title="Smile" alt="Smile" />、プロジェクトが完成してお祝いしたいときには、「:beer:」で <img src="https://lh4.googleusercontent.com/-uJD5Y_R8Ff4/T-nWXxwnPWI/AAAAAAAAAMg/vLoHE0UzevI/s20/beer.png" title="カンパ〜イ" alt="カンパ〜イ" /> となるわけ。</p>
-
+<p>ってことで、GitHub の Issues とかで使える絵文字出し方。例えば、「:smile:」とやれば <img src="https://lh3.googleusercontent.com/-SjzsgPWV6rw/T-nWXjJHlUI/AAAAAAAAAMc/aKqow-jBQ-c/s20/smile.png" alt="Smile" title="Smile" />、プロジェクトが完成してお祝いしたいときには、「:beer:」で <img src="https://lh4.googleusercontent.com/-uJD5Y_R8Ff4/T-nWXxwnPWI/AAAAAAAAAMg/vLoHE0UzevI/s20/beer.png" alt="カンパ〜イ" title="カンパ〜イ" /> となるわけ。
 <!--more-->
+最初のアナウンスは、2011年3月11日の GitHub Blog の記事。</p>
 
-
-<p>最初のアナウンスは、2011年3月11日の GitHub Blog の記事。</p>
-
-<p><a href="https://github.com/blog/816-emoji" title="Emoji!"><img src="https://lh3.googleusercontent.com/-vyGJUXvoXP4/T-nKeC_Vb0I/AAAAAAAAAKI/zVO1LtwkLz4/s560/GitHubBlog.png" title="Emoji!" alt="Emoji!" /></a></p>
+<p><a href="https://github.com/blog/816-emoji" title="Emoji!"><img src="https://lh3.googleusercontent.com/-vyGJUXvoXP4/T-nKeC_Vb0I/AAAAAAAAAKI/zVO1LtwkLz4/s560/GitHubBlog.png" alt="Emoji!" title="Emoji!" /></a></p>
 
 <p>どこで使えるでしょうか？的なコメントになっているが、要はコミュニケーション手段である Issues のコメント欄とか、Gist の Markdown とかで使える。</p>
 
 <p>で、これの元になっているのが、<a href="https://github.com/arvida/emoji-cheat-sheet.com" title="arvida/emoji-cheat-sheet.com on GitHub">arvida/emoji-cheat-sheet.com</a> と、絵文字コードを簡単にコピペできるチートシート。</p>
 
-<p><a href="http://www.emoji-cheat-sheet.com/" title="Emoji cheat sheet for Campfire and GitHub"><img src="https://lh6.googleusercontent.com/-1AGOcU3DpeE/T-nOy_Ip5sI/AAAAAAAAAK4/koElaC5Tl7k/s600/CheatSheet.png" title="チートシート" alt="チートシート" /></a></p>
+<p><a href="http://www.emoji-cheat-sheet.com/" title="Emoji cheat sheet for Campfire and GitHub"><img src="https://lh6.googleusercontent.com/-1AGOcU3DpeE/T-nOy_Ip5sI/AAAAAAAAAK4/koElaC5Tl7k/s600/CheatSheet.png" alt="チートシート" title="チートシート" /></a></p>
 
 <p>で、Gist に投稿すると、こうなる。</p>
 
-<p><a href="https://gist.github.com/2989052"><img src="https://lh5.googleusercontent.com/-hG7jRIKJXdI/T-nRF6JgaOI/AAAAAAAAALM/LrgQy79oDnA/s600/GitHubMarkdown.png" title="Gist" alt="Gist" /></a></p>
+<p><a href="https://gist.github.com/2989052"><img src="https://lh5.googleusercontent.com/-hG7jRIKJXdI/T-nRF6JgaOI/AAAAAAAAALM/LrgQy79oDnA/s600/GitHubMarkdown.png" alt="Gist" title="Gist" /></a></p>
 ]]></content>
   </entry>
   
@@ -587,91 +718,109 @@ rake deploy
     <content type="html"><![CDATA[<p>エンジニアたるもの、<a href="http://schacon.github.com/git/git.html" title="git(1) Manual Page">マニュアル</a> を読み込むべし。そのためには、Git 内部について若干の予備知識が必要。
 ただしその深みにはまると、</p>
 
-<blockquote><p>Git - the stupid content tracker</p></blockquote>
+<blockquote>
+  <p>Git - the stupid content tracker</p>
+</blockquote>
 
 <p>の意味がよく分かる。</p>
 
-<p>ということで、まずは用語の理解から。</p>
-
+<p>ということで、まずは用語の理解から。
 <!--more-->
-
-
-<h2 id="Git+オブジェクトのタイプ">Git オブジェクトのタイプ</h2>
+Git オブジェクトのタイプ
+———————
+*	blob<br />
+	ファイルの中身を表すオブジェクト</p>
 
 <ul>
-<li><p>blob<br/>
-ファイルの中身を表すオブジェクト</p></li>
-<li><p>tree<br/>
-ディレクトリの中身の一覧とどのファイルがどの blob に対応するかを表すオブジェクト</p></li>
-<li><p>commit<br/>
-ルートツリーおよびすべてのメタデータへのポインタを含むオブジェクト</p></li>
-<li><p>tag<br/>
-特定のコミットへのポインタを含むオブジェクト</p></li>
+  <li>
+    <p>tree<br />
+ディレクトリの中身の一覧とどのファイルがどの blob に対応するかを表すオブジェクト</p>
+  </li>
+  <li>
+    <p>commit<br />
+ルートツリーおよびすべてのメタデータへのポインタを含むオブジェクト</p>
+  </li>
+  <li>
+    <p>tag<br />
+特定のコミットへのポインタを含むオブジェクト</p>
+  </li>
 </ul>
 
-
-<p><img src="https://lh5.googleusercontent.com/-DByBDLtfe4c/UA7ECC7uDsI/AAAAAAAAANU/iAQ2bVtSf3U/s500/blob-object.png" width="500" height="338" title="Git オブジェクト" ><br/>
+<p><img src="https://lh5.googleusercontent.com/-DByBDLtfe4c/UA7ECC7uDsI/AAAAAAAAANU/iAQ2bVtSf3U/s500/blob-object.png" width="500" height="338" title="Git オブジェクト" /><br />
 （出典：<a href="http://progit.org/book/ja/ch3-1.html">Pro Git - Pro Git 3.1 Git のブランチ機能</a>）</p>
 
 <p>上の図で、commit 直下の blob は、カレントディレクトリ <code>.</code> と考えると分かり易い。</p>
 
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section">関連リンク</h4>
 <ul>
-<li><a href="http://progit.org/book/ja/ch3-1.html#id58" title="ブランチとは">Pro Git - Pro Git 3.1 Git のブランチ機能 ブランチとは</a></li>
-<li><a href="http://progit.org/book/ja/ch2-6.html#id46" title="タグ">Pro Git - Pro Git 2.6 Git の基本 タグ</a></li>
+  <li><a href="http://progit.org/book/ja/ch3-1.html#id58" title="ブランチとは">Pro Git - Pro Git 3.1 Git のブランチ機能 ブランチとは</a></li>
+  <li><a href="http://progit.org/book/ja/ch2-6.html#id46" title="タグ">Pro Git - Pro Git 2.6 Git の基本 タグ</a></li>
 </ul>
 
-
-<h2 id="オブジェクトの指定">オブジェクトの指定</h2>
-
+<h2 id="section-1">オブジェクトの指定</h2>
 <p>全てのオブジェクトには、フラットな構造のリビジョンがある。リビジョンからオブジェクトを指定可能。</p>
 
 <ul>
-<li><p>SHA-1ハッシュ<br/>
-オブジェクトの内容に応じて算出されるチェックサム。40字もしくは7文字程度の16進数で表す。</p></li>
-<li><p>特定の commit オブジェクトを表すシンボルも使用可能。
+  <li>
+    <p>SHA-1ハッシュ<br />
+オブジェクトの内容に応じて算出されるチェックサム。40字もしくは7文字程度の16進数で表す。</p>
+  </li>
+  <li>
+    <p>特定の commit オブジェクトを表すシンボルも使用可能。
 HEAD（変更の基準となるコミットの名前）、
 ORIG_HEAD（HEAD に対する変更を行う前の HEAD）、
 FETCH_HEAD（<code>git fetch</code> したリモート・リポジトリのブランチ）、
 MERGE_HEAD（<code>git merge</code> 実行時のマージ元のコミット）、
-CHERRY_PICK_HEAD（<code>git cherry-pick</code> 実行時のコミット）。</p></li>
+CHERRY_PICK_HEAD（<code>git cherry-pick</code> 実行時のコミット）。</p>
+  </li>
 </ul>
 
-
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section-2">関連リンク</h4>
 <ul>
-<li><a href="http://progit.org/book/ja/ch1-3.html#git" title="Gitは完全性を持つ">Pro Git - Pro Git 1.3 使い始める Gitの基本</a></li>
+  <li><a href="http://progit.org/book/ja/ch1-3.html#git" title="Gitは完全性を持つ">Pro Git - Pro Git 1.3 使い始める Gitの基本</a></li>
 </ul>
 
-
-<h2 id="リビジョン指定のバリエーション">リビジョン指定のバリエーション</h2>
-
+<h2 id="section-3">リビジョン指定のバリエーション</h2>
 <ul>
-<li><p><em>&lt;refname&gt;</em><br/>
-<code>master</code>、<code>heads/master</code>、<code>refs/heads/master</code> など。</p></li>
-<li><p><em>&lt;refname&gt;@{&lt;date&gt;}</em><br/>
-<code>master@{yesterday}</code>、<code>HEAD@{1 month 2 weeks 3 days 1 hour 1 second ago}</code>、<code>HEAD@{1979-02-26 18:30:00}</code> など。</p></li>
-<li><p><em>&lt;refname&gt;@{&lt;n&gt;}</em><br/>
-<em>n</em> だけ前の参照。<code>HEAD@{1}</code> など。<em>&lt;refname&gt;</em> の省略は現在のブランチ。</p></li>
-<li><p><em>&lt;rev&gt;&#094;</em> あるいは <em>&lt;rev&gt;&#094;&lt;n&gt;</em><br/>
-<em>&lt;rev&gt;</em> から見て、commit オブジェクトを親→兄弟へと世代順・生成順にたどる場合の1番目、あるいは<em>n</em>番目のオブジェクト。<code>HEAD^</code> は <code>HEAD^1</code> と同じ。</p></li>
-<li><p><em>&lt;rev&gt;~&lt;n&gt;</em><br/>
-<em>&lt;rev&gt;</em> から見て、commit オブジェクトを直系の親だけをたどった場合の<em>n</em>番目の親。</p></li>
-<li><p><em>&lt;rev&gt;{&lt;type&gt;}</em><br/>
-指定リビジョンから参照できるオブジェクト。<code>HEAD^{tree}</code>、<code>v0.9^{commit}</code> など。<em>type</em> を省略すると？</p></li>
-<li><p><em>&lt;rev&gt;{/&lt;text&gt;}</em><br/>
-指定リビジョンからさかのぼり、commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを参照する。</p></li>
-<li><p><em>:/&lt;text&gt;</em><br/>
-commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを表示。<code>:/!</code> で続けて検索。</p></li>
-<li><p><em>&lt;rev&gt;:&lt;path&gt;</em><br/>
-指定リビジョンの blob（ファイル）あるいは tree（ディレクトリ）を参照する。<code>HEAD:README</code>、<code>master:./README</code> など。</p></li>
+  <li>
+    <p><em>&lt;refname&gt;</em><br />
+<code>master</code>、<code>heads/master</code>、<code>refs/heads/master</code> など。</p>
+  </li>
+  <li>
+    <p><em>&lt;refname&gt;@{&lt;date&gt;}</em><br />
+<code>master@{yesterday}</code>、<code>HEAD@{1 month 2 weeks 3 days 1 hour 1 second ago}</code>、<code>HEAD@{1979-02-26 18:30:00}</code> など。</p>
+  </li>
+  <li>
+    <p><em>&lt;refname&gt;@{&lt;n&gt;}</em><br />
+<em>n</em> だけ前の参照。<code>HEAD@{1}</code> など。<em>&lt;refname&gt;</em> の省略は現在のブランチ。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;^</em> あるいは <em>&lt;rev&gt;^&lt;n&gt;</em><br />
+<em>&lt;rev&gt;</em> から見て、commit オブジェクトを親→兄弟へと世代順・生成順にたどる場合の1番目、あるいは_n_番目のオブジェクト。<code>HEAD^</code> は <code>HEAD^1</code> と同じ。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;~&lt;n&gt;</em><br />
+<em>&lt;rev&gt;</em> から見て、commit オブジェクトを直系の親だけをたどった場合の_n_番目の親。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;{&lt;type&gt;}</em><br />
+指定リビジョンから参照できるオブジェクト。<code>HEAD^{tree}</code>、<code>v0.9^{commit}</code> など。<em>type</em> を省略すると？</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;{/&lt;text&gt;}</em><br />
+指定リビジョンからさかのぼり、commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを参照する。</p>
+  </li>
+  <li>
+    <p><em>:/&lt;text&gt;</em><br />
+commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを表示。<code>:/!</code> で続けて検索。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;:&lt;path&gt;</em><br />
+指定リビジョンの blob（ファイル）あるいは tree（ディレクトリ）を参照する。<code>HEAD:README</code>、<code>master:./README</code> など。</p>
+  </li>
 </ul>
 
-
-<h4 id="とってもバカげた（stupid+な）リビジョンの指定">とってもバカげた（stupid な）リビジョンの指定</h4>
-
+<h4 id="stupid-">とってもバカげた（stupid な）リビジョンの指定</h4>
 <pre><code>G   H   I   J
  \ /     \ /
   D   E   F
@@ -695,68 +844,86 @@ I = F^   = B^3^    = A^^3^
 J = F^2  = B^3^2   = A^^3^2
 </code></pre>
 
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section-4">関連リンク</h4>
 <ul>
-<li><a href="http://schacon.github.com/git/git-rev-parse.html" title="git-rev-parse(1)">git-rev-parse(1) Manual Page</a></li>
+  <li><a href="http://schacon.github.com/git/git-rev-parse.html" title="git-rev-parse(1)">git-rev-parse(1) Manual Page</a></li>
 </ul>
 
-
-<h2 id="識別子の用語">識別子の用語</h2>
-
+<h2 id="section-5">識別子の用語</h2>
 <ul>
-<li><p>&lt;object&gt;<br/>
-あらゆるタイプのオブジェクトの名前を表す。</p></li>
-<li><p>&lt;blob&gt;<br/>
-blob（ファイル）オブジェクトの名前を表す。</p></li>
-<li><p>&lt;tree&gt;<br/>
-tree（ディレクトリ）オブジェクトの名前を表す。</p></li>
-<li><p>&lt;commit&gt;<br/>
-commit オブジェクトの名前を表す。</p></li>
-<li><p>&lt;tree-ish&gt;<br/>
-tree、commit あるいは tag オブジェクトの名前を表す。</p></li>
-<li><p>&lt;commit-ish&gt;<br/>
-commit あるいは tag オブジェクトの名前を表す。</p></li>
-<li><p>&lt;type&gt;<br/>
-オブジェクトのタイプ。<code>blob</code>、<code>tree</code>、<code>commit</code> あるいは <code>tag</code>。</p></li>
-<li><p>&lt;file&gt;、&lt;path&gt;<br/>
-ファイル名。</p></li>
-<li><p>&lt;tag&gt;<br/>
-有効な tab 名。即ち <code>refs/tags/&lt;tag&gt;</code>。</p></li>
-<li><p>&lt;head&gt;<br/>
-有効な head 名。即ち <code>refs/heads/&lt;head&gt;</code>。</p></li>
-<li><p>HEAD<br/>
-現在のブランチの head。
-</dl></p></li>
+  <li>
+    <p>&lt;object&gt;<br />
+あらゆるタイプのオブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;blob&gt;<br />
+blob（ファイル）オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;tree&gt;<br />
+tree（ディレクトリ）オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;commit&gt;<br />
+commit オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;tree-ish&gt;<br />
+tree、commit あるいは tag オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;commit-ish&gt;<br />
+commit あるいは tag オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;type&gt;<br />
+オブジェクトのタイプ。<code>blob</code>、<code>tree</code>、<code>commit</code> あるいは <code>tag</code>。</p>
+  </li>
+  <li>
+    <p>&lt;file&gt;、&lt;path&gt;<br />
+ファイル名。</p>
+  </li>
+  <li>
+    <p>&lt;tag&gt;<br />
+有効な tab 名。即ち <code>refs/tags/&lt;tag&gt;</code>。</p>
+  </li>
+  <li>
+    <p>&lt;head&gt;<br />
+有効な head 名。即ち <code>refs/heads/&lt;head&gt;</code>。</p>
+  </li>
+  <li>
+    <p>HEAD<br />
+現在のブランチの head。</p>
+  </li>
+</ul>
+<p>&lt;/dl&gt;</p>
+
+<h4 id="section-6">関連リンク</h4>
+<ul>
+  <li><a href="http://schacon.github.com/git/git.html#_identifier_terminology" title="Identifier Terminology">git(1) Manual Page - Identifier Terminology</a></li>
+  <li><a href="http://schacon.github.com/git/gitglossary.html" title="gitglossary(7)">gitglossary(7) Manual Page</a></li>
 </ul>
 
-
-<h4 id="関連リンク">関連リンク</h4>
-
+<h2 id="git-">Git コマンドのオプション指定</h2>
 <ul>
-<li><a href="http://schacon.github.com/git/git.html#_identifier_terminology" title="Identifier Terminology">git(1) Manual Page - Identifier Terminology</a></li>
-<li><a href="http://schacon.github.com/git/gitglossary.html" title="gitglossary(7)">gitglossary(7) Manual Page</a></li>
+  <li>
+    <p>一文字系:<br />
+ <code>-a</code> とか <code>-h</code> とか。</p>
+  </li>
+  <li>
+    <p>単語系:<br />
+<code>--all</code> とか <code>--help</code> とか。</p>
+  </li>
+  <li>
+    <p>ファイル名の指定:<br />
+  <code>--</code> 以降に指定することで、直前のオプション引数と区別する。</p>
+  </li>
 </ul>
 
-
-<h2 id="Git+コマンドのオプション指定">Git コマンドのオプション指定</h2>
-
-<ul>
-<li><p>一文字系:<br/>
- <code>-a</code> とか <code>-h</code> とか。</p></li>
-<li><p>単語系:<br/>
-<code>--all</code> とか <code>--help</code> とか。</p></li>
-<li><p>ファイル名の指定:<br/>
-  <code>--</code> 以降に指定することで、直前のオプション引数と区別する。</p></li>
-</ul>
-
-
-<h2 id="Git+の内部">Git の内部</h2>
-
+<h2 id="git--1">Git の内部</h2>
 <p>内部の実例を見ると、イメージがわき易いかも。</p>
 
-<h3 id="Git+のファイル構成">Git のファイル構成</h3>
-
+<h3 id="git--2">Git のファイル構成</h3>
 <pre><code>$ tree -F .git
 .git/
 ├── COMMIT_EDITMSG
@@ -799,8 +966,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
         └── v1.0.1
 </code></pre>
 
-<h3 id="refs+内のオブジェクト">refs 内のオブジェクト</h3>
-
+<h3 id="refs-">refs 内のオブジェクト</h3>
 <pre><code>$ git show-ref
 0acbba3b5bd52b9e169077a997bcf5d5f37faa96 refs/heads/gh-pages
 8403eb93d7e03ca02275d4027d9deadc51dfe37f refs/heads/master
@@ -811,8 +977,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </code></pre>
 
-<h3 id="ステージされてるオブジェクト">ステージされてるオブジェクト</h3>
-
+<h3 id="section-7">ステージされてるオブジェクト</h3>
 <pre><code>$ git cat-file -p HEAD^{tree}
 040000 tree 67036e7bea736aa461bf7e737b74925db941999f  PIE-1.0beta5
 100644 blob 91b43a3e6572f2ffbe3b1d777d04104a976be686  README.md
@@ -822,22 +987,18 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 040000 tree 436ea11960214eac6f68c3b0f935a078903d7062  js
 </code></pre>
 
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section-8">関連リンク</h4>
 <ul>
-<li><a href="http://schacon.github.com/git/gitrepository-layout.html" title="gitrepository-layout(5)">gitrepository-layout(5) Manual Page</a></li>
-<li><a href="http://schacon.github.com/git/githooks.html" title="githooks(5)">githooks(5) Manual Page</a></li>
+  <li><a href="http://schacon.github.com/git/gitrepository-layout.html" title="gitrepository-layout(5)">gitrepository-layout(5) Manual Page</a></li>
+  <li><a href="http://schacon.github.com/git/githooks.html" title="githooks(5)">githooks(5) Manual Page</a></li>
 </ul>
 
-
-<h2 id="日本語リソース">日本語リソース</h2>
-
+<h2 id="section-9">日本語リソース</h2>
 <ul>
-<li><a href="http://bit.ly/yG6pRv">Pro Git 日本語版PDF (2011-12-10).pdf</a></li>
-<li><a href="http://www8.atwiki.jp/git_jp/">Git入門 - ドキュメント</a></li>
-<li><a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/user-manual.html">Git ユーザマニュアル (バージョン 1.5.3 以降用)</a></li>
+  <li><a href="http://bit.ly/yG6pRv">Pro Git 日本語版PDF (2011-12-10).pdf</a></li>
+  <li><a href="http://www8.atwiki.jp/git_jp/">Git入門 - ドキュメント</a></li>
+  <li><a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/user-manual.html">Git ユーザマニュアル (バージョン 1.5.3 以降用)</a></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -850,21 +1011,15 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 ふと <a href="http://octopress.org/">Octopress</a> も <a href="http://jekyllrb.com/">jekyll</a> のラッパーだということを思い出し、<a href="https://github.com/mojombo/jekyll/wiki/Plugins">Wiki に載ってるプラグイン</a> から易しそうなタグクラウドを3つばかり試してみた。</p>
 
 <ul>
-<li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
-<li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
-<li><del>Yeban&#8217;s Weblog - Jekyll - Tag Cloud</del></li>
+  <li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
+  <li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
+  <li><del>Yeban’s Weblog - Jekyll - Tag Cloud</del>
+<!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb --></li>
 </ul>
 
-
-<!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb -->
-
-
-<p>結果は、どれも動作しない&#8230;</p>
-
+<p>結果は、どれも動作しない…
 <!--more-->
-
-
-<p>jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
+jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
 
 <p>ということで、<a href="https://gist.github.com/1577100" title="Gist で公開中">3番目のコードを動くようにしてみた</a> 。文字の大きさをログスケールで変えたりしていて、イイ感じ。</p>
 
@@ -874,111 +1029,104 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 
 <p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
 
-<h3 id="使い方">使い方</h3>
+<h3 id="section">使い方</h3>
 
 <pre><code>{% tag_cloud [counter:true] %}
 {% category_list [counter:true] %}
 </code></pre>
 
-<h4 id="オプション">オプション</h4>
+<h4 id="section-1">オプション</h4>
 
 <ul>
-<li>counter:<br/>
+  <li>counter:<br />
 タグの後ろにカッコ付きで記事数を付ける場合には <code>true</code> を指定する</li>
 </ul>
 
+<h4 id="section-2">使用例</h4>
 
-<h4 id="使用例">使用例</h4>
+<h5 id="sourceincludecustomasidestagcloudhtml">source/_include/custom/asides/tag_cloud.html</h5>
 
-<h5 id="source/_include/custom/asides/tag_cloud.html">source/_include/custom/asides/tag_cloud.html</h5>
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;section&gt;</span>
+</span><span class="line">  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;</span>
+</span><span class="line">    <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;tag-cloud&quot;</span><span class="nt">&gt;</span>{% tag_cloud counter:true %}<span class="nt">&lt;/span&gt;</span>
+</span><span class="line"><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;tag-cloud&quot;</span><span class="nt">&gt;</span>{% tag_cloud counter:true %}<span class="nt">&lt;/span&gt;</span>
-</span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<h5 id="sourceincludecustomasidescategorylisthtml">source/_include/custom/asides/category_list.html</h5>
 
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;section&gt;</span>
+</span><span class="line">  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class="line">    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;category-list&quot;</span><span class="nt">&gt;</span>{% category_list counter:true %}<span class="nt">&lt;/ul&gt;</span>
+</span><span class="line"><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h5 id="source/_include/custom/asides/category_list.html">source/_include/custom/asides/category_list.html</h5>
+<h5 id="sasscustomstylesscss">sass/custom/_styles.scss</h5>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;category-list&quot;</span><span class="nt">&gt;</span>{% category_list counter:true %}<span class="nt">&lt;/ul&gt;</span>
-</span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="nf">#tag-cloud</span> <span class="p">{</span>
+</span><span class="line">  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h5 id="sass/custom/_styles.scss">sass/custom/_styles.scss</h5>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#tag-cloud</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5 id="_config.yml">_config.yml</h5>
+<h5 id="configyml">_config.yml</h5>
 
 <pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
 </code></pre>
 
-<h5 id="適用例">適用例</h5>
+<h5 id="section-3">適用例</h5>
 
-<p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
+<p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" /></p>
 
-<h3 id="ダウンロードとインストール">ダウンロードとインストール</h3>
+<h3 id="section-4">ダウンロードとインストール</h3>
 
 <ul>
-<li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
+  <li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br />
 サイドバーに表示するために必要な最低限追加すべきファイルをアップしてある。
 自分の Octopress リポジトリとは別にクローンし、ファイルをコピーして使う。</li>
 </ul>
 
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>・
-</span><span class='line'>├─ plugins/
-</span><span class='line'>│  └── tag_cloud.rb
-</span><span class='line'>└─ source/
-</span><span class='line'>   └─ _includes/
-</span><span class='line'>      └─ custom/
-</span><span class='line'>         └─ asides/
-</span><span class='line'>            ├─ category_list.html
-</span><span class='line'>            └─ tag_cloud.html
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">・
+</span><span class="line">├─ plugins/
+</span><span class="line">│  └── tag_cloud.rb
+</span><span class="line">└─ source/
+</span><span class="line">   └─ _includes/
+</span><span class="line">      └─ custom/
+</span><span class="line">         └─ asides/
+</span><span class="line">            ├─ category_list.html
+</span><span class="line">            └─ tag_cloud.html
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li><del>tokkonopapa/octopress - GitHub</del><br/>
+  <li><del>tokkonopapa/octopress - GitHub</del><br />
 <del>Octopress 本家のリポジトリをクローンし、別ブランチ（<code>tagcloud</code>）に上記ファイルを追加したもの。自分の Octopress リポジトリ内でリモートリポジトリとして追加し、<code>tagcloud</code> ブランチから追加すべきファイルをチェックアウトする（と出来るハズ）。</del>（このリポジトリは削除しました）</li>
 </ul>
 
-
-<h3 id="後記">後記</h3>
+<h3 id="section-5">後記</h3>
 
 <p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
 
-<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T--4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" ></a></p>
+<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T--4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" /></a></p>
 
 <p>ただ Ruby という言語を触るのは今回が初めてなため、無駄の省き方も分かっていない。さらに、今回のようなプラグインを、Git という仕組みを使ってどうやったら本体にスムーズに導入できるのかも課題。</p>
 
@@ -993,36 +1141,48 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
     <id>http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles</id>
     <content type="html"><![CDATA[<p>Octopress には、スタイル設定に <a href="http://sass-lang.com/" title="Syntactically Awesome StyleSheets">Sass</a> と <a href="http://compass-style.org/">Compass</a> が導入されているため、カスタマイズには、SCSS（Sassy CSS）に関する知識が必要である。</p>
 
-<p>この際だから覚えてしまうことにする。</p>
-
+<p>この際だから覚えてしまうことにする。
 <!--more-->
+### Sass 関連の参考資料 ###
+たぶん何度も読み直すと思うので、ここにメモ。</p>
 
-
-<h3 id="Sass+関連の参考資料">Sass 関連の参考資料</h3>
-
-<p>たぶん何度も読み直すと思うので、ここにメモ。</p>
-
-<h4 id="Sass">Sass</h4>
+<h4 id="sass">Sass</h4>
 
 <ul>
-<li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
-<li><a href="http://hail2u.net/documents/sass-tutorial.html">Sass - チュートリアル</a></li>
-<li><a href="http://hail2u.net/documents/sass-and-sassy-css.html">Sass、そしてSassy CSS (SCSS)</a></li>
-<li><a href="http://nodot.jp/articles/singletoninsass">Sass で Singleton を実現し、安心してクラスを再利用する - nodot</a></li>
-<li><a href="http://tech.naver.jp/blog/?p=845">sassの抑えておきたいfunctionの使い方 « NAVER Engineers&#8217; Blog</a></li>
+  <li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
+  <li><a href="http://hail2u.net/documents/sass-tutorial.html">Sass - チュートリアル</a></li>
+  <li><a href="http://hail2u.net/documents/sass-and-sassy-css.html">Sass、そしてSassy CSS (SCSS)</a></li>
+  <li><a href="http://nodot.jp/articles/singletoninsass">Sass で Singleton を実現し、安心してクラスを再利用する - nodot</a></li>
+  <li><a href="http://tech.naver.jp/blog/?p=845">sassの抑えておきたいfunctionの使い方 « NAVER Engineers’ Blog</a></li>
 </ul>
 
-
-<h4 id="Compass">Compass</h4>
+<h4 id="compass">Compass</h4>
 
 <ul>
-<li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
-<li><a href="http://compass-style.org/index/mixins/">Compass Documentation | All Mixins | Compass Documentation</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Compass Core Framework</td>
+          <td>Compass Documentation](http://compass-style.org/reference/compass/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Compass Documentation</td>
+          <td>All Mixins</td>
+          <td>Compass Documentation](http://compass-style.org/index/mixins/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
 
-
-<h3 id="Octopress+の+Sass+構成">Octopress の Sass 構成</h3>
-
+<h3 id="octopress--sass-">Octopress の Sass 構成</h3>
 <pre><code>sass/
 ├─ screen.scss              # 全ての定義の始まりであり、終わり
 ├─ _base.scss               # 各 base/* の読み込み
@@ -1055,142 +1215,150 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
    └─ _footer.scss          # フッター部に関するスタイル定義
 </code></pre>
 
-<h4 id="screen.scss">screen.scss</h4>
+<h4 id="screenscss">screen.scss</h4>
 
-<figure class='code'><figcaption><span>screen.scss  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@import</span> <span class="s2">&quot;compass&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@include</span> <span class="nt">global-reset</span><span class="p">;</span>
-</span><span class='line'><span class="k">@include</span> <span class="nt">reset-html5</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/colors&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/fonts&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/layout&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;base&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;partials&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/styles&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>screen.scss </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="k">@import</span> <span class="s2">&quot;compass&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">@include</span> <span class="nt">global-reset</span><span class="p">;</span>
+</span><span class="line"><span class="k">@include</span> <span class="nt">reset-html5</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@import</span> <span class="s2">&quot;custom/colors&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">@import</span> <span class="s2">&quot;custom/fonts&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">@import</span> <span class="s2">&quot;custom/layout&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">@import</span> <span class="s2">&quot;base&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">@import</span> <span class="s2">&quot;partials&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">@import</span> <span class="s2">&quot;custom/styles&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
 
-<h3 id="カスタマイズ例">カスタマイズ例</h3>
-
+<h3 id="section">カスタマイズ例</h3>
 <p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
 
-<h4 id="_color.scss">_color.scss</h4>
-
+<h4 id="colorscss">_color.scss</h4>
 <p>まずはテーマカラーの調整。</p>
 
-<figure class='code'><figcaption><span>_color.scss  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">colors</span> <span class="nt">defined</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
-</span><span class='line'><span class="err">$</span><span class="nt">header-bg</span><span class="o">:</span> <span class="nf">#04263e</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">nav-bg</span><span class="o">:</span> <span class="nt">desaturate</span><span class="o">(</span><span class="nt">lighten</span><span class="o">(</span><span class="nf">#a0bfd6</span><span class="o">,</span> <span class="nt">18</span><span class="o">),</span> <span class="nt">5</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">footer-bg</span><span class="o">:</span> <span class="nf">#d1e4f2</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">footer-color</span><span class="o">:</span> <span class="nf">#666</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">footer-link-color-hover</span><span class="o">:</span> <span class="nt">darken</span><span class="o">(</span><span class="err">$</span><span class="nt">footer-bg</span><span class="o">,</span> <span class="nt">50</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_color.scss </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">//</span> <span class="nt">Change</span> <span class="nt">colors</span> <span class="nt">defined</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
+</span><span class="line"><span class="err">$</span><span class="nt">header-bg</span><span class="o">:</span> <span class="nf">#04263e</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class="line"><span class="err">$</span><span class="nt">nav-bg</span><span class="o">:</span> <span class="nt">desaturate</span><span class="o">(</span><span class="nt">lighten</span><span class="o">(</span><span class="nf">#a0bfd6</span><span class="o">,</span> <span class="nt">18</span><span class="o">),</span> <span class="nt">5</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class="line"><span class="err">$</span><span class="nt">footer-bg</span><span class="o">:</span> <span class="nf">#d1e4f2</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class="line"><span class="err">$</span><span class="nt">footer-color</span><span class="o">:</span> <span class="nf">#666</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span><span class="line"><span class="err">$</span><span class="nt">footer-link-color-hover</span><span class="o">:</span> <span class="nt">darken</span><span class="o">(</span><span class="err">$</span><span class="nt">footer-bg</span><span class="o">,</span> <span class="nt">50</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h4 id="_styles.scss">_styles.scss</h4>
-
+<h4 id="stylesscss">_styles.scss</h4>
 <p>その他の細かなスタイルのカスタマイズ。</p>
 
-<figure class='code'><figcaption><span>_styles.scss  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_typography</span><span class="nc">.scss</span>
-</span><span class='line'><span class="k">@mixin</span> <span class="nt">header-text</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">@include</span> <span class="nt">text-shadow</span><span class="o">(</span><span class="nt">-5px</span> <span class="nt">-5px</span> <span class="nt">10px</span> <span class="nf">#000</span><span class="o">)</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">992px</span><span class="o">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nt">h1</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
-</span><span class='line'><span class="nt">html</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="k">background</span><span class="p">(</span><span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="k">top</span><span class="o">,</span> <span class="err">$</span><span class="k">page</span><span class="o">-</span><span class="n">bg</span><span class="o">,</span> <span class="err">$</span><span class="n">header</span><span class="o">-</span><span class="n">bg</span><span class="p">));</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nt">body</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="p">(</span><span class="m">0</span> <span class="m">0</span> <span class="m">15px</span> <span class="m">#000</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_styles.scss </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_typography</span><span class="nc">.scss</span>
+</span><span class="line"><span class="k">@mixin</span> <span class="nt">header-text</span> <span class="p">{</span>
+</span><span class="line">  <span class="k">@include</span> <span class="nt">text-shadow</span><span class="o">(</span><span class="nt">-5px</span> <span class="nt">-5px</span> <span class="nt">10px</span> <span class="nf">#000</span><span class="o">)</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
+</span><span class="line">  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span>
+</span><span class="line">  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">992px</span><span class="o">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="nt">h1</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span> <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
+</span><span class="line"><span class="nt">html</span> <span class="p">{</span>
+</span><span class="line">  <span class="o">@</span><span class="n">include</span> <span class="k">background</span><span class="p">(</span><span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="k">top</span><span class="o">,</span> <span class="err">$</span><span class="k">page</span><span class="o">-</span><span class="n">bg</span><span class="o">,</span> <span class="err">$</span><span class="n">header</span><span class="o">-</span><span class="n">bg</span><span class="p">));</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="nt">body</span> <span class="p">{</span>
+</span><span class="line">  <span class="o">@</span><span class="n">include</span> <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="p">(</span><span class="m">0</span> <span class="m">0</span> <span class="m">15px</span> <span class="m">#000</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h4 id="謎の右マージンを直す">謎の右マージンを直す</h4>
-
+<h4 id="section-1">謎の右マージンを直す</h4>
 <p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
 
-<p><img class="center" src="https://lh3.googleusercontent.com/-C2lRp_c2yAw/TwLWli56Q1I/AAAAAAAAAIY/cKbDczthVc8/s380/UnknownRightMargin.png" width="380" height="240" title="'謎のマージン'" ></p>
+<p><img class="center" src="https://lh3.googleusercontent.com/-C2lRp_c2yAw/TwLWli56Q1I/AAAAAAAAAIY/cKbDczthVc8/s380/UnknownRightMargin.png" width="380" height="240" title="'謎のマージン'" /></p>
 
-<p><img class="center" src="https://lh4.googleusercontent.com/-FvFRXgvmCqg/TwLWllgHJFI/AAAAAAAAAIU/jT5zjwsmSsc/s380/TwitterFollowButton.png" width="380" height="240" title="'Followボタンが原因'" ></p>
+<p><img class="center" src="https://lh4.googleusercontent.com/-FvFRXgvmCqg/TwLWllgHJFI/AAAAAAAAAIU/jT5zjwsmSsc/s380/TwitterFollowButton.png" width="380" height="240" title="'Followボタンが原因'" /></p>
 
 <p>原因は、サイドバー内側の幅が 260px に設定されているのに対し、フォローボタンに幅が指定されておらず、デフォルトの 300px となっていること。</p>
 
 <p><code>source/_include/asides/twitter.html</code> で、フォローボタンの幅を <code>data-width="260px"</code> と指定して解決（<code>auto</code> に設定してもダメ）。</p>
 
-<div><script src='https://gist.github.com/1554383.js?file=twitter.html'></script>
+<div><script src="https://gist.github.com/1554383.js?file=twitter.html"></script>
 <noscript><pre><code>  {% if site.twitter_follow_button %}
     &lt;a href=&quot;http://twitter.com/{{ site.twitter_user }}&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;{{ site.twitter_show_follower_count }}&quot; data-width=&quot;260px&quot;&gt;Follow @{{ site.twitter_user }}&lt;/a&gt;
   {% else %}
     &lt;p&gt;Follow &lt;a href=&quot;http://twitter.com/{{site.twitter_user}}&quot;&gt;@{{ site.twitter_user }}&lt;/a&gt;&lt;/p&gt;
   {% endif %}</code></pre></noscript></div>
 
-
-<h5 id="参考情報">参考情報</h5>
+<h5 id="section-2">参考情報</h5>
 
 <ul>
-<li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
-<li><a href="https://dev.twitter.com/docs/follow-button">Follow Button | Twitter Developers</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Tweet Button</td>
+          <td>Twitter Developers](https://dev.twitter.com/docs/tweet-button)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Follow Button</td>
+          <td>Twitter Developers](https://dev.twitter.com/docs/follow-button)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
 
-
-<h5 id="2012年1月11日+追記">2012年1月11日 追記</h5>
-
+<h5 id="section-3">2012年1月11日 追記</h5>
 <p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
 ]]></content>
   </entry>
@@ -1202,71 +1370,62 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
     <id>http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo</id>
     <content type="html"><![CDATA[<p>Octopress のコードリーディングをしていて見つけた隠し機能について。同じネタが既に
 <a href="http://www.meatleasing.com/octopress-hidden-features/index.html">Octopress Hidden Features</a>
-に挙がっていた。</p>
-
+に挙がっていた。
 <!--more-->
+### &lt;meta&gt; タグの追加機能 ###
+<code>source/_includes/head.html</code> の10行目付近から。</p>
 
-
-<h3 id="+lt;meta+gt;+タグの追加機能">&lt;meta&gt; タグの追加機能</h3>
-
-<p><code>source/_includes/head.html</code> の10行目付近から。</p>
-
-<div><script src='https://gist.github.com/1548796.js?file=head.html'></script>
+<div><script src="https://gist.github.com/1548796.js?file=head.html"></script>
 <noscript><pre><code>  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
   &lt;meta name=&quot;description&quot; content=&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;&gt;
   {% if page.keywords %}&lt;meta name=&quot;keywords&quot; content=&quot;{{ page.keywords }}&quot;&gt;{% endif %}</code></pre></noscript></div>
 
-
 <p>記事の <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML ブロック</a> に <code>description</code> か、記事から HTML を除いた先頭150字が <code>&lt;meta name="description" content="..."&gt;</code> に挿入される。
 同様に <code>keywords</code> で <code>&lt;meta name="keywords" content="..."&gt;</code> が挿入される。</p>
 
-<figure class='code'><figcaption><span>記事の YAML ブロック・サンプル</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;SEOに効くOctopressの隠し機能&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2012-01-02 09:31</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">octopress</span><span class="p-Indicator">]</span>
-</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress のコードリーディングをしていて見つけた隠し機能について。</span>
-</span><span class='line'><span class="l-Scalar-Plain">keywords</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress, SEO</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>記事の YAML ブロック・サンプル</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="nn">---</span>
+</span><span class="line"><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class="line"><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;SEOに効くOctopressの隠し機能&quot;</span>
+</span><span class="line"><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2012-01-02 09:31</span>
+</span><span class="line"><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class="line"><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">octopress</span><span class="p-Indicator">]</span>
+</span><span class="line"><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress のコードリーディングをしていて見つけた隠し機能について。</span>
+</span><span class="line"><span class="l-Scalar-Plain">keywords</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress, SEO</span>
+</span><span class="line"><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>ちなみにトップページの場合も、先頭記事が <code>{ content }</code> として参照されるのが、何だかアレな感じ。</p>
 
-<h4 id="plugins/octopress_filters.rb+の改修">plugins/octopress_filters.rb の改修</h4>
-
+<h4 id="pluginsoctopressfiltersrb-">plugins/octopress_filters.rb の改修</h4>
 <p>記事の先頭150字以内に改行が含まれていると、<code>content="..."</code> が改行されちゃうのもアレ（HTML 的には OK だから、気にすることないけどネ）。</p>
 
 <p>そこで、<code>plugins/octopress_filters.rb</code>（<a href="https://github.com/imathis/octopress/blob/master/plugins/octopress_filters.rb">ソースコードの全体</a>）の104行目付近 <code>condense_spaces</code> に改行を削除するコードを追加。</p>
 
-<figure class='code'><figcaption><span>plugins/octopress_filters.rb の改修</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># Condenses multiple spaces and tabs into a single space</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">condense_spaces</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\s{2,}/</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\n/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>plugins/octopress_filters.rb の改修</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line">  <span class="c1"># Condenses multiple spaces and tabs into a single space</span>
+</span><span class="line">  <span class="k">def</span> <span class="nf">condense_spaces</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+</span><span class="line">    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\s{2,}/</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span><span class="line">    <span class="n">input</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\n/</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span class="line">  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h4 id="Rakefile+の改修">Rakefile の改修</h4>
-
+<h4 id="rakefile-">Rakefile の改修</h4>
 <p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
 
-<div><script src='https://gist.github.com/1548796.js?file=Rakefile'></script>
+<div><script src="https://gist.github.com/1548796.js?file=Rakefile"></script>
 <noscript><pre><code>  puts &quot;Creating new post: #{filename}&quot;
   open(filename, 'w') do |post|
     post.puts &quot;---&quot;
@@ -1280,15 +1439,12 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
     post.puts &quot;---&quot;
   end</code></pre></noscript></div>
 
-
-<h3 id="サイドバーへの+`About+Me`+追加">サイドバーへの <code>About Me</code> 追加</h3>
-
+<h3 id="about-me-">サイドバーへの <code>About Me</code> 追加</h3>
 <p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
 
-<figure class='code'><figcaption><span>_config.yml のサイドバーに about.html を指定する</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">custom/asides/about.html</span><span class="p-Indicator">,</span> <span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/github.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml のサイドバーに about.html を指定する</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">custom/asides/about.html</span><span class="p-Indicator">,</span> <span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/github.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
@@ -1297,14 +1453,10 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
     <link href="http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress/"/>
     <updated>2011-12-31T22:21:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress</id>
-    <content type="html"><![CDATA[<p>ついでに Twitter、Google+1、Facebook の日本語化と JavaScript の非同期読み込みコードの共通化も。</p>
-
+    <content type="html"><![CDATA[<p>ついでに Twitter、Google+1、Facebook の日本語化と JavaScript の非同期読み込みコードの共通化も。
 <!--more-->
-
-
-<h3 id="関連ファイルの抽出">関連ファイルの抽出</h3>
-
-<div><script src='https://gist.github.com/1544095.js?file=Related-Files'></script>
+### 関連ファイルの抽出 ###</p>
+<div><script src="https://gist.github.com/1544095.js?file=Related-Files"></script>
 <noscript><pre><code>source
 └── _includes/
     ├── post/
@@ -1316,14 +1468,12 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
         ├── twitter_sharing.html     # after_footer.html から
         └── custom/after_footer.html # after_footer.html から（コメントのみ）</code></pre></noscript></div>
 
+<h3 id="section">ファイルの修正</h3>
 
-<h3 id="ファイルの修正">ファイルの修正</h3>
-
-<h4 id="_config.yml">_config.yml</h4>
-
+<h4 id="configyml">_config.yml</h4>
 <p>各ボタンの言語設定、Facebook アプリケーション ID 設定などを追加する。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=_config.yml'></script>
+<div><script src="https://gist.github.com/1544095.js?file=_config.yml"></script>
 <noscript><pre><code># Twitter
 twitter_tweet_button: true
 twitter_tweet_button_lang: ja
@@ -1338,12 +1488,10 @@ facebook_like: true
 facebook_lang: ja_JP
 facebook_appID:</code></pre></noscript></div>
 
-
-<h4 id="sharing.html">sharing.html</h4>
-
+<h4 id="sharinghtml">sharing.html</h4>
 <p>適当な位置にはてブを追加する。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=sharing.html'></script>
+<div><script src="https://gist.github.com/1544095.js?file=sharing.html"></script>
 <noscript><pre><code>&lt;div class=&quot;sharing&quot;&gt;
   {% if site.twitter_tweet_button %}
   &lt;a href=&quot;http://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-url=&quot;{{ site.url }}{{ page.url }}&quot; data-via=&quot;{{ site.twitter_user }}&quot; data-counturl=&quot;{{ site.url }}{{ page.url }}&quot; {% if site.twitter_tweet_button_lang %}data-lang=&quot;{{ site.twitter_tweet_button_lang }}&quot;{% endif %}&gt;Tweet&lt;/a&gt;
@@ -1363,12 +1511,10 @@ facebook_appID:</code></pre></noscript></div>
   {% endif %}
 &lt;/div&gt;</code></pre></noscript></div>
 
-
-<h4 id="after_footer.html">after_footer.html</h4>
-
+<h4 id="afterfooterhtml">after_footer.html</h4>
 <p>Facebook、Google+1、Twitter をコメントアウトする。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=after_footer.html'></script>
+<div><script src="https://gist.github.com/1544095.js?file=after_footer.html"></script>
 <noscript><pre><code>{% include disqus.html %}
 {% comment %}
 {% include facebook_like.html %}
@@ -1377,12 +1523,10 @@ facebook_appID:</code></pre></noscript></div>
 {% endcomment %}
 {% include custom/after_footer.html %}</code></pre></noscript></div>
 
-
-<h4 id="custum/after_footer.html">custum/after_footer.html</h4>
-
+<h4 id="custumafterfooterhtml">custum/after_footer.html</h4>
 <p>Google+1、Facebook の言語設定と JavaScript の非同期読み込みコードを共通化してまとめる。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=custum-after_footer.html'></script>
+<div><script src="https://gist.github.com/1544095.js?file=custum-after_footer.html"></script>
 <noscript><pre><code>{% comment %}
   Add content to be output at the bottom of each page. (You might use this for analytics scripts, for example)
 {% endcomment %}
@@ -1406,26 +1550,30 @@ facebook_appID:</code></pre></noscript></div>
 })(this,document);
 &lt;/script&gt;</code></pre></noscript></div>
 
-
-<h3 id="Facebook+の+AppID+について">Facebook の AppID について</h3>
-
+<h3 id="facebook--appid-">Facebook の AppID について</h3>
 <p><code>facebook_like.html</code> には、作者のものと思われるアプリケーション ID が埋め込まれている。</p>
 
-<figure class='code'><figcaption><span>facebook_like.html  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/en_US/all.js#appId=212934732101925&amp;xfbml=1&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>facebook_like.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line">  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/en_US/all.js#appId=212934732101925&amp;xfbml=1&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>本来これは <code>_config.yml</code> で設定すべき事項。言語設定も含めて pull request するべきなんでしょうかネ。</p>
 
-<h3 id="参考情報">参考情報</h3>
-
+<h3 id="section-1">参考情報</h3>
 <ul>
-<li><a href="http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/asynchronous-loading-of-major-social-buttons/">最近海外で流行りのTwitter,Facebook,Google+1,Analyticsをまとめる非同期スクリプトにはてなを加えてみた | ゆっくりと…</a></li>
-<li><a href="http://developers.facebook.com/setup/">Create an App - Facebook開発者</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[最近海外で流行りのTwitter,Facebook,Google+1,Analyticsをまとめる非同期スクリプトにはてなを加えてみた</td>
+          <td>ゆっくりと…](http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/asynchronous-loading-of-major-social-buttons/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><a href="http://developers.facebook.com/setup/">Create an App - Facebook開発者</a></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -1436,61 +1584,54 @@ facebook_appID:</code></pre></noscript></div>
     <id>http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket</id>
     <content type="html"><![CDATA[<p>あらためて GitHub へのインストールから、GitHub Pages への記事投稿、Bitbucket での原稿管理までをまとめておく。
 インストールは、公式サイトの <a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従う。
-GitHub Pages には、ユーザーページとプロジェクトページがあるが、以下ユーザーページ用を主とする。</p>
-
+GitHub Pages には、ユーザーページとプロジェクトページがあるが、以下ユーザーページ用を主とする。
 <!--more-->
-
-
-<h3 id="1.+Octopress+利用の前提条件">1. Octopress 利用の前提条件</h3>
+### 1. Octopress 利用の前提条件 ###</p>
 
 <ul>
-<li>Git + GitHub アカウント</li>
-<li>ruby <del>1.9.2</del> 1.9.3 以上 + RubyGems<br/>
+  <li>Git + GitHub アカウント</li>
+  <li>ruby <del>1.9.2</del> 1.9.3 以上 + RubyGems<br />
   <a href="http://rubygems.org/">RubyGems</a> は、ruby 1.9.2 以上であれば <a href="http://rubyinstaller.org/" title="RubyInstaller for Windows">インストーラー</a> のパッケージに含まれているという情報が多い（特に Windows）。
   Mac であれば、<a href="http://beginrescueend.com/rvm/install/" title="RVM: Ruby Version Manager - Installing RVM">rvm</a> からアップデートする。
   また、gem は <code>gem update --system</code> で最新版にしておく。</li>
 </ul>
 
-
-<h3 id="2.+GitHub+ユーザーページ用リポジトリの作成">2. GitHub ユーザーページ用リポジトリの作成</h3>
+<h3 id="github-">2. GitHub ユーザーページ用リポジトリの作成</h3>
 
 <p>GitHub で <code>username.github.com</code> の <a href="https://github.com/repositories/new">リポジトリを作成</a> しておく。</p>
 
-<figure class='code'><figcaption><span>ローカル側の設定  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">mkdir</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-</span><span class='line'><span class="n">$</span> <span class="n">cd</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">init</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ローカル側の設定 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">mkdir</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+</span><span class="line"><span class="n">$</span> <span class="n">cd</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">init</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Initialized empty Git repository in /path/to/repo/username.github.com/.git/
 </code></pre>
 
-<figure class='code'><figcaption><span>何でもいいからコミット  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">touch</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">first</span> <span class="n">commit</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>何でもいいからコミット </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">touch</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">first</span> <span class="n">commit</span><span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>[master (root-commit) a3bd2f1] first commit
  0 files changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 README
 </code></pre>
 
-<figure class='code'><figcaption><span>リモートの登録  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="nl">com:</span><span class="n">username</span><span class="o">/</span><span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">git</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>リモートの登録 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="nl">com:</span><span class="n">username</span><span class="o">/</span><span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">git</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Counting objects: 3, done.
 Writing objects: 100% (3/3), 205 bytes, done.
@@ -1500,17 +1641,16 @@ To git@github.com:username/username.github.com.git
 Branch master set up to track remote branch master from origin.
 </code></pre>
 
-<h3 id="3.+Octopress+のインストール">3. Octopress のインストール</h3>
+<h3 id="octopress-">3. Octopress のインストール</h3>
 
 <p>とりあえず、ユーザーページ用リポジトリ <code>username.github.com</code> と同じ階層にインストールする。</p>
 
-<figure class='code'><figcaption><span>Octopress のクローンを作る  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">cd</span> <span class="p">..</span><span class="o">/</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="nl">git:</span><span class="c1">//github.com/imathis/octopress.git octopress</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Octopress のクローンを作る </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">cd</span> <span class="p">..</span><span class="o">/</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="nl">git:</span><span class="c1">//github.com/imathis/octopress.git octopress</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Cloning into 'octopress'...
 remote: Counting objects: 5685, done.
@@ -1520,13 +1660,12 @@ Receiving objects: 100% (5685/5685), 1.21 MiB | 435 KiB/s, done.
 Resolving deltas: 100% (3247/3247), done.
 </code></pre>
 
-<figure class='code'><figcaption><span>bundler をインストール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">cd</span> <span class="n">octopress</span>
-</span><span class='line'><span class="n">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>bundler をインストール </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">cd</span> <span class="n">octopress</span>
+</span><span class="line"><span class="n">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Successfully installed bundler-1.0.21
 1 gem installed
@@ -1534,15 +1673,14 @@ Installing ri documentation for bundler-1.0.21...
 Installing RDoc documentation for bundler-1.0.21...
 </code></pre>
 
-<p>ちなみに、いちいち <code>ri</code> とか <code>RDoc</code> とかのインストールがうざい場合、<a href="http://d.hatena.ne.jp/ruedap/20110514/ruby_gem_install_no_ri_no_rdoc_gemrc">RubyGemsでgemのインストール時に&#8211;no-ri &#8211;no-rdocをデフォルトにする - アインシュタインの電話番号</a> を参考に <code>.gemrc</code> を設定する。</p>
+<p>ちなみに、いちいち <code>ri</code> とか <code>RDoc</code> とかのインストールがうざい場合、<a href="http://d.hatena.ne.jp/ruedap/20110514/ruby_gem_install_no_ri_no_rdoc_gemrc">RubyGemsでgemのインストール時に–no-ri –no-rdocをデフォルトにする - アインシュタインの電話番号</a> を参考に <code>.gemrc</code> を設定する。</p>
 
 <p>次はおそらく <code>Gemfile</code> に書かれた gem を、依存関係含めてインストールしているのだと思う。</p>
 
-<figure class='code'><figcaption><span>必要な gem をインストール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">bundle</span> <span class="n">install</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>必要な gem をインストール </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">bundle</span> <span class="n">install</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Using rake (0.9.2) 
 Using RedCloth (4.2.8) 
@@ -1553,24 +1691,22 @@ Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem 
 
 <p>そして、Rakefile のエントリー <code>install</code> を実行する。</p>
 
-<figure class='code'><figcaption><span>Octopress デフォルトのテーマ classic のインストールやら  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">rake</span> <span class="n">install</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Octopress デフォルトのテーマ classic のインストールやら </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">rake</span> <span class="n">install</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>## Copying classic theme into ./source and ./sass
 </code></pre>
 
-<h3 id="4.+Octopress+サイトの立ち上げ">4. Octopress サイトの立ち上げ</h3>
+<h3 id="octopress--1">4. Octopress サイトの立ち上げ</h3>
 
 <p>ここからは、公式サイトの <a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages With Github User/Organization pages</a> の内容。</p>
 
-<figure class='code'><figcaption><span>GitHub Pages との接続設定  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">rake</span> <span class="n">setup_github_pages</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>GitHub Pages との接続設定 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">rake</span> <span class="n">setup_github_pages</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Enter the read/write url for your repository: git@github.com:username/username.github.com.git
 Added remote git@github.com:username/username.github.com.git as origin
@@ -1590,55 +1726,50 @@ Initialized empty Git repository in /path/to/repo/octopress/username.github.com/
 <p>実行される内容は次の通り。</p>
 
 <ol>
-<li>GitHub Pages リポジトリへの read/write 可能なプロトコル／パスを入力</li>
-<li><code>imathis/octopress</code> を指すリモート名を <code>origin</code> から <code>octopress</code> に変更</li>
-<li>GitHub Pages リポジトリへのリモート名を <code>origin</code> に設定</li>
-<li>アクティブなブランチを <code>master</code> から <code>source</code> に変更</li>
-<li>リポジトリへのパス名に応じて、ブログサイトの URL を設定</li>
-<li><code>_deploy</code> ディレクトリに、デプロイ用の <code>master</code> ブランチを設定</li>
+  <li>GitHub Pages リポジトリへの read/write 可能なプロトコル／パスを入力</li>
+  <li><code>imathis/octopress</code> を指すリモート名を <code>origin</code> から <code>octopress</code> に変更</li>
+  <li>GitHub Pages リポジトリへのリモート名を <code>origin</code> に設定</li>
+  <li>アクティブなブランチを <code>master</code> から <code>source</code> に変更</li>
+  <li>リポジトリへのパス名に応じて、ブログサイトの URL を設定</li>
+  <li><code>_deploy</code> ディレクトリに、デプロイ用の <code>master</code> ブランチを設定</li>
 </ol>
-
 
 <p>特に 4. 〜 6. 辺りの処理は、1. の入力に応じて自動的にデプロイ先のブランチが設定される（ユーザーページ用は <code>master</code>、プロジェクトページ用は <code>gh-pages</code>）。</p>
 
 <p>そして、サイトの生成とデプロイ（後述の「6. 新規記事、新規ページの作成」も同じ）。</p>
 
-<figure class='code'><figcaption><span>サイトの生成とデプロイ  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">rake</span> <span class="n">generate</span>
-</span><span class='line'><span class="n">rake</span> <span class="n">deploy</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>サイトの生成とデプロイ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">rake</span> <span class="n">generate</span>
+</span><span class="line"><span class="n">rake</span> <span class="n">deploy</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>2つを一気に実行するには <code>rake gen_deploy</code> を、まずはローカルでプレビューするという場合には <code>rake preview</code> を実行後に http://localhost:4000/ にアクセスする。</p>
 
-<h3 id="5.+Octopress+サイトの設定">5. Octopress サイトの設定</h3>
+<h3 id="octopress--2">5. Octopress サイトの設定</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/configuring/">Configuring Octopress</a> を参考に、<code>_config.yml</code> を設定。</p>
 
-<h3 id="6.+新規記事、新規ページの作成">6. 新規記事、新規ページの作成</h3>
+<h3 id="section">6. 新規記事、新規ページの作成</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/blogging/">Blogging Basics</a> を参照。</p>
 
-<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
+<h4 id="section-1">–新規投稿–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-2">コマンド</h5>
 <pre><code>rake new_post['post title']
 </code></pre>
 
 <p>記事のタイトルは、英語で。</p>
 
-<h5 id="ファイル">ファイル</h5>
-
+<h5 id="section-3">ファイル</h5>
 <pre><code>source/
 └── _post/
     └── YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml">YAMLブロック</h5>
 <pre><code>---
 layout: post
 title: "post title"
@@ -1650,24 +1781,21 @@ categories: [category1, ...]
 
 <p>ここで、<code>title</code> を日本語にすれば良い。</p>
 
-<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
+<h4 id="section-4">–新規ページ–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-5">コマンド</h5>
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="ファイル">ファイル</h5>
-
+<h5 id="section-6">ファイル</h5>
 <pre><code>source/
 └── my-new-page/
-    ├── index.markdown    # rake new_page[my-new-page]
-    └── index.html        # rake new_page[my-new-page.html]
+    ├── index.markdown	# rake new_page[my-new-page]
+    └── index.html		# rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml-1">YAMLブロック</h5>
 <pre><code>---
 layout: page
 title: 
@@ -1678,44 +1806,39 @@ footer: true
 ---
 </code></pre>
 
-<h3 id="7.+サイトの運用管理">7. サイトの運用管理</h3>
+<h3 id="section-7">7. サイトの運用管理</h3>
 
 <p><a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages</a> には、ユーザーページ、プロジェクトページのそれぞれで、本体のリポジトリと統合する方法が推奨されている。</p>
 
-<figure class='code'><figcaption><span>ユーザーページ用リポジトリへの push  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">your</span> <span class="n">message</span><span class="err">&#39;</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ユーザーページ用リポジトリへの push </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">your</span> <span class="n">message</span><span class="err">&#39;</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-
-
-<figure class='code'><figcaption><span>プロジェクトページ用リポジトリへの push  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="p">(</span><span class="n">your</span> <span class="n">repo</span> <span class="n">url</span><span class="p">)</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">config</span> <span class="n">branch</span><span class="p">.</span><span class="n">master</span><span class="p">.</span><span class="n">remote</span> <span class="n">origin</span> <span class="err">#</span> <span class="n">set</span> <span class="n">your</span> <span class="n">new</span> <span class="n">origin</span> <span class="n">as</span> <span class="n">the</span> <span class="k">default</span> <span class="n">branch</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>プロジェクトページ用リポジトリへの push </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="p">(</span><span class="n">your</span> <span class="n">repo</span> <span class="n">url</span><span class="p">)</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">config</span> <span class="n">branch</span><span class="p">.</span><span class="n">master</span><span class="p">.</span><span class="n">remote</span> <span class="n">origin</span> <span class="err">#</span> <span class="n">set</span> <span class="n">your</span> <span class="n">new</span> <span class="n">origin</span> <span class="n">as</span> <span class="n">the</span> <span class="k">default</span> <span class="n">branch</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>統合後は、ローカルの <code>octopress</code> リポジトリは不要になる。</p>
 
-<p><img src="https://lh5.googleusercontent.com/-W12FoatyQ0U/Tv1hkjI1lkI/AAAAAAAAAEA/2RTRvpi4k10/s600/OperationGitHub.png" width="600" height="363" title="1つのリポジトリに統合し、管理する" ></p>
+<p><img src="https://lh5.googleusercontent.com/-W12FoatyQ0U/Tv1hkjI1lkI/AAAAAAAAAEA/2RTRvpi4k10/s600/OperationGitHub.png" width="600" height="363" title="1つのリポジトリに統合し、管理する" /></p>
 
 <p>ただし、実際にやってみると次のようなデメリットもある。</p>
 
 <ul>
-<li><code>source</code> ブランチで管理外だった <code>_deploy</code> や <code>public</code> などを、デプロイ先のブランチでも管理外にする必要アリ。（<code>.gitignore</code> の再設定）。</li>
-<li><code>source</code> ブランチでの <code>rake deploy</code> で デプロイ先のブランチが直接更新されるため、<code>git fetch; git pull</code> でローカルに反映させる必要アリ。</li>
-<li>この反映が、場合によってはコンフリクトを発生させる。</li>
+  <li><code>source</code> ブランチで管理外だった <code>_deploy</code> や <code>public</code> などを、デプロイ先のブランチでも管理外にする必要アリ。（<code>.gitignore</code> の再設定）。</li>
+  <li><code>source</code> ブランチでの <code>rake deploy</code> で デプロイ先のブランチが直接更新されるため、<code>git fetch; git pull</code> でローカルに反映させる必要アリ。</li>
+  <li>この反映が、場合によってはコンフリクトを発生させる。</li>
 </ul>
-
 
 <p>コンフリクトは例えばこんな感じ。</p>
 
@@ -1734,57 +1857,60 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 <p>こうなると手作業でコンフリクトを解消するか、次のようにしてローカルの内容を強制的にリモートで上書きしなければならない。</p>
 
-<figure class='code'><figcaption><span>強制的にリモートの内容で上書きする  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>強制的にリモートの内容で上書きする </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>ということで特にユーザーページ用においては、Octopress リポジトリは単独で管理する、しかも非公開が好ましいと言うのが現時点での結論。</p>
 
-<p><img src="https://lh3.googleusercontent.com/-REF5krAHdqI/Tv1hklJ7kWI/AAAAAAAAAD8/0-i9S4AswjY/s600/OperationBitbucket.png" width="600" height="366" title="リポジトリを統合せず、単独で管理する" ></p>
+<p><img src="https://lh3.googleusercontent.com/-REF5krAHdqI/Tv1hklJ7kWI/AAAAAAAAAD8/0-i9S4AswjY/s600/OperationBitbucket.png" width="600" height="366" title="リポジトリを統合せず、単独で管理する" /></p>
 
 <p>この目的にぴったりなのが <a href="https://bitbucket.org/">Bitbucket</a> というわけ。Git が使える上、リポジトリを非公開にでき、5人まで無料。個人利用であれば言うことなし。</p>
 
 <p>Bitbucket のアカウント取得後にまずやることは、「Account settings」で SSH key を設定すること。<a href="http://confluence.atlassian.com/display/BITBUCKET/Using+SSH+to+Access+your+Bitbucket+Repository">Using SSH to Access your Bitbucket Repository</a> を参考に。</p>
 
-<p><img src="https://lh3.googleusercontent.com/-4iSTHTCDNrY/Tv1dpUb86BI/AAAAAAAAADs/hf_SEC2v498/s500/BitbucketSSHKeys.png" width="500" height="220" title="SSH key の設定" ></p>
+<p><img src="https://lh3.googleusercontent.com/-4iSTHTCDNrY/Tv1dpUb86BI/AAAAAAAAADs/hf_SEC2v498/s500/BitbucketSSHKeys.png" width="500" height="220" title="SSH key の設定" /></p>
 
 <p>次に Bitbucket に octopress リポジトリを作成し、リモートとして登録。</p>
 
-<figure class='code'><figcaption><span>リモート名 bitbacket で optopress リポジトリを登録する  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">bitbucket</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="nl">org:</span><span class="n">username</span><span class="o">/</span><span class="n">octopress</span><span class="p">.</span><span class="n">git</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">bitbucket</span> <span class="n">source</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>リモート名 bitbacket で optopress リポジトリを登録する </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">bitbucket</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="nl">org:</span><span class="n">username</span><span class="o">/</span><span class="n">octopress</span><span class="p">.</span><span class="n">git</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">bitbucket</span> <span class="n">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>この段階で、リモートとして <code>origin</code>、<code>octopress</code>、<code>bitbucket</code> の3つが登録されることとなる。これ以降、記事のデプロイは <code>rake deploy</code>、原稿のバックアップは <code>git push</code> でできるようになる。</p>
 
-<h3 id="8.+Octopress+の更新">8. Octopress の更新</h3>
-
+<h3 id="octopress--3">8. Octopress の更新</h3>
 <p>本家の更新を取り込んでマージする。<code>gems</code> の更新も忘れずに。</p>
 
-<figure class='code'><figcaption><span>Octopress の更新  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">fetch</span> <span class="n">octopress</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">octopress</span> <span class="n">master</span>
-</span><span class='line'><span class="n">$</span> <span class="n">bundle</span> <span class="n">update</span> <span class="n">rake</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Octopress の更新 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">fetch</span> <span class="n">octopress</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">octopress</span> <span class="n">master</span>
+</span><span class="line"><span class="n">$</span> <span class="n">bundle</span> <span class="n">update</span> <span class="n">rake</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h3 id="参考情報">参考情報</h3>
-
+<h3 id="section-8">参考情報</h3>
 <ul>
-<li><a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">Big Sky :: githubとjekyllとoctopressで作る簡単でモダンなブログ</a></li>
-<li><a href="http://blog.glidenote.com/blog/2011/11/07/install-octopress-on-github/">GithubとOctopressでモダンな技術系ブログを作ってみる | Glide Note - グライドノート</a></li>
+  <li><a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">Big Sky :: githubとjekyllとoctopressで作る簡単でモダンなブログ</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[GithubとOctopressでモダンな技術系ブログを作ってみる</td>
+          <td>Glide Note - グライドノート](http://blog.glidenote.com/blog/2011/11/07/install-octopress-on-github/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -1793,39 +1919,31 @@ Automatic merge failed; fix conflicts and then commit the result.
     <link href="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/"/>
     <updated>2011-12-29T17:34:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure</id>
-    <content type="html"><![CDATA[<p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。</p>
-
+    <content type="html"><![CDATA[<p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。
 <!--more-->
+### 1. テーマの概要 ###</p>
 
-
-<h3 id="1.+テーマの概要">1. テーマの概要</h3>
-
-<h4 id="テンプレートファイル">テンプレートファイル</h4>
-
+<h4 id="section">テンプレートファイル</h4>
 <p><code>rake install</code> の時点で、<code>.themes/classic</code> から <code>source</code> にコピーされる。</p>
 
-<h4 id="設定ファイル">設定ファイル</h4>
-
+<h4 id="section-1">設定ファイル</h4>
 <ul>
-<li><strong>_config.yml</strong><br/>
+  <li><strong>_config.yml</strong><br />
   ここで定義された変数がテンプレート中 <code>site.変数名</code> でアクセスされる。</li>
 </ul>
 
-
-<h4 id="構成の概要">構成の概要</h4>
-
+<h4 id="section-2">構成の概要</h4>
 <pre><code>source/
 ├── _layouts/    # トップページ、個別記事ページ、カテゴリアーカイブページのレイアウト
 └── _includes/   # ページレイアウト用の部品
     ├── post/    # サイトのメタデータ、ソーシャルメディア、コメントシステム用部品
-    ├── asides/  # テーマのサイドバー用部品
-    └── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
+	├── asides/  # テーマのサイドバー用部品
+	└── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
 </code></pre>
 
-<h3 id="2.+テンプレートファイルの構成">2. テンプレートファイルの構成</h3>
+<h3 id="section-3">2. テンプレートファイルの構成</h3>
 
-<h4 id="ページ">ページ</h4>
-
+<h4 id="section-4">ページ</h4>
 <pre><code>└── _layouts/
     ├── default.html
     ├── page.html (layout: default)
@@ -1833,47 +1951,41 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── category_index.html (layout: page, footer: false)
 </code></pre>
 
-<h4 id="+lt;head+gt;">&lt;head&gt;</h4>
-
+<h4 id="ltheadgt">&lt;head&gt;</h4>
 <pre><code>└── _includes/
     ├── head.html
     ├── custom/head.html
     └── google_analytics.html
 </code></pre>
 
-<h4 id="RSS">RSS</h4>
-
+<h4 id="rss">RSS</h4>
 <pre><code>└── _includes/
     └── custom/category_feed.xml
 </code></pre>
 
-<h4 id="ヘッダー">ヘッダー</h4>
-
+<h4 id="section-5">ヘッダー</h4>
 <pre><code>└── _includes/
     ├── header.html
     └── custom/header.html
 </code></pre>
 
-<h4 id="ナビゲーション・メニュー">ナビゲーション・メニュー</h4>
-
+<h4 id="section-6">ナビゲーション・メニュー</h4>
 <pre><code>└── _includes/
     ├── navigation.html
     └── custom/navigation.html
 </code></pre>
 
-<h4 id="記事">記事</h4>
-
+<h4 id="section-7">記事</h4>
 <pre><code>└── _includes/
-    ├── article.html            # post.html、index.html から
-    ├── post/author.html        # post.html、page.html から
-    ├── post/categories.html    # post.html、page.html から
-    ├── post/date.html          # post.html、page.html、index.html から
-    ├── post/disqus_thread.html # post.html、page.html から
-    └── post/sharing.html       # post.html、page.html から
+    ├── article.html			# post.html、index.html から
+    ├── post/author.html		# post.html、page.html から
+    ├── post/categories.html	# post.html、page.html から
+    ├── post/date.html			# post.html、page.html、index.html から
+    ├── post/disqus_thread.html	# post.html、page.html から
+    └── post/sharing.html		# post.html、page.html から
 </code></pre>
 
-<h4 id="サイドバー・パーツ">サイドバー・パーツ</h4>
-
+<h4 id="section-8">サイドバー・パーツ</h4>
 <pre><code>└── _includes/
     ├── custom/asides/about.html
     ├── asides/recent_posts.html
@@ -1884,32 +1996,28 @@ Automatic merge failed; fix conflicts and then commit the result.
     └── asides/twitter.html
 </code></pre>
 
-<h4 id="フッター">フッター</h4>
-
+<h4 id="section-9">フッター</h4>
 <pre><code>└── _includes/
     ├── footer.html
     └── custom/footer.html
 </code></pre>
 
-<h4 id="ソーシャル・パーツ">ソーシャル・パーツ</h4>
-
+<h4 id="section-10">ソーシャル・パーツ</h4>
 <pre><code>└── _includes/
     ├── after_footer.html
-    ├── custom/after_footer.html    # コメントのみ
-    ├── disqus.html                 # after_footer.html から
-    ├── facebook_like.html          # after_footer.html から
-    ├── google_plus_one.html        # after_footer.html から
-    └── twitter_sharing.html        # after_footer.html から
+    ├── custom/after_footer.html	# コメントのみ
+    ├── disqus.html					# after_footer.html から
+    ├── facebook_like.html			# after_footer.html から
+    ├── google_plus_one.html		# after_footer.html から
+    └── twitter_sharing.html		# after_footer.html から
 </code></pre>
 
-<h4 id="アーカイブ">アーカイブ</h4>
-
+<h4 id="section-11">アーカイブ</h4>
 <pre><code>└── _includes/
-    └── archive_post.html   # category_index.html、blog/archives/index.html から
+    └── archive_post.html	# category_index.html、blog/archives/index.html から
 </code></pre>
 
-<h3 id="3.+生成されるファイルの構成">3. 生成されるファイルの構成</h3>
-
+<h3 id="section-12">3. 生成されるファイルの構成</h3>
 <pre><code>├── index.html (layout: default)
 ├── atom.xml
 ├── blog/
@@ -1939,25 +2047,22 @@ Automatic merge failed; fix conflicts and then commit the result.
 │   ├── pinboard.js
 │   └── twitter.js
 └── stylesheets/
-    └── screen.css
+	└── screen.css
 </code></pre>
 
-<h3 id="4.+Octopressの動作">4. Octopressの動作</h3>
+<h3 id="octopress">4. Octopressの動作</h3>
 
-<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
+<h4 id="section-13">–新規投稿–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-14">コマンド</h5>
 <pre><code>rake new_post['post title']
 </code></pre>
 
-<h5 id="ファイル">ファイル</h5>
-
+<h5 id="section-15">ファイル</h5>
 <pre><code>└── _post/YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml">YAMLブロック</h5>
 <pre><code>---
 layout: post
 title: "post title"
@@ -1967,22 +2072,19 @@ categories: [category1, ...]
 ---
 </code></pre>
 
-<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
+<h4 id="section-16">–新規ページ–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-17">コマンド</h5>
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="ファイル">ファイル</h5>
-
-<pre><code>├── my-new-page/index.markdown    # rake new_page[my-new-page]
-└── my-new-page/index.html        # rake new_page[my-new-page.html]
+<h5 id="section-18">ファイル</h5>
+<pre><code>├── my-new-page/index.markdown	# rake new_page[my-new-page]
+└── my-new-page/index.html		# rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml-1">YAMLブロック</h5>
 <pre><code>---
 layout: page
 title: 
@@ -2002,31 +2104,33 @@ footer: true
     <id>http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github</id>
     <content type="html"><![CDATA[<p><a href="http://jekyllrb.com/">jekyll</a>（ジキル）は、テンプレートを使って静的な Web サイトを構築するための Ruby プログラム。</p>
 
-<p>通常はローカルに jekyll をインストールするが、GitHub Pages では必ずしも必要ないという話。</p>
-
+<p>通常はローカルに jekyll をインストールするが、GitHub Pages では必ずしも必要ないという話。
 <!--more-->
-
-
-<h3 id="通常の手順">通常の手順</h3>
-
-<p><a href="https://github.com/mojombo/jekyll/wiki/Usage">こちら</a> に基本的な手順の説明。</p>
+### 通常の手順 ###
+<a href="https://github.com/mojombo/jekyll/wiki/Usage">こちら</a> に基本的な手順の説明。</p>
 
 <ol>
-<li><p>ローカルな Ruby 環境に <a href="https://github.com/mojombo/jekyll/wiki/Install">jekyll をインストール</a> する</p></li>
-<li><p>jekyll に必要な <a href="https://github.com/mojombo/jekyll/wiki/Usage">テンプレートファイル群</a> を構成し、<a href="https://github.com/mojombo/jekyll/wiki/Configuration"><code>_config.yml</code></a> や <a href="https://github.com/mojombo/jekyll/wiki/Pagination">テンプレートファイル</a> を設定する</p></li>
-<li><p><a href="http://yaml.org/">YAML</a> で記述した先頭ブロックの <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">レイアウトとタイトル</a> に続けて、 HTML、Markdown、textile のいずれかの記法を使って記事を書く</p></li>
-<li><p>jekyll で HTML ページを生成し（<code>jekyll --server --auto</code>）、ローカルで確認（<a href="http://0.0.0.0:4000/">http://0.0.0.0:4000/</a>）、デプロイ（<code>_site</code> に生成されたページ群を git 経由でリモートにコピー）する</p></li>
+  <li>
+    <p>ローカルな Ruby 環境に <a href="https://github.com/mojombo/jekyll/wiki/Install">jekyll をインストール</a> する</p>
+  </li>
+  <li>
+    <p>jekyll に必要な <a href="https://github.com/mojombo/jekyll/wiki/Usage">テンプレートファイル群</a> を構成し、<a href="https://github.com/mojombo/jekyll/wiki/Configuration"><code>_config.yml</code></a> や <a href="https://github.com/mojombo/jekyll/wiki/Pagination">テンプレートファイル</a> を設定する</p>
+  </li>
+  <li>
+    <p><a href="http://yaml.org/">YAML</a> で記述した先頭ブロックの <a href="https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter">レイアウトとタイトル</a> に続けて、 HTML、Markdown、textile のいずれかの記法を使って記事を書く</p>
+  </li>
+  <li>
+    <p>jekyll で HTML ページを生成し（<code>jekyll --server --auto</code>）、ローカルで確認（<a href="http://0.0.0.0:4000/">http://0.0.0.0:4000/</a>）、デプロイ（<code>_site</code> に生成されたページ群を git 経由でリモートにコピー）する</p>
+  </li>
 </ol>
 
-
-<h3 id="GitHub+Pages+の場合">GitHub Pages の場合</h3>
-
+<h3 id="github-pages-">GitHub Pages の場合</h3>
 <p>一方 GitHub では、<a href="http://pages.github.com/">GitHub Pages</a> 上に jekyll に必要なファイル群があれば、自動的に HTML を生成してくれるので、必ずしもローカルに jekyll をインストールしなくても何とかなる。
-もっともローカルで最終的なレンダリング結果を確認するためにも、jekyll をインストールするに越したことはないが&#8230;</p>
+もっともローカルで最終的なレンダリング結果を確認するためにも、jekyll をインストールするに越したことはないが…</p>
 
 <p>1ページだけの GitHub Pages なら、最小構成ファイル群は以下の通り。</p>
 
-<div><script src='https://gist.github.com/1532174.js?file=Basic-Structure'></script>
+<div><script src="https://gist.github.com/1532174.js?file=Basic-Structure"></script>
 <noscript><pre><code>.
 ├─ _layouts
 │ └─ default.html
@@ -2034,10 +2138,9 @@ footer: true
 │ └─ styles.css
 └─ index.md</code></pre></noscript></div>
 
-
 <p>次は、テンプレートファイル <code>default.html</code> の例。</p>
 
-<div><script src='https://gist.github.com/1532174.js?file=default.html'></script>
+<div><script src="https://gist.github.com/1532174.js?file=default.html"></script>
 <noscript><pre><code>&lt;!doctype html&gt;
 &lt;html lang=&quot;ja&quot;&gt;
 &lt;head&gt;
@@ -2051,10 +2154,9 @@ footer: true
 &lt;/body&gt;
 &lt;/html&gt;</code></pre></noscript></div>
 
-
 <p><code>index.md</code> には <code>default.html</code> の <code>content</code> の中身を記述する。</p>
 
-<div><script src='https://gist.github.com/1532174.js?file=index.md'></script>
+<div><script src="https://gist.github.com/1532174.js?file=index.md"></script>
 <noscript><pre><code>---
 layout: default
 title: プロジェクト・タイトル
@@ -2065,26 +2167,21 @@ title: プロジェクト・タイトル
 ここにプロジェクトの概要を書きます。
 ...</code></pre></noscript></div>
 
-
 <p><code>index.md</code> 以外にも、<code>index.html</code> や <code>index.textile</code> でも OK だが、先頭の <code>layout</code>、<code>title</code> が重要。これがないとレンダリングしてくれない。</p>
 
 <p><code>css/styles.css</code> で装飾し、必要なら <code>images</code> や <code>script</code>、<code>favicon.ico</code> などもお好みで。
 そしてこれらファイル群を プロジェクト・リポジトリの <code>gh-pages</code> ブランチに <a href="http://pages.github.com/#project_pages" title="pushの仕方">push</a> する。</p>
 
-<h3 id="さらに複雑なテンプレートの作り方">さらに複雑なテンプレートの作り方</h3>
-
-<p><img class="right" src="https://lh6.googleusercontent.com/-XPYN1_uoW2g/TvwH9lgXi-I/AAAAAAAAAB4/ps1ZlNCzbMo/s336/ComplexStructure.png" width="250" height="336" title="&#34;ページの構成&#34;" alt="&#34;ページの構成&#34;"></p>
+<h3 id="section">さらに複雑なテンプレートの作り方</h3>
+<p><img class="right" src="https://lh6.googleusercontent.com/-XPYN1_uoW2g/TvwH9lgXi-I/AAAAAAAAAB4/ps1ZlNCzbMo/s336/ComplexStructure.png" width="250" height="336" title="&#34;ページの構成&#34;" alt="&#34;ページの構成&#34;" /></p>
 
 <p>サイドバー付きページのテンプレートを、<a href="http://www.initializr.com/">Initializr 2</a> をベースに構成する。</p>
 
-<p><a href="https://github.com/tokkonopapa/Initializr2-on-jekyll/tree/gh-pages"><img src="https://lh4.googleusercontent.com/-001qniGUDbI/TvxeLnMhu-I/AAAAAAAAACg/vCusw7WbURI/s256/Initializr2-on-jekyll.png" width="256" height="236" title="&#34;実際の GitHub Pages 適用例&#34;" alt="&#34;実際の GitHub Pages 適用例&#34;"></a></p>
+<p><a href="https://github.com/tokkonopapa/Initializr2-on-jekyll/tree/gh-pages"><img src="https://lh4.googleusercontent.com/-001qniGUDbI/TvxeLnMhu-I/AAAAAAAAACg/vCusw7WbURI/s256/Initializr2-on-jekyll.png" width="256" height="236" title="&#34;実際の GitHub Pages 適用例&#34;" alt="&#34;実際の GitHub Pages 適用例&#34;" /></a></p>
 
 <div style="clear:both"></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=README.txt'></script>
+<div><script src="https://gist.github.com/1532144.js?file=README.txt"></script>
 <noscript><pre><code>.
 ├─ _includes
 │    ├─ head.html
@@ -2105,10 +2202,7 @@ title: プロジェクト・タイトル
 ├─ demo.html
 └─ documents.md</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=_config.yml'></script>
+<div><script src="https://gist.github.com/1532144.js?file=_config.yml"></script>
 <noscript><pre><code># ----------------------- #
 #      Main Configs       #
 # ----------------------- #
@@ -2124,10 +2218,7 @@ author: username
 # Google Analytics
 google_analytics_tracking_id: UA-XXXXXXXX-X</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=default.html'></script>
+<div><script src="https://gist.github.com/1532144.js?file=default.html"></script>
 <noscript><pre><code>&lt;!doctype html&gt;
 &lt;!--[if lt IE 7]&gt; &lt;html class=&quot;no-js ie6 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
 &lt;!--[if IE 7]&gt;    &lt;html class=&quot;no-js ie7 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
@@ -2137,97 +2228,79 @@ google_analytics_tracking_id: UA-XXXXXXXX-X</code></pre></noscript></div>
 &lt;body&gt;
 {% include header.html %}
 &lt;div id=&quot;main-container&quot;&gt;
-    &lt;div id=&quot;main&quot; class=&quot;wrapper clearfix&quot;&gt;
-        &lt;article&gt;
+	&lt;div id=&quot;main&quot; class=&quot;wrapper clearfix&quot;&gt;
+		&lt;article&gt;
 {{ content }}
-        &lt;/article&gt;
+		&lt;/article&gt;
 {% include aside.html %}
-    &lt;/div&gt; &lt;!-- #main --&gt;
+	&lt;/div&gt; &lt;!-- #main --&gt;
 &lt;/div&gt; &lt;!-- #main-container --&gt;
 {% include footer.html %}
 {% include script.html %}
 &lt;/body&gt;
 &lt;/html&gt;</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=head.html'></script>
+<div><script src="https://gist.github.com/1532144.js?file=head.html"></script>
 <noscript><pre><code>&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
 
-    &lt;title&gt;{{ page.title }}&lt;/title&gt;
-    &lt;meta name=&quot;description&quot; content=&quot;{{ page.description }}&quot;&gt;
-    &lt;meta name=&quot;author&quot; content=&quot;{{ site.author }}&quot;&gt;
+	&lt;title&gt;{{ page.title }}&lt;/title&gt;
+	&lt;meta name=&quot;description&quot; content=&quot;{{ page.description }}&quot;&gt;
+	&lt;meta name=&quot;author&quot; content=&quot;{{ site.author }}&quot;&gt;
 
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
 
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
 
-    &lt;script src=&quot;js/libs/modernizr-2.0.6.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script src=&quot;js/libs/modernizr-2.0.6.min.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=header.html'></script>
+<div><script src="https://gist.github.com/1532144.js?file=header.html"></script>
 <noscript><pre><code>&lt;div id=&quot;header-container&quot;&gt;
-    &lt;header class=&quot;wrapper clearfix&quot;&gt;
-        &lt;h1 id=&quot;title&quot;&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;{{ site.title }}&lt;/a&gt;&lt;/h1&gt;
-        &lt;nav&gt;
-            &lt;ul&gt;
-                &lt;li&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;{{ site.url }}demo.html&quot;&gt;Demo&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a href=&quot;{{ site.url }}documents.html&quot;&gt;Documents&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/nav&gt;
-    &lt;/header&gt;
+	&lt;header class=&quot;wrapper clearfix&quot;&gt;
+		&lt;h1 id=&quot;title&quot;&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;{{ site.title }}&lt;/a&gt;&lt;/h1&gt;
+		&lt;nav&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;{{ site.url }}demo.html&quot;&gt;Demo&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;{{ site.url }}documents.html&quot;&gt;Documents&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/nav&gt;
+	&lt;/header&gt;
 &lt;/div&gt;</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=aside.html'></script>
+<div><script src="https://gist.github.com/1532144.js?file=aside.html"></script>
 <noscript><pre><code>&lt;aside&gt;
-    &lt;h3&gt;aside&lt;/h3&gt;
-    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.&lt;/p&gt;
+	&lt;h3&gt;aside&lt;/h3&gt;
+	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.&lt;/p&gt;
 &lt;/aside&gt;</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=footer.html'></script>
+<div><script src="https://gist.github.com/1532144.js?file=footer.html"></script>
 <noscript><pre><code>&lt;div id=&quot;footer-container&quot;&gt;
-    &lt;footer class=&quot;wrapper&quot;&gt;
-        &lt;h3&gt;footer&lt;/h3&gt;
-    &lt;/footer&gt;
+	&lt;footer class=&quot;wrapper&quot;&gt;
+		&lt;h3&gt;footer&lt;/h3&gt;
+	&lt;/footer&gt;
 &lt;/div&gt;</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=script.html'></script>
+<div><script src="https://gist.github.com/1532144.js?file=script.html"></script>
 <noscript><pre><code>&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;window.jQuery || document.write('&lt;script src=&quot;js/libs/jquery-1.7.1.min.js&quot;&gt;&lt;\/script&gt;')&lt;/script&gt;
 
 &lt;script src=&quot;js/script.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
-    var _gaq=[['_setAccount','{{ site.google_analytics_tracking_id }}'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
+	var _gaq=[['_setAccount','{{ site.google_analytics_tracking_id }}'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
 &lt;/script&gt;
 
 &lt;!--[if lt IE 7 ]&gt;
-    &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js&quot;&gt;&lt;/script&gt;
-    &lt;script&gt;window.attachEvent(&quot;onload&quot;,function(){CFInstall.check({mode:&quot;overlay&quot;})})&lt;/script&gt;
+	&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script&gt;window.attachEvent(&quot;onload&quot;,function(){CFInstall.check({mode:&quot;overlay&quot;})})&lt;/script&gt;
 &lt;![endif]--&gt;</code></pre></noscript></div>
 
-
-
-
-<div><script src='https://gist.github.com/1532144.js?file=index.md'></script>
+<div><script src="https://gist.github.com/1532144.js?file=index.md"></script>
 <noscript><pre><code>---
 layout: default
 title: &quot;サンプル・ページ&quot;
@@ -2249,18 +2322,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
 ### article footer h3 ###
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</code></pre></noscript></div>
 
-
-<h4 id="参考情報">参考情報</h4>
-
+<h4 id="section-1">参考情報</h4>
 <ul>
-<li><p><a href="http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm">Big Sky :: Jekyllで始める簡単ブログ</a><br/>
-  jekyll でブログを作るためのファイル構成が解説されている。</p></li>
-<li><p><a href="http://www.ksr-it.net/pdf/kushiro-jekyll-text.pdf">Jekyllによる静的 Webサイト構築入門</a><br/>
-  <a href="https://github.com/mojombo/jekyll/wiki/_pages">mojombo/jekyll の Wiki</a> をかなりの範囲でカバーする、わかりやすい入門書。Windows へのインストール方法も解説されている。</p></li>
-<li><p><a href="http://radiumsoftware.tumblr.com/post/10518849682">GitHub Pagesで楽々ホスティング - Radium Software</a><br/>
-  Jekyll 用に構築された <a href="https://github.com/unity-yb/unity-yb.github.com">GitHub ユーザーページ用リポジトリ</a> が参考になる。</p></li>
+  <li>
+    <p><a href="http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm">Big Sky :: Jekyllで始める簡単ブログ</a><br />
+  jekyll でブログを作るためのファイル構成が解説されている。</p>
+  </li>
+  <li>
+    <p><a href="http://www.ksr-it.net/pdf/kushiro-jekyll-text.pdf">Jekyllによる静的 Webサイト構築入門</a><br />
+  <a href="https://github.com/mojombo/jekyll/wiki/_pages">mojombo/jekyll の Wiki</a> をかなりの範囲でカバーする、わかりやすい入門書。Windows へのインストール方法も解説されている。</p>
+  </li>
+  <li>
+    <p><a href="http://radiumsoftware.tumblr.com/post/10518849682">GitHub Pagesで楽々ホスティング - Radium Software</a><br />
+  Jekyll 用に構築された <a href="https://github.com/unity-yb/unity-yb.github.com">GitHub ユーザーページ用リポジトリ</a> が参考になる。</p>
+  </li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -2271,66 +2347,53 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
     <id>http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name</id>
     <content type="html"><![CDATA[<p>無料枠だと、命名できないと思っていたけど勘違いで、使われていない名前ならいつでも変えられる。</p>
 
-<p>ということで、名前のつけ方、変え方。</p>
-
+<p>ということで、名前のつけ方、変え方。
 <!--more-->
+### 1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></p>
 
-
-<h3 id="1.+[アプリ名の命名を+Heroku+に任せる](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++Create+your+Heroku+application+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku create</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku create</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>勝手に名前が付けられる。どんな名前を付けてくれるのか、結構楽しみだったりする。</p>
 
-<h3 id="2.+[アプリ名を指定して作成する](http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app++Creating+a+Named+App+)">2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
+<h3 id="httpdevcenterherokucomarticlescreating-appscreatinganamedapp-creating-a-named-app">2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku create myappname</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku create myappname</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>当然、既に取得されているアプリ名はダメ。</p>
 
-<h3 id="3.+[アプリ名を変更する](http://devcenter.heroku.com/articles/renaming-apps++Renaming+Apps+from+the+CLI+)">3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
-
+<h3 id="httpdevcenterherokucomarticlesrenaming-apps-renaming-apps-from-the-cli">3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
 <p>次の3通りの方法。</p>
 
 <ul>
-<li>リポジトリのディレクトリ内で変更する場合</li>
+  <li>リポジトリのディレクトリ内で変更する場合</li>
 </ul>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku rename 新しい名前</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku rename 新しい名前</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li>リポジトリのディレクトリ外で変更する場合</li>
+  <li>リポジトリのディレクトリ外で変更する場合</li>
 </ul>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku rename 新しい名前 --app 古い名前</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku rename 新しい名前 --app 古い名前</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li>「MyApps」から変更する場合</li>
+  <li>「MyApps」から変更する場合</li>
 </ul>
-
 
 <p><img src="https://lh5.googleusercontent.com/-Um6U7b3dY4o/TvHx1OcDTdI/AAAAAAAAABQ/u5llrMWP-PE/s500/HerokuRename.png" alt="「MyApps」から変更する" /></p>
 
 <ul>
-<li>変更したアプリ名をリポジトリに反映するには、heroku アプリへの SSH プロトコル／パスを指定し直す。</li>
+  <li>変更したアプリ名をリポジトリに反映するには、heroku アプリへの SSH プロトコル／パスを指定し直す。</li>
 </ul>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote rm heroku
-</span><span class='line'>$ git remote add heroku git@heroku.com:新しい名前.git</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ git remote rm heroku
+</span><span class="line">$ git remote add heroku git@heroku.com:新しい名前.git</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
@@ -2339,26 +2402,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
     <link href="http://tokkonopapa.github.com/blog/2011/12/19/installing-github-preview-on-heroku/"/>
     <updated>2011-12-19T23:19:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2011/12/19/installing-github-preview-on-heroku</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/kei-s">kei-sさん</a> に
-<a href="https://twitter.com/#!/kei_s/status/133351755009359872" title="@kei_s: [github]よければご利用ください...!">教えてもらった</a>
-<a href="https://github.com/kei-s/github-preview" title="kei-s/github-preview - GitHub">github-preview</a> を
-fork したので、<a href="http://www.heroku.com/">heroku</a> へのインストール方法をメモ。</p>
+    <content type="html"><![CDATA[<p><a href="https://github.com/kei-s">kei-sさん</a> に 
+<a href="https://twitter.com/#!/kei_s/status/133351755009359872" title="@kei_s: [github]よければご利用ください...!">教えてもらった</a> 
+<a href="https://github.com/kei-s/github-preview" title="kei-s/github-preview - GitHub">github-preview</a> を 
+fork したので、<a href="http://www.heroku.com/">heroku</a> へのインストール方法をメモ。  </p>
 
-<p>ここに記したのは Mac (Mac OS X 10.6.8 Snow Leopard) での話です。Windows はそのうち確かめたいと思います。</p>
-
+<p>ここに記したのは Mac (Mac OS X 10.6.8 Snow Leopard) での話です。Windows はそのうち確かめたいと思います。
 <!--more-->
-
-
-<h3 id="1.+[Heroku+で+ruby+を使うための設定](http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites++Getting+Started+with+Ruby+on+Heroku/Bamboo+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
-
-<p>heroku を利用する前提条件は次の3つ。</p>
+### 1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a>
+heroku を利用する前提条件は次の3つ。</p>
 
 <ul>
-<li><a href="http://beginrescueend.com/">rvm</a> と ruby 1.9.2</li>
-<li><a href="http://git-scm.com/">git</a></li>
-<li><a href="http://www.heroku.com/">heroku</a> のアカウントと heroku gem のインストール</li>
+  <li><a href="http://beginrescueend.com/">rvm</a> と ruby 1.9.2</li>
+  <li><a href="http://git-scm.com/">git</a></li>
+  <li><a href="http://www.heroku.com/">heroku</a> のアカウントと heroku gem のインストール</li>
 </ul>
-
 
 <p>最新の <code>ruby-1.9.3-p0</code> とか使っているけど、大丈夫そう。
 ただし、プロジェクトに <code>.rvmrc</code> があって <code>rvm use 1.9.2</code> とか書いてあると
@@ -2375,8 +2433,7 @@ To install do: 'rvm install ruby-1.9.2-p290'
 
 <p>とか書いておくと、プロジェクトの <code>.rvmrc</code> を無視し、<code>~/.rvmrc</code> の設定を使う。（参考：<a href="http://beginrescueend.com/workflow/rvmrc/" title="RVM: Ruby Version Manager - rvmrc">rvmrc files</a>）。</p>
 
-<h3 id="2.+[heroku+gem+のインストール](http://devcenter.heroku.com/articles/heroku-command++Installing+the+Heroku+CLI+)">2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
-
+<h3 id="heroku-gem-httpdevcenterherokucomarticlesheroku-command-installing-the-heroku-cli">2. <a href="http://devcenter.heroku.com/articles/heroku-command" title="Installing the Heroku CLI">heroku gem のインストール</a></h3>
 <p>各OS用パッケージが載っているが、以下で大丈夫。</p>
 
 <pre><code>$ gem install heroku
@@ -2409,8 +2466,7 @@ Uploading ssh public key /Users/kiyo/.ssh/id_rsa.pub
 
 <p><code>1)</code> は <a href="http://mac.github.com/">GitHub for Mac</a> の SSH キー（たぶん）。</p>
 
-<h3 id="3.+[Heroku+アプリの生成](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++3.+Create+your+Heroku+application+)">3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
-
+<h3 id="heroku-httpdevcenterherokucomarticlesruby-bamboo3createyourherokuapplication-3-create-your-heroku-application">3. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="3. Create your Heroku application">Heroku アプリの生成</a></h3>
 <p>heroku に上げたい Git リポジトリのディレクトリで <code>heroku create</code> とするだけ。</p>
 
 <pre><code>$ git clone git://github.com/kei-s/github-preview.git github-preview
@@ -2442,18 +2498,14 @@ $ git push heroku
     <id>http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github</id>
     <content type="html"><![CDATA[<p>まだ Lion にアップグレードしていない Mac Book Air (Mac OS X 10.6.8 Snow Leopard) に、Xcode3 と RVM (Ruby Version Manager) をインストールし、Octopass の立ち上げを試みたのですが、ハマりました。誰かの何かの役に立つかもしれないので、その時のメモを記しておきます。</p>
 
-<p>ただし私は、「Ruby ってどんな？ gem って何？」というヒトなので、ここに書かれたことには間違いが含まれている可能性アリです。ご参照はソコソコに。</p>
-
+<p>ただし私は、「Ruby ってどんな？ gem って何？」というヒトなので、ここに書かれたことには間違いが含まれている可能性アリです。ご参照はソコソコに。
 <!--more-->
-
-
-<h2 id="Xcode+3+のインストール">Xcode 3 のインストール</h2>
-
-<p><a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
+Xcode 3 のインストール
+——————–
+<a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
 <code>xcode_3.2.6_and_ios_sdk_4.3.dmg</code> を実行。iOS SDK 4.3 は要らないので、インストールせず。</p>
 
-<h2 id="RVM+のインストール">RVM のインストール</h2>
-
+<h2 id="rvm-">RVM のインストール</h2>
 <p><a href="http://beginrescueend.com/rvm/install/">RVM: Ruby Version Manager - Installing RVM</a> には、Single-User が推奨されているので、以下を実行。</p>
 
 <pre><code>$ bash &lt; &lt;(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
@@ -2464,10 +2516,10 @@ $ git push heroku
 <pre><code>$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] &amp;&amp; . "$HOME/.rvm/scripts/rvm" # Load RVM function' &gt;&gt; ~/.bash_profile
 </code></pre>
 
-<p>第1のハマりは、これを <code>.bashrc</code> に設定していたこと。<code>.bach_profile</code> でないとダメ （bash の起動で <code>.bashrc</code> を読み込まないのは Mac 特有？）。あるいは <code>.bach_profile</code> に次を設定しておく（<a href="http://www.glamenv-septzen.net/view/383">&#8220;.bash_profile&#8221;と&#8221;.bashrc&#8221;の使い分け</a>）。</p>
+<p>第1のハマりは、これを <code>.bashrc</code> に設定していたこと。<code>.bach_profile</code> でないとダメ （bash の起動で <code>.bashrc</code> を読み込まないのは Mac 特有？）。あるいは <code>.bach_profile</code> に次を設定しておく（<a href="http://www.glamenv-septzen.net/view/383">“.bash_profile”と”.bashrc”の使い分け</a>）。</p>
 
 <pre><code>if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
+	. ~/.bashrc
 fi
 </code></pre>
 
@@ -2477,8 +2529,7 @@ fi
 Run `bundle install` to install missing gems.
 </code></pre>
 
-<h2 id="Ruby+1.9.3+のインストール">Ruby 1.9.3 のインストール</h2>
-
+<h2 id="ruby-193-">Ruby 1.9.3 のインストール</h2>
 <p>Octopress は 1.9.2 以上が条件。<code>rvm list known</code> とすると、1.9.3 があるので、最新版をインストールすることに。rvm コマンドには sudo は付けない。付けるのは Multi-User 用。</p>
 
 <pre><code>$ rvm install 1.9.3
@@ -2494,8 +2545,7 @@ Run `bundle install` to install missing gems.
 <pre><code>$ rvm rubygems latest
 </code></pre>
 
-<h2 id="Octopress+のインストール">Octopress のインストール</h2>
-
+<h2 id="octopress-">Octopress のインストール</h2>
 <p><a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従いインストール。まず、Octopress のクローンを作る。</p>
 
 <pre><code>$ git clone git://github.com/imathis/octopress.git octopress

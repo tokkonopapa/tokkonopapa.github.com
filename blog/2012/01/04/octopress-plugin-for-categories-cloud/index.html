@@ -88,21 +88,15 @@
 ふと <a href="http://octopress.org/">Octopress</a> も <a href="http://jekyllrb.com/">jekyll</a> のラッパーだということを思い出し、<a href="https://github.com/mojombo/jekyll/wiki/Plugins">Wiki に載ってるプラグイン</a> から易しそうなタグクラウドを3つばかり試してみた。</p>
 
 <ul>
-<li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
-<li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
-<li><del>Yeban&#8217;s Weblog - Jekyll - Tag Cloud</del></li>
+  <li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
+  <li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
+  <li><del>Yeban’s Weblog - Jekyll - Tag Cloud</del>
+<!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb --></li>
 </ul>
 
-
-<!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb -->
-
-
-<p>結果は、どれも動作しない&#8230;</p>
-
+<p>結果は、どれも動作しない…
 <!--more-->
-
-
-<p>jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
+jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
 
 <p>ということで、<a href="https://gist.github.com/1577100" title="Gist で公開中">3番目のコードを動くようにしてみた</a> 。文字の大きさをログスケールで変えたりしていて、イイ感じ。</p>
 
@@ -112,111 +106,104 @@
 
 <p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
 
-<h3 id="使い方">使い方</h3>
+<h3 id="section">使い方</h3>
 
 <pre><code>{% tag_cloud [counter:true] %}
 {% category_list [counter:true] %}
 </code></pre>
 
-<h4 id="オプション">オプション</h4>
+<h4 id="section-1">オプション</h4>
 
 <ul>
-<li>counter:<br/>
+  <li>counter:<br />
 タグの後ろにカッコ付きで記事数を付ける場合には <code>true</code> を指定する</li>
 </ul>
 
+<h4 id="section-2">使用例</h4>
 
-<h4 id="使用例">使用例</h4>
+<h5 id="sourceincludecustomasidestagcloudhtml">source/_include/custom/asides/tag_cloud.html</h5>
 
-<h5 id="source/_include/custom/asides/tag_cloud.html">source/_include/custom/asides/tag_cloud.html</h5>
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;section&gt;</span>
+</span><span class="line">  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;</span>
+</span><span class="line">    <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;tag-cloud&quot;</span><span class="nt">&gt;</span>{% tag_cloud counter:true %}<span class="nt">&lt;/span&gt;</span>
+</span><span class="line"><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;tag-cloud&quot;</span><span class="nt">&gt;</span>{% tag_cloud counter:true %}<span class="nt">&lt;/span&gt;</span>
-</span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<h5 id="sourceincludecustomasidescategorylisthtml">source/_include/custom/asides/category_list.html</h5>
 
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;section&gt;</span>
+</span><span class="line">  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class="line">    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;category-list&quot;</span><span class="nt">&gt;</span>{% category_list counter:true %}<span class="nt">&lt;/ul&gt;</span>
+</span><span class="line"><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h5 id="source/_include/custom/asides/category_list.html">source/_include/custom/asides/category_list.html</h5>
+<h5 id="sasscustomstylesscss">sass/custom/_styles.scss</h5>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;category-list&quot;</span><span class="nt">&gt;</span>{% category_list counter:true %}<span class="nt">&lt;/ul&gt;</span>
-</span><span class='line'><span class="nt">&lt;/section&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="nf">#tag-cloud</span> <span class="p">{</span>
+</span><span class="line">  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h5 id="sass/custom/_styles.scss">sass/custom/_styles.scss</h5>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#tag-cloud</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5 id="_config.yml">_config.yml</h5>
+<h5 id="configyml">_config.yml</h5>
 
 <pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
 </code></pre>
 
-<h5 id="適用例">適用例</h5>
+<h5 id="section-3">適用例</h5>
 
-<p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
+<p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" /></p>
 
-<h3 id="ダウンロードとインストール">ダウンロードとインストール</h3>
+<h3 id="section-4">ダウンロードとインストール</h3>
 
 <ul>
-<li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
+  <li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br />
 サイドバーに表示するために必要な最低限追加すべきファイルをアップしてある。
 自分の Octopress リポジトリとは別にクローンし、ファイルをコピーして使う。</li>
 </ul>
 
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>・
-</span><span class='line'>├─ plugins/
-</span><span class='line'>│  └── tag_cloud.rb
-</span><span class='line'>└─ source/
-</span><span class='line'>   └─ _includes/
-</span><span class='line'>      └─ custom/
-</span><span class='line'>         └─ asides/
-</span><span class='line'>            ├─ category_list.html
-</span><span class='line'>            └─ tag_cloud.html
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">・
+</span><span class="line">├─ plugins/
+</span><span class="line">│  └── tag_cloud.rb
+</span><span class="line">└─ source/
+</span><span class="line">   └─ _includes/
+</span><span class="line">      └─ custom/
+</span><span class="line">         └─ asides/
+</span><span class="line">            ├─ category_list.html
+</span><span class="line">            └─ tag_cloud.html
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li><del>tokkonopapa/octopress - GitHub</del><br/>
+  <li><del>tokkonopapa/octopress - GitHub</del><br />
 <del>Octopress 本家のリポジトリをクローンし、別ブランチ（<code>tagcloud</code>）に上記ファイルを追加したもの。自分の Octopress リポジトリ内でリモートリポジトリとして追加し、<code>tagcloud</code> ブランチから追加すべきファイルをチェックアウトする（と出来るハズ）。</del>（このリポジトリは削除しました）</li>
 </ul>
 
-
-<h3 id="後記">後記</h3>
+<h3 id="section-5">後記</h3>
 
 <p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
 
-<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T--4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" ></a></p>
+<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T--4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" /></a></p>
 
 <p>ただ Ruby という言語を触るのは今回が初めてなため、無駄の省き方も分かっていない。さらに、今回のようなプラグインを、Git という仕組みを使ってどうやったら本体にスムーズに導入できるのかも課題。</p>
 
@@ -256,6 +243,14 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
     </p>
     
       <div class="sharing">
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
   <div class="hatena-button">
     <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
       data-hatena-bookmark-layout="standard"
@@ -266,13 +261,14 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
     </a>
   </div>
   
+  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
-  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2012/01/04/octopress-plugin-for-categories-cloud/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -307,6 +303,14 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/04/pygment-lexer/">Pygmentで使える言語パーサー</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/liquid-exception-error/">Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
       </li>
     
@@ -338,19 +342,11 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
         <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 105.45454545454545%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 121.81818181818181%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 110.9090909090909%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 127.27272727272728%'>jekyll(5)</a> <a href='/blog/categories/liquid' style='font-size: 105.45454545454545%'>Liquid(1)</a> <a href='/blog/categories/mac' style='font-size: 110.9090909090909%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(11)</a> <a href='/blog/categories/plugins' style='font-size: 105.45454545454545%'>Plugins(1)</a> <a href='/blog/categories/pygment' style='font-size: 105.45454545454545%'>Pygment(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.36363636363636%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 105.45454545454545%'>Sass(1)</a> </span>
 </section>
 
 <section>
@@ -368,12 +364,10 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
   </ul>
 
-  
-    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
-  
+
 </section>
 
 
@@ -432,7 +426,7 @@ $.domReady(function() {
     w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
     a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
 
-    a("//platform.twitter.com/widgets.js");
+    a("//platform.twitter.com/widgets.js", "twitter-wjs");
 
     a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
 
@@ -442,6 +436,7 @@ $.domReady(function() {
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 
+    a('https://widgets.getpocket.com/v1/j/btn.js?v=1');
     f.parentNode.insertBefore(e,f);
 })(window,document);
 </script>

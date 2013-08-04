@@ -10,7 +10,8 @@
   <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
-  <meta name="description" content="いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。 1. テーマの概要 テンプレートファイル rake install の時点で、.themes/classic から source にコピーされる。 設定ファイル _config.yml &hellip;">
+  <meta name="description" content="いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。 ### 1. テーマの概要 ### テンプレートファイル
+rake install の時点で、.themes/classic から source にコピーされる。 設定ファイル &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,39 +85,31 @@
   </header>
 
 
-<div class="entry-content"><p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。</p>
-
+<div class="entry-content"><p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。
 <!--more-->
+### 1. テーマの概要 ###</p>
 
-
-<h3 id="1.+テーマの概要">1. テーマの概要</h3>
-
-<h4 id="テンプレートファイル">テンプレートファイル</h4>
-
+<h4 id="section">テンプレートファイル</h4>
 <p><code>rake install</code> の時点で、<code>.themes/classic</code> から <code>source</code> にコピーされる。</p>
 
-<h4 id="設定ファイル">設定ファイル</h4>
-
+<h4 id="section-1">設定ファイル</h4>
 <ul>
-<li><strong>_config.yml</strong><br/>
+  <li><strong>_config.yml</strong><br />
   ここで定義された変数がテンプレート中 <code>site.変数名</code> でアクセスされる。</li>
 </ul>
 
-
-<h4 id="構成の概要">構成の概要</h4>
-
+<h4 id="section-2">構成の概要</h4>
 <pre><code>source/
 ├── _layouts/    # トップページ、個別記事ページ、カテゴリアーカイブページのレイアウト
 └── _includes/   # ページレイアウト用の部品
     ├── post/    # サイトのメタデータ、ソーシャルメディア、コメントシステム用部品
-    ├── asides/  # テーマのサイドバー用部品
-    └── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
+	├── asides/  # テーマのサイドバー用部品
+	└── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
 </code></pre>
 
-<h3 id="2.+テンプレートファイルの構成">2. テンプレートファイルの構成</h3>
+<h3 id="section-3">2. テンプレートファイルの構成</h3>
 
-<h4 id="ページ">ページ</h4>
-
+<h4 id="section-4">ページ</h4>
 <pre><code>└── _layouts/
     ├── default.html
     ├── page.html (layout: default)
@@ -124,47 +117,41 @@
     └── category_index.html (layout: page, footer: false)
 </code></pre>
 
-<h4 id="+lt;head+gt;">&lt;head&gt;</h4>
-
+<h4 id="ltheadgt">&lt;head&gt;</h4>
 <pre><code>└── _includes/
     ├── head.html
     ├── custom/head.html
     └── google_analytics.html
 </code></pre>
 
-<h4 id="RSS">RSS</h4>
-
+<h4 id="rss">RSS</h4>
 <pre><code>└── _includes/
     └── custom/category_feed.xml
 </code></pre>
 
-<h4 id="ヘッダー">ヘッダー</h4>
-
+<h4 id="section-5">ヘッダー</h4>
 <pre><code>└── _includes/
     ├── header.html
     └── custom/header.html
 </code></pre>
 
-<h4 id="ナビゲーション・メニュー">ナビゲーション・メニュー</h4>
-
+<h4 id="section-6">ナビゲーション・メニュー</h4>
 <pre><code>└── _includes/
     ├── navigation.html
     └── custom/navigation.html
 </code></pre>
 
-<h4 id="記事">記事</h4>
-
+<h4 id="section-7">記事</h4>
 <pre><code>└── _includes/
-    ├── article.html            # post.html、index.html から
-    ├── post/author.html        # post.html、page.html から
-    ├── post/categories.html    # post.html、page.html から
-    ├── post/date.html          # post.html、page.html、index.html から
-    ├── post/disqus_thread.html # post.html、page.html から
-    └── post/sharing.html       # post.html、page.html から
+    ├── article.html			# post.html、index.html から
+    ├── post/author.html		# post.html、page.html から
+    ├── post/categories.html	# post.html、page.html から
+    ├── post/date.html			# post.html、page.html、index.html から
+    ├── post/disqus_thread.html	# post.html、page.html から
+    └── post/sharing.html		# post.html、page.html から
 </code></pre>
 
-<h4 id="サイドバー・パーツ">サイドバー・パーツ</h4>
-
+<h4 id="section-8">サイドバー・パーツ</h4>
 <pre><code>└── _includes/
     ├── custom/asides/about.html
     ├── asides/recent_posts.html
@@ -175,32 +162,28 @@
     └── asides/twitter.html
 </code></pre>
 
-<h4 id="フッター">フッター</h4>
-
+<h4 id="section-9">フッター</h4>
 <pre><code>└── _includes/
     ├── footer.html
     └── custom/footer.html
 </code></pre>
 
-<h4 id="ソーシャル・パーツ">ソーシャル・パーツ</h4>
-
+<h4 id="section-10">ソーシャル・パーツ</h4>
 <pre><code>└── _includes/
     ├── after_footer.html
-    ├── custom/after_footer.html    # コメントのみ
-    ├── disqus.html                 # after_footer.html から
-    ├── facebook_like.html          # after_footer.html から
-    ├── google_plus_one.html        # after_footer.html から
-    └── twitter_sharing.html        # after_footer.html から
+    ├── custom/after_footer.html	# コメントのみ
+    ├── disqus.html					# after_footer.html から
+    ├── facebook_like.html			# after_footer.html から
+    ├── google_plus_one.html		# after_footer.html から
+    └── twitter_sharing.html		# after_footer.html から
 </code></pre>
 
-<h4 id="アーカイブ">アーカイブ</h4>
-
+<h4 id="section-11">アーカイブ</h4>
 <pre><code>└── _includes/
-    └── archive_post.html   # category_index.html、blog/archives/index.html から
+    └── archive_post.html	# category_index.html、blog/archives/index.html から
 </code></pre>
 
-<h3 id="3.+生成されるファイルの構成">3. 生成されるファイルの構成</h3>
-
+<h3 id="section-12">3. 生成されるファイルの構成</h3>
 <pre><code>├── index.html (layout: default)
 ├── atom.xml
 ├── blog/
@@ -230,25 +213,22 @@
 │   ├── pinboard.js
 │   └── twitter.js
 └── stylesheets/
-    └── screen.css
+	└── screen.css
 </code></pre>
 
-<h3 id="4.+Octopressの動作">4. Octopressの動作</h3>
+<h3 id="octopress">4. Octopressの動作</h3>
 
-<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
+<h4 id="section-13">–新規投稿–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-14">コマンド</h5>
 <pre><code>rake new_post['post title']
 </code></pre>
 
-<h5 id="ファイル">ファイル</h5>
-
+<h5 id="section-15">ファイル</h5>
 <pre><code>└── _post/YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml">YAMLブロック</h5>
 <pre><code>---
 layout: post
 title: "post title"
@@ -258,22 +238,19 @@ categories: [category1, ...]
 ---
 </code></pre>
 
-<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
+<h4 id="section-16">–新規ページ–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-17">コマンド</h5>
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="ファイル">ファイル</h5>
-
-<pre><code>├── my-new-page/index.markdown    # rake new_page[my-new-page]
-└── my-new-page/index.html        # rake new_page[my-new-page.html]
+<h5 id="section-18">ファイル</h5>
+<pre><code>├── my-new-page/index.markdown	# rake new_page[my-new-page]
+└── my-new-page/index.html		# rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml-1">YAMLブロック</h5>
 <pre><code>---
 layout: page
 title: 
@@ -318,6 +295,14 @@ footer: true
     </p>
     
       <div class="sharing">
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
   <div class="hatena-button">
     <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
       data-hatena-bookmark-layout="standard"
@@ -328,13 +313,14 @@ footer: true
     </a>
   </div>
   
+  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
-  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -369,6 +355,14 @@ footer: true
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/04/pygment-lexer/">Pygmentで使える言語パーサー</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/liquid-exception-error/">Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
       </li>
     
@@ -400,19 +394,11 @@ footer: true
         <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 105.45454545454545%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 121.81818181818181%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 110.9090909090909%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 127.27272727272728%'>jekyll(5)</a> <a href='/blog/categories/liquid' style='font-size: 105.45454545454545%'>Liquid(1)</a> <a href='/blog/categories/mac' style='font-size: 110.9090909090909%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(11)</a> <a href='/blog/categories/plugins' style='font-size: 105.45454545454545%'>Plugins(1)</a> <a href='/blog/categories/pygment' style='font-size: 105.45454545454545%'>Pygment(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.36363636363636%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 105.45454545454545%'>Sass(1)</a> </span>
 </section>
 
 <section>
@@ -430,12 +416,10 @@ footer: true
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
   </ul>
 
-  
-    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
-  
+
 </section>
 
 
@@ -494,7 +478,7 @@ $.domReady(function() {
     w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
     a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
 
-    a("//platform.twitter.com/widgets.js");
+    a("//platform.twitter.com/widgets.js", "twitter-wjs");
 
     a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
 
@@ -504,6 +488,7 @@ $.domReady(function() {
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 
+    a('https://widgets.getpocket.com/v1/j/btn.js?v=1');
     f.parentNode.insertBefore(e,f);
 })(window,document);
 </script>

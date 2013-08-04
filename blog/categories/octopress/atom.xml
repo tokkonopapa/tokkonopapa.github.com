@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-07-15T00:32:54+09:00</updated>
+  <updated>2013-08-04T22:03:45+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -14,76 +14,241 @@
 
   
   <entry>
-    <title type="html"><![CDATA[octopressで見出しの目次を記事に埋め込む方法]]></title>
-    <link href="http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc/"/>
-    <updated>2013-02-23T10:12:00+09:00</updated>
-    <id>http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc</id>
-    <content type="html"><![CDATA[<p><a href="http://pages.github.com/">GitHub Pages</a> で <a href="https://github.com/mojombo/jekyll">jekyll</a> が 0.12.0 にバージョンアップした事に伴い、
-<a href="https://github.com/rtomayko/rdiscount">RDcount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
-
-<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。</p>
+    <title type="html"><![CDATA[Pygmentで使える言語パーサー]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/"/>
+    <updated>2013-08-04T19:51:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer</id>
+    <content type="html"><![CDATA[<p><a href="http://pygments.org/docs/lexers/">Pygment</a> が色々な言語をハイライト出来ることを最近知ったので、レンダリングを確かめるためのメモ。</p>
 
 <!--more-->
 
+<h3 id="section">言語解析キーワード</h3>
 
-<h3 id="目次">目次</h3>
-
-<p>
-   <ul>
-
-   <ul>
-
-   <ul>
-   <li><a href="#目次">目次</a>   </li>
-   <li><a href="#作成方法">作成方法</a>
-    <ul>
-    <li><a href="#設定">設定</a>    </li>
-    <li><a href="#記事の書き方">記事の書き方</a>    </li>
-   </ul>
-   <li><a href="#目次">目次</a>   </li>
-   <li><a href="#日本語の見出し">日本語の見出し</a>   </li>
-   </ul>
-  </li>
-  </ul>
- </li>
- </ul>
-
-</p>
-
-<h3 id="作成方法">作成方法</h3>
-
-<h4 id="設定">設定</h4>
-
-<p><code>_config.yml</code> に以下を追加。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml に RDiscount の設定を追加  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rdiscount</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&#39;generate_toc&#39;</span><span class="p-Indicator">]</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="s">&quot;{:TOC}&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h4 id="記事の書き方">記事の書き方</h4>
-
-<p>記事に <code>{:TOC}</code> を書き込むと、その部分が目次に置き換わる（<code>TOC</code> は <code>Table Of Contents</code> の略）。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>記事に目次を埋め込む  </span></figcaption>
+<h4 id="rbcon-ruby-">rbcon （Ruby のコンソール出力）</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rbcon </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h3 id=&quot;目次&quot;&gt;目次&lt;/h3&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;{:TOC}
+</pre></td><td class='code'><pre><code class='rbcon'><span class='line'><span class="go">irb(main):001:0&amp;gt; a = 1</span>
+</span><span class='line'><span class="go">=&amp;gt; 1</span>
+</span><span class='line'><span class="go">irb(main):002:0&amp;gt; puts a</span>
+</span><span class='line'><span class="go">1</span>
+</span><span class='line'><span class="go">=&amp;gt; nil</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3 id="日本語の見出し">日本語の見出し</h3>
+<h4 id="c-cpp-c">c, cpp, c++</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>c++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &lt;stdio.h /&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="n">Hello</span> <span class="n">world</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<h4 id="objective-c-objectivec-obj-c-objc">objective-c, objectivec, obj-c, objc</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>objc </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;stdio.h&gt;</span>
+</span><span class='line'><span class="cp">#import &amp;lt;objc/Object.h&amp;gt;&lt;/stdio.h&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@interface</span> <span class="nc">Test</span> : <span class="nc">Object</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">method</span><span class="p">;</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="bash-sh-ksh-tcsh-csh-console">bash, sh, ksh, tcsh, csh, console</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>csh </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='csh'><span class='line'><span class="nv">$ </span>git checkout master
+</span><span class='line'>Switched to branch ‘master’
+</span><span class='line'><span class="nv">$ </span>git <span class="nb">log</span> -1
+</span><span class='line'>commit 5350862c0d0e11ab765f994e057f4c3c7646c226
+</span><span class='line'>Author: tokkonopapa &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#116;&amp;#111;&amp;#107;&amp;#107;&amp;#111;&amp;#110;&amp;#111;&amp;#112;&amp;#097;&amp;#112;&amp;#097;&amp;#064;&amp;#121;&amp;#097;&amp;#104;&amp;#111;&amp;#111;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;</span>&gt;&amp;#116;&amp;#111;&amp;#107;&amp;#107;&amp;#111;&amp;#110;&amp;#111;&amp;#112;&amp;#097;&amp;#112;&amp;#097;&amp;#064;&amp;#121;&amp;#097;&amp;#104;&amp;#111;&amp;#111;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;
+</span><span class='line'>Date:   Fri Feb 8 18:33:17 2013 +0900
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="mysql">mysql</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mysql </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='mysql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nf">example</span> <span class="p">(</span>
+</span><span class='line'>    <span class="n">id</span> <span class="kt">INT</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">data</span> <span class="kt">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="cssphp-htmlphp-jsphp-javascriptphp">css+php, html+php, js+php, javascript+php</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>html+php </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html+php'><span class='line'><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;ja&quot;</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="nx">head</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">/</span><span class="nx">head</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="nx">body</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>        <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">require_once</span> <span class="s2">&quot;HTTP/Request.php&quot;</span><span class="p">;</span> <span class="cp">?&gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>/body<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/html<span class="ni">&amp;gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="diff">diff</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>diff </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -120,7 +120,7 @@ def convert(content)</span>
+</span><span class='line'>   rd = RDiscount.new(content, *@rdiscount_extensions)
+</span><span class='line'>   html = rd.to_html
+</span><span class='line'>   if rd.generate_toc and html.include?(@config[‘rdiscount’][‘toc_token’])
+</span><span class='line'><span class="gd">-    html.gsub!(@config[‘rdiscount’][‘toc_token’], rd.toc_content)</span>
+</span><span class='line'><span class="gi">+    html.gsub!(@config[‘rdiscount’][‘toc_token’], rd.toc_content.force_encoding(‘utf-8’))</span>
+</span><span class='line'>   end
+</span><span class='line'>   html
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3 id="section-1">コードの書き方</h3>
+<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> でコードスニペットを記述する方法は次の4通り。</p>
+
+<ol>
+  <li>インラインでバッククォート <code>`</code> で囲む</li>
+  <li>コードブロックを3連のバッククォート <code>```</code> で囲む（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</li>
+  <li>コードブロックの行頭をタブ、もしくはスペース4文字でインデント</li>
+  <li>コードブロックを <code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲むと Pygment でレンダリングされる（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</li>
+</ol>
+
+<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲うそうナ。</p>
+
+<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37</code> としてある。</p>
+
+<p><code>
+{&amp;#037; raw %}
+{&amp;#037; ... %}
+{&amp;#037; endraw %}
+</code></p>
+
+<h4 id="section-2">参考情報</h4>
+<ul>
+  <li><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Liquid Exception: invalid byte sequence in UTF-8 in atom.xml]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/"/>
+    <updated>2013-08-04T18:08:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/imathis/octopress">Octopress 本家</a> に追従する度にエラーで悩まされる。今度は <code>rake generate</code> 時に <code>Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</code> というエラー。</p>
+
+<p>どこかで日本語の扱いをヘクってると思われるが…</p>
+
+<!--more-->
+
+<h3 id="section">対策</h3>
+
+<p>原因は色々あるんだろうけど、ウチの場合は <code>markdown</code> を <code>rdiscount</code> から <code>kramdown</code> に変えることでエラーが出なくなった。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kramdown</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>   gem ‘rake’, ‘~&amp;gt; 0.9’
+</span><span class='line'>   gem ‘jekyll’, ‘~&amp;gt; 0.12’
+</span><span class='line'>   gem ‘rdiscount’, ‘~&amp;gt; 2.0.7’
+</span><span class='line'><span class="gi">+  gem ‘kramdown’</span>
+</span><span class='line'>   gem ‘pygments.rb’, ‘~&amp;gt; 0.3.4’
+</span><span class='line'>   gem ‘RedCloth’, ‘~&amp;gt; 4.2.9’
+</span><span class='line'>   gem ‘haml’, ‘~&amp;gt; 3.1.7’
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>でもって <code>bundle install</code>。あるいはいっそ</p>
+
+<p><code>
+gem install kramdown
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[octopressで見出しの目次を記事に埋め込む方法]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc/"/>
+    <updated>2013-02-23T10:12:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/02/23/octopress-toc</id>
+    <content type="html"><![CDATA[<p><a href="http://pages.github.com/">GitHub Pages</a> で <a href="https://github.com/mojombo/jekyll">jekyll</a> が 0.12.0 にバージョンアップした事に伴い、
+<a href="https://github.com/rtomayko/rdiscount">rdiscount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
+
+<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。
+<!--more-->
+### 目次</p>
+
+<h3 id="section">作成方法</h3>
+<p>#### 設定
+<code>_config.yml</code> に以下を追加。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml に RDiscount の設定を追加 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rdiscount</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">‘generate_toc’</span><span class="p-Indicator">]</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">“”</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="section-1">記事の書き方</h4>
+<p>記事に <code>{:TOC}</code> を書き込むと、その部分が目次に置き換わる（<code>TOC</code> は <code>Table Of Contents</code> の略）。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>記事に目次を埋め込む </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>### 目次&lt;/p&gt;
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3 id="section-2">日本語の見出し</h3>
 <p>見出しに日本語を使うと、<code>generate</code> 時にエラーが出る。</p>
 
 <pre><code>Liquid Exception: incompatible character encodings: UTF-8 and ASCII-8BIT in atom.xml
@@ -93,7 +258,7 @@
 <code>gems/jekyll-0.12.0/lib/jekyll/converters/markdown.rb</code>
 を対策する。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>lib/jekyll/converters/markdown.rb  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>lib/jekyll/converters/markdown.rb </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -103,36 +268,19 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -120,7 +120,7 @@ def convert(content)&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;       rd = RDiscount.new(content, *@rdiscount_extensions)
-</span><span class='line'>       html = rd.to_html
-</span><span class='line'>       if rd.generate_toc and html.include?(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;])
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>&lt;li&gt;&lt;pre&gt;&lt;code&gt;     html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content)
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-</span><span class='line'>&lt;li&gt;&lt;pre&gt;&lt;code&gt;     html.gsub!(@config[&#39;rdiscount&#39;][&#39;toc_token&#39;], rd.toc_content.force_encoding(&#39;utf-8&#39;))
-</span><span class='line'>   end
-</span><span class='line'>   html
-</span><span class='line'> when &#39;maruku&#39;
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
-</ul>
-
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -120,7 +120,7 @@ def convert(content)</span>
+</span><span class='line'>           rd = RDiscount.new(content, *@rdiscount_extensions)
+</span><span class='line'>           html = rd.to_html
+</span><span class='line'>           if rd.generate_toc and html.include?(@config[‘rdiscount’][‘toc_token’])
+</span><span class='line'><span class="gd">-            html.gsub!(@config[‘rdiscount’][‘toc_token’], rd.toc_content)</span>
+</span><span class='line'><span class="gi">+            html.gsub!(@config[‘rdiscount’][‘toc_token’], rd.toc_content.force_encoding(‘utf-8’))</span>
+</span><span class='line'>           end
+</span><span class='line'>           html
+</span><span class='line'>         when ‘maruku’
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>ただし <code>force_encoding('utf-8')</code> が気に入られず、取り込まれていない。</p>
+
 ]]></content>
   </entry>
   
@@ -146,14 +294,10 @@
 の確認が済んでいなかったことが判明。その時のメモ。</p>
 
 <p>別に SEO とか気にしてないんだけど、どういうキーワードで皆さんが
-見てくれているかをあらためて知り、ちょっと幸せな気分 ♪</p>
-
+見てくれているかをあらためて知り、ちょっと幸せな気分 ♪
 <!--more-->
-
-
-<h3 id="おすすめの方法">おすすめの方法</h3>
-
-<p>ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code>
+### おすすめの方法 ###
+ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code> 
 ディレクトリにコピーし、リモートにプッシュすると、一時的にはうまくいく。</p>
 
 <pre><code>cd _deploy
@@ -170,8 +314,7 @@ Rakefile を書き換えれば良いのだけれど、お手軽には次の「�
 
 <p><img src="https://lh3.googleusercontent.com/-piNUXPKHD70/UA63js9yEeI/AAAAAAAAANI/fDEQeMMiO8o/s480/site-verification.png" alt="推奨：HTMLファイルをアップロード" /></p>
 
-<h3 id="別な方法">別な方法</h3>
-
+<h3 id="section">別な方法</h3>
 <p><a href="http://support.google.com/webmasters/bin/answer.py?hl=ja&amp;answer=79812">メタ タグ - ウェブマスター ツール ヘルプ</a> に
 従って、<code>source/_includes/head.html</code> にメタタグを記述し、ページを再生成後、デプロイするだけ。</p>
 
@@ -192,21 +335,15 @@ rake deploy
 ふと <a href="http://octopress.org/">Octopress</a> も <a href="http://jekyllrb.com/">jekyll</a> のラッパーだということを思い出し、<a href="https://github.com/mojombo/jekyll/wiki/Plugins">Wiki に載ってるプラグイン</a> から易しそうなタグクラウドを3つばかり試してみた。</p>
 
 <ul>
-<li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
-<li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
-<li><del>Yeban's Weblog - Jekyll - Tag Cloud</del></li>
+  <li><a href="https://gist.github.com/710577">Jekyll tag cloud / tag pages plugin — Gist</a></li>
+  <li><a href="http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/">Migrating from Wordpress to Jekyll - Part 2: <strong>Everything</strong> you need to know about Jekyll</a></li>
+  <li><del>Yeban’s Weblog - Jekyll - Tag Cloud</del>
+<!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb --></li>
 </ul>
 
-
-<!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb -->
-
-
-<p>結果は、どれも動作しない...</p>
-
+<p>結果は、どれも動作しない…
 <!--more-->
-
-
-<p>jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
+jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
 
 <p>ということで、<a href="https://gist.github.com/1577100" title="Gist で公開中">3番目のコードを動くようにしてみた</a> 。文字の大きさをログスケールで変えたりしていて、イイ感じ。</p>
 
@@ -216,27 +353,23 @@ rake deploy
 
 <p>ということで、この無限地獄を解消すべく、Octopress プラグインのルールに従って作り変えてみた。</p>
 
-<h3 id="使い方">使い方</h3>
+<h3 id="section">使い方</h3>
 
-<p></p>
+<p>
+	{% tag_cloud [counter:true] %}
+	{% category_list [counter:true] %}
+</p>
 
-<pre><code>{% tag_cloud [counter:true] %}
-{% category_list [counter:true] %}
-</code></pre>
-
-<p></p>
-
-<h4 id="オプション">オプション</h4>
+<h4 id="section-1">オプション</h4>
 
 <ul>
-<li>counter:<br/>
+  <li>counter:<br />
 タグの後ろにカッコ付きで記事数を付ける場合には <code>true</code> を指定する</li>
 </ul>
 
+<h4 id="section-2">使用例</h4>
 
-<h4 id="使用例">使用例</h4>
-
-<h5 id="source/_include/custom/asides/tag_cloud.html">source/_include/custom/asides/tag_cloud.html</h5>
+<h5 id="sourceincludecustomasidestagcloudhtml">source/_include/custom/asides/tag_cloud.html</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -244,17 +377,15 @@ rake deploy
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>span id=&quot;tag-cloud&quot;<span class="ni">&amp;gt;</span>{% tag_cloud counter:true %}<span class="ni">&amp;lt;</span>/span<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Tag Cloud<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">&quot;tag-cloud&quot;</span><span class="nt">&gt;</span>{% tag_cloud counter:true %}<span class="nt">&lt;/span&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5 id="source/_include/custom/asides/category_list.html">source/_include/custom/asides/category_list.html</h5>
+<h5 id="sourceincludecustomasidescategorylisthtml">source/_include/custom/asides/category_list.html</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -262,51 +393,42 @@ rake deploy
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>ul id=&quot;category-list&quot;<span class="ni">&amp;gt;</span>{% category_list counter:true %}<span class="ni">&amp;lt;</span>/ul<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;/section&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;category-list&quot;</span><span class="nt">&gt;</span>{% category_list counter:true %}<span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5 id="sass/custom/_styles.scss">sass/custom/_styles.scss</h5>
+<h5 id="sasscustomstylesscss">sass/custom/_styles.scss</h5>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">h1</span> <span class="nt">id</span><span class="o">=</span><span class="s2">&quot;tag-cloud+{&quot;</span><span class="o">&gt;</span><span class="nt">tag-cloud</span> <span class="p">{</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nf">#tag-cloud</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">line-height</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h5 id="_config.yml">_config.yml</h5>
+<h5 id="configyml">_config.yml</h5>
 
 <pre><code># list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
 default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...]
 </code></pre>
 
-<h5 id="適用例">適用例</h5>
+<h5 id="section-3">適用例</h5>
 
 <p><img class="center" src="https://lh4.googleusercontent.com/-rXn3Ss4_7RI/TwWtjZuBPiI/AAAAAAAAAJA/La0HgCZhcMU/s520/TagCloudPlugin.png" width="520" height="400" title="タグクラウドとカテゴリリスト" ></p>
 
-<h3 id="ダウンロードとインストール">ダウンロードとインストール</h3>
+<h3 id="section-4">ダウンロードとインストール</h3>
 
 <ul>
-<li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br/>
+  <li><a href="https://github.com/tokkonopapa/octopress-tagcloud">tokkonopapa/octopress-tagcloud - GitHub</a><br />
 サイドバーに表示するために必要な最低限追加すべきファイルをアップしてある。
 自分の Octopress リポジトリとは別にクローンし、ファイルをコピーして使う。</li>
 </ul>
-
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -317,332 +439,31 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='text'><span class='line'>・
 </span><span class='line'>├─ plugins/
 </span><span class='line'>│  └── tag_cloud.rb
 </span><span class='line'>└─ source/
-</span><span class='line'>   └─ _includes/&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;  └─ custom/
-</span><span class='line'>     └─ asides/
-</span><span class='line'>        ├─ category_list.html
-</span><span class='line'>        └─ tag_cloud.html
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</span><span class='line'>   └─ _includes/
+</span><span class='line'>      └─ custom/
+</span><span class='line'>         └─ asides/
+</span><span class='line'>            ├─ category_list.html
+</span><span class='line'>            └─ tag_cloud.html
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <ul>
-<li><del>tokkonopapa/octopress - GitHub</del><br/>
+  <li><del>tokkonopapa/octopress - GitHub</del><br />
 <del>Octopress 本家のリポジトリをクローンし、別ブランチ（<code>tagcloud</code>）に上記ファイルを追加したもの。自分の Octopress リポジトリ内でリモートリポジトリとして追加し、<code>tagcloud</code> ブランチから追加すべきファイルをチェックアウトする（と出来るハズ）。</del>（このリポジトリは削除しました）</li>
 </ul>
 
-
-<h3 id="後記">後記</h3>
+<h3 id="section-5">後記</h3>
 
 <p>作者に「GitHub に載せたんだけど、ライセンスとかどう？」と聞いたら、「MIT でいいよ」とのこと。</p>
 
-<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T--4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" ></a></p>
+<p><a href="http://blog.eddie.com.tw/2011/12/05/add-catetories-to-sidebar-in-octopress/#disqus_thread"><img class="center" src="https://lh6.googleusercontent.com/-UNjZ3v2T–4/Twb6V-8YVfI/AAAAAAAAAJY/ulclIKKDhIg/s430/screenshot.png" width="420" height="430" title="ライセンスの確認" ></a></p>
 
 <p>ただ Ruby という言語を触るのは今回が初めてなため、無駄の省き方も分かっていない。さらに、今回のようなプラグインを、Git という仕組みを使ってどうやったら本体にスムーズに導入できるのかも課題。</p>
 
 <p>老練な Git 職人さん、白馬に乗った Rubiest さんに突っ込んでもらえると嬉しい :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopressのスタイル設定とカスタマイズ]]></title>
-    <link href="http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles/"/>
-    <updated>2012-01-03T15:46:00+09:00</updated>
-    <id>http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles</id>
-    <content type="html"><![CDATA[<p>Octopress には、スタイル設定に <a href="http://sass-lang.com/" title="Syntactically Awesome StyleSheets">Sass</a> と <a href="http://compass-style.org/">Compass</a> が導入されているため、カスタマイズには、SCSS（Sassy CSS）に関する知識が必要である。</p>
-
-<p>この際だから覚えてしまうことにする。</p>
-
-<!--more-->
-
-
-<h3 id="Sass+関連の参考資料">Sass 関連の参考資料</h3>
-
-<p>たぶん何度も読み直すと思うので、ここにメモ。</p>
-
-<h4 id="Sass">Sass</h4>
-
-<ul>
-<li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
-<li><a href="http://hail2u.net/documents/sass-tutorial.html">Sass - チュートリアル</a></li>
-<li><a href="http://hail2u.net/documents/sass-and-sassy-css.html">Sass、そしてSassy CSS (SCSS)</a></li>
-<li><a href="http://nodot.jp/articles/singletoninsass">Sass で Singleton を実現し、安心してクラスを再利用する - nodot</a></li>
-<li><a href="http://tech.naver.jp/blog/?p=845">sassの抑えておきたいfunctionの使い方 « NAVER Engineers' Blog</a></li>
-</ul>
-
-
-<h4 id="Compass">Compass</h4>
-
-<ul>
-<li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
-<li><a href="http://compass-style.org/index/mixins/">Compass Documentation | All Mixins | Compass Documentation</a></li>
-</ul>
-
-
-<h3 id="Octopress+の+Sass+構成">Octopress の Sass 構成</h3>
-
-<pre><code>sass/
-├─ screen.scss              # 全ての定義の始まりであり、終わり
-├─ _base.scss               # 各 base/* の読み込み
-├─ base/
-│  ├─ _utilities.scss       # sass の関数など
-│  ├─ _solarized.scss       # コードスニペットの色定義
-│  ├─ _theme.scss           # テーマカラーに関する定義など
-│  ├─ _typography.scss      # 各 HTML 要素のフォントに関する定義
-│  └─ _layout.scss          # メディアクエリ、サイドバーの折り畳みなど
-├─ custom/
-│  ├─ _colors.scss          # テーマカラーのカスタマイズ用
-│  ├─ _fonts.scss           # フォント種類のカスタマイズ用
-│  ├─ _layout.scss          # パディング、マージンのカスタマイズ用
-│  └─ _styles.scss          # その他のスタイルに関するカスタマイズ用
-├─ _partials.scss           # 各 partials/* を読み込み
-└─ partials/
-   ├─ _header.scss          # ヘッダー部に関するスタイル定義
-   ├─ _navigation.scss      # ナビゲーションバーに関するスタイル定義
-   ├─ _blog.scss            # 記事に関するスタイル定義
-   ├─ _sharing.scss         # ソーシャルボタンに関するスタイル定義
-   ├─ _syntax.scss          # コードスニペット関連のスタイル定義
-   ├─ _archive.scss         # アーカイブ、カテゴリページのスタイル定義
-   ├─ _sidebar.scss         # sidebar/* の読み込み
-   ├─ sidebar/
-   │   ├─ _base.scss        # サイドバーの汎用スタイル定義
-   │   ├─ _twitter.scss     # セレクタ "#tweets" の定義
-   │   ├─ _googleplus.scss  # セレクタ ".googleplus" の定義
-   │   ├─ _pinboard.scss    # セレクタ "#pinboard_linkroll" の定義
-   │   └─ _delicious.scss   # セレクタ ".delicious-posts" の定義
-   └─ _footer.scss          # フッター部に関するスタイル定義
-</code></pre>
-
-<h4 id="screen.scss">screen.scss</h4>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>screen.scss  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@import</span> <span class="s2">&quot;compass&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@include</span> <span class="nt">global-reset</span><span class="p">;</span>
-</span><span class='line'><span class="k">@include</span> <span class="nt">reset-html5</span><span class="p">;</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="k">@import</span> <span class="s2">&quot;custom/colors&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/fonts&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/layout&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;base&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;partials&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/styles&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
-
-<h3 id="カスタマイズ例">カスタマイズ例</h3>
-
-<p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
-
-<h4 id="_color.scss">_color.scss</h4>
-
-<p>まずはテーマカラーの調整。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span><em>color.scss  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">colors</span> <span class="nt">defined</span> <span class="nt">in</span> <span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">theme</span><span class="nc">.scss</span>
-</span><span class='line'><span class="err">$</span><span class="nt">header-bg</span><span class="o">:</span> <span class="nf">#04263e</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">nav-bg</span><span class="o">:</span> <span class="nt">desaturate</span><span class="o">(</span><span class="nt">lighten</span><span class="o">(</span><span class="nf">#a0bfd6</span><span class="o">,</span> <span class="nt">18</span><span class="o">),</span> <span class="nt">5</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">footer-bg</span><span class="o">:</span> <span class="nf">#d1e4f2</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">footer-color</span><span class="o">:</span> <span class="nf">#666</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span><span class='line'><span class="err">$</span><span class="nt">footer-link-color-hover</span><span class="o">:</span> <span class="nt">darken</span><span class="o">(</span><span class="err">$</span><span class="nt">footer-bg</span><span class="o">,</span> <span class="nt">50</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h4 id="_styles.scss">_styles.scss</h4>
-
-<p>その他の細かなスタイルのカスタマイズ。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span><em>styles.scss  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">typography</span><span class="nc">.scss</span>
-</span><span class='line'><span class="k">@mixin</span> <span class="nt">header-text</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">@include</span> <span class="nt">text-shadow</span><span class="o">(</span><span class="nt">-5px</span> <span class="nt">-5px</span> <span class="nt">10px</span> <span class="nf">#000</span><span class="o">)</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="k">@media</span> <span class="nt">only</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">992px</span><span class="o">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nt">h1</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">2.2em</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
-</span><span class='line'><span class="nt">html</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="k">background</span><span class="p">(</span><span class="n">linear</span><span class="o">-</span><span class="n">gradient</span><span class="p">(</span><span class="k">top</span><span class="o">,</span> <span class="err">$</span><span class="k">page</span><span class="o">-</span><span class="n">bg</span><span class="o">,</span> <span class="err">$</span><span class="n">header</span><span class="o">-</span><span class="n">bg</span><span class="p">));</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nt">body</span> <span class="p">{</span>
-</span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">box</span><span class="o">-</span><span class="n">shadow</span><span class="p">(</span><span class="m">0</span> <span class="m">0</span> <span class="m">15px</span> <span class="m">#000</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h4 id="謎の右マージンを直す">謎の右マージンを直す</h4>
-
-<p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
-
-<p><img class="center" src="https://lh3.googleusercontent.com/-C2lRp_c2yAw/TwLWli56Q1I/AAAAAAAAAIY/cKbDczthVc8/s380/UnknownRightMargin.png" width="380" height="240" title="'謎のマージン'" ></p>
-
-<p><img class="center" src="https://lh4.googleusercontent.com/-FvFRXgvmCqg/TwLWllgHJFI/AAAAAAAAAIU/jT5zjwsmSsc/s380/TwitterFollowButton.png" width="380" height="240" title="'Followボタンが原因'" ></p>
-
-<p>原因は、サイドバー内側の幅が 260px に設定されているのに対し、フォローボタンに幅が指定されておらず、デフォルトの 300px となっていること。</p>
-
-<p><code>source/_include/asides/twitter.html</code> で、フォローボタンの幅を <code>data-width="260px"</code> と指定して解決（<code>auto</code> に設定してもダメ）。</p>
-
-<p><div><script src='https://gist.github.com/1554383.js?file=twitter.html'></script>
-<noscript><pre><code>  {% if site.twitter_follow_button %}
-    &lt;a href=&quot;http://twitter.com/{{ site.twitter_user }}&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;{{ site.twitter_show_follower_count }}&quot; data-width=&quot;260px&quot;&gt;Follow @{{ site.twitter_user }}&lt;/a&gt;
-  {% else %}
-    &lt;p&gt;Follow &lt;a href=&quot;http://twitter.com/{{site.twitter_user}}&quot;&gt;@{{ site.twitter_user }}&lt;/a&gt;&lt;/p&gt;
-  {% endif %}</code></pre></noscript></div>
-</p>
-
-<h5 id="参考情報">参考情報</h5>
-
-<ul>
-<li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
-<li><a href="https://dev.twitter.com/docs/follow-button">Follow Button | Twitter Developers</a></li>
-</ul>
-
-
-<h5 id="2012年1月11日+追記">2012年1月11日 追記</h5>
-
-<p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[SEOに効くOctopressの隠し機能]]></title>
-    <link href="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/"/>
-    <updated>2012-01-02T09:31:00+09:00</updated>
-    <id>http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo</id>
-    <content type="html"><![CDATA[<p>Octopress のコードリーディングをしていて見つけた隠し機能について。同じネタが既に
-<a href="http://www.meatleasing.com/octopress-hidden-features/index.html">Octopress Hidden Features</a>
-に挙がっていた。</p>
-
-<!--more-->
-
-
-<h3 id="+lt;meta+gt;+タグの追加機能">&lt;meta&gt; タグの追加機能</h3>
-
-<p><code>source/_includes/head.html</code> の10行目付近から。</p>
-
-<p><div><script src='https://gist.github.com/1548796.js?file=head.html'></script>
-<noscript><pre><code>  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
-  &lt;meta name=&quot;description&quot; content=&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;&gt;
-  {% if page.keywords %}&lt;meta name=&quot;keywords&quot; content=&quot;{{ page.keywords }}&quot;&gt;{% endif %}</code></pre></noscript></div>
-</p>
-
-<p>記事の <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML ブロック</a> に <code>description</code> か、記事から HTML を除いた先頭150字が <code>&lt;meta name="description" content="..."&gt;</code> に挿入される。
-同様に <code>keywords</code> で <code>&lt;meta name="keywords" content="..."&gt;</code> が挿入される。</p>
-
-<h2 id="```+yaml+記事の+YAML+ブロック・サンプル">``` yaml 記事の YAML ブロック・サンプル</h2>
-
-<p>layout: post
-title: "SEOに効くOctopressの隠し機能"
-date: 2012-01-02 09:31
-comments: true
-categories: [octopress]
-description: Octopress のコードリーディングをしていて見つけた隠し機能について。</p>
-
-<h2 id="keywords:+Octopress,+SEO">keywords: Octopress, SEO</h2>
-
-<p>```</p>
-
-<p>ちなみにトップページの場合も、先頭記事が <code>{ content }</code> として参照されるのが、何だかアレな感じ。</p>
-
-<h4 id="plugins/octopress_filters.rb+の改修">plugins/octopress_filters.rb の改修</h4>
-
-<p>記事の先頭150字以内に改行が含まれていると、<code>content="..."</code> が改行されちゃうのもアレ（HTML 的には OK だから、気にすることないけどネ）。</p>
-
-<p>そこで、<code>plugins/octopress_filters.rb</code>（<a href="https://github.com/imathis/octopress/blob/master/plugins/octopress_filters.rb">ソースコードの全体</a>）の104行目付近 <code>condense_spaces</code> に改行を削除するコードを追加。</p>
-
-<p>``` ruby plugins/octopress_filters.rb の改修
-  # Condenses multiple spaces and tabs into a single space
-  def condense_spaces(input)</p>
-
-<pre><code>input.gsub(/\s{2,}/, ' ')
-input.gsub(/\n/, '')
-</code></pre>
-
-<p>  end
-```</p>
-
-<h4 id="Rakefile+の改修">Rakefile の改修</h4>
-
-<p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
-
-<p><div><script src='https://gist.github.com/1548796.js?file=Rakefile'></script>
-<noscript><pre><code>  puts &quot;Creating new post: #{filename}&quot;
-  open(filename, 'w') do |post|
-    post.puts &quot;---&quot;
-    post.puts &quot;layout: post&quot;
-    post.puts &quot;title: \&quot;#{title.gsub(/&amp;/,'&amp;amp;')}\&quot;&quot;
-    post.puts &quot;date: #{Time.now.strftime('%Y-%m-%d %H:%M')}&quot;
-    post.puts &quot;comments: true&quot;
-    post.puts &quot;categories: &quot;
-    post.puts &quot;description: &quot;
-    post.puts &quot;keywords: &quot;
-    post.puts &quot;---&quot;
-  end</code></pre></noscript></div>
-</p>
-
-<h3 id="サイドバーへの+`About+Me`+追加">サイドバーへの <code>About Me</code> 追加</h3>
-
-<p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
-
-<p><code>yaml _config.yml のサイドバーに about.html を指定する
-default_asides: [custom/asides/about.html, asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/googleplus.html]
-</code></p>
 ]]></content>
   </entry>
   

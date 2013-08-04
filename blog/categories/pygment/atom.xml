@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Pygment | T.I.D.]]></title>
+  <link href="http://tokkonopapa.github.com/blog/categories/pygment/atom.xml" rel="self"/>
+  <link href="http://tokkonopapa.github.com/"/>
+  <updated>2013-08-04T22:03:45+09:00</updated>
+  <id>http://tokkonopapa.github.com/</id>
+  <author>
+    <name><![CDATA[tokkonopapa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Pygmentで使える言語パーサー]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/"/>
+    <updated>2013-08-04T19:51:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer</id>
+    <content type="html"><![CDATA[<p><a href="http://pygments.org/docs/lexers/">Pygment</a> が色々な言語をハイライト出来ることを最近知ったので、レンダリングを確かめるためのメモ。</p>
+
+<!--more-->
+
+<h3 id="section">言語解析キーワード</h3>
+
+<h4 id="rbcon-ruby-">rbcon （Ruby のコンソール出力）</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rbcon </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='rbcon'><span class='line'><span class="go">irb(main):001:0&amp;gt; a = 1</span>
+</span><span class='line'><span class="go">=&amp;gt; 1</span>
+</span><span class='line'><span class="go">irb(main):002:0&amp;gt; puts a</span>
+</span><span class='line'><span class="go">1</span>
+</span><span class='line'><span class="go">=&amp;gt; nil</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="c-cpp-c">c, cpp, c++</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>c++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &lt;stdio.h /&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="n">Hello</span> <span class="n">world</span><span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="objective-c-objectivec-obj-c-objc">objective-c, objectivec, obj-c, objc</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>objc </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;stdio.h&gt;</span>
+</span><span class='line'><span class="cp">#import &amp;lt;objc/Object.h&amp;gt;&lt;/stdio.h&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">@interface</span> <span class="nc">Test</span> : <span class="nc">Object</span>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">method</span><span class="p">;</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="bash-sh-ksh-tcsh-csh-console">bash, sh, ksh, tcsh, csh, console</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>csh </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='csh'><span class='line'><span class="nv">$ </span>git checkout master
+</span><span class='line'>Switched to branch ‘master’
+</span><span class='line'><span class="nv">$ </span>git <span class="nb">log</span> -1
+</span><span class='line'>commit 5350862c0d0e11ab765f994e057f4c3c7646c226
+</span><span class='line'>Author: tokkonopapa &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#116;&amp;#111;&amp;#107;&amp;#107;&amp;#111;&amp;#110;&amp;#111;&amp;#112;&amp;#097;&amp;#112;&amp;#097;&amp;#064;&amp;#121;&amp;#097;&amp;#104;&amp;#111;&amp;#111;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;</span>&gt;&amp;#116;&amp;#111;&amp;#107;&amp;#107;&amp;#111;&amp;#110;&amp;#111;&amp;#112;&amp;#097;&amp;#112;&amp;#097;&amp;#064;&amp;#121;&amp;#097;&amp;#104;&amp;#111;&amp;#111;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;
+</span><span class='line'>Date:   Fri Feb 8 18:33:17 2013 +0900
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="mysql">mysql</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>mysql </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='mysql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nf">example</span> <span class="p">(</span>
+</span><span class='line'>    <span class="n">id</span> <span class="kt">INT</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">data</span> <span class="kt">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="cssphp-htmlphp-jsphp-javascriptphp">css+php, html+php, js+php, javascript+php</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>html+php </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html+php'><span class='line'><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&quot;ja&quot;</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="nx">head</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>        <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">/</span><span class="nx">head</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="nx">body</span><span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span>
+</span><span class='line'>        <span class="o">&lt;?</span><span class="nx">php</span> <span class="k">require_once</span> <span class="s2">&quot;HTTP/Request.php&quot;</span><span class="p">;</span> <span class="cp">?&gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>/body<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/html<span class="ni">&amp;gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="diff">diff</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>diff </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gu">@@ -120,7 +120,7 @@ def convert(content)</span>
+</span><span class='line'>   rd = RDiscount.new(content, *@rdiscount_extensions)
+</span><span class='line'>   html = rd.to_html
+</span><span class='line'>   if rd.generate_toc and html.include?(@config[‘rdiscount’][‘toc_token’])
+</span><span class='line'><span class="gd">-    html.gsub!(@config[‘rdiscount’][‘toc_token’], rd.toc_content)</span>
+</span><span class='line'><span class="gi">+    html.gsub!(@config[‘rdiscount’][‘toc_token’], rd.toc_content.force_encoding(‘utf-8’))</span>
+</span><span class='line'>   end
+</span><span class='line'>   html
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3 id="section-1">コードの書き方</h3>
+<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> でコードスニペットを記述する方法は次の4通り。</p>
+
+<ol>
+  <li>インラインでバッククォート <code>`</code> で囲む</li>
+  <li>コードブロックを3連のバッククォート <code>```</code> で囲む（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</li>
+  <li>コードブロックの行頭をタブ、もしくはスペース4文字でインデント</li>
+  <li>コードブロックを <code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲むと Pygment でレンダリングされる（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</li>
+</ol>
+
+<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲うそうナ。</p>
+
+<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37</code> としてある。</p>
+
+<p><code>
+{&amp;#037; raw %}
+{&amp;#037; ... %}
+{&amp;#037; endraw %}
+</code></p>
+
+<h4 id="section-2">参考情報</h4>
+<ul>
+  <li><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

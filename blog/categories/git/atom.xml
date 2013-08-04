@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-07-15T00:32:54+09:00</updated>
+  <updated>2013-08-04T22:03:45+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -21,91 +21,109 @@
     <content type="html"><![CDATA[<p>エンジニアたるもの、<a href="http://schacon.github.com/git/git.html" title="git(1) Manual Page">マニュアル</a> を読み込むべし。そのためには、Git 内部について若干の予備知識が必要。
 ただしその深みにはまると、</p>
 
-<blockquote><p>Git - the stupid content tracker</p></blockquote>
+<blockquote>
+  <p>Git - the stupid content tracker</p>
+</blockquote>
 
 <p>の意味がよく分かる。</p>
 
-<p>ということで、まずは用語の理解から。</p>
-
+<p>ということで、まずは用語の理解から。
 <!--more-->
-
-
-<h2 id="Git+オブジェクトのタイプ">Git オブジェクトのタイプ</h2>
+Git オブジェクトのタイプ
+———————
+*	blob<br />
+	ファイルの中身を表すオブジェクト</p>
 
 <ul>
-<li><p>blob<br/>
-ファイルの中身を表すオブジェクト</p></li>
-<li><p>tree<br/>
-ディレクトリの中身の一覧とどのファイルがどの blob に対応するかを表すオブジェクト</p></li>
-<li><p>commit<br/>
-ルートツリーおよびすべてのメタデータへのポインタを含むオブジェクト</p></li>
-<li><p>tag<br/>
-特定のコミットへのポインタを含むオブジェクト</p></li>
+  <li>
+    <p>tree<br />
+ディレクトリの中身の一覧とどのファイルがどの blob に対応するかを表すオブジェクト</p>
+  </li>
+  <li>
+    <p>commit<br />
+ルートツリーおよびすべてのメタデータへのポインタを含むオブジェクト</p>
+  </li>
+  <li>
+    <p>tag<br />
+特定のコミットへのポインタを含むオブジェクト</p>
+  </li>
 </ul>
 
-
-<p><img src="https://lh5.googleusercontent.com/-DByBDLtfe4c/UA7ECC7uDsI/AAAAAAAAANU/iAQ2bVtSf3U/s500/blob-object.png" width="500" height="338" title="Git オブジェクト" ><br/>
+<p><img src="https://lh5.googleusercontent.com/-DByBDLtfe4c/UA7ECC7uDsI/AAAAAAAAANU/iAQ2bVtSf3U/s500/blob-object.png" width="500" height="338" title="Git オブジェクト" ><br />
 （出典：<a href="http://progit.org/book/ja/ch3-1.html">Pro Git - Pro Git 3.1 Git のブランチ機能</a>）</p>
 
 <p>上の図で、commit 直下の blob は、カレントディレクトリ <code>.</code> と考えると分かり易い。</p>
 
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section">関連リンク</h4>
 <ul>
-<li><a href="http://progit.org/book/ja/ch3-1.html#id58" title="ブランチとは">Pro Git - Pro Git 3.1 Git のブランチ機能 ブランチとは</a></li>
-<li><a href="http://progit.org/book/ja/ch2-6.html#id46" title="タグ">Pro Git - Pro Git 2.6 Git の基本 タグ</a></li>
+  <li><a href="http://progit.org/book/ja/ch3-1.html#id58" title="ブランチとは">Pro Git - Pro Git 3.1 Git のブランチ機能 ブランチとは</a></li>
+  <li><a href="http://progit.org/book/ja/ch2-6.html#id46" title="タグ">Pro Git - Pro Git 2.6 Git の基本 タグ</a></li>
 </ul>
 
-
-<h2 id="オブジェクトの指定">オブジェクトの指定</h2>
-
+<h2 id="section-1">オブジェクトの指定</h2>
 <p>全てのオブジェクトには、フラットな構造のリビジョンがある。リビジョンからオブジェクトを指定可能。</p>
 
 <ul>
-<li><p>SHA-1ハッシュ<br/>
-オブジェクトの内容に応じて算出されるチェックサム。40字もしくは7文字程度の16進数で表す。</p></li>
-<li><p>特定の commit オブジェクトを表すシンボルも使用可能。
+  <li>
+    <p>SHA-1ハッシュ<br />
+オブジェクトの内容に応じて算出されるチェックサム。40字もしくは7文字程度の16進数で表す。</p>
+  </li>
+  <li>
+    <p>特定の commit オブジェクトを表すシンボルも使用可能。
 HEAD（変更の基準となるコミットの名前）、
 ORIG_HEAD（HEAD に対する変更を行う前の HEAD）、
 FETCH_HEAD（<code>git fetch</code> したリモート・リポジトリのブランチ）、
 MERGE_HEAD（<code>git merge</code> 実行時のマージ元のコミット）、
-CHERRY_PICK_HEAD（<code>git cherry-pick</code> 実行時のコミット）。</p></li>
+CHERRY_PICK_HEAD（<code>git cherry-pick</code> 実行時のコミット）。</p>
+  </li>
 </ul>
 
-
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section-2">関連リンク</h4>
 <ul>
-<li><a href="http://progit.org/book/ja/ch1-3.html#git" title="Gitは完全性を持つ">Pro Git - Pro Git 1.3 使い始める Gitの基本</a></li>
+  <li><a href="http://progit.org/book/ja/ch1-3.html#git" title="Gitは完全性を持つ">Pro Git - Pro Git 1.3 使い始める Gitの基本</a></li>
 </ul>
 
-
-<h2 id="リビジョン指定のバリエーション">リビジョン指定のバリエーション</h2>
-
+<h2 id="section-3">リビジョン指定のバリエーション</h2>
 <ul>
-<li><p><em>&lt;refname&gt;</em><br/>
-<code>master</code>、<code>heads/master</code>、<code>refs/heads/master</code> など。</p></li>
-<li><p><em>&lt;refname&gt;@{&lt;date&gt;}</em><br/>
-<code>master@{yesterday}</code>、<code>HEAD@{1 month 2 weeks 3 days 1 hour 1 second ago}</code>、<code>HEAD@{1979-02-26 18:30:00}</code> など。</p></li>
-<li><p><em>&lt;refname&gt;@{&lt;n&gt;}</em><br/>
-<em>n</em> だけ前の参照。<code>HEAD@{1}</code> など。<em>&lt;refname&gt;</em> の省略は現在のブランチ。</p></li>
-<li><p><em>&lt;rev&gt;&#094;</em> あるいは <em>&lt;rev&gt;&#094;&lt;n&gt;</em><br/>
-<em>&lt;rev&gt;</em> から見て、commit オブジェクトを親→兄弟へと世代順・生成順にたどる場合の1番目、あるいは<em>n</em>番目のオブジェクト。<code>HEAD^</code> は <code>HEAD^1</code> と同じ。</p></li>
-<li><p><em>&lt;rev&gt;~&lt;n&gt;</em><br/>
-<em>&lt;rev&gt;</em> から見て、commit オブジェクトを直系の親だけをたどった場合の<em>n</em>番目の親。</p></li>
-<li><p><em>&lt;rev&gt;{&lt;type&gt;}</em><br/>
-指定リビジョンから参照できるオブジェクト。<code>HEAD^{tree}</code>、<code>v0.9^{commit}</code> など。<em>type</em> を省略すると？</p></li>
-<li><p><em>&lt;rev&gt;{/&lt;text&gt;}</em><br/>
-指定リビジョンからさかのぼり、commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを参照する。</p></li>
-<li><p><em>:/&lt;text&gt;</em><br/>
-commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを表示。<code>:/!</code> で続けて検索。</p></li>
-<li><p><em>&lt;rev&gt;:&lt;path&gt;</em><br/>
-指定リビジョンの blob（ファイル）あるいは tree（ディレクトリ）を参照する。<code>HEAD:README</code>、<code>master:./README</code> など。</p></li>
+  <li>
+    <p><em>&lt;refname&gt;</em><br />
+<code>master</code>、<code>heads/master</code>、<code>refs/heads/master</code> など。</p>
+  </li>
+  <li>
+    <p><em>&lt;refname&gt;@{&lt;date&gt;}</em><br />
+<code>master@{yesterday}</code>、<code>HEAD@{1 month 2 weeks 3 days 1 hour 1 second ago}</code>、<code>HEAD@{1979-02-26 18:30:00}</code> など。</p>
+  </li>
+  <li>
+    <p><em>&lt;refname&gt;@{&lt;n&gt;}</em><br />
+<em>n</em> だけ前の参照。<code>HEAD@{1}</code> など。<em>&lt;refname&gt;</em> の省略は現在のブランチ。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;^</em> あるいは <em>&lt;rev&gt;^&lt;n&gt;</em><br />
+<em>&lt;rev&gt;</em> から見て、commit オブジェクトを親→兄弟へと世代順・生成順にたどる場合の1番目、あるいは_n_番目のオブジェクト。<code>HEAD^</code> は <code>HEAD^1</code> と同じ。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;~&lt;n&gt;</em><br />
+<em>&lt;rev&gt;</em> から見て、commit オブジェクトを直系の親だけをたどった場合の_n_番目の親。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;{&lt;type&gt;}</em><br />
+指定リビジョンから参照できるオブジェクト。<code>HEAD^{tree}</code>、<code>v0.9^{commit}</code> など。<em>type</em> を省略すると？</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;{/&lt;text&gt;}</em><br />
+指定リビジョンからさかのぼり、commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを参照する。</p>
+  </li>
+  <li>
+    <p><em>:/&lt;text&gt;</em><br />
+commit メッセージに正規表現 <em>text</em> を含む最初のオブジェクトを表示。<code>:/!</code> で続けて検索。</p>
+  </li>
+  <li>
+    <p><em>&lt;rev&gt;:&lt;path&gt;</em><br />
+指定リビジョンの blob（ファイル）あるいは tree（ディレクトリ）を参照する。<code>HEAD:README</code>、<code>master:./README</code> など。</p>
+  </li>
 </ul>
 
-
-<h4 id="とってもバカげた（stupid+な）リビジョンの指定">とってもバカげた（stupid な）リビジョンの指定</h4>
-
+<h4 id="stupid-">とってもバカげた（stupid な）リビジョンの指定</h4>
 <pre><code>G   H   I   J
  \ /     \ /
   D   E   F
@@ -129,68 +147,86 @@ I = F^   = B^3^    = A^^3^
 J = F^2  = B^3^2   = A^^3^2
 </code></pre>
 
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section-4">関連リンク</h4>
 <ul>
-<li><a href="http://schacon.github.com/git/git-rev-parse.html" title="git-rev-parse(1)">git-rev-parse(1) Manual Page</a></li>
+  <li><a href="http://schacon.github.com/git/git-rev-parse.html" title="git-rev-parse(1)">git-rev-parse(1) Manual Page</a></li>
 </ul>
 
-
-<h2 id="識別子の用語">識別子の用語</h2>
-
+<h2 id="section-5">識別子の用語</h2>
 <ul>
-<li><p>&lt;object&gt;<br/>
-あらゆるタイプのオブジェクトの名前を表す。</p></li>
-<li><p>&lt;blob&gt;<br/>
-blob（ファイル）オブジェクトの名前を表す。</p></li>
-<li><p>&lt;tree&gt;<br/>
-tree（ディレクトリ）オブジェクトの名前を表す。</p></li>
-<li><p>&lt;commit&gt;<br/>
-commit オブジェクトの名前を表す。</p></li>
-<li><p>&lt;tree-ish&gt;<br/>
-tree、commit あるいは tag オブジェクトの名前を表す。</p></li>
-<li><p>&lt;commit-ish&gt;<br/>
-commit あるいは tag オブジェクトの名前を表す。</p></li>
-<li><p>&lt;type&gt;<br/>
-オブジェクトのタイプ。<code>blob</code>、<code>tree</code>、<code>commit</code> あるいは <code>tag</code>。</p></li>
-<li><p>&lt;file&gt;、&lt;path&gt;<br/>
-ファイル名。</p></li>
-<li><p>&lt;tag&gt;<br/>
-有効な tab 名。即ち <code>refs/tags/&lt;tag&gt;</code>。</p></li>
-<li><p>&lt;head&gt;<br/>
-有効な head 名。即ち <code>refs/heads/&lt;head&gt;</code>。</p></li>
-<li><p>HEAD<br/>
-現在のブランチの head。
-</dl></p></li>
+  <li>
+    <p>&lt;object&gt;<br />
+あらゆるタイプのオブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;blob&gt;<br />
+blob（ファイル）オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;tree&gt;<br />
+tree（ディレクトリ）オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;commit&gt;<br />
+commit オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;tree-ish&gt;<br />
+tree、commit あるいは tag オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;commit-ish&gt;<br />
+commit あるいは tag オブジェクトの名前を表す。</p>
+  </li>
+  <li>
+    <p>&lt;type&gt;<br />
+オブジェクトのタイプ。<code>blob</code>、<code>tree</code>、<code>commit</code> あるいは <code>tag</code>。</p>
+  </li>
+  <li>
+    <p>&lt;file&gt;、&lt;path&gt;<br />
+ファイル名。</p>
+  </li>
+  <li>
+    <p>&lt;tag&gt;<br />
+有効な tab 名。即ち <code>refs/tags/&lt;tag&gt;</code>。</p>
+  </li>
+  <li>
+    <p>&lt;head&gt;<br />
+有効な head 名。即ち <code>refs/heads/&lt;head&gt;</code>。</p>
+  </li>
+  <li>
+    <p>HEAD<br />
+現在のブランチの head。</p>
+  </li>
+</ul>
+<p>&lt;/dl&gt;</p>
+
+<h4 id="section-6">関連リンク</h4>
+<ul>
+  <li><a href="http://schacon.github.com/git/git.html#_identifier_terminology" title="Identifier Terminology">git(1) Manual Page - Identifier Terminology</a></li>
+  <li><a href="http://schacon.github.com/git/gitglossary.html" title="gitglossary(7)">gitglossary(7) Manual Page</a></li>
 </ul>
 
-
-<h4 id="関連リンク">関連リンク</h4>
-
+<h2 id="git-">Git コマンドのオプション指定</h2>
 <ul>
-<li><a href="http://schacon.github.com/git/git.html#_identifier_terminology" title="Identifier Terminology">git(1) Manual Page - Identifier Terminology</a></li>
-<li><a href="http://schacon.github.com/git/gitglossary.html" title="gitglossary(7)">gitglossary(7) Manual Page</a></li>
+  <li>
+    <p>一文字系:<br />
+ <code>-a</code> とか <code>-h</code> とか。</p>
+  </li>
+  <li>
+    <p>単語系:<br />
+<code>--all</code> とか <code>--help</code> とか。</p>
+  </li>
+  <li>
+    <p>ファイル名の指定:<br />
+  <code>--</code> 以降に指定することで、直前のオプション引数と区別する。</p>
+  </li>
 </ul>
 
-
-<h2 id="Git+コマンドのオプション指定">Git コマンドのオプション指定</h2>
-
-<ul>
-<li><p>一文字系:<br/>
- <code>-a</code> とか <code>-h</code> とか。</p></li>
-<li><p>単語系:<br/>
-<code>--all</code> とか <code>--help</code> とか。</p></li>
-<li><p>ファイル名の指定:<br/>
-  <code>--</code> 以降に指定することで、直前のオプション引数と区別する。</p></li>
-</ul>
-
-
-<h2 id="Git+の内部">Git の内部</h2>
-
+<h2 id="git--1">Git の内部</h2>
 <p>内部の実例を見ると、イメージがわき易いかも。</p>
 
-<h3 id="Git+のファイル構成">Git のファイル構成</h3>
-
+<h3 id="git--2">Git のファイル構成</h3>
 <pre><code>$ tree -F .git
 .git/
 ├── COMMIT_EDITMSG
@@ -233,8 +269,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
         └── v1.0.1
 </code></pre>
 
-<h3 id="refs+内のオブジェクト">refs 内のオブジェクト</h3>
-
+<h3 id="refs-">refs 内のオブジェクト</h3>
 <pre><code>$ git show-ref
 0acbba3b5bd52b9e169077a997bcf5d5f37faa96 refs/heads/gh-pages
 8403eb93d7e03ca02275d4027d9deadc51dfe37f refs/heads/master
@@ -245,8 +280,7 @@ commit あるいは tag オブジェクトの名前を表す。</p></li>
 d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 </code></pre>
 
-<h3 id="ステージされてるオブジェクト">ステージされてるオブジェクト</h3>
-
+<h3 id="section-7">ステージされてるオブジェクト</h3>
 <pre><code>$ git cat-file -p HEAD^{tree}
 040000 tree 67036e7bea736aa461bf7e737b74925db941999f  PIE-1.0beta5
 100644 blob 91b43a3e6572f2ffbe3b1d777d04104a976be686  README.md
@@ -256,22 +290,18 @@ d43e1ccc84a3930597d50c0f8e6da614c0d05a5a refs/tags/v1.0.1
 040000 tree 436ea11960214eac6f68c3b0f935a078903d7062  js
 </code></pre>
 
-<h4 id="関連リンク">関連リンク</h4>
-
+<h4 id="section-8">関連リンク</h4>
 <ul>
-<li><a href="http://schacon.github.com/git/gitrepository-layout.html" title="gitrepository-layout(5)">gitrepository-layout(5) Manual Page</a></li>
-<li><a href="http://schacon.github.com/git/githooks.html" title="githooks(5)">githooks(5) Manual Page</a></li>
+  <li><a href="http://schacon.github.com/git/gitrepository-layout.html" title="gitrepository-layout(5)">gitrepository-layout(5) Manual Page</a></li>
+  <li><a href="http://schacon.github.com/git/githooks.html" title="githooks(5)">githooks(5) Manual Page</a></li>
 </ul>
 
-
-<h2 id="日本語リソース">日本語リソース</h2>
-
+<h2 id="section-9">日本語リソース</h2>
 <ul>
-<li><a href="http://bit.ly/yG6pRv">Pro Git 日本語版PDF (2011-12-10).pdf</a></li>
-<li><a href="http://www8.atwiki.jp/git_jp/">Git入門 - ドキュメント</a></li>
-<li><a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/user-manual.html">Git ユーザマニュアル (バージョン 1.5.3 以降用)</a></li>
+  <li><a href="http://bit.ly/yG6pRv">Pro Git 日本語版PDF (2011-12-10).pdf</a></li>
+  <li><a href="http://www8.atwiki.jp/git_jp/">Git入門 - ドキュメント</a></li>
+  <li><a href="http://www8.atwiki.jp/git_jp/pub/git-manual-jp/Documentation/user-manual.html">Git ユーザマニュアル (バージョン 1.5.3 以降用)</a></li>
 </ul>
-
 ]]></content>
   </entry>
   

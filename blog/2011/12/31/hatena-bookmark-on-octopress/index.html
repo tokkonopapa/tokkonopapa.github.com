@@ -10,8 +10,8 @@
   <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
-  <meta name="description" content="ついでに Twitter、Google+1、Facebook の日本語化と JavaScript の非同期読み込みコードの共通化も。 関連ファイルの抽出 source
-└── _includes/ ├── post/ │ └── sharing.html # post.html、page.html &hellip;">
+  <meta name="description" content="ついでに Twitter、Google+1、Facebook の日本語化と JavaScript の非同期読み込みコードの共通化も。 ### 関連ファイルの抽出 ### source
+└── _includes/ ├── post/ │ └── sharing.html # post.html、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,14 +85,10 @@
   </header>
 
 
-<div class="entry-content"><p>ついでに Twitter、Google+1、Facebook の日本語化と JavaScript の非同期読み込みコードの共通化も。</p>
-
+<div class="entry-content"><p>ついでに Twitter、Google+1、Facebook の日本語化と JavaScript の非同期読み込みコードの共通化も。
 <!--more-->
-
-
-<h3 id="関連ファイルの抽出">関連ファイルの抽出</h3>
-
-<div><script src='https://gist.github.com/1544095.js?file=Related-Files'></script>
+### 関連ファイルの抽出 ###</p>
+<div><script src="https://gist.github.com/1544095.js?file=Related-Files"></script>
 <noscript><pre><code>source
 └── _includes/
     ├── post/
@@ -104,14 +100,12 @@
         ├── twitter_sharing.html     # after_footer.html から
         └── custom/after_footer.html # after_footer.html から（コメントのみ）</code></pre></noscript></div>
 
+<h3 id="section">ファイルの修正</h3>
 
-<h3 id="ファイルの修正">ファイルの修正</h3>
-
-<h4 id="_config.yml">_config.yml</h4>
-
+<h4 id="configyml">_config.yml</h4>
 <p>各ボタンの言語設定、Facebook アプリケーション ID 設定などを追加する。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=_config.yml'></script>
+<div><script src="https://gist.github.com/1544095.js?file=_config.yml"></script>
 <noscript><pre><code># Twitter
 twitter_tweet_button: true
 twitter_tweet_button_lang: ja
@@ -126,12 +120,10 @@ facebook_like: true
 facebook_lang: ja_JP
 facebook_appID:</code></pre></noscript></div>
 
-
-<h4 id="sharing.html">sharing.html</h4>
-
+<h4 id="sharinghtml">sharing.html</h4>
 <p>適当な位置にはてブを追加する。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=sharing.html'></script>
+<div><script src="https://gist.github.com/1544095.js?file=sharing.html"></script>
 <noscript><pre><code>&lt;div class=&quot;sharing&quot;&gt;
   {% if site.twitter_tweet_button %}
   &lt;a href=&quot;http://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-url=&quot;{{ site.url }}{{ page.url }}&quot; data-via=&quot;{{ site.twitter_user }}&quot; data-counturl=&quot;{{ site.url }}{{ page.url }}&quot; {% if site.twitter_tweet_button_lang %}data-lang=&quot;{{ site.twitter_tweet_button_lang }}&quot;{% endif %}&gt;Tweet&lt;/a&gt;
@@ -151,12 +143,10 @@ facebook_appID:</code></pre></noscript></div>
   {% endif %}
 &lt;/div&gt;</code></pre></noscript></div>
 
-
-<h4 id="after_footer.html">after_footer.html</h4>
-
+<h4 id="afterfooterhtml">after_footer.html</h4>
 <p>Facebook、Google+1、Twitter をコメントアウトする。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=after_footer.html'></script>
+<div><script src="https://gist.github.com/1544095.js?file=after_footer.html"></script>
 <noscript><pre><code>{% include disqus.html %}
 {% comment %}
 {% include facebook_like.html %}
@@ -165,12 +155,10 @@ facebook_appID:</code></pre></noscript></div>
 {% endcomment %}
 {% include custom/after_footer.html %}</code></pre></noscript></div>
 
-
-<h4 id="custum/after_footer.html">custum/after_footer.html</h4>
-
+<h4 id="custumafterfooterhtml">custum/after_footer.html</h4>
 <p>Google+1、Facebook の言語設定と JavaScript の非同期読み込みコードを共通化してまとめる。</p>
 
-<div><script src='https://gist.github.com/1544095.js?file=custum-after_footer.html'></script>
+<div><script src="https://gist.github.com/1544095.js?file=custum-after_footer.html"></script>
 <noscript><pre><code>{% comment %}
   Add content to be output at the bottom of each page. (You might use this for analytics scripts, for example)
 {% endcomment %}
@@ -194,26 +182,30 @@ facebook_appID:</code></pre></noscript></div>
 })(this,document);
 &lt;/script&gt;</code></pre></noscript></div>
 
-
-<h3 id="Facebook+の+AppID+について">Facebook の AppID について</h3>
-
+<h3 id="facebook--appid-">Facebook の AppID について</h3>
 <p><code>facebook_like.html</code> には、作者のものと思われるアプリケーション ID が埋め込まれている。</p>
 
-<figure class='code'><figcaption><span>facebook_like.html  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/en_US/all.js#appId=212934732101925&amp;xfbml=1&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>facebook_like.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line">  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/en_US/all.js#appId=212934732101925&amp;xfbml=1&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>本来これは <code>_config.yml</code> で設定すべき事項。言語設定も含めて pull request するべきなんでしょうかネ。</p>
 
-<h3 id="参考情報">参考情報</h3>
-
+<h3 id="section-1">参考情報</h3>
 <ul>
-<li><a href="http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/asynchronous-loading-of-major-social-buttons/">最近海外で流行りのTwitter,Facebook,Google+1,Analyticsをまとめる非同期スクリプトにはてなを加えてみた | ゆっくりと…</a></li>
-<li><a href="http://developers.facebook.com/setup/">Create an App - Facebook開発者</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[最近海外で流行りのTwitter,Facebook,Google+1,Analyticsをまとめる非同期スクリプトにはてなを加えてみた</td>
+          <td>ゆっくりと…](http://tokkono.cute.coocan.jp/blog/slow/index.php/xhtmlcss/asynchronous-loading-of-major-social-buttons/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><a href="http://developers.facebook.com/setup/">Create an App - Facebook開発者</a></li>
 </ul>
-
 </div>
 
 
@@ -249,6 +241,14 @@ facebook_appID:</code></pre></noscript></div>
     </p>
     
       <div class="sharing">
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
   <div class="hatena-button">
     <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
       data-hatena-bookmark-layout="standard"
@@ -259,13 +259,14 @@ facebook_appID:</code></pre></noscript></div>
     </a>
   </div>
   
+  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
-  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/31/hatena-bookmark-on-octopress/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -300,6 +301,14 @@ facebook_appID:</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/04/pygment-lexer/">Pygmentで使える言語パーサー</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/liquid-exception-error/">Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
       </li>
     
@@ -331,19 +340,11 @@ facebook_appID:</code></pre></noscript></div>
         <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 105.45454545454545%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 121.81818181818181%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 110.9090909090909%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 127.27272727272728%'>jekyll(5)</a> <a href='/blog/categories/liquid' style='font-size: 105.45454545454545%'>Liquid(1)</a> <a href='/blog/categories/mac' style='font-size: 110.9090909090909%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(11)</a> <a href='/blog/categories/plugins' style='font-size: 105.45454545454545%'>Plugins(1)</a> <a href='/blog/categories/pygment' style='font-size: 105.45454545454545%'>Pygment(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.36363636363636%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 105.45454545454545%'>Sass(1)</a> </span>
 </section>
 
 <section>
@@ -361,12 +362,10 @@ facebook_appID:</code></pre></noscript></div>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
   </ul>
 
-  
-    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
-  
+
 </section>
 
 
@@ -425,7 +424,7 @@ $.domReady(function() {
     w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
     a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
 
-    a("//platform.twitter.com/widgets.js");
+    a("//platform.twitter.com/widgets.js", "twitter-wjs");
 
     a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
 
@@ -435,6 +434,7 @@ $.domReady(function() {
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 
+    a('https://widgets.getpocket.com/v1/j/btn.js?v=1');
     f.parentNode.insertBefore(e,f);
 })(window,document);
 </script>

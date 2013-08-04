@@ -88,61 +88,54 @@ GitHub Pages には、ユーザーページとプロジェクトページがあ�
 
 <div class="entry-content"><p>あらためて GitHub へのインストールから、GitHub Pages への記事投稿、Bitbucket での原稿管理までをまとめておく。
 インストールは、公式サイトの <a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従う。
-GitHub Pages には、ユーザーページとプロジェクトページがあるが、以下ユーザーページ用を主とする。</p>
-
+GitHub Pages には、ユーザーページとプロジェクトページがあるが、以下ユーザーページ用を主とする。
 <!--more-->
-
-
-<h3 id="1.+Octopress+利用の前提条件">1. Octopress 利用の前提条件</h3>
+### 1. Octopress 利用の前提条件 ###</p>
 
 <ul>
-<li>Git + GitHub アカウント</li>
-<li>ruby <del>1.9.2</del> 1.9.3 以上 + RubyGems<br/>
+  <li>Git + GitHub アカウント</li>
+  <li>ruby <del>1.9.2</del> 1.9.3 以上 + RubyGems<br />
   <a href="http://rubygems.org/">RubyGems</a> は、ruby 1.9.2 以上であれば <a href="http://rubyinstaller.org/" title="RubyInstaller for Windows">インストーラー</a> のパッケージに含まれているという情報が多い（特に Windows）。
   Mac であれば、<a href="http://beginrescueend.com/rvm/install/" title="RVM: Ruby Version Manager - Installing RVM">rvm</a> からアップデートする。
   また、gem は <code>gem update --system</code> で最新版にしておく。</li>
 </ul>
 
-
-<h3 id="2.+GitHub+ユーザーページ用リポジトリの作成">2. GitHub ユーザーページ用リポジトリの作成</h3>
+<h3 id="github-">2. GitHub ユーザーページ用リポジトリの作成</h3>
 
 <p>GitHub で <code>username.github.com</code> の <a href="https://github.com/repositories/new">リポジトリを作成</a> しておく。</p>
 
-<figure class='code'><figcaption><span>ローカル側の設定  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">mkdir</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-</span><span class='line'><span class="n">$</span> <span class="n">cd</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">init</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ローカル側の設定 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">mkdir</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+</span><span class="line"><span class="n">$</span> <span class="n">cd</span> <span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">init</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Initialized empty Git repository in /path/to/repo/username.github.com/.git/
 </code></pre>
 
-<figure class='code'><figcaption><span>何でもいいからコミット  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">touch</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">first</span> <span class="n">commit</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>何でもいいからコミット </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">touch</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">first</span> <span class="n">commit</span><span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>[master (root-commit) a3bd2f1] first commit
  0 files changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 README
 </code></pre>
 
-<figure class='code'><figcaption><span>リモートの登録  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="nl">com:</span><span class="n">username</span><span class="o">/</span><span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">git</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>リモートの登録 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">git</span><span class="err">@</span><span class="n">github</span><span class="p">.</span><span class="nl">com:</span><span class="n">username</span><span class="o">/</span><span class="n">username</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">git</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Counting objects: 3, done.
 Writing objects: 100% (3/3), 205 bytes, done.
@@ -152,17 +145,16 @@ To git@github.com:username/username.github.com.git
 Branch master set up to track remote branch master from origin.
 </code></pre>
 
-<h3 id="3.+Octopress+のインストール">3. Octopress のインストール</h3>
+<h3 id="octopress-">3. Octopress のインストール</h3>
 
 <p>とりあえず、ユーザーページ用リポジトリ <code>username.github.com</code> と同じ階層にインストールする。</p>
 
-<figure class='code'><figcaption><span>Octopress のクローンを作る  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">cd</span> <span class="p">..</span><span class="o">/</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="nl">git:</span><span class="c1">//github.com/imathis/octopress.git octopress</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Octopress のクローンを作る </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">cd</span> <span class="p">..</span><span class="o">/</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="nl">git:</span><span class="c1">//github.com/imathis/octopress.git octopress</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Cloning into 'octopress'...
 remote: Counting objects: 5685, done.
@@ -172,13 +164,12 @@ Receiving objects: 100% (5685/5685), 1.21 MiB | 435 KiB/s, done.
 Resolving deltas: 100% (3247/3247), done.
 </code></pre>
 
-<figure class='code'><figcaption><span>bundler をインストール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">cd</span> <span class="n">octopress</span>
-</span><span class='line'><span class="n">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>bundler をインストール </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">cd</span> <span class="n">octopress</span>
+</span><span class="line"><span class="n">$</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">bundler</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Successfully installed bundler-1.0.21
 1 gem installed
@@ -186,15 +177,14 @@ Installing ri documentation for bundler-1.0.21...
 Installing RDoc documentation for bundler-1.0.21...
 </code></pre>
 
-<p>ちなみに、いちいち <code>ri</code> とか <code>RDoc</code> とかのインストールがうざい場合、<a href="http://d.hatena.ne.jp/ruedap/20110514/ruby_gem_install_no_ri_no_rdoc_gemrc">RubyGemsでgemのインストール時に&#8211;no-ri &#8211;no-rdocをデフォルトにする - アインシュタインの電話番号</a> を参考に <code>.gemrc</code> を設定する。</p>
+<p>ちなみに、いちいち <code>ri</code> とか <code>RDoc</code> とかのインストールがうざい場合、<a href="http://d.hatena.ne.jp/ruedap/20110514/ruby_gem_install_no_ri_no_rdoc_gemrc">RubyGemsでgemのインストール時に–no-ri –no-rdocをデフォルトにする - アインシュタインの電話番号</a> を参考に <code>.gemrc</code> を設定する。</p>
 
 <p>次はおそらく <code>Gemfile</code> に書かれた gem を、依存関係含めてインストールしているのだと思う。</p>
 
-<figure class='code'><figcaption><span>必要な gem をインストール  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">bundle</span> <span class="n">install</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>必要な gem をインストール </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">bundle</span> <span class="n">install</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Using rake (0.9.2) 
 Using RedCloth (4.2.8) 
@@ -205,24 +195,22 @@ Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem 
 
 <p>そして、Rakefile のエントリー <code>install</code> を実行する。</p>
 
-<figure class='code'><figcaption><span>Octopress デフォルトのテーマ classic のインストールやら  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">rake</span> <span class="n">install</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Octopress デフォルトのテーマ classic のインストールやら </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">rake</span> <span class="n">install</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>## Copying classic theme into ./source and ./sass
 </code></pre>
 
-<h3 id="4.+Octopress+サイトの立ち上げ">4. Octopress サイトの立ち上げ</h3>
+<h3 id="octopress--1">4. Octopress サイトの立ち上げ</h3>
 
 <p>ここからは、公式サイトの <a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages With Github User/Organization pages</a> の内容。</p>
 
-<figure class='code'><figcaption><span>GitHub Pages との接続設定  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">rake</span> <span class="n">setup_github_pages</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>GitHub Pages との接続設定 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">rake</span> <span class="n">setup_github_pages</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <pre><code>Enter the read/write url for your repository: git@github.com:username/username.github.com.git
 Added remote git@github.com:username/username.github.com.git as origin
@@ -242,55 +230,50 @@ Initialized empty Git repository in /path/to/repo/octopress/username.github.com/
 <p>実行される内容は次の通り。</p>
 
 <ol>
-<li>GitHub Pages リポジトリへの read/write 可能なプロトコル／パスを入力</li>
-<li><code>imathis/octopress</code> を指すリモート名を <code>origin</code> から <code>octopress</code> に変更</li>
-<li>GitHub Pages リポジトリへのリモート名を <code>origin</code> に設定</li>
-<li>アクティブなブランチを <code>master</code> から <code>source</code> に変更</li>
-<li>リポジトリへのパス名に応じて、ブログサイトの URL を設定</li>
-<li><code>_deploy</code> ディレクトリに、デプロイ用の <code>master</code> ブランチを設定</li>
+  <li>GitHub Pages リポジトリへの read/write 可能なプロトコル／パスを入力</li>
+  <li><code>imathis/octopress</code> を指すリモート名を <code>origin</code> から <code>octopress</code> に変更</li>
+  <li>GitHub Pages リポジトリへのリモート名を <code>origin</code> に設定</li>
+  <li>アクティブなブランチを <code>master</code> から <code>source</code> に変更</li>
+  <li>リポジトリへのパス名に応じて、ブログサイトの URL を設定</li>
+  <li><code>_deploy</code> ディレクトリに、デプロイ用の <code>master</code> ブランチを設定</li>
 </ol>
-
 
 <p>特に 4. 〜 6. 辺りの処理は、1. の入力に応じて自動的にデプロイ先のブランチが設定される（ユーザーページ用は <code>master</code>、プロジェクトページ用は <code>gh-pages</code>）。</p>
 
 <p>そして、サイトの生成とデプロイ（後述の「6. 新規記事、新規ページの作成」も同じ）。</p>
 
-<figure class='code'><figcaption><span>サイトの生成とデプロイ  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">rake</span> <span class="n">generate</span>
-</span><span class='line'><span class="n">rake</span> <span class="n">deploy</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>サイトの生成とデプロイ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">rake</span> <span class="n">generate</span>
+</span><span class="line"><span class="n">rake</span> <span class="n">deploy</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>2つを一気に実行するには <code>rake gen_deploy</code> を、まずはローカルでプレビューするという場合には <code>rake preview</code> を実行後に http://localhost:4000/ にアクセスする。</p>
 
-<h3 id="5.+Octopress+サイトの設定">5. Octopress サイトの設定</h3>
+<h3 id="octopress--2">5. Octopress サイトの設定</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/configuring/">Configuring Octopress</a> を参考に、<code>_config.yml</code> を設定。</p>
 
-<h3 id="6.+新規記事、新規ページの作成">6. 新規記事、新規ページの作成</h3>
+<h3 id="section">6. 新規記事、新規ページの作成</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/blogging/">Blogging Basics</a> を参照。</p>
 
-<h4 id="--新規投稿--">&#8211;新規投稿&#8211;</h4>
+<h4 id="section-1">–新規投稿–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-2">コマンド</h5>
 <pre><code>rake new_post['post title']
 </code></pre>
 
 <p>記事のタイトルは、英語で。</p>
 
-<h5 id="ファイル">ファイル</h5>
-
+<h5 id="section-3">ファイル</h5>
 <pre><code>source/
 └── _post/
     └── YYYY-MM-DD-post-title.markdown
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml">YAMLブロック</h5>
 <pre><code>---
 layout: post
 title: "post title"
@@ -302,24 +285,21 @@ categories: [category1, ...]
 
 <p>ここで、<code>title</code> を日本語にすれば良い。</p>
 
-<h4 id="--新規ページ--">&#8211;新規ページ&#8211;</h4>
+<h4 id="section-4">–新規ページ–</h4>
 
-<h5 id="コマンド">コマンド</h5>
-
+<h5 id="section-5">コマンド</h5>
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="ファイル">ファイル</h5>
-
+<h5 id="section-6">ファイル</h5>
 <pre><code>source/
 └── my-new-page/
-    ├── index.markdown    # rake new_page[my-new-page]
-    └── index.html        # rake new_page[my-new-page.html]
+    ├── index.markdown	# rake new_page[my-new-page]
+    └── index.html		# rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="YAMLブロック">YAMLブロック</h5>
-
+<h5 id="yaml-1">YAMLブロック</h5>
 <pre><code>---
 layout: page
 title: 
@@ -330,44 +310,39 @@ footer: true
 ---
 </code></pre>
 
-<h3 id="7.+サイトの運用管理">7. サイトの運用管理</h3>
+<h3 id="section-7">7. サイトの運用管理</h3>
 
 <p><a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages</a> には、ユーザーページ、プロジェクトページのそれぞれで、本体のリポジトリと統合する方法が推奨されている。</p>
 
-<figure class='code'><figcaption><span>ユーザーページ用リポジトリへの push  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">your</span> <span class="n">message</span><span class="err">&#39;</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ユーザーページ用リポジトリへの push </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">&#39;</span><span class="n">your</span> <span class="n">message</span><span class="err">&#39;</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-
-
-<figure class='code'><figcaption><span>プロジェクトページ用リポジトリへの push  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="p">(</span><span class="n">your</span> <span class="n">repo</span> <span class="n">url</span><span class="p">)</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">config</span> <span class="n">branch</span><span class="p">.</span><span class="n">master</span><span class="p">.</span><span class="n">remote</span> <span class="n">origin</span> <span class="err">#</span> <span class="n">set</span> <span class="n">your</span> <span class="n">new</span> <span class="n">origin</span> <span class="n">as</span> <span class="n">the</span> <span class="k">default</span> <span class="n">branch</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>プロジェクトページ用リポジトリへの push </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="p">(</span><span class="n">your</span> <span class="n">repo</span> <span class="n">url</span><span class="p">)</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">config</span> <span class="n">branch</span><span class="p">.</span><span class="n">master</span><span class="p">.</span><span class="n">remote</span> <span class="n">origin</span> <span class="err">#</span> <span class="n">set</span> <span class="n">your</span> <span class="n">new</span> <span class="n">origin</span> <span class="n">as</span> <span class="n">the</span> <span class="k">default</span> <span class="n">branch</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>統合後は、ローカルの <code>octopress</code> リポジトリは不要になる。</p>
 
-<p><img src="https://lh5.googleusercontent.com/-W12FoatyQ0U/Tv1hkjI1lkI/AAAAAAAAAEA/2RTRvpi4k10/s600/OperationGitHub.png" width="600" height="363" title="1つのリポジトリに統合し、管理する" ></p>
+<p><img src="https://lh5.googleusercontent.com/-W12FoatyQ0U/Tv1hkjI1lkI/AAAAAAAAAEA/2RTRvpi4k10/s600/OperationGitHub.png" width="600" height="363" title="1つのリポジトリに統合し、管理する" /></p>
 
 <p>ただし、実際にやってみると次のようなデメリットもある。</p>
 
 <ul>
-<li><code>source</code> ブランチで管理外だった <code>_deploy</code> や <code>public</code> などを、デプロイ先のブランチでも管理外にする必要アリ。（<code>.gitignore</code> の再設定）。</li>
-<li><code>source</code> ブランチでの <code>rake deploy</code> で デプロイ先のブランチが直接更新されるため、<code>git fetch; git pull</code> でローカルに反映させる必要アリ。</li>
-<li>この反映が、場合によってはコンフリクトを発生させる。</li>
+  <li><code>source</code> ブランチで管理外だった <code>_deploy</code> や <code>public</code> などを、デプロイ先のブランチでも管理外にする必要アリ。（<code>.gitignore</code> の再設定）。</li>
+  <li><code>source</code> ブランチでの <code>rake deploy</code> で デプロイ先のブランチが直接更新されるため、<code>git fetch; git pull</code> でローカルに反映させる必要アリ。</li>
+  <li>この反映が、場合によってはコンフリクトを発生させる。</li>
 </ul>
-
 
 <p>コンフリクトは例えばこんな感じ。</p>
 
@@ -386,57 +361,60 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 <p>こうなると手作業でコンフリクトを解消するか、次のようにしてローカルの内容を強制的にリモートで上書きしなければならない。</p>
 
-<figure class='code'><figcaption><span>強制的にリモートの内容で上書きする  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>強制的にリモートの内容で上書きする </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">reset</span> <span class="o">--</span><span class="n">hard</span> <span class="n">HEAD</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>ということで特にユーザーページ用においては、Octopress リポジトリは単独で管理する、しかも非公開が好ましいと言うのが現時点での結論。</p>
 
-<p><img src="https://lh3.googleusercontent.com/-REF5krAHdqI/Tv1hklJ7kWI/AAAAAAAAAD8/0-i9S4AswjY/s600/OperationBitbucket.png" width="600" height="366" title="リポジトリを統合せず、単独で管理する" ></p>
+<p><img src="https://lh3.googleusercontent.com/-REF5krAHdqI/Tv1hklJ7kWI/AAAAAAAAAD8/0-i9S4AswjY/s600/OperationBitbucket.png" width="600" height="366" title="リポジトリを統合せず、単独で管理する" /></p>
 
 <p>この目的にぴったりなのが <a href="https://bitbucket.org/">Bitbucket</a> というわけ。Git が使える上、リポジトリを非公開にでき、5人まで無料。個人利用であれば言うことなし。</p>
 
 <p>Bitbucket のアカウント取得後にまずやることは、「Account settings」で SSH key を設定すること。<a href="http://confluence.atlassian.com/display/BITBUCKET/Using+SSH+to+Access+your+Bitbucket+Repository">Using SSH to Access your Bitbucket Repository</a> を参考に。</p>
 
-<p><img src="https://lh3.googleusercontent.com/-4iSTHTCDNrY/Tv1dpUb86BI/AAAAAAAAADs/hf_SEC2v498/s500/BitbucketSSHKeys.png" width="500" height="220" title="SSH key の設定" ></p>
+<p><img src="https://lh3.googleusercontent.com/-4iSTHTCDNrY/Tv1dpUb86BI/AAAAAAAAADs/hf_SEC2v498/s500/BitbucketSSHKeys.png" width="500" height="220" title="SSH key の設定" /></p>
 
 <p>次に Bitbucket に octopress リポジトリを作成し、リモートとして登録。</p>
 
-<figure class='code'><figcaption><span>リモート名 bitbacket で optopress リポジトリを登録する  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">bitbucket</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="nl">org:</span><span class="n">username</span><span class="o">/</span><span class="n">octopress</span><span class="p">.</span><span class="n">git</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">bitbucket</span> <span class="n">source</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>リモート名 bitbacket で optopress リポジトリを登録する </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">bitbucket</span> <span class="n">git</span><span class="err">@</span><span class="n">bitbucket</span><span class="p">.</span><span class="nl">org:</span><span class="n">username</span><span class="o">/</span><span class="n">octopress</span><span class="p">.</span><span class="n">git</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">bitbucket</span> <span class="n">source</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>この段階で、リモートとして <code>origin</code>、<code>octopress</code>、<code>bitbucket</code> の3つが登録されることとなる。これ以降、記事のデプロイは <code>rake deploy</code>、原稿のバックアップは <code>git push</code> でできるようになる。</p>
 
-<h3 id="8.+Octopress+の更新">8. Octopress の更新</h3>
-
+<h3 id="octopress--3">8. Octopress の更新</h3>
 <p>本家の更新を取り込んでマージする。<code>gems</code> の更新も忘れずに。</p>
 
-<figure class='code'><figcaption><span>Octopress の更新  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">fetch</span> <span class="n">octopress</span>
-</span><span class='line'><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">octopress</span> <span class="n">master</span>
-</span><span class='line'><span class="n">$</span> <span class="n">bundle</span> <span class="n">update</span> <span class="n">rake</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Octopress の更新 </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">fetch</span> <span class="n">octopress</span>
+</span><span class="line"><span class="n">$</span> <span class="n">git</span> <span class="n">pull</span> <span class="n">octopress</span> <span class="n">master</span>
+</span><span class="line"><span class="n">$</span> <span class="n">bundle</span> <span class="n">update</span> <span class="n">rake</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<h3 id="参考情報">参考情報</h3>
-
+<h3 id="section-8">参考情報</h3>
 <ul>
-<li><a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">Big Sky :: githubとjekyllとoctopressで作る簡単でモダンなブログ</a></li>
-<li><a href="http://blog.glidenote.com/blog/2011/11/07/install-octopress-on-github/">GithubとOctopressでモダンな技術系ブログを作ってみる | Glide Note - グライドノート</a></li>
+  <li><a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">Big Sky :: githubとjekyllとoctopressで作る簡単でモダンなブログ</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[GithubとOctopressでモダンな技術系ブログを作ってみる</td>
+          <td>Glide Note - グライドノート](http://blog.glidenote.com/blog/2011/11/07/install-octopress-on-github/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
-
 </div>
 
 
@@ -472,6 +450,14 @@ Automatic merge failed; fix conflicts and then commit the result.
     </p>
     
       <div class="sharing">
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
   <div class="hatena-button">
     <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
       data-hatena-bookmark-layout="standard"
@@ -482,13 +468,14 @@ Automatic merge failed; fix conflicts and then commit the result.
     </a>
   </div>
   
+  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
-  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -523,6 +510,14 @@ Automatic merge failed; fix conflicts and then commit the result.
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/04/pygment-lexer/">Pygmentで使える言語パーサー</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/liquid-exception-error/">Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
       </li>
     
@@ -554,19 +549,11 @@ Automatic merge failed; fix conflicts and then commit the result.
         <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 105.45454545454545%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 121.81818181818181%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 110.9090909090909%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 127.27272727272728%'>jekyll(5)</a> <a href='/blog/categories/liquid' style='font-size: 105.45454545454545%'>Liquid(1)</a> <a href='/blog/categories/mac' style='font-size: 110.9090909090909%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(11)</a> <a href='/blog/categories/plugins' style='font-size: 105.45454545454545%'>Plugins(1)</a> <a href='/blog/categories/pygment' style='font-size: 105.45454545454545%'>Pygment(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.36363636363636%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 105.45454545454545%'>Sass(1)</a> </span>
 </section>
 
 <section>
@@ -584,12 +571,10 @@ Automatic merge failed; fix conflicts and then commit the result.
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
   </ul>
 
-  
-    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
-  
+
 </section>
 
 
@@ -648,7 +633,7 @@ $.domReady(function() {
     w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
     a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
 
-    a("//platform.twitter.com/widgets.js");
+    a("//platform.twitter.com/widgets.js", "twitter-wjs");
 
     a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
 
@@ -658,6 +643,7 @@ $.domReady(function() {
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 
+    a('https://widgets.getpocket.com/v1/j/btn.js?v=1');
     f.parentNode.insertBefore(e,f);
 })(window,document);
 </script>

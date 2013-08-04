@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sass | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/sass/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-07-15T00:32:54+09:00</updated>
+  <updated>2013-08-04T22:03:45+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -20,36 +20,48 @@
     <id>http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles</id>
     <content type="html"><![CDATA[<p>Octopress には、スタイル設定に <a href="http://sass-lang.com/" title="Syntactically Awesome StyleSheets">Sass</a> と <a href="http://compass-style.org/">Compass</a> が導入されているため、カスタマイズには、SCSS（Sassy CSS）に関する知識が必要である。</p>
 
-<p>この際だから覚えてしまうことにする。</p>
-
+<p>この際だから覚えてしまうことにする。
 <!--more-->
+### Sass 関連の参考資料 ###
+たぶん何度も読み直すと思うので、ここにメモ。</p>
 
-
-<h3 id="Sass+関連の参考資料">Sass 関連の参考資料</h3>
-
-<p>たぶん何度も読み直すと思うので、ここにメモ。</p>
-
-<h4 id="Sass">Sass</h4>
+<h4 id="sass">Sass</h4>
 
 <ul>
-<li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
-<li><a href="http://hail2u.net/documents/sass-tutorial.html">Sass - チュートリアル</a></li>
-<li><a href="http://hail2u.net/documents/sass-and-sassy-css.html">Sass、そしてSassy CSS (SCSS)</a></li>
-<li><a href="http://nodot.jp/articles/singletoninsass">Sass で Singleton を実現し、安心してクラスを再利用する - nodot</a></li>
-<li><a href="http://tech.naver.jp/blog/?p=845">sassの抑えておきたいfunctionの使い方 « NAVER Engineers' Blog</a></li>
+  <li><a href="http://hail2u.net/documents/ala-getting-started-with-sass.html">Sassで行こう！</a></li>
+  <li><a href="http://hail2u.net/documents/sass-tutorial.html">Sass - チュートリアル</a></li>
+  <li><a href="http://hail2u.net/documents/sass-and-sassy-css.html">Sass、そしてSassy CSS (SCSS)</a></li>
+  <li><a href="http://nodot.jp/articles/singletoninsass">Sass で Singleton を実現し、安心してクラスを再利用する - nodot</a></li>
+  <li><a href="http://tech.naver.jp/blog/?p=845">sassの抑えておきたいfunctionの使い方 « NAVER Engineers’ Blog</a></li>
 </ul>
 
-
-<h4 id="Compass">Compass</h4>
+<h4 id="compass">Compass</h4>
 
 <ul>
-<li><a href="http://compass-style.org/reference/compass/">Compass Core Framework | Compass Documentation</a></li>
-<li><a href="http://compass-style.org/index/mixins/">Compass Documentation | All Mixins | Compass Documentation</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Compass Core Framework</td>
+          <td>Compass Documentation](http://compass-style.org/reference/compass/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Compass Documentation</td>
+          <td>All Mixins</td>
+          <td>Compass Documentation](http://compass-style.org/index/mixins/)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
 
-
-<h3 id="Octopress+の+Sass+構成">Octopress の Sass 構成</h3>
-
+<h3 id="octopress--sass-">Octopress の Sass 構成</h3>
 <pre><code>sass/
 ├─ screen.scss              # 全ての定義の始まりであり、終わり
 ├─ _base.scss               # 各 base/* の読み込み
@@ -82,9 +94,8 @@
    └─ _footer.scss          # フッター部に関するスタイル定義
 </code></pre>
 
-<h4 id="screen.scss">screen.scss</h4>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>screen.scss  </span></figcaption>
+<h4 id="screenscss">screen.scss</h4>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>screen.scss </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -95,36 +106,34 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@import</span> <span class="s2">&quot;compass&quot;</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="k">@import</span> <span class="err">“</span><span class="nt">compass</span><span class="err">”</span><span class="p">;</span>
 </span><span class='line'><span class="k">@include</span> <span class="nt">global-reset</span><span class="p">;</span>
 </span><span class='line'><span class="k">@include</span> <span class="nt">reset-html5</span><span class="p">;</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="k">@import</span> <span class="s2">&quot;custom/colors&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/fonts&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/layout&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;base&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;partials&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/styles&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="k">@import</span> <span class="err">“</span><span class="nt">custom</span><span class="o">/</span><span class="nt">colors</span><span class="err">”</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="err">“</span><span class="nt">custom</span><span class="o">/</span><span class="nt">fonts</span><span class="err">”</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="err">“</span><span class="nt">custom</span><span class="o">/</span><span class="nt">layout</span><span class="err">”</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="err">“</span><span class="nt">base</span><span class="err">”</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="err">“</span><span class="nt">partials</span><span class="err">”</span><span class="p">;</span>
+</span><span class='line'><span class="k">@import</span> <span class="err">“</span><span class="nt">custom</span><span class="o">/</span><span class="nt">styles</span><span class="err">”</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>1〜3行目は、<a href="http://compass-style.org/reference/compass/reset/utilities/">Compass Reset Utilities</a> の Mixin を利用するための設定。5〜10行目の読み込み順が重要。スタイル定義の優先順位が決まる。</p>
 
-<h3 id="カスタマイズ例">カスタマイズ例</h3>
-
+<h3 id="section">カスタマイズ例</h3>
 <p><code>sass/custom/</code> 以下のファイルでカスタマイズする。</p>
 
-<h4 id="_color.scss">_color.scss</h4>
-
+<h4 id="colorscss">_color.scss</h4>
 <p>まずはテーマカラーの調整。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span><em>color.scss  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_color.scss </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">colors</span> <span class="nt">defined</span> <span class="nt">in</span> <span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">theme</span><span class="nc">.scss</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">colors</span> <span class="nt">defined</span> <span class="nt">in</span> <span class="nt">_theme</span><span class="nc">.scss</span>
 </span><span class='line'><span class="err">$</span><span class="nt">header-bg</span><span class="o">:</span> <span class="nf">#04263e</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 </span><span class='line'><span class="err">$</span><span class="nt">nav-bg</span><span class="o">:</span> <span class="nt">desaturate</span><span class="o">(</span><span class="nt">lighten</span><span class="o">(</span><span class="nf">#a0bfd6</span><span class="o">,</span> <span class="nt">18</span><span class="o">),</span> <span class="nt">5</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 </span><span class='line'><span class="err">$</span><span class="nt">footer-bg</span><span class="o">:</span> <span class="nf">#d1e4f2</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
@@ -132,11 +141,10 @@
 </span><span class='line'><span class="err">$</span><span class="nt">footer-link-color-hover</span><span class="o">:</span> <span class="nt">darken</span><span class="o">(</span><span class="err">$</span><span class="nt">footer-bg</span><span class="o">,</span> <span class="nt">50</span><span class="o">)</span> <span class="o">!</span><span class="nt">default</span><span class="o">;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4 id="_styles.scss">_styles.scss</h4>
-
+<h4 id="stylesscss">_styles.scss</h4>
 <p>その他の細かなスタイルのカスタマイズ。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span><em>styles.scss  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_styles.scss </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -160,15 +168,15 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="o">&lt;/</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">typography</span><span class="nc">.scss</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="o">//</span> <span class="nt">Change</span> <span class="nt">definitions</span> <span class="nt">in</span> <span class="nt">_typography</span><span class="nc">.scss</span>
 </span><span class='line'><span class="k">@mixin</span> <span class="nt">header-text</span> <span class="p">{</span>
 </span><span class='line'>  <span class="k">@include</span> <span class="nt">text-shadow</span><span class="o">(</span><span class="nt">-5px</span> <span class="nt">-5px</span> <span class="nt">10px</span> <span class="nf">#000</span><span class="o">)</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">body</span> <span class="o">&amp;</span><span class="nt">gt</span><span class="o">;</span> <span class="nt">header</span> <span class="nt">h1</span> <span class="p">{</span>
 </span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nt">body</span> <span class="o">&gt;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span>
+</span><span class='line'><span class="nt">body</span> <span class="o">&amp;</span><span class="nt">gt</span><span class="o">;</span> <span class="nt">header</span> <span class="nt">h2</span> <span class="p">{</span>
 </span><span class='line'>  <span class="o">@</span><span class="n">include</span> <span class="n">header</span><span class="o">-</span><span class="k">text</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
 </span><span class='line'>
@@ -185,13 +193,12 @@
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4 id="謎の右マージンを直す">謎の右マージンを直す</h4>
-
+<h4 id="section-1">謎の右マージンを直す</h4>
 <p>サイドバーのツイッターを有効にすると、謎の右マージンが現れる。</p>
 
-<p><img class="center" src="https://lh3.googleusercontent.com/-C2lRp_c2yAw/TwLWli56Q1I/AAAAAAAAAIY/cKbDczthVc8/s380/UnknownRightMargin.png" width="380" height="240" title="'謎のマージン'" ></p>
+<p><img class="center" src="https://lh3.googleusercontent.com/-C2lRp_c2yAw/TwLWli56Q1I/AAAAAAAAAIY/cKbDczthVc8/s380/UnknownRightMargin.png" width="380" height="240" title="‘謎のマージン’" ></p>
 
-<p><img class="center" src="https://lh4.googleusercontent.com/-FvFRXgvmCqg/TwLWllgHJFI/AAAAAAAAAIU/jT5zjwsmSsc/s380/TwitterFollowButton.png" width="380" height="240" title="'Followボタンが原因'" ></p>
+<p><img class="center" src="https://lh4.googleusercontent.com/-FvFRXgvmCqg/TwLWllgHJFI/AAAAAAAAAIU/jT5zjwsmSsc/s380/TwitterFollowButton.png" width="380" height="240" title="‘Followボタンが原因’" ></p>
 
 <p>原因は、サイドバー内側の幅が 260px に設定されているのに対し、フォローボタンに幅が指定されておらず、デフォルトの 300px となっていること。</p>
 
@@ -205,16 +212,32 @@
   {% endif %}</code></pre></noscript></div>
 </p>
 
-<h5 id="参考情報">参考情報</h5>
+<h5 id="section-2">参考情報</h5>
 
 <ul>
-<li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button | Twitter Developers</a></li>
-<li><a href="https://dev.twitter.com/docs/follow-button">Follow Button | Twitter Developers</a></li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Tweet Button</td>
+          <td>Twitter Developers](https://dev.twitter.com/docs/tweet-button)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>[Follow Button</td>
+          <td>Twitter Developers](https://dev.twitter.com/docs/follow-button)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
 </ul>
 
-
-<h5 id="2012年1月11日+追記">2012年1月11日 追記</h5>
-
+<h5 id="section-3">2012年1月11日 追記</h5>
 <p>おそらく <a href="https://github.com/imathis/octopress/commit/930747f06ff633bb3f23df94fe57b679e311a015" title="Fix for annoying overflow scroll issues caused by facebook and twitter share/follow widgets.">本家のこのコミット</a> で直ったと思う。</p>
 ]]></content>
   </entry>

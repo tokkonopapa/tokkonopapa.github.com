@@ -10,8 +10,8 @@
   <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
-  <meta name="description" content="無料枠だと、命名できないと思っていたけど勘違いで、使われていない名前ならいつでも変えられる。 ということで、名前のつけ方、変え方。 1. アプリ名の命名を Heroku に任せる 1
-$ heroku create 勝手に名前が付けられる。どんな名前を付けてくれるのか、結構楽しみだったりする。 2 &hellip;">
+  <meta name="description" content="無料枠だと、命名できないと思っていたけど勘違いで、使われていない名前ならいつでも変えられる。 ということで、名前のつけ方、変え方。 ### 1. アプリ名の命名を Heroku に任せる 1
+$ heroku create 勝手に名前が付けられる。どんな名前を付けてくれるのか、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,66 +87,53 @@ $ heroku create 勝手に名前が付けられる。どんな名前を付けて�
 
 <div class="entry-content"><p>無料枠だと、命名できないと思っていたけど勘違いで、使われていない名前ならいつでも変えられる。</p>
 
-<p>ということで、名前のつけ方、変え方。</p>
-
+<p>ということで、名前のつけ方、変え方。
 <!--more-->
+### 1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></p>
 
-
-<h3 id="1.+[アプリ名の命名を+Heroku+に任せる](http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application++Create+your+Heroku+application+)">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#3_create_your_heroku_application" title="Create your Heroku application">アプリ名の命名を Heroku に任せる</a></h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku create</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku create</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>勝手に名前が付けられる。どんな名前を付けてくれるのか、結構楽しみだったりする。</p>
 
-<h3 id="2.+[アプリ名を指定して作成する](http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app++Creating+a+Named+App+)">2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
+<h3 id="httpdevcenterherokucomarticlescreating-appscreatinganamedapp-creating-a-named-app">2. <a href="http://devcenter.heroku.com/articles/creating-apps#creating_a_named_app" title="Creating a Named App">アプリ名を指定して作成する</a></h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku create myappname</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku create myappname</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>当然、既に取得されているアプリ名はダメ。</p>
 
-<h3 id="3.+[アプリ名を変更する](http://devcenter.heroku.com/articles/renaming-apps++Renaming+Apps+from+the+CLI+)">3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
-
+<h3 id="httpdevcenterherokucomarticlesrenaming-apps-renaming-apps-from-the-cli">3. <a href="http://devcenter.heroku.com/articles/renaming-apps" title="Renaming Apps from the CLI">アプリ名を変更する</a></h3>
 <p>次の3通りの方法。</p>
 
 <ul>
-<li>リポジトリのディレクトリ内で変更する場合</li>
+  <li>リポジトリのディレクトリ内で変更する場合</li>
 </ul>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku rename 新しい名前</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku rename 新しい名前</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li>リポジトリのディレクトリ外で変更する場合</li>
+  <li>リポジトリのディレクトリ外で変更する場合</li>
 </ul>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ heroku rename 新しい名前 --app 古い名前</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ heroku rename 新しい名前 --app 古い名前</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-<li>「MyApps」から変更する場合</li>
+  <li>「MyApps」から変更する場合</li>
 </ul>
-
 
 <p><img src="https://lh5.googleusercontent.com/-Um6U7b3dY4o/TvHx1OcDTdI/AAAAAAAAABQ/u5llrMWP-PE/s500/HerokuRename.png" alt="「MyApps」から変更する" /></p>
 
 <ul>
-<li>変更したアプリ名をリポジトリに反映するには、heroku アプリへの SSH プロトコル／パスを指定し直す。</li>
+  <li>変更したアプリ名をリポジトリに反映するには、heroku アプリへの SSH プロトコル／パスを指定し直す。</li>
 </ul>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git remote rm heroku
-</span><span class='line'>$ git remote add heroku git@heroku.com:新しい名前.git</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ git remote rm heroku
+</span><span class="line">$ git remote add heroku git@heroku.com:新しい名前.git</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -182,6 +169,14 @@ $ heroku create 勝手に名前が付けられる。どんな名前を付けて�
     </p>
     
       <div class="sharing">
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
   <div class="hatena-button">
     <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
       data-hatena-bookmark-layout="standard"
@@ -192,13 +187,14 @@ $ heroku create 勝手に名前が付けられる。どんな名前を付けて�
     </a>
   </div>
   
+  
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
-  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/21/heroku-app-name/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -233,6 +229,14 @@ $ heroku create 勝手に名前が付けられる。どんな名前を付けて�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/04/pygment-lexer/">Pygmentで使える言語パーサー</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/liquid-exception-error/">Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/23/octopress-toc/">octopressで見出しの目次を記事に埋め込む方法</a>
       </li>
     
@@ -264,19 +268,11 @@ $ heroku create 勝手に名前が付けられる。どんな名前を付けて�
         <a href="/blog/2012/01/03/customizing-octopress-styles/">Octopressのスタイル設定とカスタマイズ</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/01/02/octopress-hidden-features-for-seo/">SEOに効くOctopressの隠し機能</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/12/31/hatena-bookmark-on-octopress/">Octopressにはてブボタンを設置する</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 106.66666666666667%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 126.66666666666667%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 113.33333333333333%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 133.33333333333334%'>jekyll(5)</a> <a href='/blog/categories/mac' style='font-size: 113.33333333333333%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(9)</a> <a href='/blog/categories/plugins' style='font-size: 106.66666666666667%'>Plugins(1)</a> <a href='/blog/categories/ruby' style='font-size: 120.0%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 106.66666666666667%'>Sass(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 105.45454545454545%'>Git(1)</a> <a href='/blog/categories/github' style='font-size: 121.81818181818181%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 110.9090909090909%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 127.27272727272728%'>jekyll(5)</a> <a href='/blog/categories/liquid' style='font-size: 105.45454545454545%'>Liquid(1)</a> <a href='/blog/categories/mac' style='font-size: 110.9090909090909%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(11)</a> <a href='/blog/categories/plugins' style='font-size: 105.45454545454545%'>Plugins(1)</a> <a href='/blog/categories/pygment' style='font-size: 105.45454545454545%'>Pygment(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.36363636363636%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 105.45454545454545%'>Sass(1)</a> </span>
 </section>
 
 <section>
@@ -294,12 +290,10 @@ $ heroku create 勝手に名前が付けられる。どんな名前を付けて�
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
   </ul>
 
-  
-    <a href="http://twitter.com/tokkonopapa" class="twitter-follow-button" data-show-count="false">Follow @tokkonopapa</a>
-  
+
 </section>
 
 
@@ -358,7 +352,7 @@ $.domReady(function() {
     w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
     a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
 
-    a("//platform.twitter.com/widgets.js");
+    a("//platform.twitter.com/widgets.js", "twitter-wjs");
 
     a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
 
@@ -368,6 +362,7 @@ $.domReady(function() {
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 
+    a('https://widgets.getpocket.com/v1/j/btn.js?v=1');
     f.parentNode.insertBefore(e,f);
 })(window,document);
 </script>

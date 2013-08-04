@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Liquid | T.I.D.]]></title>
+  <link href="http://tokkonopapa.github.com/blog/categories/liquid/atom.xml" rel="self"/>
+  <link href="http://tokkonopapa.github.com/"/>
+  <updated>2013-08-04T22:03:45+09:00</updated>
+  <id>http://tokkonopapa.github.com/</id>
+  <author>
+    <name><![CDATA[tokkonopapa]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Liquid Exception: invalid byte sequence in UTF-8 in atom.xml]]></title>
+    <link href="http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error/"/>
+    <updated>2013-08-04T18:08:00+09:00</updated>
+    <id>http://tokkonopapa.github.com/blog/2013/08/04/liquid-exception-error</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/imathis/octopress">Octopress 本家</a> に追従する度にエラーで悩まされる。今度は <code>rake generate</code> 時に <code>Liquid Exception: invalid byte sequence in UTF-8 in atom.xml</code> というエラー。</p>
+
+<p>どこかで日本語の扱いをヘクってると思われるが…</p>
+
+<!--more-->
+
+<h3 id="section">対策</h3>
+
+<p>原因は色々あるんだろうけど、ウチの場合は <code>markdown</code> を <code>rdiscount</code> から <code>kramdown</code> に変えることでエラーが出なくなった。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kramdown</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'>   gem ‘rake’, ‘~&amp;gt; 0.9’
+</span><span class='line'>   gem ‘jekyll’, ‘~&amp;gt; 0.12’
+</span><span class='line'>   gem ‘rdiscount’, ‘~&amp;gt; 2.0.7’
+</span><span class='line'><span class="gi">+  gem ‘kramdown’</span>
+</span><span class='line'>   gem ‘pygments.rb’, ‘~&amp;gt; 0.3.4’
+</span><span class='line'>   gem ‘RedCloth’, ‘~&amp;gt; 4.2.9’
+</span><span class='line'>   gem ‘haml’, ‘~&amp;gt; 3.1.7’
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>でもって <code>bundle install</code>。あるいはいっそ</p>
+
+<p><code>
+gem install kramdown
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
