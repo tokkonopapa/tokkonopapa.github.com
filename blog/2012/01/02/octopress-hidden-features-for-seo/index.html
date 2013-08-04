@@ -86,10 +86,12 @@
 
 <div class="entry-content"><p>Octopress のコードリーディングをしていて見つけた隠し機能について。同じネタが既に
 <a href="http://www.meatleasing.com/octopress-hidden-features/index.html">Octopress Hidden Features</a>
-に挙がっていた。
+に挙がっていた。</p>
+
 <!--more-->
-### &lt;meta&gt; タグの追加機能 ###
-<code>source/_includes/head.html</code> の10行目付近から。</p>
+
+<h3 id="ltmetagt-">&lt;meta&gt; タグの追加機能</h3>
+<p><code>source/_includes/head.html</code> の10行目付近から。</p>
 
 <div><script src="https://gist.github.com/1548796.js?file=head.html"></script>
 <noscript><pre><code>  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
@@ -209,7 +211,7 @@
   
   
   <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
-    data-save-url="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/"
+    data-save-url="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/"
     data-pocket-count="horizontal"
     data-pocket-align="left"
   >Pocket</a>

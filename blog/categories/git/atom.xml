@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-04T23:53:31+09:00</updated>
+  <updated>2013-08-05T00:17:19+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -27,14 +27,16 @@
 
 <p>の意味がよく分かる。</p>
 
-<p>ということで、まずは用語の理解から。
-<!--more-->
-Git オブジェクトのタイプ
-———————
-*	blob<br />
-	ファイルの中身を表すオブジェクト</p>
+<p>ということで、まずは用語の理解から。</p>
 
+<!--more-->
+
+<h2 id="git-">Git オブジェクトのタイプ</h2>
 <ul>
+  <li>
+    <p>blob<br />
+ファイルの中身を表すオブジェクト</p>
+  </li>
   <li>
     <p>tree<br />
 ディレクトリの中身の一覧とどのファイルがどの blob に対応するかを表すオブジェクト</p>
@@ -207,7 +209,7 @@ commit あるいは tag オブジェクトの名前を表す。</p>
   <li><a href="http://schacon.github.com/git/gitglossary.html" title="gitglossary(7)">gitglossary(7) Manual Page</a></li>
 </ul>
 
-<h2 id="git-">Git コマンドのオプション指定</h2>
+<h2 id="git--1">Git コマンドのオプション指定</h2>
 <ul>
   <li>
     <p>一文字系:<br />
@@ -223,10 +225,10 @@ commit あるいは tag オブジェクトの名前を表す。</p>
   </li>
 </ul>
 
-<h2 id="git--1">Git の内部</h2>
+<h2 id="git--2">Git の内部</h2>
 <p>内部の実例を見ると、イメージがわき易いかも。</p>
 
-<h3 id="git--2">Git のファイル構成</h3>
+<h3 id="git--3">Git のファイル構成</h3>
 <pre><code>$ tree -F .git
 .git/
 ├── COMMIT_EDITMSG

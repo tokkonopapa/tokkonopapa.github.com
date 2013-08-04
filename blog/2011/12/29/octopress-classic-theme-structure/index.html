@@ -10,8 +10,8 @@
   <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
-  <meta name="description" content="いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。 ### 1. テーマの概要 ### テンプレートファイル
-rake install の時点で、.themes/classic から source にコピーされる。 設定ファイル &hellip;">
+  <meta name="description" content="いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。 1. テーマの概要 テンプレートファイル
+rake install の時点で、.themes/classic から source にコピーされる。 設定ファイル _config.yml &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,20 +85,22 @@ rake install の時点で、.themes/classic から source にコピーされる�
   </header>
 
 
-<div class="entry-content"><p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。
-<!--more-->
-### 1. テーマの概要 ###</p>
+<div class="entry-content"><p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。</p>
 
-<h4 id="section">テンプレートファイル</h4>
+<!--more-->
+
+<h3 id="section">1. テーマの概要</h3>
+
+<h4 id="section-1">テンプレートファイル</h4>
 <p><code>rake install</code> の時点で、<code>.themes/classic</code> から <code>source</code> にコピーされる。</p>
 
-<h4 id="section-1">設定ファイル</h4>
+<h4 id="section-2">設定ファイル</h4>
 <ul>
   <li><strong>_config.yml</strong><br />
   ここで定義された変数がテンプレート中 <code>site.変数名</code> でアクセスされる。</li>
 </ul>
 
-<h4 id="section-2">構成の概要</h4>
+<h4 id="section-3">構成の概要</h4>
 <pre><code>source/
 ├── _layouts/    # トップページ、個別記事ページ、カテゴリアーカイブページのレイアウト
 └── _includes/   # ページレイアウト用の部品
@@ -107,9 +109,9 @@ rake install の時点で、.themes/classic から source にコピーされる�
 	└── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
 </code></pre>
 
-<h3 id="section-3">2. テンプレートファイルの構成</h3>
+<h3 id="section-4">2. テンプレートファイルの構成</h3>
 
-<h4 id="section-4">ページ</h4>
+<h4 id="section-5">ページ</h4>
 <pre><code>└── _layouts/
     ├── default.html
     ├── page.html (layout: default)
@@ -129,19 +131,19 @@ rake install の時点で、.themes/classic から source にコピーされる�
     └── custom/category_feed.xml
 </code></pre>
 
-<h4 id="section-5">ヘッダー</h4>
+<h4 id="section-6">ヘッダー</h4>
 <pre><code>└── _includes/
     ├── header.html
     └── custom/header.html
 </code></pre>
 
-<h4 id="section-6">ナビゲーション・メニュー</h4>
+<h4 id="section-7">ナビゲーション・メニュー</h4>
 <pre><code>└── _includes/
     ├── navigation.html
     └── custom/navigation.html
 </code></pre>
 
-<h4 id="section-7">記事</h4>
+<h4 id="section-8">記事</h4>
 <pre><code>└── _includes/
     ├── article.html			# post.html、index.html から
     ├── post/author.html		# post.html、page.html から
@@ -151,7 +153,7 @@ rake install の時点で、.themes/classic から source にコピーされる�
     └── post/sharing.html		# post.html、page.html から
 </code></pre>
 
-<h4 id="section-8">サイドバー・パーツ</h4>
+<h4 id="section-9">サイドバー・パーツ</h4>
 <pre><code>└── _includes/
     ├── custom/asides/about.html
     ├── asides/recent_posts.html
@@ -162,13 +164,13 @@ rake install の時点で、.themes/classic から source にコピーされる�
     └── asides/twitter.html
 </code></pre>
 
-<h4 id="section-9">フッター</h4>
+<h4 id="section-10">フッター</h4>
 <pre><code>└── _includes/
     ├── footer.html
     └── custom/footer.html
 </code></pre>
 
-<h4 id="section-10">ソーシャル・パーツ</h4>
+<h4 id="section-11">ソーシャル・パーツ</h4>
 <pre><code>└── _includes/
     ├── after_footer.html
     ├── custom/after_footer.html	# コメントのみ
@@ -178,12 +180,12 @@ rake install の時点で、.themes/classic から source にコピーされる�
     └── twitter_sharing.html		# after_footer.html から
 </code></pre>
 
-<h4 id="section-11">アーカイブ</h4>
+<h4 id="section-12">アーカイブ</h4>
 <pre><code>└── _includes/
     └── archive_post.html	# category_index.html、blog/archives/index.html から
 </code></pre>
 
-<h3 id="section-12">3. 生成されるファイルの構成</h3>
+<h3 id="section-13">3. 生成されるファイルの構成</h3>
 <pre><code>├── index.html (layout: default)
 ├── atom.xml
 ├── blog/
@@ -218,13 +220,13 @@ rake install の時点で、.themes/classic から source にコピーされる�
 
 <h3 id="octopress">4. Octopressの動作</h3>
 
-<h4 id="section-13">–新規投稿–</h4>
+<h4 id="section-14">–新規投稿–</h4>
 
-<h5 id="section-14">コマンド</h5>
+<h5 id="section-15">コマンド</h5>
 <pre><code>rake new_post['post title']
 </code></pre>
 
-<h5 id="section-15">ファイル</h5>
+<h5 id="section-16">ファイル</h5>
 <pre><code>└── _post/YYYY-MM-DD-post-title.markdown
 </code></pre>
 
@@ -238,14 +240,14 @@ categories: [category1, ...]
 ---
 </code></pre>
 
-<h4 id="section-16">–新規ページ–</h4>
+<h4 id="section-17">–新規ページ–</h4>
 
-<h5 id="section-17">コマンド</h5>
+<h5 id="section-18">コマンド</h5>
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="section-18">ファイル</h5>
+<h5 id="section-19">ファイル</h5>
 <pre><code>├── my-new-page/index.markdown	# rake new_page[my-new-page]
 └── my-new-page/index.html		# rake new_page[my-new-page.html]
 </code></pre>
@@ -308,7 +310,7 @@ footer: true
   
   
   <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
-    data-save-url="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/"
+    data-save-url="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/"
     data-pocket-count="horizontal"
     data-pocket-align="left"
   >Pocket</a>

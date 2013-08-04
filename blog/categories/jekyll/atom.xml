@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jekyll | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-04T23:53:31+09:00</updated>
+  <updated>2013-08-05T00:17:19+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -21,13 +21,16 @@
     <content type="html"><![CDATA[<p><a href="http://pages.github.com/">GitHub Pages</a> で <a href="https://github.com/mojombo/jekyll">jekyll</a> が 0.12.0 にバージョンアップした事に伴い、
 <a href="https://github.com/rtomayko/rdiscount">rdiscount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
 
-<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。
-<!--more-->
-### 目次</p>
+<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。</p>
 
-<h3 id="section">作成方法</h3>
-<p>#### 設定
-<code>_config.yml</code> に以下を追加。</p>
+<!--more-->
+
+<h3 id="section">目次</h3>
+
+<h3 id="section-1">作成方法</h3>
+
+<h4 id="section-2">設定</h4>
+<p><code>_config.yml</code> に以下を追加。</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml に RDiscount の設定を追加 </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -38,7 +41,7 @@
 </span><span class='line'>  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">“”</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4 id="section-1">記事の書き方</h4>
+<h4 id="section-3">記事の書き方</h4>
 <p>記事に <code>{:TOC}</code> を書き込むと、その部分が目次に置き換わる（<code>TOC</code> は <code>Table Of Contents</code> の略）。</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>記事に目次を埋め込む </span></figcaption>
@@ -48,7 +51,7 @@
 </span><span class='line'>&lt;p&gt;
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3 id="section-2">日本語の見出し</h3>
+<h3 id="section-4">日本語の見出し</h3>
 <p>見出しに日本語を使うと、<code>generate</code> 時にエラーが出る。</p>
 
 <pre><code>Liquid Exception: incompatible character encodings: UTF-8 and ASCII-8BIT in atom.xml
@@ -93,10 +96,12 @@
 <a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a>
 がタイトルのようなエラーを吐くようになってしまった。  </p>
 
-<p>とりあえずのモンキーパッチを当てる方法。
+<p>とりあえずのモンキーパッチを当てる方法。</p>
+
 <!--more-->
-### エラーの内容 ###
-<code>escape</code> メソッドで <code>gsub</code> が未定義だということ。</p>
+
+<h3 id="section">エラーの内容</h3>
+<p><code>escape</code> メソッドで <code>gsub</code> が未定義だということ。</p>
 
 <pre><code>/Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:304:in `escape': undefined method `gsub' for ["Ruby", "jekyll/hyde"]:Array (NoMethodError)
     from /Users/****/.rvm/rubies/ruby-1.9.3-p374/lib/ruby/1.9.1/uri/common.rb:638:in `escape'
@@ -116,7 +121,7 @@
 
 <p>どうやら、<code>categories</code> に配列 <code>["Ruby", "jekyll/hyde"]</code> を指定しているの原因。</p>
 
-<h3 id="section">モンキーパッチ</h3>
+<h3 id="section-1">モンキーパッチ</h3>
 <p><code>URI.escape(c)</code> の <code>c</code> を明示的に <code>String</code> に変換する。</p>
 
 <pre><code>"categories" =&gt; categories.map { |c| URI.escape(c.to_s) }.join('/'),
@@ -132,14 +137,17 @@
     <link href="http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment/"/>
     <updated>2012-09-22T15:30:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2012/09/22/jekyll-experiment</id>
-    <content type="html"><![CDATA[<p>jekyll で本格的ブログを作るためのテンプレート <a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a> を作ってみたが、色々と作り込むうちに複雑になってきたので、ここに記録しておく。
-<!--more-->
-制作方針
-——–
-* モジュール化により、カスタマイズし易くすること。
-* ブログに必要な最小限の機能が、プラグインの使えない <a href="http://pages.github.com/">GitHub Pages</a> 上の jekyll でも動作すること。</p>
+    <content type="html"><![CDATA[<p>jekyll で本格的ブログを作るためのテンプレート <a href="https://github.com/tokkonopapa/jekyll-experiment">jekyll-experiment</a> を作ってみたが、色々と作り込むうちに複雑になってきたので、ここに記録しておく。</p>
 
-<h2 id="section">構成</h2>
+<!--more-->
+
+<h2 id="section">制作方針</h2>
+<ul>
+  <li>モジュール化により、カスタマイズし易くすること。</li>
+  <li>ブログに必要な最小限の機能が、プラグインの使えない <a href="http://pages.github.com/">GitHub Pages</a> 上の jekyll でも動作すること。</li>
+</ul>
+
+<h2 id="section-1">構成</h2>
 <pre><code>.
 ├── _deploy/                # デプロイ時の静的ファイル群を保存しておく
 ├── _includes/              # 他からインクルードされるテンプレート部品
@@ -165,8 +173,9 @@
 </code></pre>
 
 <h3 id="configyml-">1. <code>_config.yml</code> の設定</h3>
-<p>#### <code>url</code>、<code>baseurl</code>
-GitHub プロジェクトページの場合は、次のように指定する。</p>
+
+<h4 id="urlbaseurl"><code>url</code>、<code>baseurl</code></h4>
+<p>GitHub プロジェクトページの場合は、次のように指定する。</p>
 
 <pre><code>url: http://USERNAME.github.com/REPOSITORY
 baseurl: /REPOSITORY
@@ -235,8 +244,9 @@ group: Blog
 </ul>
 
 <h3 id="yaml-">2. 記事の YAML ディレクティブ</h3>
-<p>#### <code>excerpt</code>
-トップページ (index.html) で表示する、記事の要旨。</p>
+
+<h4 id="excerpt"><code>excerpt</code></h4>
+<p>トップページ (index.html) で表示する、記事の要旨。</p>
 
 <h4 id="thumbnail"><code>thumbnail</code></h4>
 <p>トップページ (index.html) で表示する、サムネイル画像。</p>
@@ -253,7 +263,7 @@ group: Blog
 <h4 id="tags"><code>tags</code></h4>
 <p>タグも配列を使用可能。カテゴリとは異なり、親子関係はない。</p>
 
-<h3 id="section-1">3.「続きを読む」機能</h3>
+<h3 id="section-2">3.「続きを読む」機能</h3>
 <p>トップページ (index.html) の表示時、<code>_includes/libs/truncate_xxxx</code> で以下の処理を実行する。</p>
 
 <h4 id="excerpt-">3.1 <code>excerpt</code> の処理</h4>
@@ -276,7 +286,7 @@ group: Blog
 	{{ post.content | replace_first:’<!--more-->’, SEP | split:SEP | first }}
 </p>
 
-<h5 id="section-2">参考情報</h5>
+<h5 id="section-3">参考情報</h5>
 <ul>
   <li><a href="http://www.jacquesf.com/2011/03/creating-excerpts-in-jekyll-with-wordpress-style-more-html-comments/">Creating Excerpts in Jekyll with Wordpress-style &lt;!–more–&gt; HTML Comments - Jacques Fortier</a><br />
   <code>&lt;--more--&gt;</code> より手前を <code>excerpt</code> とする <code>postmorefilter</code> プラグイン 。</li>
@@ -284,10 +294,10 @@ group: Blog
   <code>&lt;!-- more start --&gt;</code> ～ <code>&lt;-- more end --&gt;</code> 間をコメント化して <code>excerpt</code> とする方法。</li>
 </ul>
 
-<h4 id="section-3">3.3 先頭から既定文字数だけを表示する処理</h4>
+<h4 id="section-4">3.3 先頭から既定文字数だけを表示する処理</h4>
 <p><code>excerpt</code> および <code>&lt;!--more--&gt;</code> が共にない場合、先頭の <code>truncate_len</code> だけ文字を表示する。GitHub 上の jekyll （バージョン 2.2.2） の場合、<code>truncate</code> フィルタがユニコードに対応しておらず、単なるバイト数でカウントされてしまうため、日本語が文字化けする可能性がある。そこでかなりトリッキーな方法ではあるが、末尾の文字コードを調べ、適切な所で丸める処理を Liquid で実装した。</p>
 
-<h3 id="section-4">4. カテゴリ、タグ</h3>
+<h3 id="section-5">4. カテゴリ、タグ</h3>
 <p><a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data - mojombo/jekyll Wiki</a> にある通り、テンプレートからは <code>site.categories</code> （ハッシュ） や <code>page.categories</code> （配列） などでアクセスすることが出来る。<code>_includes/libs/list_categories</code> と <code>_includes/libs/list_tags</code> にそれらの扱いを集約すると共に、両者をフラグで使い分ける仕様とした。</p>
 
 <p>またカテゴリは、親子関係を表す配列で提供されるのが jekyll の仕様である。例えば、<code>_post/1970-1-1-hello-world.md</code> の YAML ディレクティブに次のようなカテゴリが指定されていたとする。</p>
@@ -304,7 +314,7 @@ category: [parent, child]
 <h3 id="bootstrap-">5. bootstrap 関連</h3>
 <p>コレのコンフィグレーションを色々できるようにしたことが複雑化の原因。不要なら一切を削除するのがお勧め。</p>
 
-<h4 id="section-5">5.1 基本構成</h4>
+<h4 id="section-6">5.1 基本構成</h4>
 <p><code>assets/bootstrap-X.Y.Z/</code> 下のファイルが、<code>_includes/bootstrap-X.Y.Z/</code> 下の部品をインクルードする構成とした。</p>
 
 <p>例えば、<code>assets/bootstrap-2.1.1/js/bootstrap.custom.js</code> は、次のように bootstrap の js 部品をインクルードする。</p>
@@ -340,15 +350,16 @@ category: [parent, child]
 <h5 id="jqueryver"><code>jquery_ver</code></h5>
 <p>本当は 1.8.x を使いたいんだけれど、私のスマホ （Optimus L-01D/Android 2.3） のネイティブなブラウザが落ちる。Firefox なら大丈夫。たぶんブラウザのバグ （だと思う）。</p>
 
-<h5 id="section-6">参考情報</h5>
+<h5 id="section-7">参考情報</h5>
 <ul>
   <li><a href="http://developmentseed.org/blog/2011/09/09/jekyll-github-pages/">Using Jekyll and GitHub Pages for Our Site | Development Seed</a><br />
   YAML ディレクティブを空に設定し、CSS や json ファイルを作る方法。GitHub Pages でもちゃんと動く。</li>
 </ul>
 
 <h3 id="rakefile-">6. <code>Rakefile</code> のエントリー</h3>
-<p>#### <code>preview</code>
-<code>rake preview</code> もしくは <code>rake</code> で <a href="http://localhost:4000/">http://localhost:4000/</a> でのテストが可能。</p>
+
+<h4 id="preview"><code>preview</code></h4>
+<p><code>rake preview</code> もしくは <code>rake</code> で <a href="http://localhost:4000/">http://localhost:4000/</a> でのテストが可能。</p>
 
 <h4 id="post"><code>post</code></h4>
 <p>新規投稿。次の書式が可能。</p>
@@ -370,8 +381,9 @@ rake post["title of my article"]
 <p><code>setup_remote</code> で設定したリモートサーバに記事を <code>git push</code> する。<code>_site</code> に出来た静的ファイルは、プレビュー中にも変わってしまうため、<code>_deploy</code> ディレクトリにコピーし、デプロイ用ファイルを確定させる。</p>
 
 <h3 id="gemfile-">7. <code>Gemfile</code> 関連</h3>
-<p>#### <code>gem 'jekyll'</code>
-<a href="http://rubygems.org/">RubyGems</a> に現在公開されている <a href="http://rubygems.org/gems/jekyll">jekyll</a> は pygmentize ごとにプロセスを起動するため、処理時間がかかるとのこと （情報源：<a href="http://d.hatena.ne.jp/hokaccha/20120808/1344436656">pygmentsが原因でjekyllが重くなってた - hokaccha.hamalog v2</a>）。GitHub 上の最新バージョンを使う方が吉かも。</p>
+
+<h4 id="gem-jekyll"><code>gem 'jekyll'</code></h4>
+<p><a href="http://rubygems.org/">RubyGems</a> に現在公開されている <a href="http://rubygems.org/gems/jekyll">jekyll</a> は pygmentize ごとにプロセスを起動するため、処理時間がかかるとのこと （情報源：<a href="http://d.hatena.ne.jp/hokaccha/20120808/1344436656">pygmentsが原因でjekyllが重くなってた - hokaccha.hamalog v2</a>）。GitHub 上の最新バージョンを使う方が吉かも。</p>
 
 <h4 id="gem-gsl"><code>gem 'gsl'</code></h4>
 <p>jekyll のソースを読む限り、<code>lsi: false</code> を指定すると、単に最新の記事数件を 「関連する記事」 とするだけである。<code>lsi: true</code> だと、少しはマシになるらしいが、処理時間がかかる模様。<a href="http://rubygems.org/gems/gsl">gsl</a> を使えば、10倍高速化できるとのこと （未確認）。</p>
@@ -397,12 +409,14 @@ rake post["title of my article"]
   gem をすべてアンインストールして、bunder で管理しましょう、の記事。</li>
 </ul>
 
-<h3 id="section-7">8. その他、テンプレート作成で参考になったサイト</h3>
-<p>#### jekyll、Liquid の解説
-* <a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters">Module: Liquid::StandardFilters - Documentation for liquid (2.2.2)</a><br />
-	<a href="https://help.github.com/articles/using-jekyll-with-pages">GitHub 上の jekyll バージョン</a> で使える、Liquid 2.2.2 の標準フィルタに関するマニュアル。</p>
+<h3 id="section-8">8. その他、テンプレート作成で参考になったサイト</h3>
 
+<h4 id="jekyllliquid-">jekyll、Liquid の解説</h4>
 <ul>
+  <li>
+    <p><a href="http://rubydoc.info/gems/liquid/2.2.2/Liquid/StandardFilters">Module: Liquid::StandardFilters - Documentation for liquid (2.2.2)</a><br />
+  <a href="https://help.github.com/articles/using-jekyll-with-pages">GitHub 上の jekyll バージョン</a> で使える、Liquid 2.2.2 の標準フィルタに関するマニュアル。</p>
+  </li>
   <li>
     <p><a href="http://melborne.github.com/2012/05/13/first-step-of-jekyll/">30分のチュートリアルでJekyllを理解する</a><br />
   1ステップづつ、実例を交えながら解説されていて、Jekyll に関しては、ココが一番詳しい。プラグインの作り方がお役立ち。<a href="http://melborne.github.com/2012/05/09/translation-of-jekyll-plugins/">Jekyll Wiki Pluginsの説明ページを勝手に翻訳しました</a> が分かり易い。</p>
@@ -442,20 +456,22 @@ rake post["title of my article"]
     <link href="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/"/>
     <updated>2011-12-29T17:34:00+09:00</updated>
     <id>http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure</id>
-    <content type="html"><![CDATA[<p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。
-<!--more-->
-### 1. テーマの概要 ###</p>
+    <content type="html"><![CDATA[<p>いつか Octopress をカスタマイズし、オリジナルのテーマを作るときのために、ファイル構成をヒモ解いた。</p>
 
-<h4 id="section">テンプレートファイル</h4>
+<!--more-->
+
+<h3 id="section">1. テーマの概要</h3>
+
+<h4 id="section-1">テンプレートファイル</h4>
 <p><code>rake install</code> の時点で、<code>.themes/classic</code> から <code>source</code> にコピーされる。</p>
 
-<h4 id="section-1">設定ファイル</h4>
+<h4 id="section-2">設定ファイル</h4>
 <ul>
   <li><strong>_config.yml</strong><br />
   ここで定義された変数がテンプレート中 <code>site.変数名</code> でアクセスされる。</li>
 </ul>
 
-<h4 id="section-2">構成の概要</h4>
+<h4 id="section-3">構成の概要</h4>
 <pre><code>source/
 ├── _layouts/    # トップページ、個別記事ページ、カテゴリアーカイブページのレイアウト
 └── _includes/   # ページレイアウト用の部品
@@ -464,9 +480,9 @@ rake post["title of my article"]
 	└── custom/  # カスタマイズ用部品（&lt;head&gt;、&lt;header&gt;、&lt;navigation&gt;、&lt;aside&gt;、&lt;footer&gt;）
 </code></pre>
 
-<h3 id="section-3">2. テンプレートファイルの構成</h3>
+<h3 id="section-4">2. テンプレートファイルの構成</h3>
 
-<h4 id="section-4">ページ</h4>
+<h4 id="section-5">ページ</h4>
 <pre><code>└── _layouts/
     ├── default.html
     ├── page.html (layout: default)
@@ -486,19 +502,19 @@ rake post["title of my article"]
     └── custom/category_feed.xml
 </code></pre>
 
-<h4 id="section-5">ヘッダー</h4>
+<h4 id="section-6">ヘッダー</h4>
 <pre><code>└── _includes/
     ├── header.html
     └── custom/header.html
 </code></pre>
 
-<h4 id="section-6">ナビゲーション・メニュー</h4>
+<h4 id="section-7">ナビゲーション・メニュー</h4>
 <pre><code>└── _includes/
     ├── navigation.html
     └── custom/navigation.html
 </code></pre>
 
-<h4 id="section-7">記事</h4>
+<h4 id="section-8">記事</h4>
 <pre><code>└── _includes/
     ├── article.html			# post.html、index.html から
     ├── post/author.html		# post.html、page.html から
@@ -508,7 +524,7 @@ rake post["title of my article"]
     └── post/sharing.html		# post.html、page.html から
 </code></pre>
 
-<h4 id="section-8">サイドバー・パーツ</h4>
+<h4 id="section-9">サイドバー・パーツ</h4>
 <pre><code>└── _includes/
     ├── custom/asides/about.html
     ├── asides/recent_posts.html
@@ -519,13 +535,13 @@ rake post["title of my article"]
     └── asides/twitter.html
 </code></pre>
 
-<h4 id="section-9">フッター</h4>
+<h4 id="section-10">フッター</h4>
 <pre><code>└── _includes/
     ├── footer.html
     └── custom/footer.html
 </code></pre>
 
-<h4 id="section-10">ソーシャル・パーツ</h4>
+<h4 id="section-11">ソーシャル・パーツ</h4>
 <pre><code>└── _includes/
     ├── after_footer.html
     ├── custom/after_footer.html	# コメントのみ
@@ -535,12 +551,12 @@ rake post["title of my article"]
     └── twitter_sharing.html		# after_footer.html から
 </code></pre>
 
-<h4 id="section-11">アーカイブ</h4>
+<h4 id="section-12">アーカイブ</h4>
 <pre><code>└── _includes/
     └── archive_post.html	# category_index.html、blog/archives/index.html から
 </code></pre>
 
-<h3 id="section-12">3. 生成されるファイルの構成</h3>
+<h3 id="section-13">3. 生成されるファイルの構成</h3>
 <pre><code>├── index.html (layout: default)
 ├── atom.xml
 ├── blog/
@@ -575,13 +591,13 @@ rake post["title of my article"]
 
 <h3 id="octopress">4. Octopressの動作</h3>
 
-<h4 id="section-13">–新規投稿–</h4>
+<h4 id="section-14">–新規投稿–</h4>
 
-<h5 id="section-14">コマンド</h5>
+<h5 id="section-15">コマンド</h5>
 <pre><code>rake new_post['post title']
 </code></pre>
 
-<h5 id="section-15">ファイル</h5>
+<h5 id="section-16">ファイル</h5>
 <pre><code>└── _post/YYYY-MM-DD-post-title.markdown
 </code></pre>
 
@@ -595,14 +611,14 @@ categories: [category1, ...]
 ---
 </code></pre>
 
-<h4 id="section-16">–新規ページ–</h4>
+<h4 id="section-17">–新規ページ–</h4>
 
-<h5 id="section-17">コマンド</h5>
+<h5 id="section-18">コマンド</h5>
 <pre><code>rake new_page[my-new-page]
 rake new_page[my-new-page.html]
 </code></pre>
 
-<h5 id="section-18">ファイル</h5>
+<h5 id="section-19">ファイル</h5>
 <pre><code>├── my-new-page/index.markdown	# rake new_page[my-new-page]
 └── my-new-page/index.html		# rake new_page[my-new-page.html]
 </code></pre>

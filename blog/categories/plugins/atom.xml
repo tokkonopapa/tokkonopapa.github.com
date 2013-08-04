@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Plugins | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/plugins/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-04T23:53:31+09:00</updated>
+  <updated>2013-08-05T00:17:19+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -28,9 +28,11 @@
 <!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb --></li>
 </ul>
 
-<p>結果は、どれも動作しない…
+<p>結果は、どれも動作しない…</p>
+
 <!--more-->
-jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
+
+<p>jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
 
 <p>ということで、<a href="https://gist.github.com/1577100" title="Gist で公開中">3番目のコードを動くようにしてみた</a> 。文字の大きさをログスケールで変えたりしていて、イイ感じ。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sass | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/sass/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-04T23:53:31+09:00</updated>
+  <updated>2013-08-05T00:17:19+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -20,10 +20,12 @@
     <id>http://tokkonopapa.github.com/blog/2012/01/03/customizing-octopress-styles</id>
     <content type="html"><![CDATA[<p>Octopress には、スタイル設定に <a href="http://sass-lang.com/" title="Syntactically Awesome StyleSheets">Sass</a> と <a href="http://compass-style.org/">Compass</a> が導入されているため、カスタマイズには、SCSS（Sassy CSS）に関する知識が必要である。</p>
 
-<p>この際だから覚えてしまうことにする。
+<p>この際だから覚えてしまうことにする。</p>
+
 <!--more-->
-### Sass 関連の参考資料 ###
-たぶん何度も読み直すと思うので、ここにメモ。</p>
+
+<h3 id="sass-">Sass 関連の参考資料</h3>
+<p>たぶん何度も読み直すと思うので、ここにメモ。</p>
 
 <h4 id="sass">Sass</h4>
 
@@ -38,22 +40,12 @@
 <h4 id="compass">Compass</h4>
 
 <ul>
+  <li><a href="http://compass-style.org/reference/compass/">Compass Core Framework - Compass Documentation</a></li>
   <li>
     <table>
       <tbody>
         <tr>
-          <td>[Compass Core Framework</td>
-          <td>Compass Documentation](http://compass-style.org/reference/compass/)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Compass Documentation</td>
-          <td>All Mixins</td>
+          <td>[Compass Documentation - All Mixins</td>
           <td>Compass Documentation](http://compass-style.org/index/mixins/)</td>
         </tr>
       </tbody>
@@ -215,26 +207,8 @@
 <h5 id="section-2">参考情報</h5>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Tweet Button</td>
-          <td>Twitter Developers](https://dev.twitter.com/docs/tweet-button)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Follow Button</td>
-          <td>Twitter Developers](https://dev.twitter.com/docs/follow-button)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li><a href="https://dev.twitter.com/docs/tweet-button">Tweet Button - Twitter Developers</a></li>
+  <li><a href="https://dev.twitter.com/docs/follow-button">Follow Button - Twitter Developers</a></li>
 </ul>
 
 <h5 id="section-3">2012年1月11日 追記</h5>

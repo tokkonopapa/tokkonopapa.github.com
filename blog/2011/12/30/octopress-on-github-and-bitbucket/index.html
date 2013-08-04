@@ -88,9 +88,11 @@ GitHub Pages には、ユーザーページとプロジェクトページがあ�
 
 <div class="entry-content"><p>あらためて GitHub へのインストールから、GitHub Pages への記事投稿、Bitbucket での原稿管理までをまとめておく。
 インストールは、公式サイトの <a href="http://octopress.org/docs/setup/">Octopress Setup</a> に従う。
-GitHub Pages には、ユーザーページとプロジェクトページがあるが、以下ユーザーページ用を主とする。
+GitHub Pages には、ユーザーページとプロジェクトページがあるが、以下ユーザーページ用を主とする。</p>
+
 <!--more-->
-### 1. Octopress 利用の前提条件 ###</p>
+
+<h3 id="octopress-">1. Octopress 利用の前提条件</h3>
 
 <ul>
   <li>Git + GitHub アカウント</li>
@@ -145,7 +147,7 @@ To git@github.com:username/username.github.com.git
 Branch master set up to track remote branch master from origin.
 </code></pre>
 
-<h3 id="octopress-">3. Octopress のインストール</h3>
+<h3 id="octopress--1">3. Octopress のインストール</h3>
 
 <p>とりあえず、ユーザーページ用リポジトリ <code>username.github.com</code> と同じ階層にインストールする。</p>
 
@@ -203,7 +205,7 @@ Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem 
 <pre><code>## Copying classic theme into ./source and ./sass
 </code></pre>
 
-<h3 id="octopress--1">4. Octopress サイトの立ち上げ</h3>
+<h3 id="octopress--2">4. Octopress サイトの立ち上げ</h3>
 
 <p>ここからは、公式サイトの <a href="http://octopress.org/docs/deploying/github/">Deploying to Github Pages With Github User/Organization pages</a> の内容。</p>
 
@@ -251,7 +253,7 @@ Initialized empty Git repository in /path/to/repo/octopress/username.github.com/
 
 <p>2つを一気に実行するには <code>rake gen_deploy</code> を、まずはローカルでプレビューするという場合には <code>rake preview</code> を実行後に http://localhost:4000/ にアクセスする。</p>
 
-<h3 id="octopress--2">5. Octopress サイトの設定</h3>
+<h3 id="octopress--3">5. Octopress サイトの設定</h3>
 
 <p>公式サイトの <a href="http://octopress.org/docs/configuring/">Configuring Octopress</a> を参考に、<code>_config.yml</code> を設定。</p>
 
@@ -389,7 +391,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 <p>この段階で、リモートとして <code>origin</code>、<code>octopress</code>、<code>bitbucket</code> の3つが登録されることとなる。これ以降、記事のデプロイは <code>rake deploy</code>、原稿のバックアップは <code>git push</code> でできるようになる。</p>
 
-<h3 id="octopress--3">8. Octopress の更新</h3>
+<h3 id="octopress--4">8. Octopress の更新</h3>
 <p>本家の更新を取り込んでマージする。<code>gems</code> の更新も忘れずに。</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Octopress の更新 </span></figcaption>
@@ -404,16 +406,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 <h3 id="section-8">参考情報</h3>
 <ul>
   <li><a href="http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm">Big Sky :: githubとjekyllとoctopressで作る簡単でモダンなブログ</a></li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[GithubとOctopressでモダンな技術系ブログを作ってみる</td>
-          <td>Glide Note - グライドノート](http://blog.glidenote.com/blog/2011/11/07/install-octopress-on-github/)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li><a href="http://blog.glidenote.com/blog/2011/11/07/install-octopress-on-github/">GithubとOctopressでモダンな技術系ブログを作ってみる - Glide Note - グライドノート</a></li>
 </ul>
 </div>
 
@@ -463,7 +456,7 @@ Automatic merge failed; fix conflicts and then commit the result.
   
   
   <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
-    data-save-url="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/"
+    data-save-url="http://tokkonopapa.github.com/blog/2011/12/30/octopress-on-github-and-bitbucket/"
     data-pocket-count="horizontal"
     data-pocket-align="left"
   >Pocket</a>

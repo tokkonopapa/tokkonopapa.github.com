@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mac | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-04T23:53:31+09:00</updated>
+  <updated>2013-08-05T00:17:19+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -23,10 +23,12 @@
 <a href="https://github.com/kei-s/github-preview" title="kei-s/github-preview - GitHub">github-preview</a> を 
 fork したので、<a href="http://www.heroku.com/">heroku</a> へのインストール方法をメモ。  </p>
 
-<p>ここに記したのは Mac (Mac OS X 10.6.8 Snow Leopard) での話です。Windows はそのうち確かめたいと思います。
+<p>ここに記したのは Mac (Mac OS X 10.6.8 Snow Leopard) での話です。Windows はそのうち確かめたいと思います。</p>
+
 <!--more-->
-### 1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a>
-heroku を利用する前提条件は次の3つ。</p>
+
+<h3 id="heroku--ruby-httpdevcenterherokucomarticlesruby-bambooprerequisites-getting-started-with-ruby-on-herokubamboo">1. <a href="http://devcenter.heroku.com/articles/ruby-bamboo#prerequisites" title="Getting Started with Ruby on Heroku/Bamboo">Heroku で ruby を使うための設定</a></h3>
+<p>heroku を利用する前提条件は次の3つ。</p>
 
 <ul>
   <li><a href="http://beginrescueend.com/">rvm</a> と ruby 1.9.2</li>
@@ -114,11 +116,12 @@ $ git push heroku
     <id>http://tokkonopapa.github.com/blog/2011/12/03/installing-octopress-on-github</id>
     <content type="html"><![CDATA[<p>まだ Lion にアップグレードしていない Mac Book Air (Mac OS X 10.6.8 Snow Leopard) に、Xcode3 と RVM (Ruby Version Manager) をインストールし、Octopass の立ち上げを試みたのですが、ハマりました。誰かの何かの役に立つかもしれないので、その時のメモを記しておきます。</p>
 
-<p>ただし私は、「Ruby ってどんな？ gem って何？」というヒトなので、ここに書かれたことには間違いが含まれている可能性アリです。ご参照はソコソコに。
+<p>ただし私は、「Ruby ってどんな？ gem って何？」というヒトなので、ここに書かれたことには間違いが含まれている可能性アリです。ご参照はソコソコに。</p>
+
 <!--more-->
-Xcode 3 のインストール
-——————–
-<a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
+
+<h2 id="xcode-3-">Xcode 3 のインストール</h2>
+<p><a href="https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20792">Xcode 3.2.6 and iOS SDK 4.3 for Snow Leopard</a> からダウンロード、
 <code>xcode_3.2.6_and_ios_sdk_4.3.dmg</code> を実行。iOS SDK 4.3 は要らないので、インストールせず。</p>
 
 <h2 id="rvm-">RVM のインストール</h2>

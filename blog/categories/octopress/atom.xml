@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-04T23:53:31+09:00</updated>
+  <updated>2013-08-05T00:17:19+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -221,13 +221,16 @@ gem install kramdown
     <content type="html"><![CDATA[<p><a href="http://pages.github.com/">GitHub Pages</a> で <a href="https://github.com/mojombo/jekyll">jekyll</a> が 0.12.0 にバージョンアップした事に伴い、
 <a href="https://github.com/rtomayko/rdiscount">rdiscount</a> の <a href="https://github.com/mojombo/jekyll/pull/333">目次作成機能（Table Of Contents）</a> が効くようになった。</p>
 
-<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。
-<!--more-->
-### 目次</p>
+<p>これを <a href="https://github.com/imathis/octopress">Octopress</a> でも試してみた。</p>
 
-<h3 id="section">作成方法</h3>
-<p>#### 設定
-<code>_config.yml</code> に以下を追加。</p>
+<!--more-->
+
+<h3 id="section">目次</h3>
+
+<h3 id="section-1">作成方法</h3>
+
+<h4 id="section-2">設定</h4>
+<p><code>_config.yml</code> に以下を追加。</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml に RDiscount の設定を追加 </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -238,7 +241,7 @@ gem install kramdown
 </span><span class='line'>  <span class="l-Scalar-Plain">toc_token</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">“”</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4 id="section-1">記事の書き方</h4>
+<h4 id="section-3">記事の書き方</h4>
 <p>記事に <code>{:TOC}</code> を書き込むと、その部分が目次に置き換わる（<code>TOC</code> は <code>Table Of Contents</code> の略）。</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>記事に目次を埋め込む </span></figcaption>
@@ -248,7 +251,7 @@ gem install kramdown
 </span><span class='line'>&lt;p&gt;
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3 id="section-2">日本語の見出し</h3>
+<h3 id="section-4">日本語の見出し</h3>
 <p>見出しに日本語を使うと、<code>generate</code> 時にエラーが出る。</p>
 
 <pre><code>Liquid Exception: incompatible character encodings: UTF-8 and ASCII-8BIT in atom.xml
@@ -294,10 +297,12 @@ gem install kramdown
 の確認が済んでいなかったことが判明。その時のメモ。</p>
 
 <p>別に SEO とか気にしてないんだけど、どういうキーワードで皆さんが
-見てくれているかをあらためて知り、ちょっと幸せな気分 ♪
+見てくれているかをあらためて知り、ちょっと幸せな気分 ♪</p>
+
 <!--more-->
-### おすすめの方法 ###
-ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code> 
+
+<h3 id="section">おすすめの方法</h3>
+<p>ウェッブマスターツールが指定する確認用ファイルを <code>_deploy</code> 
 ディレクトリにコピーし、リモートにプッシュすると、一時的にはうまくいく。</p>
 
 <pre><code>cd _deploy
@@ -314,7 +319,7 @@ Rakefile を書き換えれば良いのだけれど、お手軽には次の「�
 
 <p><img src="https://lh3.googleusercontent.com/-piNUXPKHD70/UA63js9yEeI/AAAAAAAAANI/fDEQeMMiO8o/s480/site-verification.png" alt="推奨：HTMLファイルをアップロード" /></p>
 
-<h3 id="section">別な方法</h3>
+<h3 id="section-1">別な方法</h3>
 <p><a href="http://support.google.com/webmasters/bin/answer.py?hl=ja&amp;answer=79812">メタ タグ - ウェブマスター ツール ヘルプ</a> に
 従って、<code>source/_includes/head.html</code> にメタタグを記述し、ページを再生成後、デプロイするだけ。</p>
 
@@ -341,9 +346,11 @@ rake deploy
 <!-- https://github.com/yeban/yeban.github.com/blob/master/_plugins/tag_cloud.rb --></li>
 </ul>
 
-<p>結果は、どれも動作しない…
+<p>結果は、どれも動作しない…</p>
+
 <!--more-->
-jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
+
+<p>jekyll には <code>site.categories</code> や <code>site.tags</code> という <a href="https://github.com/mojombo/jekyll/wiki/Template-Data">Template Data</a> があるが、単に Octopress に <code>tags</code> が実装されていないだけだと思う。</p>
 
 <p>ということで、<a href="https://gist.github.com/1577100" title="Gist で公開中">3番目のコードを動くようにしてみた</a> 。文字の大きさをログスケールで変えたりしていて、イイ感じ。</p>
 
