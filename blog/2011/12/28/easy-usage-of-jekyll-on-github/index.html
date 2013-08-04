@@ -2,15 +2,16 @@
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <title>jekyllで作る簡単GitHub Pages - T.I.D.</title>
   <meta name="author" content="tokkonopapa">
+  <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
 
   
-  <meta name="description" content="jekyll（ジキル）は、テンプレートを使って静的な Web サイトを構築するための Ruby プログラム。 通常はローカルに jekyll をインストールするが、GitHub Pages では必ずしも必要ないという話。 ### 通常の手順 ###
-こちら に基本的な手順の説明。 ローカルな &hellip;">
+  <meta name="description" content="jekyll（ジキル）は、テンプレートを使って静的な Web サイトを構築するための Ruby プログラム。 通常はローカルに jekyll をインストールするが、GitHub Pages では必ずしも必要ないという話。 通常の手順
+こちら に基本的な手順の説明。 ローカルな Ruby 環境に &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,29 +20,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github">
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/modernizr-2.0.6.custom.js"></script>
   
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-20543951-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
 </head>
 
 <body   >
@@ -103,10 +87,12 @@
 
 <div class="entry-content"><p><a href="http://jekyllrb.com/">jekyll</a>（ジキル）は、テンプレートを使って静的な Web サイトを構築するための Ruby プログラム。</p>
 
-<p>通常はローカルに jekyll をインストールするが、GitHub Pages では必ずしも必要ないという話。
+<p>通常はローカルに jekyll をインストールするが、GitHub Pages では必ずしも必要ないという話。</p>
+
 <!--more-->
-### 通常の手順 ###
-<a href="https://github.com/mojombo/jekyll/wiki/Usage">こちら</a> に基本的な手順の説明。</p>
+
+<h3 id="section">通常の手順</h3>
+<p><a href="https://github.com/mojombo/jekyll/wiki/Usage">こちら</a> に基本的な手順の説明。</p>
 
 <ol>
   <li>
@@ -129,49 +115,79 @@
 
 <p>1ページだけの GitHub Pages なら、最小構成ファイル群は以下の通り。</p>
 
-<div><script src="https://gist.github.com/1532174.js?file=Basic-Structure"></script>
-<noscript><pre><code>.
-├─ _layouts
-│ └─ default.html
-├─ css
-│ └─ styles.css
-└─ index.md</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Basic-Structure </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">.
+</span><span class="line">├─ _layouts
+</span><span class="line">│ └─ default.html
+</span><span class="line">├─ css
+</span><span class="line">│ └─ styles.css
+</span><span class="line">└─ index.md
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>次は、テンプレートファイル <code>default.html</code> の例。</p>
 
-<div><script src="https://gist.github.com/1532174.js?file=default.html"></script>
-<noscript><pre><code>&lt;!doctype html&gt;
-&lt;html lang=&quot;ja&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;css/styles.css&quot;&gt;
-&lt;title&gt;{% if page.title %}{{ page.title }}{% endif %}&lt;/title&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;css/styles.css&quot;&gt;
-&lt;/head&gt;
-&lt;body&gt;
-{{ content }}
-&lt;/body&gt;
-&lt;/html&gt;</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>default.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="cp">&lt;!doctype html&gt;</span>
+</span><span class="line"><span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;ja&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;head&gt;</span>
+</span><span class="line"><span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;css/styles.css&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;title&gt;</span>jekyllで作る簡単GitHub Pages<span class="nt">&lt;/title&gt;</span>
+</span><span class="line"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;css/styles.css&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;/head&gt;</span>
+</span><span class="line"><span class="nt">&lt;body&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;/body&gt;</span>
+</span><span class="line"><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><code>index.md</code> には <code>default.html</code> の <code>content</code> の中身を記述する。</p>
 
-<div><script src="https://gist.github.com/1532174.js?file=index.md"></script>
-<noscript><pre><code>---
-layout: default
-title: プロジェクト・タイトル
----
-
-プロジェクト・タイトル
-======================
-ここにプロジェクトの概要を書きます。
-...</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>index.md </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">---
+</span><span class="line">layout: default
+</span><span class="line">title: プロジェクト・タイトル
+</span><span class="line">---
+</span><span class="line">
+</span><span class="line">プロジェクト・タイトル
+</span><span class="line">======================
+</span><span class="line">ここにプロジェクトの概要を書きます。
+</span><span class="line">...
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><code>index.md</code> 以外にも、<code>index.html</code> や <code>index.textile</code> でも OK だが、先頭の <code>layout</code>、<code>title</code> が重要。これがないとレンダリングしてくれない。</p>
 
 <p><code>css/styles.css</code> で装飾し、必要なら <code>images</code> や <code>script</code>、<code>favicon.ico</code> などもお好みで。
 そしてこれらファイル群を プロジェクト・リポジトリの <code>gh-pages</code> ブランチに <a href="http://pages.github.com/#project_pages" title="pushの仕方">push</a> する。</p>
 
-<h3 id="section">さらに複雑なテンプレートの作り方</h3>
+<h3 id="section-1">さらに複雑なテンプレートの作り方</h3>
 <p><img class="right" src="https://lh6.googleusercontent.com/-XPYN1_uoW2g/TvwH9lgXi-I/AAAAAAAAAB4/ps1ZlNCzbMo/s336/ComplexStructure.png" width="250" height="336" title="&#34;ページの構成&#34;" alt="&#34;ページの構成&#34;" /></p>
 
 <p>サイドバー付きページのテンプレートを、<a href="http://www.initializr.com/">Initializr 2</a> をベースに構成する。</p>
@@ -180,148 +196,280 @@ title: プロジェクト・タイトル
 
 <div style="clear:both"></div>
 
-<div><script src="https://gist.github.com/1532144.js?file=README.txt"></script>
-<noscript><pre><code>.
-├─ _includes
-│    ├─ head.html
-│    ├─ header.html
-│    ├─ aside.html
-│    ├─ footer.html
-│    └─ script.html
-├─ _layouts
-│    ├─ default.html
-│    └─ page.html
-├─ css
-│    └─ style.css
-├─ js
-│    ├─ libs
-│    │   └─ modernizr-2.0.6.min.js
-│    └─ script.js
-├─ index.md
-├─ demo.html
-└─ documents.md</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>README.txt </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">.
+</span><span class="line">├─ _includes
+</span><span class="line">│    ├─ head.html
+</span><span class="line">│    ├─ header.html
+</span><span class="line">│    ├─ aside.html
+</span><span class="line">│    ├─ footer.html
+</span><span class="line">│    └─ script.html
+</span><span class="line">├─ _layouts
+</span><span class="line">│    ├─ default.html
+</span><span class="line">│    └─ page.html
+</span><span class="line">├─ css
+</span><span class="line">│    └─ style.css
+</span><span class="line">├─ js
+</span><span class="line">│    ├─ libs
+</span><span class="line">│    │   └─ modernizr-2.0.6.min.js
+</span><span class="line">│    └─ script.js
+</span><span class="line">├─ index.md
+</span><span class="line">├─ demo.html
+</span><span class="line">└─ documents.md
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<div><script src="https://gist.github.com/1532144.js?file=_config.yml"></script>
-<noscript><pre><code># ----------------------- #
-#      Main Configs       #
-# ----------------------- #
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="c1"># ----------------------- #</span>
+</span><span class="line"><span class="c1">#      Main Configs       #</span>
+</span><span class="line"><span class="c1"># ----------------------- #</span>
+</span><span class="line">
+</span><span class="line"><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://username.github.com/</span>
+</span><span class="line"><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">サイトのタイトル</span>
+</span><span class="line"><span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">username</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># ----------------------- #</span>
+</span><span class="line"><span class="c1">#   3rd Party Settings    #</span>
+</span><span class="line"><span class="c1"># ----------------------- #</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># Google Analytics</span>
+</span><span class="line"><span class="l-Scalar-Plain">google_analytics_tracking_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">UA-XXXXXXXX-X</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-url: http://username.github.com/
-title: サイトのタイトル
-author: username
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>default.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="cp">&lt;!doctype html&gt;</span>
+</span><span class="line"><span class="c">&lt;!--[if lt IE 7]&gt; &lt;html class=&quot;no-js ie6 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;</span>
+</span><span class="line"><span class="c">&lt;!--[if IE 7]&gt;    &lt;html class=&quot;no-js ie7 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;</span>
+</span><span class="line"><span class="c">&lt;!--[if IE 8]&gt;    &lt;html class=&quot;no-js ie8 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;</span>
+</span><span class="line"><span class="c">&lt;!--[if gt IE 8]&gt;&lt;!--&gt;</span> <span class="nt">&lt;html</span> <span class="na">class=</span><span class="s">&quot;no-js&quot;</span> <span class="na">lang=</span><span class="s">&quot;ja&quot;</span><span class="nt">&gt;</span> <span class="c">&lt;!--&lt;![endif]--&gt;</span>
+</span><span class="line">{% include head.html %}
+</span><span class="line"><span class="nt">&lt;body&gt;</span>
+</span><span class="line">{% include header.html %}
+</span><span class="line"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;main-container&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">	<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;main&quot;</span> <span class="na">class=</span><span class="s">&quot;wrapper clearfix&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">		<span class="nt">&lt;article&gt;</span>
+</span><span class="line">{{ content }}
+</span><span class="line">		<span class="nt">&lt;/article&gt;</span>
+</span><span class="line">{% include aside.html %}
+</span><span class="line">	<span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- #main --&gt;</span>
+</span><span class="line"><span class="nt">&lt;/div&gt;</span> <span class="c">&lt;!-- #main-container --&gt;</span>
+</span><span class="line">{% include footer.html %}
+</span><span class="line">{% include script.html %}
+</span><span class="line"><span class="nt">&lt;/body&gt;</span>
+</span><span class="line"><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-# ----------------------- #
-#   3rd Party Settings    #
-# ----------------------- #
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>head.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;head&gt;</span>
+</span><span class="line">	<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">	<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content=</span><span class="s">&quot;IE=edge,chrome=1&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line">	<span class="nt">&lt;title&gt;</span>jekyllで作る簡単GitHub Pages<span class="nt">&lt;/title&gt;</span>
+</span><span class="line">	<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">	<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;author&quot;</span> <span class="na">content=</span><span class="s">&quot;tokkonopapa&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line">	<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width,initial-scale=1&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line">	<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;css/style.css&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line">	<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;js/libs/modernizr-2.0.6.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;/head&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-# Google Analytics
-google_analytics_tracking_id: UA-XXXXXXXX-X</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>header.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;header-container&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">	<span class="nt">&lt;header</span> <span class="na">class=</span><span class="s">&quot;wrapper clearfix&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">		<span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://tokkonopapa.github.com&quot;</span><span class="nt">&gt;</span>T.I.D.<span class="nt">&lt;/a&gt;&lt;/h1&gt;</span>
+</span><span class="line">		<span class="nt">&lt;nav&gt;</span>
+</span><span class="line">			<span class="nt">&lt;ul&gt;</span>
+</span><span class="line">				<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://tokkonopapa.github.com&quot;</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class="line">				<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://tokkonopapa.github.comdemo.html&quot;</span><span class="nt">&gt;</span>Demo<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class="line">				<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://tokkonopapa.github.comdocuments.html&quot;</span><span class="nt">&gt;</span>Documents<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class="line">			<span class="nt">&lt;/ul&gt;</span>
+</span><span class="line">		<span class="nt">&lt;/nav&gt;</span>
+</span><span class="line">	<span class="nt">&lt;/header&gt;</span>
+</span><span class="line"><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<div><script src="https://gist.github.com/1532144.js?file=default.html"></script>
-<noscript><pre><code>&lt;!doctype html&gt;
-&lt;!--[if lt IE 7]&gt; &lt;html class=&quot;no-js ie6 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 7]&gt;    &lt;html class=&quot;no-js ie7 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
-&lt;!--[if IE 8]&gt;    &lt;html class=&quot;no-js ie8 oldie&quot; lang=&quot;ja&quot;&gt; &lt;![endif]--&gt;
-&lt;!--[if gt IE 8]&gt;&lt;!--&gt; &lt;html class=&quot;no-js&quot; lang=&quot;ja&quot;&gt; &lt;!--&lt;![endif]--&gt;
-{% include head.html %}
-&lt;body&gt;
-{% include header.html %}
-&lt;div id=&quot;main-container&quot;&gt;
-	&lt;div id=&quot;main&quot; class=&quot;wrapper clearfix&quot;&gt;
-		&lt;article&gt;
-{{ content }}
-		&lt;/article&gt;
-{% include aside.html %}
-	&lt;/div&gt; &lt;!-- #main --&gt;
-&lt;/div&gt; &lt;!-- #main-container --&gt;
-{% include footer.html %}
-{% include script.html %}
-&lt;/body&gt;
-&lt;/html&gt;</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>aside.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;aside&gt;</span>
+</span><span class="line">	<span class="nt">&lt;h3&gt;</span>aside<span class="nt">&lt;/h3&gt;</span>
+</span><span class="line">	<span class="nt">&lt;p&gt;</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.<span class="nt">&lt;/p&gt;</span>
+</span><span class="line"><span class="nt">&lt;/aside&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<div><script src="https://gist.github.com/1532144.js?file=head.html"></script>
-<noscript><pre><code>&lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>footer.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;footer-container&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">	<span class="nt">&lt;footer</span> <span class="na">class=</span><span class="s">&quot;wrapper&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">		<span class="nt">&lt;h3&gt;</span>footer<span class="nt">&lt;/h3&gt;</span>
+</span><span class="line">	<span class="nt">&lt;/footer&gt;</span>
+</span><span class="line"><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-	&lt;title&gt;{{ page.title }}&lt;/title&gt;
-	&lt;meta name=&quot;description&quot; content=&quot;{{ page.description }}&quot;&gt;
-	&lt;meta name=&quot;author&quot; content=&quot;{{ site.author }}&quot;&gt;
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>script.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;script src=&quot;js/libs/jquery-1.7.1.min.js&quot;&gt;&lt;\/script&gt;&#39;</span><span class="p">)</span><span class="nt">&lt;/script&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;js/script.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script&gt;</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">_gaq</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;_setAccount&#39;</span><span class="p">,</span><span class="s1">&#39;UA-20543951-2&#39;</span><span class="p">],[</span><span class="s1">&#39;_trackPageview&#39;</span><span class="p">]];</span>
+</span><span class="line">	<span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">t</span><span class="p">){</span><span class="kd">var</span> <span class="nx">g</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">t</span><span class="p">),</span><span class="nx">s</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">t</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span><span class="nx">g</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span><span class="line">	<span class="nx">g</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;https:&#39;</span><span class="o">==</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span><span class="o">?</span><span class="s1">&#39;//ssl&#39;</span><span class="o">:</span><span class="s1">&#39;//www&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;.google-analytics.com/ga.js&#39;</span><span class="p">;</span>
+</span><span class="line">	<span class="nx">s</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">s</span><span class="p">)}(</span><span class="nb">document</span><span class="p">,</span><span class="s1">&#39;script&#39;</span><span class="p">));</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="c">&lt;!--[if lt IE 7 ]&gt;</span>
+</span><span class="line"><span class="c">	&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js&quot;&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="c">	&lt;script&gt;window.attachEvent(&quot;onload&quot;,function(){CFInstall.check({mode:&quot;overlay&quot;})})&lt;/script&gt;</span>
+</span><span class="line"><span class="c">&lt;![endif]--&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>index.md </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="text"><span class="line">---
+</span><span class="line">layout: default
+</span><span class="line">title: &quot;サンプル・ページ&quot;
+</span><span class="line">---
+</span><span class="line">
+</span><span class="line">article header h1
+</span><span class="line">=================
+</span><span class="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.
+</span><span class="line">
+</span><span class="line">article section h2
+</span><span class="line">------------------
+</span><span class="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.
+</span><span class="line">
+</span><span class="line">article section h2
+</span><span class="line">------------------
+</span><span class="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">### article footer h3 ###
+</span><span class="line">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-	&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
-
-	&lt;script src=&quot;js/libs/modernizr-2.0.6.min.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;</code></pre></noscript></div>
-
-<div><script src="https://gist.github.com/1532144.js?file=header.html"></script>
-<noscript><pre><code>&lt;div id=&quot;header-container&quot;&gt;
-	&lt;header class=&quot;wrapper clearfix&quot;&gt;
-		&lt;h1 id=&quot;title&quot;&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;{{ site.title }}&lt;/a&gt;&lt;/h1&gt;
-		&lt;nav&gt;
-			&lt;ul&gt;
-				&lt;li&gt;&lt;a href=&quot;{{ site.url }}&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;a href=&quot;{{ site.url }}demo.html&quot;&gt;Demo&lt;/a&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;a href=&quot;{{ site.url }}documents.html&quot;&gt;Documents&lt;/a&gt;&lt;/li&gt;
-			&lt;/ul&gt;
-		&lt;/nav&gt;
-	&lt;/header&gt;
-&lt;/div&gt;</code></pre></noscript></div>
-
-<div><script src="https://gist.github.com/1532144.js?file=aside.html"></script>
-<noscript><pre><code>&lt;aside&gt;
-	&lt;h3&gt;aside&lt;/h3&gt;
-	&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.&lt;/p&gt;
-&lt;/aside&gt;</code></pre></noscript></div>
-
-<div><script src="https://gist.github.com/1532144.js?file=footer.html"></script>
-<noscript><pre><code>&lt;div id=&quot;footer-container&quot;&gt;
-	&lt;footer class=&quot;wrapper&quot;&gt;
-		&lt;h3&gt;footer&lt;/h3&gt;
-	&lt;/footer&gt;
-&lt;/div&gt;</code></pre></noscript></div>
-
-<div><script src="https://gist.github.com/1532144.js?file=script.html"></script>
-<noscript><pre><code>&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;window.jQuery || document.write('&lt;script src=&quot;js/libs/jquery-1.7.1.min.js&quot;&gt;&lt;\/script&gt;')&lt;/script&gt;
-
-&lt;script src=&quot;js/script.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-	var _gaq=[['_setAccount','{{ site.google_analytics_tracking_id }}'],['_trackPageview']];
-	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-	s.parentNode.insertBefore(g,s)}(document,'script'));
-&lt;/script&gt;
-
-&lt;!--[if lt IE 7 ]&gt;
-	&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script&gt;window.attachEvent(&quot;onload&quot;,function(){CFInstall.check({mode:&quot;overlay&quot;})})&lt;/script&gt;
-&lt;![endif]--&gt;</code></pre></noscript></div>
-
-<div><script src="https://gist.github.com/1532144.js?file=index.md"></script>
-<noscript><pre><code>---
-layout: default
-title: &quot;サンプル・ページ&quot;
----
-
-article header h1
-=================
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.
-
-article section h2
-------------------
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.
-
-article section h2
-------------------
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.
-
-
-### article footer h3 ###
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</code></pre></noscript></div>
-
-<h4 id="section-1">参考情報</h4>
+<h4 id="section-2">参考情報</h4>
 <ul>
   <li>
     <p><a href="http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm">Big Sky :: Jekyllで始める簡単ブログ</a><br />
@@ -372,13 +520,31 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/" >Tweet</a>
+  <div class="hatena-button">
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+      data-hatena-bookmark-layout="standard"
+      data-hatena-bookmark-url="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/">
+    <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+        alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+        style="border: none">
+    </a>
+  </div>
+  
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
   
   
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  <div id="fb-root"></div><div style="top:-3px;" class="fb-like" data-href="http://tokkonopapa.github.com/blog/2011/12/28/easy-usage-of-jekyll-on-github/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
   
 </div>
 
@@ -467,25 +633,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
   
   <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
   
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
 
-        github.showRepos({
-            user: 'tokkonopapa',
-            count: 5,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
@@ -529,38 +677,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna no
     }());
 </script>
 
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
 <script src="/javascripts/octopress-all.min.js"></script>
