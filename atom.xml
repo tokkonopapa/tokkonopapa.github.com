@@ -4,7 +4,7 @@
   <title><![CDATA[T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-05T00:17:19+09:00</updated>
+  <updated>2013-08-05T00:24:28+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -217,6 +217,8 @@
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">gem install kramdown</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>ただし Markdown パーサーを変えることになるので、方言には要注意。</p>
 ]]></content>
   </entry>
   
