@@ -20,7 +20,7 @@ rake install の時点で、.themes/classic から source にコピーされる�
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/">
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
@@ -145,12 +145,12 @@ rake install の時点で、.themes/classic から source にコピーされる�
 
 <h4 id="section-8">記事</h4>
 <pre><code>└── _includes/
-    ├── article.html			# post.html、index.html から
-    ├── post/author.html		# post.html、page.html から
-    ├── post/categories.html	# post.html、page.html から
-    ├── post/date.html			# post.html、page.html、index.html から
-    ├── post/disqus_thread.html	# post.html、page.html から
-    └── post/sharing.html		# post.html、page.html から
+    ├── article.html            # post.html、index.html から
+    ├── post/author.html        # post.html、page.html から
+    ├── post/categories.html    # post.html、page.html から
+    ├── post/date.html          # post.html、page.html、index.html から
+    ├── post/disqus_thread.html # post.html、page.html から
+    └── post/sharing.html       # post.html、page.html から
 </code></pre>
 
 <h4 id="section-9">サイドバー・パーツ</h4>
@@ -173,16 +173,16 @@ rake install の時点で、.themes/classic から source にコピーされる�
 <h4 id="section-11">ソーシャル・パーツ</h4>
 <pre><code>└── _includes/
     ├── after_footer.html
-    ├── custom/after_footer.html	# コメントのみ
-    ├── disqus.html					# after_footer.html から
-    ├── facebook_like.html			# after_footer.html から
-    ├── google_plus_one.html		# after_footer.html から
-    └── twitter_sharing.html		# after_footer.html から
+    ├── custom/after_footer.html # コメントのみ
+    ├── disqus.html              # after_footer.html から
+    ├── facebook_like.html       # after_footer.html から
+    ├── google_plus_one.html     # after_footer.html から
+    └── twitter_sharing.html     # after_footer.html から
 </code></pre>
 
 <h4 id="section-12">アーカイブ</h4>
 <pre><code>└── _includes/
-    └── archive_post.html	# category_index.html、blog/archives/index.html から
+    └── archive_post.html # category_index.html、blog/archives/index.html から
 </code></pre>
 
 <h3 id="section-13">3. 生成されるファイルの構成</h3>
@@ -248,8 +248,8 @@ rake new_page[my-new-page.html]
 </code></pre>
 
 <h5 id="section-19">ファイル</h5>
-<pre><code>├── my-new-page/index.markdown	# rake new_page[my-new-page]
-└── my-new-page/index.html		# rake new_page[my-new-page.html]
+<pre><code>├── my-new-page/index.markdown # rake new_page[my-new-page]
+└── my-new-page/index.html     # rake new_page[my-new-page.html]
 </code></pre>
 
 <h5 id="yaml-1">YAMLブロック</h5>
@@ -316,7 +316,7 @@ footer: true
   >Pocket</a>
   
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2011/12/29/octopress-classic-theme-structure/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -415,16 +415,6 @@ footer: true
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
-  </ul>
-
-
-</section>
-
-
   
 </aside>
 
@@ -457,20 +447,9 @@ footer: true
 
 
 
-<script src="/javascripts/octopress-all.min.js"></script>
-<script>
-$.domReady(function() {
-
-    github.showRepos({
-        user: 'tokkonopapa',
-        count: 5,
-        skip_forks: true,
-        target: '#gh_repos'
-    });
-
-    getTwitterFeed("tokkonopapa", 5, false);
-});
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+<script src="/javascripts/octopress.js" type="text/javascript" defer></script>
 <script>
 (function(w,d){
     var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
@@ -486,7 +465,6 @@ $.domReady(function() {
 
     w.___gcfg={lang:"ja"};
     a("https://apis.google.com/js/plusone.js");
-
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Pygment | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/pygment/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-05T00:24:28+09:00</updated>
+  <updated>2013-08-05T17:06:47+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -23,6 +23,18 @@
 <!--more-->
 
 <h3 id="section">言語解析キーワード</h3>
+
+<p>コマンドラインでは、<code>pygmentize -L lexers</code> で一覧を出力。</p>
+
+<p>``` console pygmentize -L lexers の出力例
+Pygments version 1.5, (c) 2006-2011 by Georg Brandl.</p>
+
+<p>Lexers:
+~~~~~~~
+…（解釈可能な言語の一覧）
+* yaml:
+    YAML (filenames *.yaml, *.yml)
+```</p>
 
 <h4 id="rbcon-ruby-">rbcon （Ruby のコンソール出力）</h4>
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rbcon </span></figcaption>
@@ -140,31 +152,68 @@
 </span><span class='line'>   html
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h3 id="section-1">コードの書き方</h3>
-<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> でコードスニペットを記述する方法は次の4通り。</p>
-
-<ol>
-  <li>インラインでバッククォート <code>`</code> で囲む</li>
-  <li>コードブロックを3連のバッククォート <code>```</code> で囲む（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</li>
-  <li>コードブロックの行頭をタブ、もしくはスペース4文字でインデント</li>
-  <li>コードブロックを <code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲むと Pygment でレンダリングされる（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</li>
-</ol>
-
-<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲むそうナ。</p>
-
-<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37;</code> としてある。</p>
-
-<p><code>
-{&amp;#037; raw %}
-{&amp;#037; ... %}
-{&amp;#037; endraw %}
+<h4 id="pot-po">pot, po</h4>
+<p><code>po po
+# LANGUAGE (LOCALE) translation for WordPress.
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+#: ../inc/admin.php:79
+msgid "%s: You need WordPress 3.1.0 or higher and PHP 5 with libcurl."
 </code></p>
 
-<h4 id="section-2">参考情報</h4>
-<ul>
-  <li><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></li>
-</ul>
+<h4 id="http">http</h4>
+<p>``` http http
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 12</p>
 
+<p>Hello World
+```</p>
+
+<h3 id="section-1">コードの書き方</h3>
+<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> のスニペット記述方法は4通り。</p>
+
+<h4 id="section-2">1. インライン − バッククォート</h4>
+<p>シングルのバッククォート <code>`</code> で囲む。ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲むとのこと。</p>
+
+<h4 id="section-3">2. コードブロック − インデント</h4>
+<p>行頭をタブ、もしくはスペース4文字でインデントさせる。</p>
+
+<h4 id="httpoctopressorgdocspluginsbacktick-codeblock">3. コードブロック − 3連のバッククォート（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</h4>
+<p>3連のバッククォート <code>```</code> で囲む。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>raw </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;code>[言語] [タイトル] [リンクURL] [リンクのタイトル]
+</span><span class='line'>ここにコードスニペット
+</span><span class='line'>&lt;/code></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4 id="codeblock-httpoctopressorgdocspluginscodeblock">4. コードブロック − codeblock ブロック（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</h4>
+<p><code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲む。</p>
+
+<p>忘れがちなのが <code>{% ... %}</code> が解釈されてレンダリングされないようにする書き方。次の様に raw ブロックで囲む。</p>
+
+<pre><code>{% codeblock [タイトル] [lang:言語] %}
+{% raw %}
+{% ... %}
+{% endraw %}
+{% endcodeblock %}
+</code></pre>
+
+<p>ちなみに 3. と 4. は Pygment でレンダリングされる。</p>
+
+<h4 id="section-4">参考情報</h4>
+<ul>
+  <li>
+    <p><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></p>
+  </li>
+  <li>
+    <p><a href="http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags">How to escape liquid template tags? - Stack Overflow</a></p>
+  </li>
+</ul>
 ]]></content>
   </entry>
   

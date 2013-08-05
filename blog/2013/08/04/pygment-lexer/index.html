@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/">
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
@@ -89,6 +89,24 @@
 <!--more-->
 
 <h3 id="section">言語解析キーワード</h3>
+
+<p>コマンドラインでは、<code>pygmentize -L lexers</code> で一覧を出力。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>pygmentize -L lexers の出力例</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="console"><span class="line"><span class="go">Pygments version 1.5, (c) 2006-2011 by Georg Brandl.</span>
+</span><span class="line">
+</span><span class="line"><span class="go">Lexers:</span>
+</span><span class="line"><span class="go">~~~~~~~</span>
+</span><span class="line"><span class="go">...（解釈可能な言語の一覧）</span>
+</span><span class="line"><span class="go">* yaml:</span>
+</span><span class="line"><span class="go">    YAML (filenames *.yaml, *.yml)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="rbcon-ruby-">rbcon （Ruby のコンソール出力）</h4>
 
@@ -213,32 +231,77 @@
 </span><span class="line">   html
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h3 id="section-1">コードの書き方</h3>
-<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> でコードスニペットを記述する方法は次の4通り。</p>
-
-<ol>
-  <li>インラインでバッククォート <code>`</code> で囲む</li>
-  <li>コードブロックを3連のバッククォート <code>```</code> で囲む（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</li>
-  <li>コードブロックの行頭をタブ、もしくはスペース4文字でインデント</li>
-  <li>コードブロックを <code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲むと Pygment でレンダリングされる（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</li>
-</ol>
-
-<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲むそうナ。</p>
-
-<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37;</code> としてある。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<h4 id="pot-po">pot, po</h4>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>po</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">{&#037; raw %}
-</span><span class="line">{&#037; ... %}
-</span><span class="line">{&#037; endraw %}</span></code></pre></td></tr></table></div></figure></notextile></div>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="po"><span class="line"><span class="c1"># LANGUAGE (LOCALE) translation for WordPress.</span>
+</span><span class="line"><span class="s">&quot;</span><span class="py">MIME-Version:</span><span class="s"> 1.0\n&quot;</span>
+</span><span class="line"><span class="s">&quot;</span><span class="py">Content-Type:</span><span class="s"> text/plain; charset=UTF-8\n&quot;</span>
+</span><span class="line"><span class="s">&quot;</span><span class="py">Content-Transfer-Encoding:</span><span class="s"> 8bit\n&quot;</span>
+</span><span class="line"><span class="kd">#: ../inc/admin.php:79</span>
+</span><span class="line"><span class="nv">msgid</span> <span class="s">&quot;%s: You need WordPress 3.1.0 or higher and PHP 5 with libcurl.&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h4 id="section-2">参考情報</h4>
+<h4 id="http">http</h4>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>http</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="http"><span class="line"><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</span><span class="line"><span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+</span><span class="line"><span class="na">Content-Length</span><span class="o">:</span> <span class="l">12</span>
+</span><span class="line">
+</span><span class="line">Hello World
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-1">コードの書き方</h3>
+<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> のスニペット記述方法は4通り。</p>
+
+<h4 id="section-2">1. インライン − バッククォート</h4>
+<p>シングルのバッククォート <code>`</code> で囲む。ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲むとのこと。</p>
+
+<h4 id="section-3">2. コードブロック − インデント</h4>
+<p>行頭をタブ、もしくはスペース4文字でインデントさせる。</p>
+
+<h4 id="httpoctopressorgdocspluginsbacktick-codeblock">3. コードブロック − 3連のバッククォート（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</h4>
+<p>3連のバッククォート <code>```</code> で囲む。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>raw </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">``` [言語] [タイトル] [リンクURL] [リンクのタイトル]
+</span><span class="line">ここにコードスニペット
+</span><span class="line">```</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="codeblock-httpoctopressorgdocspluginscodeblock">4. コードブロック − codeblock ブロック（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</h4>
+<p><code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲む。</p>
+
+<p>忘れがちなのが <code>{% ... %}</code> が解釈されてレンダリングされないようにする書き方。次の様に raw ブロックで囲む。</p>
+
+<pre><code>{% codeblock [タイトル] [lang:言語] %}
+{% raw %}
+{% ... %}
+{% endraw %}
+{% endcodeblock %}
+</code></pre>
+
+<p>ちなみに 3. と 4. は Pygment でレンダリングされる。</p>
+
+<h4 id="section-4">参考情報</h4>
 <ul>
-  <li><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></li>
+  <li>
+    <p><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></p>
+  </li>
+  <li>
+    <p><a href="http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags">How to escape liquid template tags? - Stack Overflow</a></p>
+  </li>
 </ul>
-
 </div>
 
 
@@ -293,7 +356,7 @@
   >Pocket</a>
   
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2013/08/04/pygment-lexer/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -390,16 +453,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
-  </ul>
-
-
-</section>
-
-
   
 </aside>
 
@@ -432,20 +485,9 @@
 
 
 
-<script src="/javascripts/octopress-all.min.js"></script>
-<script>
-$.domReady(function() {
-
-    github.showRepos({
-        user: 'tokkonopapa',
-        count: 5,
-        skip_forks: true,
-        target: '#gh_repos'
-    });
-
-    getTwitterFeed("tokkonopapa", 5, false);
-});
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+<script src="/javascripts/octopress.js" type="text/javascript" defer></script>
 <script>
 (function(w,d){
     var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
@@ -461,7 +503,6 @@ $.domReady(function() {
 
     w.___gcfg={lang:"ja"};
     a("https://apis.google.com/js/plusone.js");
-
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 

@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/">
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
@@ -93,10 +93,14 @@
 <h3 id="ltmetagt-">&lt;meta&gt; タグの追加機能</h3>
 <p><code>source/_includes/head.html</code> の10行目付近から。</p>
 
-<div><script src="https://gist.github.com/1548796.js?file=head.html"></script>
-<noscript><pre><code>  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
-  &lt;meta name=&quot;description&quot; content=&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;&gt;
-  {% if page.keywords %}&lt;meta name=&quot;keywords&quot; content=&quot;{{ page.keywords }}&quot;&gt;{% endif %}</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>head.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line">  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+</span><span class="line">  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">  {% if page.keywords %}<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.keywords }}&quot;</span><span class="nt">&gt;</span>{% endif %}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>記事の <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML ブロック</a> に <code>description</code> か、記事から HTML を除いた先頭150字が <code>&lt;meta name="description" content="..."&gt;</code> に挿入される。
 同様に <code>keywords</code> で <code>&lt;meta name="keywords" content="..."&gt;</code> が挿入される。</p>
@@ -143,19 +147,32 @@
 <h4 id="rakefile-">Rakefile の改修</h4>
 <p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
 
-<div><script src="https://gist.github.com/1548796.js?file=Rakefile"></script>
-<noscript><pre><code>  puts &quot;Creating new post: #{filename}&quot;
-  open(filename, 'w') do |post|
-    post.puts &quot;---&quot;
-    post.puts &quot;layout: post&quot;
-    post.puts &quot;title: \&quot;#{title.gsub(/&amp;/,'&amp;amp;')}\&quot;&quot;
-    post.puts &quot;date: #{Time.now.strftime('%Y-%m-%d %H:%M')}&quot;
-    post.puts &quot;comments: true&quot;
-    post.puts &quot;categories: &quot;
-    post.puts &quot;description: &quot;
-    post.puts &quot;keywords: &quot;
-    post.puts &quot;---&quot;
-  end</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Rakefile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line">  <span class="nb">puts</span> <span class="s2">&quot;Creating new post: </span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">  <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;---&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;layout: post&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;title: </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">title</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/&amp;/</span><span class="p">,</span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;date: </span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%d %H:%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;comments: true&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;categories: &quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;description: &quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;keywords: &quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;---&quot;</span>
+</span><span class="line">  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="about-me-">サイドバーへの <code>About Me</code> 追加</h3>
 <p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
@@ -217,7 +234,7 @@
   >Pocket</a>
   
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2012/01/02/octopress-hidden-features-for-seo/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -316,16 +333,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
-  </ul>
-
-
-</section>
-
-
   
 </aside>
 
@@ -358,20 +365,9 @@
 
 
 
-<script src="/javascripts/octopress-all.min.js"></script>
-<script>
-$.domReady(function() {
-
-    github.showRepos({
-        user: 'tokkonopapa',
-        count: 5,
-        skip_forks: true,
-        target: '#gh_repos'
-    });
-
-    getTwitterFeed("tokkonopapa", 5, false);
-});
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+<script src="/javascripts/octopress.js" type="text/javascript" defer></script>
 <script>
 (function(w,d){
     var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
@@ -387,7 +383,6 @@ $.domReady(function() {
 
     w.___gcfg={lang:"ja"};
     a("https://apis.google.com/js/plusone.js");
-
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 

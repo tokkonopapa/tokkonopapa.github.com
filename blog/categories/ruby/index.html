@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tokkonopapa.github.comblog/categories/ruby/">
+  <link rel="canonical" href="http://tokkonopapa.github.comblog/categories/ruby">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
@@ -190,16 +190,6 @@
 </section>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-	<li><a class="twitter-timeline" href="https://twitter.com/tokkonoPapa" data-widget-id="336793599863832578"><span class="loading"></span></a></li>
-  </ul>
-
-
-</section>
-
-
   
 </aside>
 
@@ -229,20 +219,9 @@
 
 
 
-<script src="/javascripts/octopress-all.min.js"></script>
-<script>
-$.domReady(function() {
-
-    github.showRepos({
-        user: 'tokkonopapa',
-        count: 5,
-        skip_forks: true,
-        target: '#gh_repos'
-    });
-
-    getTwitterFeed("tokkonopapa", 5, false);
-});
-</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+<script src="/javascripts/octopress.js" type="text/javascript" defer></script>
 <script>
 (function(w,d){
     var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
@@ -258,7 +237,6 @@ $.domReady(function() {
 
     w.___gcfg={lang:"ja"};
     a("https://apis.google.com/js/plusone.js");
-
 
     a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
 

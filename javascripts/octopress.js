@@ -153,3 +153,53 @@ a&&b&&d&&i&&k){d+="";i+="";var p={};if(f&&typeof f===o)for(var m in f)p[m]=f[m];
 i.location.search||i.location.hash;if(b){/\?/.test(b)&&(b=b.split("?")[1]);if(a==null)return u(b);for(var b=b.split("&"),d=0;d<b.length;d++)if(b[d].substring(0,b[d].indexOf("="))==a)return u(b[d].substring(b[d].indexOf("=")+1))}return""}}}();
 
 
+var github = (function(){
+  function escapeHtml(str) {
+    return $('<div/>').text(str).html();
+  }
+  function render(target, repos){
+    var i = 0, fragment = '', t = $(target)[0];
+
+    for(i = 0; i < repos.length; i++) {
+      fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+    }
+    t.innerHTML = fragment;
+  }
+  return {
+    showRepos: function(options){
+      $.ajax({
+          url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?"
+        , dataType: 'jsonp'
+        , error: function (err) { $(options.target + ' li.loading').addClass('error').text("Error loading feed"); }
+        , success: function(data) {
+          var repos = [];
+          if (!data || !data.data) { return; }
+          for (var i = 0; i < data.data.length; i++) {
+            if (options.skip_forks && data.data[i].fork) { continue; }
+            repos.push(data.data[i]);
+          }
+          if (options.count) { repos.splice(options.count); }
+          render(options.target, repos);
+        }
+      });
+    }
+  };
+})();
+
+$(document).ready(function(){
+    if (!window.jXHR){
+        var jxhr = document.createElement('script');
+        jxhr.type = 'text/javascript';
+        jxhr.src = '/javascripts/libs/jXHR.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(jxhr, s);
+    }
+
+    github.showRepos({
+        user: 'tokkonopapa',
+        count: 5,
+        skip_forks: true,
+        target: '#gh_repos'
+    });
+});
+

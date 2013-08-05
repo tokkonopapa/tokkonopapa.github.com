@@ -4,7 +4,7 @@
   <title><![CDATA[T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-05T00:24:28+09:00</updated>
+  <updated>2013-08-05T17:06:47+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -23,6 +23,24 @@
 <!--more-->
 
 <h3 id="section">言語解析キーワード</h3>
+
+<p>コマンドラインでは、<code>pygmentize -L lexers</code> で一覧を出力。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>pygmentize -L lexers の出力例</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="console"><span class="line"><span class="go">Pygments version 1.5, (c) 2006-2011 by Georg Brandl.</span>
+</span><span class="line">
+</span><span class="line"><span class="go">Lexers:</span>
+</span><span class="line"><span class="go">~~~~~~~</span>
+</span><span class="line"><span class="go">...（解釈可能な言語の一覧）</span>
+</span><span class="line"><span class="go">* yaml:</span>
+</span><span class="line"><span class="go">    YAML (filenames *.yaml, *.yml)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="rbcon-ruby-">rbcon （Ruby のコンソール出力）</h4>
 
@@ -147,32 +165,77 @@
 </span><span class="line">   html
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h3 id="section-1">コードの書き方</h3>
-<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> でコードスニペットを記述する方法は次の4通り。</p>
-
-<ol>
-  <li>インラインでバッククォート <code>`</code> で囲む</li>
-  <li>コードブロックを3連のバッククォート <code>```</code> で囲む（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</li>
-  <li>コードブロックの行頭をタブ、もしくはスペース4文字でインデント</li>
-  <li>コードブロックを <code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲むと Pygment でレンダリングされる（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</li>
-</ol>
-
-<p>ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲むそうナ。</p>
-
-<p>また忘れがちなのが <code>{% ... %}</code> のレンダリング。解釈されないよう、次のように raw ブロックで囲む。次のコードブロックは、3連バッククォートで囲んだ上で <code>%</code> を <code>&amp;#37;</code> としてある。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<h4 id="pot-po">pot, po</h4>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>po</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">{&#037; raw %}
-</span><span class="line">{&#037; ... %}
-</span><span class="line">{&#037; endraw %}</span></code></pre></td></tr></table></div></figure></notextile></div>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="po"><span class="line"><span class="c1"># LANGUAGE (LOCALE) translation for WordPress.</span>
+</span><span class="line"><span class="s">&quot;</span><span class="py">MIME-Version:</span><span class="s"> 1.0\n&quot;</span>
+</span><span class="line"><span class="s">&quot;</span><span class="py">Content-Type:</span><span class="s"> text/plain; charset=UTF-8\n&quot;</span>
+</span><span class="line"><span class="s">&quot;</span><span class="py">Content-Transfer-Encoding:</span><span class="s"> 8bit\n&quot;</span>
+</span><span class="line"><span class="kd">#: ../inc/admin.php:79</span>
+</span><span class="line"><span class="nv">msgid</span> <span class="s">&quot;%s: You need WordPress 3.1.0 or higher and PHP 5 with libcurl.&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h4 id="section-2">参考情報</h4>
+<h4 id="http">http</h4>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>http</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="http"><span class="line"><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+</span><span class="line"><span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/plain; charset=utf-8</span>
+</span><span class="line"><span class="na">Content-Length</span><span class="o">:</span> <span class="l">12</span>
+</span><span class="line">
+</span><span class="line">Hello World
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-1">コードの書き方</h3>
+<p><a href="https://github.com/davidfstr/rdiscount">rdiscount</a> にしろ <a href="https://github.com/gettalong/kramdown">kramdown</a> にしろ、<a href="https://github.com/imathis/octopress">Octopress</a> のスニペット記述方法は4通り。</p>
+
+<h4 id="section-2">1. インライン − バッククォート</h4>
+<p>シングルのバッククォート <code>`</code> で囲む。ちなみに、n個のバッククォートを表すには n+1個のバッククォート（と1つの空白）で囲むとのこと。</p>
+
+<h4 id="section-3">2. コードブロック − インデント</h4>
+<p>行頭をタブ、もしくはスペース4文字でインデントさせる。</p>
+
+<h4 id="httpoctopressorgdocspluginsbacktick-codeblock">3. コードブロック − 3連のバッククォート（<a href="http://octopress.org/docs/plugins/backtick-codeblock/">公式ドキュメント</a>）</h4>
+<p>3連のバッククォート <code>```</code> で囲む。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>raw </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">``` [言語] [タイトル] [リンクURL] [リンクのタイトル]
+</span><span class="line">ここにコードスニペット
+</span><span class="line">```</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="codeblock-httpoctopressorgdocspluginscodeblock">4. コードブロック − codeblock ブロック（<a href="http://octopress.org/docs/plugins/codeblock/">公式ドキュメント</a>）</h4>
+<p><code>{% codeblock TITLE lang:LANG %}</code> 〜 <code>{% endcodeblock %}</code> で囲む。</p>
+
+<p>忘れがちなのが <code>{% ... %}</code> が解釈されてレンダリングされないようにする書き方。次の様に raw ブロックで囲む。</p>
+
+<pre><code>{% codeblock [タイトル] [lang:言語] %}
+{% raw %}
+{% ... %}
+{% endraw %}
+{% endcodeblock %}
+</code></pre>
+
+<p>ちなみに 3. と 4. は Pygment でレンダリングされる。</p>
+
+<h4 id="section-4">参考情報</h4>
 <ul>
-  <li><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></li>
+  <li>
+    <p><a href="http://qiita.com/Qiita/items/c686397e4a0f4f11683d">Qiita - Markdown記法 チートシート - Qiita [キータ]</a></p>
+  </li>
+  <li>
+    <p><a href="http://stackoverflow.com/questions/3426182/how-to-escape-liquid-template-tags">How to escape liquid template tags? - Stack Overflow</a></p>
+  </li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -918,7 +981,6 @@ commit あるいは tag オブジェクトの名前を表す。</p>
 現在のブランチの head。</p>
   </li>
 </ul>
-<p>&lt;/dl&gt;</p>
 
 <h4 id="section-6">関連リンク</h4>
 <ul>
@@ -1186,16 +1248,7 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 
 <ul>
   <li><a href="http://compass-style.org/reference/compass/">Compass Core Framework - Compass Documentation</a></li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>[Compass Documentation - All Mixins</td>
-          <td>Compass Documentation](http://compass-style.org/index/mixins/)</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li><a href="http://compass-style.org/index/mixins/">All Mixins - Compass Documentation</a></li>
 </ul>
 
 <h3 id="octopress--sass-">Octopress の Sass 構成</h3>
@@ -1342,12 +1395,18 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 
 <p><code>source/_include/asides/twitter.html</code> で、フォローボタンの幅を <code>data-width="260px"</code> と指定して解決（<code>auto</code> に設定してもダメ）。</p>
 
-<div><script src="https://gist.github.com/1554383.js?file=twitter.html"></script>
-<noscript><pre><code>  {% if site.twitter_follow_button %}
-    &lt;a href=&quot;http://twitter.com/{{ site.twitter_user }}&quot; class=&quot;twitter-follow-button&quot; data-show-count=&quot;{{ site.twitter_show_follower_count }}&quot; data-width=&quot;260px&quot;&gt;Follow @{{ site.twitter_user }}&lt;/a&gt;
-  {% else %}
-    &lt;p&gt;Follow &lt;a href=&quot;http://twitter.com/{{site.twitter_user}}&quot;&gt;@{{ site.twitter_user }}&lt;/a&gt;&lt;/p&gt;
-  {% endif %}</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>twitter.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line">  {% if site.twitter_follow_button %}
+</span><span class="line">    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://twitter.com/{{ site.twitter_user }}&quot;</span> <span class="na">class=</span><span class="s">&quot;twitter-follow-button&quot;</span> <span class="na">data-show-count=</span><span class="s">&quot;{{ site.twitter_show_follower_count }}&quot;</span> <span class="na">data-width=</span><span class="s">&quot;260px&quot;</span><span class="nt">&gt;</span>Follow @{{ site.twitter_user }}<span class="nt">&lt;/a&gt;</span>
+</span><span class="line">  {% else %}
+</span><span class="line">    <span class="nt">&lt;p&gt;</span>Follow <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://twitter.com/{{site.twitter_user}}&quot;</span><span class="nt">&gt;</span>@{{ site.twitter_user }}<span class="nt">&lt;/a&gt;&lt;/p&gt;</span>
+</span><span class="line">  {% endif %}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h5 id="section-2">参考情報</h5>
 
@@ -1375,10 +1434,14 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <h3 id="ltmetagt-">&lt;meta&gt; タグの追加機能</h3>
 <p><code>source/_includes/head.html</code> の10行目付近から。</p>
 
-<div><script src="https://gist.github.com/1548796.js?file=head.html"></script>
-<noscript><pre><code>  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
-  &lt;meta name=&quot;description&quot; content=&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;&gt;
-  {% if page.keywords %}&lt;meta name=&quot;keywords&quot; content=&quot;{{ page.keywords }}&quot;&gt;{% endif %}</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>head.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line">  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+</span><span class="line">  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">  {% if page.keywords %}<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.keywords }}&quot;</span><span class="nt">&gt;</span>{% endif %}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>記事の <a href="https://github.com/mojombo/jekyll/wiki/yaml-front-matter">YAML ブロック</a> に <code>description</code> か、記事から HTML を除いた先頭150字が <code>&lt;meta name="description" content="..."&gt;</code> に挿入される。
 同様に <code>keywords</code> で <code>&lt;meta name="keywords" content="..."&gt;</code> が挿入される。</p>
@@ -1425,19 +1488,32 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <h4 id="rakefile-">Rakefile の改修</h4>
 <p><code>Rakefile</code> 102行目付近の <code>new_post</code> エントリーで、上記を YAML ブロックに挿入する。</p>
 
-<div><script src="https://gist.github.com/1548796.js?file=Rakefile"></script>
-<noscript><pre><code>  puts &quot;Creating new post: #{filename}&quot;
-  open(filename, 'w') do |post|
-    post.puts &quot;---&quot;
-    post.puts &quot;layout: post&quot;
-    post.puts &quot;title: \&quot;#{title.gsub(/&amp;/,'&amp;amp;')}\&quot;&quot;
-    post.puts &quot;date: #{Time.now.strftime('%Y-%m-%d %H:%M')}&quot;
-    post.puts &quot;comments: true&quot;
-    post.puts &quot;categories: &quot;
-    post.puts &quot;description: &quot;
-    post.puts &quot;keywords: &quot;
-    post.puts &quot;---&quot;
-  end</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Rakefile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line">  <span class="nb">puts</span> <span class="s2">&quot;Creating new post: </span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">  <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;---&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;layout: post&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;title: </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">title</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/&amp;/</span><span class="p">,</span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;date: </span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%d %H:%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;comments: true&quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;categories: &quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;description: &quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;keywords: &quot;</span>
+</span><span class="line">    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;---&quot;</span>
+</span><span class="line">  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="about-me-">サイドバーへの <code>About Me</code> 追加</h3>
 <p>既にテンプレートが <code>source/_includes/custom/asides/about.html</code> にある。色々なサイドバー・パーツを追加するのにも使える。後は <code>_config.yml</code> 49行目付近に指定するだけ。</p>
@@ -1458,106 +1534,197 @@ default_asides: [custom/asides/tag_cloud.html, custom/asides/tag_cloud.html, ...
 <!--more-->
 
 <h3 id="section">関連ファイルの抽出</h3>
-<div><script src="https://gist.github.com/1544095.js?file=Related-Files"></script>
-<noscript><pre><code>source
-└── _includes/
-    ├── post/
-    │   └── sharing.html             # post.html、page.html から
-    └── after_footer.html            # default.html から
-        ├── disqus.html              # after_footer.html から
-        ├── facebook_like.html       # after_footer.html から
-        ├── google_plus_one.html     # after_footer.html から
-        ├── twitter_sharing.html     # after_footer.html から
-        └── custom/after_footer.html # after_footer.html から（コメントのみ）</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Related-Files</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="console"><span class="line"><span class="go">source</span>
+</span><span class="line"><span class="go">└── _includes/</span>
+</span><span class="line"><span class="go">    ├── post/</span>
+</span><span class="line"><span class="go">    │   └── sharing.html             # post.html、page.html から</span>
+</span><span class="line"><span class="go">    └── after_footer.html            # default.html から</span>
+</span><span class="line"><span class="go">        ├── disqus.html              # after_footer.html から</span>
+</span><span class="line"><span class="go">        ├── facebook_like.html       # after_footer.html から</span>
+</span><span class="line"><span class="go">        ├── google_plus_one.html     # after_footer.html から</span>
+</span><span class="line"><span class="go">        ├── twitter_sharing.html     # after_footer.html から</span>
+</span><span class="line"><span class="go">        └── custom/after_footer.html # after_footer.html から（コメントのみ）</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="section-1">ファイルの修正</h3>
 
 <h4 id="configyml">_config.yml</h4>
 <p>各ボタンの言語設定、Facebook アプリケーション ID 設定などを追加する。</p>
 
-<div><script src="https://gist.github.com/1544095.js?file=_config.yml"></script>
-<noscript><pre><code># Twitter
-twitter_tweet_button: true
-twitter_tweet_button_lang: ja
-
-# Google +1
-google_plus_one: true
-google_plus_one_size: medium
-google_plus_one_lang: ja
-
-# Facebook Like
-facebook_like: true
-facebook_lang: ja_JP
-facebook_appID:</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="c1"># Twitter</span>
+</span><span class="line"><span class="l-Scalar-Plain">twitter_tweet_button</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class="line"><span class="l-Scalar-Plain">twitter_tweet_button_lang</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ja</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># Google +1</span>
+</span><span class="line"><span class="l-Scalar-Plain">google_plus_one</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class="line"><span class="l-Scalar-Plain">google_plus_one_size</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">medium</span>
+</span><span class="line"><span class="l-Scalar-Plain">google_plus_one_lang</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ja</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># Facebook Like</span>
+</span><span class="line"><span class="l-Scalar-Plain">facebook_like</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class="line"><span class="l-Scalar-Plain">facebook_lang</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ja_JP</span>
+</span><span class="line"><span class="l-Scalar-Plain">facebook_appID</span><span class="p-Indicator">:</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="sharinghtml">sharing.html</h4>
 <p>適当な位置にはてブを追加する。</p>
 
-<div><script src="https://gist.github.com/1544095.js?file=sharing.html"></script>
-<noscript><pre><code>&lt;div class=&quot;sharing&quot;&gt;
-  {% if site.twitter_tweet_button %}
-  &lt;a href=&quot;http://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-url=&quot;{{ site.url }}{{ page.url }}&quot; data-via=&quot;{{ site.twitter_user }}&quot; data-counturl=&quot;{{ site.url }}{{ page.url }}&quot; {% if site.twitter_tweet_button_lang %}data-lang=&quot;{{ site.twitter_tweet_button_lang }}&quot;{% endif %}&gt;Tweet&lt;/a&gt;
-  {% endif %}
-  {% if site.google_plus_one %}
-  &lt;div class=&quot;g-plusone&quot; data-size=&quot;{{ site.google_plus_one_size }}&quot;&gt;&lt;/div&gt;
-  {% endif %}
-  &lt;a href=&quot;http://b.hatena.ne.jp/entry/&quot; class=&quot;hatena-bookmark-button&quot;
-      data-hatena-bookmark-layout=&quot;standard&quot;
-      data-hatena-bookmark-url=&quot;{{ site.url }}{{ page.url }}&quot;&gt;
-    &lt;img src=&quot;http://b.st-hatena.com/images/entry-button/button-only.gif&quot;
-        alt=&quot;このエントリーをはてなブックマークに追加&quot; width=&quot;20&quot; height=&quot;20&quot;
-        style=&quot;border: none&quot;&gt;
-  &lt;/a&gt;
-  {% if site.facebook_like %}
-    &lt;div class=&quot;fb-like&quot; data-send=&quot;true&quot; data-width=&quot;450&quot; data-show-faces=&quot;false&quot;&gt;&lt;/div&gt;
-  {% endif %}
-&lt;/div&gt;</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>sharing.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;sharing&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">  {% if site.twitter_tweet_button %}
+</span><span class="line">  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://twitter.com/share&quot;</span> <span class="na">class=</span><span class="s">&quot;twitter-share-button&quot;</span> <span class="na">data-url=</span><span class="s">&quot;{{ site.url }}{{ page.url }}&quot;</span> <span class="na">data-via=</span><span class="s">&quot;{{ site.twitter_user }}&quot;</span> <span class="na">data-counturl=</span><span class="s">&quot;{{ site.url }}{{ page.url }}&quot;</span> <span class="err">{%</span> <span class="na">if</span> <span class="na">site</span><span class="err">.</span><span class="na">twitter_tweet_button_lang</span> <span class="err">%}</span><span class="na">data-lang=</span><span class="s">&quot;{{ site.twitter_tweet_button_lang }}&quot;</span><span class="err">{%</span> <span class="na">endif</span> <span class="err">%}</span><span class="nt">&gt;</span>Tweet<span class="nt">&lt;/a&gt;</span>
+</span><span class="line">  {% endif %}
+</span><span class="line">  {% if site.google_plus_one %}
+</span><span class="line">  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;g-plusone&quot;</span> <span class="na">data-size=</span><span class="s">&quot;{{ site.google_plus_one_size }}&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class="line">  {% endif %}
+</span><span class="line">  <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://b.hatena.ne.jp/entry/&quot;</span> <span class="na">class=</span><span class="s">&quot;hatena-bookmark-button&quot;</span>
+</span><span class="line">      <span class="na">data-hatena-bookmark-layout=</span><span class="s">&quot;standard&quot;</span>
+</span><span class="line">      <span class="na">data-hatena-bookmark-url=</span><span class="s">&quot;{{ site.url }}{{ page.url }}&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;http://b.st-hatena.com/images/entry-button/button-only.gif&quot;</span>
+</span><span class="line">        <span class="na">alt=</span><span class="s">&quot;このエントリーをはてなブックマークに追加&quot;</span> <span class="na">width=</span><span class="s">&quot;20&quot;</span> <span class="na">height=</span><span class="s">&quot;20&quot;</span>
+</span><span class="line">        <span class="na">style=</span><span class="s">&quot;border: none&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">  <span class="nt">&lt;/a&gt;</span>
+</span><span class="line">  {% if site.facebook_like %}
+</span><span class="line">    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;fb-like&quot;</span> <span class="na">data-send=</span><span class="s">&quot;true&quot;</span> <span class="na">data-width=</span><span class="s">&quot;450&quot;</span> <span class="na">data-show-faces=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class="line">  {% endif %}
+</span><span class="line"><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="afterfooterhtml">after_footer.html</h4>
 <p>Facebook、Google+1、Twitter をコメントアウトする。</p>
 
-<div><script src="https://gist.github.com/1544095.js?file=after_footer.html"></script>
-<noscript><pre><code>{% include disqus.html %}
-{% comment %}
-{% include facebook_like.html %}
-{% include google_plus_one.html %}
-{% include twitter_sharing.html %}
-{% endcomment %}
-{% include custom/after_footer.html %}</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>after_footer.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line">{% include disqus.html %}
+</span><span class="line">{% comment %}
+</span><span class="line">{% include facebook_like.html %}
+</span><span class="line">{% include google_plus_one.html %}
+</span><span class="line">{% include twitter_sharing.html %}
+</span><span class="line">{% endcomment %}
+</span><span class="line">{% include custom/after_footer.html %}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="custumafterfooterhtml">custum/after_footer.html</h4>
 <p>Google+1、Facebook の言語設定と JavaScript の非同期読み込みコードを共通化してまとめる。</p>
 
-<div><script src="https://gist.github.com/1544095.js?file=custum-after_footer.html"></script>
-<noscript><pre><code>{% comment %}
-  Add content to be output at the bottom of each page. (You might use this for analytics scripts, for example)
-{% endcomment %}
-&lt;script&gt;
-(function(w,d){
-    var c,e=d.createDocumentFragment(),f=d.getElementsByTagName(&quot;script&quot;)[0],
-    a=function(a,b){if(!d.getElementById(b)){c=d.createElement(&quot;script&quot;);
-    c.src=a;c.id=b||null;c.async=true;e.appendChild(c);}};
-{% if site.google_plus_one %}{% if site.google_plus_one_lang %}
-    w.___gcfg={lang:&quot;ja&quot;};{% endif %}
-    a(&quot;https://apis.google.com/js/plusone.js&quot;);
-{% endif %}
-{% if site.twitter_follow_button or site.twitter_tweet_button %}
-    a(&quot;//platform.twitter.com/widgets.js&quot;);
-{% endif %}
-{% if site.facebook_like %}
-    a(&quot;//connect.facebook.net/{% if site.facebook_lang %}{{ site.facebook_lang }}{% else %}en_US{% endif %}/all.js#{% if site.facebook_appID %}appId={{ site.facebook_appID }}&amp;{% endif %}xfbml=1&quot;,&quot;facebook-jssdk&quot;);
-{% endif %}
-    a(&quot;//b.st-hatena.com/js/bookmark_button_wo_al.js&quot;);
-    f.parentNode.insertBefore(e,f);
-})(this,document);
-&lt;/script&gt;</code></pre></noscript></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>custum-after_footer.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line">{% comment %}
+</span><span class="line">  Add content to be output at the bottom of each page. (You might use this for analytics scripts, for example)
+</span><span class="line">{% endcomment %}
+</span><span class="line"><span class="nt">&lt;script&gt;</span>
+</span><span class="line"><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span><span class="nx">d</span><span class="p">){</span>
+</span><span class="line">    <span class="kd">var</span> <span class="nx">c</span><span class="p">,</span><span class="nx">e</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">createDocumentFragment</span><span class="p">(),</span><span class="nx">f</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+</span><span class="line">    <span class="nx">a</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">b</span><span class="p">)){</span><span class="nx">c</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">);</span>
+</span><span class="line">    <span class="nx">c</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">a</span><span class="p">;</span><span class="nx">c</span><span class="p">.</span><span class="nx">id</span><span class="o">=</span><span class="nx">b</span><span class="o">||</span><span class="kc">null</span><span class="p">;</span><span class="nx">c</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">e</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">c</span><span class="p">);}};</span>
+</span><span class="line"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">google_plus_one</span> <span class="o">%</span><span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">google_plus_one_lang</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="line">    <span class="nx">w</span><span class="p">.</span><span class="nx">___gcfg</span><span class="o">=</span><span class="p">{</span><span class="nx">lang</span><span class="o">:</span><span class="s2">&quot;ja&quot;</span><span class="p">};{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">(</span><span class="s2">&quot;https://apis.google.com/js/plusone.js&quot;</span><span class="p">);</span>
+</span><span class="line"><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="line"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">twitter_follow_button</span> <span class="nx">or</span> <span class="nx">site</span><span class="p">.</span><span class="nx">twitter_tweet_button</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">(</span><span class="s2">&quot;//platform.twitter.com/widgets.js&quot;</span><span class="p">);</span>
+</span><span class="line"><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="line"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">site</span><span class="p">.</span><span class="nx">facebook_like</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">(</span><span class="s2">&quot;//connect.facebook.net/{% if site.facebook_lang %}{{ site.facebook_lang }}{% else %}en_US{% endif %}/all.js#{% if site.facebook_appID %}appId={{ site.facebook_appID }}&amp;{% endif %}xfbml=1&quot;</span><span class="p">,</span><span class="s2">&quot;facebook-jssdk&quot;</span><span class="p">);</span>
+</span><span class="line"><span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="line">    <span class="nx">a</span><span class="p">(</span><span class="s2">&quot;//b.st-hatena.com/js/bookmark_button_wo_al.js&quot;</span><span class="p">);</span>
+</span><span class="line">    <span class="nx">f</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">f</span><span class="p">);</span>
+</span><span class="line"><span class="p">})(</span><span class="k">this</span><span class="p">,</span><span class="nb">document</span><span class="p">);</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="facebook--appid-">Facebook の AppID について</h3>
-<p><code>facebook_like.html</code> には、作者のものと思われるアプリケーション ID が埋め込まれている。</p>
+<p><code>facebook_like.html</code> には、作者のものと思われるアプリケーション ID が埋め込まれているが、このファイルは使わない。</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>facebook_like.html </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line">  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/en_US/all.js#appId=212934732101925&amp;xfbml=1&quot;</span><span class="p">;</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line">{% if site.facebook_like %}
+</span><span class="line"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;fb-root&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class="line"><span class="nt">&lt;script&gt;</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="kd">var</span> <span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class="line">  <span class="k">if</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="p">{</span><span class="k">return</span><span class="p">;}</span>
+</span><span class="line">  <span class="nx">js</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="nx">js</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span> <span class="nx">js</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;//connect.facebook.net/en_US/all.js#appId=212934732101925&amp;xfbml=1&quot;</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">fjs</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span><span class="p">);</span>
+</span><span class="line"><span class="p">}(</span><span class="nb">document</span><span class="p">,</span> <span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="s1">&#39;facebook-jssdk&#39;</span><span class="p">));</span><span class="nt">&lt;/script&gt;</span>
+</span><span class="line">{% endif %}
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>本来これは <code>_config.yml</code> で設定すべき事項。言語設定も含めて pull request するべきなんでしょうかネ。</p>
@@ -1965,12 +2132,12 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 <h4 id="section-8">記事</h4>
 <pre><code>└── _includes/
-    ├── article.html			# post.html、index.html から
-    ├── post/author.html		# post.html、page.html から
-    ├── post/categories.html	# post.html、page.html から
-    ├── post/date.html			# post.html、page.html、index.html から
-    ├── post/disqus_thread.html	# post.html、page.html から
-    └── post/sharing.html		# post.html、page.html から
+    ├── article.html            # post.html、index.html から
+    ├── post/author.html        # post.html、page.html から
+    ├── post/categories.html    # post.html、page.html から
+    ├── post/date.html          # post.html、page.html、index.html から
+    ├── post/disqus_thread.html # post.html、page.html から
+    └── post/sharing.html       # post.html、page.html から
 </code></pre>
 
 <h4 id="section-9">サイドバー・パーツ</h4>
@@ -1993,16 +2160,16 @@ Automatic merge failed; fix conflicts and then commit the result.
 <h4 id="section-11">ソーシャル・パーツ</h4>
 <pre><code>└── _includes/
     ├── after_footer.html
-    ├── custom/after_footer.html	# コメントのみ
-    ├── disqus.html					# after_footer.html から
-    ├── facebook_like.html			# after_footer.html から
-    ├── google_plus_one.html		# after_footer.html から
-    └── twitter_sharing.html		# after_footer.html から
+    ├── custom/after_footer.html # コメントのみ
+    ├── disqus.html              # after_footer.html から
+    ├── facebook_like.html       # after_footer.html から
+    ├── google_plus_one.html     # after_footer.html から
+    └── twitter_sharing.html     # after_footer.html から
 </code></pre>
 
 <h4 id="section-12">アーカイブ</h4>
 <pre><code>└── _includes/
-    └── archive_post.html	# category_index.html、blog/archives/index.html から
+    └── archive_post.html # category_index.html、blog/archives/index.html から
 </code></pre>
 
 <h3 id="section-13">3. 生成されるファイルの構成</h3>
@@ -2068,8 +2235,8 @@ rake new_page[my-new-page.html]
 </code></pre>
 
 <h5 id="section-19">ファイル</h5>
-<pre><code>├── my-new-page/index.markdown	# rake new_page[my-new-page]
-└── my-new-page/index.html		# rake new_page[my-new-page.html]
+<pre><code>├── my-new-page/index.markdown # rake new_page[my-new-page]
+└── my-new-page/index.html     # rake new_page[my-new-page.html]
 </code></pre>
 
 <h5 id="yaml-1">YAMLブロック</h5>

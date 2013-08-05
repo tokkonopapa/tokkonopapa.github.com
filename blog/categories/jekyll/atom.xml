@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jekyll | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2013-08-05T00:24:28+09:00</updated>
+  <updated>2013-08-05T17:06:47+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -516,12 +516,12 @@ rake post["title of my article"]
 
 <h4 id="section-8">記事</h4>
 <pre><code>└── _includes/
-    ├── article.html			# post.html、index.html から
-    ├── post/author.html		# post.html、page.html から
-    ├── post/categories.html	# post.html、page.html から
-    ├── post/date.html			# post.html、page.html、index.html から
-    ├── post/disqus_thread.html	# post.html、page.html から
-    └── post/sharing.html		# post.html、page.html から
+    ├── article.html            # post.html、index.html から
+    ├── post/author.html        # post.html、page.html から
+    ├── post/categories.html    # post.html、page.html から
+    ├── post/date.html          # post.html、page.html、index.html から
+    ├── post/disqus_thread.html # post.html、page.html から
+    └── post/sharing.html       # post.html、page.html から
 </code></pre>
 
 <h4 id="section-9">サイドバー・パーツ</h4>
@@ -544,16 +544,16 @@ rake post["title of my article"]
 <h4 id="section-11">ソーシャル・パーツ</h4>
 <pre><code>└── _includes/
     ├── after_footer.html
-    ├── custom/after_footer.html	# コメントのみ
-    ├── disqus.html					# after_footer.html から
-    ├── facebook_like.html			# after_footer.html から
-    ├── google_plus_one.html		# after_footer.html から
-    └── twitter_sharing.html		# after_footer.html から
+    ├── custom/after_footer.html # コメントのみ
+    ├── disqus.html              # after_footer.html から
+    ├── facebook_like.html       # after_footer.html から
+    ├── google_plus_one.html     # after_footer.html から
+    └── twitter_sharing.html     # after_footer.html から
 </code></pre>
 
 <h4 id="section-12">アーカイブ</h4>
 <pre><code>└── _includes/
-    └── archive_post.html	# category_index.html、blog/archives/index.html から
+    └── archive_post.html # category_index.html、blog/archives/index.html から
 </code></pre>
 
 <h3 id="section-13">3. 生成されるファイルの構成</h3>
@@ -619,8 +619,8 @@ rake new_page[my-new-page.html]
 </code></pre>
 
 <h5 id="section-19">ファイル</h5>
-<pre><code>├── my-new-page/index.markdown	# rake new_page[my-new-page]
-└── my-new-page/index.html		# rake new_page[my-new-page.html]
+<pre><code>├── my-new-page/index.markdown # rake new_page[my-new-page]
+└── my-new-page/index.html     # rake new_page[my-new-page.html]
 </code></pre>
 
 <h5 id="yaml-1">YAMLブロック</h5>
