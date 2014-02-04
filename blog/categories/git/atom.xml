@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | T.I.D.]]></title>
   <link href="http://tokkonopapa.github.com/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tokkonopapa.github.com/"/>
-  <updated>2014-02-04T21:45:29+09:00</updated>
+  <updated>2014-02-04T21:56:09+09:00</updated>
   <id>http://tokkonopapa.github.com/</id>
   <author>
     <name><![CDATA[tokkonopapa]]></name>
@@ -35,7 +35,7 @@
 
 <ul>
   <li>SVN リポジトリから git に取り込む（<code>git svn fetch</code>）際、一本の巨大なリポジトリ・ツリーを頭から検索するため、非常に時間がかかる。</li>
-  <li>SVN へのコミットはすべての変更を集約する必要がある。これには git 側でのマージ処理が必要だが、途中の過程をすっ飛ばすため、コンフリクトを生む原因となる。この解消は全くもって無駄な作業である。</li>
+  <li>SVN へのコミットはすべての変更を集約する必要がある。これには git 側でのマージ処理が必要だが、途中の過程をすっ飛ばして前バージョンと最新をマージするため、コンフリクトが発生する可能性が高い。この解消は全くもって無駄な作業である。</li>
   <li><code>git-svn</code> の制限により、サブモジュールが扱えない。</li>
   <li>開発の歴史をすべて SVN リポジトリへ引き継ぐため、リポジトリが増大する。</li>
 </ul>
