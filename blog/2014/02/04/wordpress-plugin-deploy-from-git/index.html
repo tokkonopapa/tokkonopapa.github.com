@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Git管理下のWordPressプラグインを公式SVNリポジトリに上げる - git-svnを使う方法／使わない方法 - T.I.D.</title>
+  <meta name="author" content="tokkonopapa">
+  <meta name="google-site-verification" content="LkAMgwjKoaOnF1HeNMQXuN_tqpSecURf495BYwnD_LI" />
+
+  
+  <meta name="description" content="Git/GitHubの管理下で開発したWordPressプラグインを公式サイトのSubversionリポジトリに上げるには、git-svnを使わない方法がお勧めです。">
+  <meta name="keywords" content="git, github, subversion, git-svn, WordPress, プラグイン, リポジトリ">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/Tid" rel="alternate" title="T.I.D." type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.6.custom.js"></script>
+  
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">T.I.D.</a></h1>
+  
+    <h2>Git や GitHub と戯れる、オレオレ的おとなの遊び場</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/Tid" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tokkonopapa.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Git管理下のWordPressプラグインを公式SVNリポジトリに上げる - Git-svnを使う方法／使わない方法</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-04T21:25:00+09:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Git をメインのバージョン管理に使うなら、<code>git-svn</code> は使う必要がないと言う記事。</p>
+
+<!--more-->
+
+<p>Git や GitHub で管理する WordPress プラグインを公式の SVN リポジトリに送る方法として <code>git-svn</code> を使うワークフローが多く紹介されている。</p>
+
+<ul>
+  <li>2014年01月06日 <a href="http://pasero.net/~mako/blog/s/544">WordPress のプラグインを公式リポジトリと GitHub に公開する</a></li>
+  <li>2013年09月26日 <a href="http://notnil-creative.com/blog/archives/2431">GitHubにホストしていたレポジトリをWordPress.orgのSVNにSourceTree(Mac)を使ってプッシュするまで</a></li>
+  <li>2012年09月19日 <a href="https://gist.github.com/kasparsd/3749872">Using Git (and GitHub) with Subversion Mirroring for WordPress Plugin Development</a></li>
+  <li>2011年05月23日 <a href="http://teleogistic.net/2011/05/revisiting-git-github-and-the-wordpress-org-plugin-repository/">Revisiting Git, Github, and the wordpress.org plugin repository</a></li>
+</ul>
+
+<p>これらの問題点は以下の通り。</p>
+
+<ul>
+  <li>SVN リポジトリから git に取り込む（<code>git svn fetch</code>）際、一本の巨大なリポジトリ・ツリーを頭から検索するため、非常に時間がかかる。</li>
+  <li>SVN へのコミットはすべての変更を集約する必要がある。これには git 側でのマージ処理が必要だが、途中の過程をすっ飛ばすため、コンフリクトを生む原因となる。この解消は全くもって無駄な作業である。</li>
+  <li><code>git-svn</code> の制限により、サブモジュールが扱えない。</li>
+  <li>開発の歴史をすべて SVN リポジトリへ引き継ぐため、リポジトリが増大する。</li>
+</ul>
+
+<p>蛇足だが、上記最後の記事には 「公式リポジトリを単にリリース用に使うだけなら、せめて <code>git rebase -i</code> か <code>git merge -squash</code> でやってくれ」 という <a href="http://teleogistic.net/2011/05/revisiting-git-github-and-the-wordpress-org-plugin-repository/comment-page-1/#comment-332025">Otto さんの嘆き</a> が書き込まれている（<a href="http://ottopress.com/">Otto さん</a> は WordPress のプラグイン開発で有名な人）。</p>
+
+<p>一方、Git / GitHub を主とする開発では、</p>
+
+<ul>
+  <li>開発の歴史はすべて Git / GitHub で管理する。</li>
+  <li>公式 SVN リポジトリは、単にリリース・バージョンの保持のために利用する。</li>
+</ul>
+
+<p>SVN クライアントとして動作する <code>git-svn</code> を使うと、git リポジトリと同時に SVN のリポジトリも同時に生成・管理することになるが、上記を前提とすれば、<code>git-svn</code> を使う必要がない。</p>
+
+<p>基本的には、公式サイトの記事 <a href="http://wordpress.org/plugins/about/svn/">How to Use Subversion</a> に書かれている手作業をスクリプトで自動化するイメージ。</p>
+
+<p>現在見つけたスクリプトは以下の2系統。どちらもリリース・バージョンを GitHub に push する直前からの利用を想定している。バージョン番号に応じたタグ付けなど、ワン・コマンドによる自動化が可能。一時的に SVN リポジトリを作成するが、残す必要がないので、その都度削除するという潔さ。スクリプトの動作も軽い。</p>
+
+<h3 id="sudar--wp-plugin-in-githubhttpsgithubcomsudarwp-plugin-in-githubblobmasterclone-from-svn-to-gitsh"><a href="https://github.com/sudar/wp-plugin-in-github/blob/master/clone-from-svn-to-git.sh">sudar / wp-plugin-in-github</a></h3>
+
+<p>歴史を含めて既存の SVN リポジトリから git にクローンを作成する <code>clone-from-svn-to-git.sh</code> と git で管理しているファイル群を SVN に上げる <code>deploy-plugin.sh</code> がメイン。前者は <code>git-svn</code> のインストールが必要だが、最初から GitHub で開発している場合には後者だけを使えば良く、<code>git-svn</code> のインストールは不要。</p>
+
+<p><code>assets</code> への転送、<code>add-textdomain.php</code> や <code>makepot.php</code> による言語ファイルの更新（Otto さんの記事 <a href="http://ottopress.com/2013/language-packs-101-prepwork/">Language Packs 101 – Prepwork</a> を参照）も含まれており、至れり尽くせりのスクリプト。</p>
+
+<p>また、マークダウンで書かれた README.md を readme.txt に変換する <code>readme-converter.sh</code> や、プラグインの zip アーカイブを作成する <code>create-archive.sh</code> もあり、すべての作業内容が網羅されている。</p>
+
+<p>詳しくは、以下の紹介記事を参照のこと。</p>
+
+<ul>
+  <li>2014年01月03日 <a href="http://www.tecking.org/archives/3830">公式リポジトリのWordPressプラグインをGitHubでバージョン管理できる『wp-plugin-in-github』使ってみたよ</a></li>
+  <li>2013年12月23日 <a href="http://wp.tekapo.com/2013/12/23/wordpress-plugin-repository-with-github/">WordPress公式プラグインリポジトリに登録しているプラグインをGitHubで管理する</a></li>
+</ul>
+
+<h3 id="garyjones--wordpress-plugin-git-flow-svn-deployhttpsgithubcomgaryjoneswordpress-plugin-git-flow-svn-deploy"><a href="https://github.com/GaryJones/wordpress-plugin-git-flow-svn-deploy">GaryJones / wordpress-plugin-git-flow-svn-deploy</a></h3>
+
+<p><a href="https://github.com/deanc/wordpress-plugin-git-svn">deanc / wordpress-plugin-git-svn</a> から派生したスクリプトで、サブモジュールや <code>assets</code> の転送、途中で削除されたファイルなどの対応もサポート。</p>
+
+<p>私はこのスクリプトを元に自分の構成に合わせて修正、利用した。</p>
+
+<p>いずれにしても盲目的に実行するのではなく、自分の環境に合っているかどうか、スクリプトの各行を吟味して実行するが吉。さもないとトラブルの際、うろたえることになる。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">tokkonopapa</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-04T21:25:00+09:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/git/'>Git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <div class="hatena-button">
+    <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button"
+      data-hatena-bookmark-layout="standard"
+      data-hatena-bookmark-url="http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git/">
+    <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"
+        alt="このエントリーをはてなブックマークに追加" width="20" height="20"
+        style="border: none">
+    </a>
+  </div>
+  
+  
+  <a href="https://getpocket.com/save" class="pocket-btn" data-lang="ja"
+    data-save-url="http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git/"
+    data-pocket-count="horizontal"
+    data-pocket-align="left"
+  >Pocket</a>
+  
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git/" data-via="tokkonopapa" data-counturl="http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+  <div id="fb-root"></div><div class="fb-like" data-href="http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git/" data-layout="button_count" data-send="false" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/04/pygment-lexer/" title="Previous Post: Pygmentで使える言語パーサー">&laquo; Pygmentで使える言語パーサー</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>Web テクノロジの進化とデザインに興味のある、非 Web 業界エンジニア。<a href="http://tokkono.cute.coocan.jp/blog/slow/">ゆっくりと…</a> の別館としてここを運営しています。</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/02/04/wordpress-plugin-deploy-from-git/">Git管理下のWordPressプラグインを公式SVNリポジトリに上げる - Git-svnを使う方法／使わない方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/pygment-lexer/">Pygmentで使える言語パーサー</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/04/liquid-exception-error/">Liquid Exception: Invalid Byte Sequence in UTF-8 in atom.xml</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/23/octopress-toc/">Octopressで見出しの目次を記事に埋め込む方法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/03/jekyll-error-of-common-rb/">common.rb:304: In Escape: Undefined Method Gsub for ... (NoMethodError)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/22/jekyll-experiment/">Jekyllの実験的テンプレート</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/25/site-verification/">Octopressサイトのウェブマスター登録</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-emoji/">GitHubber達が使うEmojiの出し方</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/17/prior-knowledge-for-git-manual/">Git英文マニュアルを読むための予備知識</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/04/octopress-plugin-for-categories-cloud/">Octopress用Tag Cloudプラグインをリリースします</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Tag Cloud</h1>
+    <span id="tag-cloud"><a href='/blog/categories/git' style='font-size: 110.9090909090909%'>Git(2)</a> <a href='/blog/categories/github' style='font-size: 121.81818181818181%'>GitHub(4)</a> <a href='/blog/categories/heroku' style='font-size: 110.9090909090909%'>Heroku(2)</a> <a href='/blog/categories/jekyll' style='font-size: 127.27272727272728%'>jekyll(5)</a> <a href='/blog/categories/liquid' style='font-size: 105.45454545454545%'>Liquid(1)</a> <a href='/blog/categories/mac' style='font-size: 110.9090909090909%'>Mac(2)</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>Octopress(11)</a> <a href='/blog/categories/plugins' style='font-size: 105.45454545454545%'>Plugins(1)</a> <a href='/blog/categories/pygment' style='font-size: 105.45454545454545%'>Pygment(1)</a> <a href='/blog/categories/ruby' style='font-size: 116.36363636363636%'>Ruby(3)</a> <a href='/blog/categories/sass' style='font-size: 105.45454545454545%'>Sass(1)</a> </span>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/tokkonopapa">@tokkonopapa</a> on GitHub
+  
+
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - tokkonopapa -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'tokkonopapa';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git/';
+        var disqus_url = 'http://tokkonopapa.github.com/blog/2014/02/04/wordpress-plugin-deploy-from-git/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+<script src="/javascripts/octopress.js" type="text/javascript" defer></script>
+<script>
+(function(w,d){
+    var c,e=d.createDocumentFragment(),f=d.getElementsByTagName("script")[0],
+    a=function(a,b){if(!d.getElementById(b)){c=d.createElement("script");
+    c.src=a;c.id=b||null;c.async=true;e.appendChild(c);}};
+
+    w._gaq=[["_setAccount","UA-20543951-2"],["_trackPageview"]];
+    a(("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js");
+
+    a("//platform.twitter.com/widgets.js", "twitter-wjs");
+
+    a("//connect.facebook.net/ja_JP/all.js#xfbml=1","facebook-jssdk");
+
+    w.___gcfg={lang:"ja"};
+    a("https://apis.google.com/js/plusone.js");
+
+    a('//b.st-hatena.com/js/bookmark_button_wo_al.js');
+
+    a('https://widgets.getpocket.com/v1/j/btn.js?v=1');
+    f.parentNode.insertBefore(e,f);
+})(window,document);
+</script>
+
+</body>
+</html>
